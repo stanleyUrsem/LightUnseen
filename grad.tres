@@ -1,0 +1,7 @@
+[gd_resource type="GradientTexture1D" load_steps=2 format=3 uid="uid://bovhrujf0dxb7"]
+
+[ext_resource type="Gradient" uid="uid://p2sdwxpp0dcw" path="res://new_gradient2.tres" id="1_30bvs"]
+
+[resource]
+gradient = ExtResource("1_30bvs")
+use_hdr = true

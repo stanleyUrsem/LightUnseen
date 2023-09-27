@@ -1,0 +1,2554 @@
+[gd_scene load_steps=27 format=3 uid="uid://cnyyt3ffbm2oh"]
+
+[ext_resource type="Texture2D" uid="uid://bovhrujf0dxb7" path="res://grad.tres" id="1_4lo0i"]
+[ext_resource type="Script" path="res://BackgroundColoring.gd" id="1_bya60"]
+[ext_resource type="Script" path="res://CameraFollow.gd" id="3_bvenk"]
+[ext_resource type="Texture2D" uid="uid://b676kryldwrd7" path="res://Sion/Idling_4Fr0.png" id="3_vxk43"]
+[ext_resource type="Script" path="res://CharacterMovement.gd" id="4_73i8n"]
+[ext_resource type="Texture2D" uid="uid://btmwxkjs7o71y" path="res://Sion/Idling_4Fr1.png" id="4_fcqe1"]
+[ext_resource type="Texture2D" uid="uid://cxa1yjn3txb7f" path="res://Sion/Idling_4Fr2.png" id="5_c5ngy"]
+[ext_resource type="Texture2D" uid="uid://baxu88ppqipsg" path="res://Envo/First/Stalactites.png" id="5_fh74m"]
+[ext_resource type="Texture2D" uid="uid://c23xvmncsf3fc" path="res://Sion/Idling_4Fr3.png" id="6_ngwut"]
+[ext_resource type="Texture2D" uid="uid://bwtlf17aosj0e" path="res://Sion/Walking_4Fr0.png" id="7_2r6q1"]
+[ext_resource type="Texture2D" uid="uid://cohw2nrup21sy" path="res://Sion/Walking_4Fr1.png" id="8_n2yqa"]
+[ext_resource type="Texture2D" uid="uid://magdnmhpswmx" path="res://Sion/Walking_4Fr2.png" id="9_n7tdt"]
+[ext_resource type="Texture2D" uid="uid://bcfedfqvfn3qh" path="res://Sion/Walking_4Fr3.png" id="10_isl3m"]
+[ext_resource type="Texture2D" uid="uid://cvwqmqs1wmgg2" path="res://Envo/First/BackgroundHill.png" id="12_0ynwd"]
+[ext_resource type="Texture2D" uid="uid://ba0lhunvyr0pf" path="res://new_gradient_texture_2d.tres" id="12_fyas7"]
+[ext_resource type="Texture2D" uid="uid://ln4srh3jbrjg" path="res://Envo/First/PackedEnvo_1.png" id="13_t07u8"]
+[ext_resource type="Texture2D" uid="uid://kn0gudp0rf0s" path="res://Envo/First/platforms.png" id="15_yumsi"]
+
+[sub_resource type="PhysicsMaterial" id="PhysicsMaterial_1wok7"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_f4nru"]
+size = Vector2(1236, 208)
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_wv50j"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_wwtrm"]
+size = Vector2(12.9201, 7.97433)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_mkbkf"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("3_vxk43")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_fcqe1")
+}, {
+"duration": 1.0,
+"texture": ExtResource("5_c5ngy")
+}, {
+"duration": 1.0,
+"texture": ExtResource("6_ngwut")
+}],
+"loop": true,
+"name": &"Idling",
+"speed": 10.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("7_2r6q1")
+}, {
+"duration": 1.0,
+"texture": ExtResource("8_n2yqa")
+}, {
+"duration": 1.0,
+"texture": ExtResource("9_n7tdt")
+}, {
+"duration": 1.0,
+"texture": ExtResource("10_isl3m")
+}],
+"loop": true,
+"name": &"Walking",
+"speed": 10.0
+}]
+
+[sub_resource type="Gradient" id="Gradient_ohi64"]
+offsets = PackedFloat32Array(0, 0.727273)
+colors = PackedColorArray(0, 0, 0, 1, 0, 0, 0, 0.741259)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_nit5r"]
+gradient = SubResource("Gradient_ohi64")
+fill = 1
+fill_from = Vector2(0.5, 0.5)
+fill_to = Vector2(0.786408, 0.179612)
+
+[sub_resource type="SegmentShape2D" id="SegmentShape2D_s0sew"]
+b = Vector2(0, -275)
+
+[sub_resource type="SegmentShape2D" id="SegmentShape2D_ormf1"]
+b = Vector2(0, -200)
+
+[node name="Node2D" type="Node2D"]
+position = Vector2(395, -70)
+
+[node name="Polygon2D6" type="Polygon2D" parent="."]
+visible = false
+clip_children = 2
+light_mask = 3
+z_index = 7
+z_as_relative = false
+texture_filter = 1
+texture_repeat = 1
+position = Vector2(-197, 353)
+rotation = 1.57106
+scale = Vector2(12.53, 500)
+offset = Vector2(-128, -4.11876)
+antialiased = true
+texture = ExtResource("1_4lo0i")
+polygon = PackedVector2Array(3.8147e-06, 0, 256, 0, 256, 8, 1.90735e-06, 8)
+uv = PackedVector2Array(3.8147e-06, 0, 256, 0, 256.005, 1.06684, 0.0575008, 1.12375)
+
+[node name="Polygon2D2" type="Polygon2D" parent="."]
+visible = false
+z_index = 4
+z_as_relative = false
+texture_repeat = 1
+position = Vector2(28, -10)
+rotation = -1.57079
+scale = Vector2(2.147, 500.023)
+offset = Vector2(-128, -4.11876)
+antialiased = true
+texture = ExtResource("1_4lo0i")
+polygon = PackedVector2Array(3.8147e-06, 0, 256, 0, 256, 8, 1.90735e-06, 8)
+uv = PackedVector2Array(3.8147e-06, 0, 256, 0, 256.005, 1.06684, 0.0575008, 1.12375)
+
+[node name="Node2D" type="Node2D" parent="."]
+position = Vector2(0, -112)
+
+[node name="Platforms" type="Node2D" parent="Node2D"]
+z_index = 3
+position = Vector2(0, 49)
+scale = Vector2(0.125, 0.125)
+
+[node name="Platform1" type="Polygon2D" parent="Node2D/Platforms"]
+texture_repeat = 3
+position = Vector2(1718.49, 1696.65)
+rotation = -3.14159
+scale = Vector2(10, -10)
+offset = Vector2(-631.206, -229.665)
+texture = ExtResource("15_yumsi")
+polygon = PackedVector2Array(480, 48, 496, 40, 576, 40, 616, 32, 736, 32, 736, 56, 760, 72, 760, 112, 760, 152, 744, 168, 744, 208, 712, 256, 696, 296, 688, 336, 680, 392, 648, 424, 584, 424, 560, 376, 544, 344, 536, 296, 520, 232, 512, 176, 488, 112, 472, 72)
+uv = PackedVector2Array(480, 56, 496, 40, 576, 40, 616, 32, 736, 32, 736, 56, 760, 72, 760, 112, 760, 152, 744, 168, 744, 208, 712, 256, 696, 296, 688, 336, 680, 392, 648, 424, 584, 424, 560, 376, 544, 344, 536, 296, 520, 232, 512, 176, 488, 112, 472, 72)
+
+[node name="StaticBody2D" type="StaticBody2D" parent="Node2D/Platforms/Platform1"]
+rotation = 3.14159
+physics_material_override = SubResource("PhysicsMaterial_1wok7")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Node2D/Platforms/Platform1/StaticBody2D"]
+position = Vector2(31.9995, 116.865)
+scale = Vector2(0.193, 0.424)
+shape = SubResource("RectangleShape2D_f4nru")
+
+[node name="Platform6" type="Polygon2D" parent="Node2D/Platforms"]
+texture_repeat = 3
+position = Vector2(-4176, 1696.65)
+scale = Vector2(10, 10)
+offset = Vector2(-631.206, -229.665)
+texture = ExtResource("15_yumsi")
+polygon = PackedVector2Array(480, 48, 496, 40, 576, 40, 616, 32, 736, 32, 736, 56, 760, 72, 760, 112, 760, 152, 744, 168, 744, 208, 712, 256, 696, 296, 688, 336, 680, 392, 648, 424, 584, 424, 560, 376, 544, 344, 536, 296, 520, 232, 512, 176, 488, 112, 472, 72)
+uv = PackedVector2Array(480, 56, 496, 40, 576, 40, 616, 32, 736, 32, 736, 56, 760, 72, 760, 112, 760, 152, 744, 168, 744, 208, 712, 256, 696, 296, 688, 336, 680, 392, 648, 424, 584, 424, 560, 376, 544, 344, 536, 296, 520, 232, 512, 176, 488, 112, 472, 72)
+
+[node name="StaticBody2D" type="StaticBody2D" parent="Node2D/Platforms/Platform6"]
+rotation = 3.14159
+physics_material_override = SubResource("PhysicsMaterial_1wok7")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Node2D/Platforms/Platform6/StaticBody2D"]
+position = Vector2(31.9993, 116.865)
+scale = Vector2(0.193, 0.424)
+shape = SubResource("RectangleShape2D_f4nru")
+
+[node name="Platform2" type="Polygon2D" parent="Node2D/Platforms"]
+texture_repeat = 3
+position = Vector2(-2083.89, 2055.19)
+rotation = -3.14159
+scale = Vector2(10, -10)
+offset = Vector2(-153.189, -247.272)
+texture = ExtResource("15_yumsi")
+polygon = PackedVector2Array(16, 24, 288, 24, 296, 56, 296, 120, 264, 224, 232, 416, 40, 416, 40, 288, 16, 200, -8, 72)
+uv = PackedVector2Array(16, 24, 288, 24, 296, 56, 296, 120, 264, 224, 232, 416, 40, 416, 40, 288, 16, 200, -8, 72)
+
+[node name="StaticBody2D" type="StaticBody2D" parent="Node2D/Platforms/Platform2"]
+rotation = 3.14159
+physics_material_override = SubResource("PhysicsMaterial_1wok7")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Node2D/Platforms/Platform2/StaticBody2D"]
+position = Vector2(1.03711, 152.719)
+scale = Vector2(0.222, 0.424)
+shape = SubResource("RectangleShape2D_f4nru")
+
+[node name="Platform7" type="Polygon2D" parent="Node2D/Platforms"]
+texture_repeat = 3
+position = Vector2(5904, 2055.19)
+rotation = -3.14159
+scale = Vector2(10, -10)
+offset = Vector2(-153.189, -247.272)
+texture = ExtResource("15_yumsi")
+polygon = PackedVector2Array(16, 24, 288, 24, 296, 56, 296, 120, 264, 224, 232, 416, 40, 416, 40, 288, 16, 200, -8, 72)
+uv = PackedVector2Array(16, 24, 288, 24, 296, 56, 296, 120, 264, 224, 232, 416, 40, 416, 40, 288, 16, 200, -8, 72)
+
+[node name="StaticBody2D" type="StaticBody2D" parent="Node2D/Platforms/Platform7"]
+rotation = 3.14159
+physics_material_override = SubResource("PhysicsMaterial_1wok7")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Node2D/Platforms/Platform7/StaticBody2D"]
+position = Vector2(1.03711, 152.719)
+scale = Vector2(0.222, 0.424)
+shape = SubResource("RectangleShape2D_f4nru")
+
+[node name="Platform4" type="Polygon2D" parent="Node2D/Platforms"]
+texture_repeat = 3
+position = Vector2(-7072, 2056)
+rotation = -3.14159
+scale = Vector2(10, -10)
+offset = Vector2(-153.189, -247.272)
+texture = ExtResource("15_yumsi")
+polygon = PackedVector2Array(16, 24, 288, 24, 296, 56, 296, 120, 264, 224, 232, 416, 40, 416, 40, 288, 16, 200, -8, 72)
+uv = PackedVector2Array(16, 24, 288, 24, 296, 56, 296, 120, 264, 224, 232, 416, 40, 416, 40, 288, 16, 200, -8, 72)
+
+[node name="StaticBody2D" type="StaticBody2D" parent="Node2D/Platforms/Platform4"]
+rotation = 3.14159
+physics_material_override = SubResource("PhysicsMaterial_1wok7")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Node2D/Platforms/Platform4/StaticBody2D"]
+position = Vector2(1.03723, 152.719)
+scale = Vector2(0.222, 0.424)
+shape = SubResource("RectangleShape2D_f4nru")
+
+[node name="Platform3" type="Polygon2D" parent="Node2D/Platforms"]
+position = Vector2(-1.5083, 1888.65)
+rotation = -3.14159
+scale = Vector2(10, -10)
+offset = Vector2(-388.844, -233.125)
+texture = ExtResource("15_yumsi")
+polygon = PackedVector2Array(288, 48, 312, 32, 360, 24, 432, 24, 472, 24, 472, 56, 472, 80, 464, 104, 456, 168, 448, 288, 488, 376, 520, 400, 512, 416, 424, 424, 328, 432, 272, 424, 256, 408, 280, 384, 312, 344, 328, 296, 336, 232, 328, 176, 312, 128, 304, 80)
+uv = PackedVector2Array(288, 48, 312, 32, 360, 24, 432, 24, 472, 24, 472, 56, 472, 80, 464, 104, 456, 168, 448, 288, 488, 376, 520, 400, 512, 416, 424, 424, 328, 432, 272, 424, 256, 408, 280, 384, 312, 344, 328, 296, 336, 232, 328, 176, 312, 128, 304, 80)
+
+[node name="StaticBody2D" type="StaticBody2D" parent="Node2D/Platforms/Platform3"]
+rotation = 3.14159
+physics_material_override = SubResource("PhysicsMaterial_1wok7")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Node2D/Platforms/Platform3/StaticBody2D"]
+position = Vector2(7.19995, 136.065)
+scale = Vector2(0.125, 0.424)
+shape = SubResource("RectangleShape2D_f4nru")
+
+[node name="Platform8" type="Polygon2D" parent="Node2D/Platforms"]
+position = Vector2(-9216, 1888.65)
+rotation = -3.14159
+scale = Vector2(10, -10)
+offset = Vector2(-388.844, -233.125)
+texture = ExtResource("15_yumsi")
+polygon = PackedVector2Array(288, 48, 312, 32, 360, 24, 432, 24, 472, 24, 472, 56, 472, 80, 464, 104, 456, 168, 448, 288, 488, 376, 520, 400, 512, 416, 424, 424, 328, 432, 272, 424, 256, 408, 280, 384, 312, 344, 328, 296, 336, 232, 328, 176, 312, 128, 304, 80)
+uv = PackedVector2Array(288, 48, 312, 32, 360, 24, 432, 24, 472, 24, 472, 56, 472, 80, 464, 104, 456, 168, 448, 288, 488, 376, 520, 400, 512, 416, 424, 424, 328, 432, 272, 424, 256, 408, 280, 384, 312, 344, 328, 296, 336, 232, 328, 176, 312, 128, 304, 80)
+
+[node name="StaticBody2D" type="StaticBody2D" parent="Node2D/Platforms/Platform8"]
+rotation = 3.14159
+physics_material_override = SubResource("PhysicsMaterial_1wok7")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Node2D/Platforms/Platform8/StaticBody2D"]
+position = Vector2(7.19922, 136.065)
+scale = Vector2(0.125, 0.424)
+shape = SubResource("RectangleShape2D_f4nru")
+
+[node name="Platform5" type="Polygon2D" parent="Node2D/Platforms"]
+position = Vector2(3760, 1888.65)
+rotation = -3.14159
+scale = Vector2(10, -10)
+offset = Vector2(-388.844, -233.125)
+texture = ExtResource("15_yumsi")
+polygon = PackedVector2Array(288, 48, 312, 32, 360, 24, 432, 24, 472, 24, 472, 56, 472, 80, 464, 104, 456, 168, 448, 288, 488, 376, 520, 400, 512, 416, 424, 424, 328, 432, 272, 424, 256, 408, 280, 384, 312, 344, 328, 296, 336, 232, 328, 176, 312, 128, 304, 80)
+uv = PackedVector2Array(288, 48, 312, 32, 360, 24, 432, 24, 472, 24, 472, 56, 472, 80, 464, 104, 456, 168, 448, 288, 488, 376, 520, 400, 512, 416, 424, 424, 328, 432, 272, 424, 256, 408, 280, 384, 312, 344, 328, 296, 336, 232, 328, 176, 312, 128, 304, 80)
+
+[node name="StaticBody2D" type="StaticBody2D" parent="Node2D/Platforms/Platform5"]
+rotation = 3.14159
+physics_material_override = SubResource("PhysicsMaterial_1wok7")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Node2D/Platforms/Platform5/StaticBody2D"]
+position = Vector2(7.19971, 136.065)
+scale = Vector2(0.125, 0.424)
+shape = SubResource("RectangleShape2D_f4nru")
+
+[node name="Platforms2" type="Node2D" parent="Node2D"]
+z_index = 3
+position = Vector2(-2147, 49)
+scale = Vector2(0.125, 0.125)
+
+[node name="Platform1" type="Polygon2D" parent="Node2D/Platforms2"]
+texture_repeat = 3
+position = Vector2(1718.49, 1696.65)
+rotation = -3.14159
+scale = Vector2(10, -10)
+offset = Vector2(-631.206, -229.665)
+texture = ExtResource("15_yumsi")
+polygon = PackedVector2Array(480, 48, 496, 40, 576, 40, 616, 32, 736, 32, 736, 56, 760, 72, 760, 112, 760, 152, 744, 168, 744, 208, 712, 256, 696, 296, 688, 336, 680, 392, 648, 424, 584, 424, 560, 376, 544, 344, 536, 296, 520, 232, 512, 176, 488, 112, 472, 72)
+uv = PackedVector2Array(480, 56, 496, 40, 576, 40, 616, 32, 736, 32, 736, 56, 760, 72, 760, 112, 760, 152, 744, 168, 744, 208, 712, 256, 696, 296, 688, 336, 680, 392, 648, 424, 584, 424, 560, 376, 544, 344, 536, 296, 520, 232, 512, 176, 488, 112, 472, 72)
+
+[node name="StaticBody2D" type="StaticBody2D" parent="Node2D/Platforms2/Platform1"]
+rotation = 3.14159
+physics_material_override = SubResource("PhysicsMaterial_1wok7")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Node2D/Platforms2/Platform1/StaticBody2D"]
+position = Vector2(31.9995, 116.865)
+scale = Vector2(0.193, 0.424)
+shape = SubResource("RectangleShape2D_f4nru")
+
+[node name="Platform6" type="Polygon2D" parent="Node2D/Platforms2"]
+texture_repeat = 3
+position = Vector2(-4176, 1696.65)
+scale = Vector2(10, 10)
+offset = Vector2(-631.206, -229.665)
+texture = ExtResource("15_yumsi")
+polygon = PackedVector2Array(480, 48, 496, 40, 576, 40, 616, 32, 736, 32, 736, 56, 760, 72, 760, 112, 760, 152, 744, 168, 744, 208, 712, 256, 696, 296, 688, 336, 680, 392, 648, 424, 584, 424, 560, 376, 544, 344, 536, 296, 520, 232, 512, 176, 488, 112, 472, 72)
+uv = PackedVector2Array(480, 56, 496, 40, 576, 40, 616, 32, 736, 32, 736, 56, 760, 72, 760, 112, 760, 152, 744, 168, 744, 208, 712, 256, 696, 296, 688, 336, 680, 392, 648, 424, 584, 424, 560, 376, 544, 344, 536, 296, 520, 232, 512, 176, 488, 112, 472, 72)
+
+[node name="StaticBody2D" type="StaticBody2D" parent="Node2D/Platforms2/Platform6"]
+rotation = 3.14159
+physics_material_override = SubResource("PhysicsMaterial_1wok7")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Node2D/Platforms2/Platform6/StaticBody2D"]
+position = Vector2(31.9993, 116.865)
+scale = Vector2(0.193, 0.424)
+shape = SubResource("RectangleShape2D_f4nru")
+
+[node name="Platform2" type="Polygon2D" parent="Node2D/Platforms2"]
+texture_repeat = 3
+position = Vector2(-2083.89, 2055.19)
+rotation = -3.14159
+scale = Vector2(10, -10)
+offset = Vector2(-153.189, -247.272)
+texture = ExtResource("15_yumsi")
+polygon = PackedVector2Array(16, 24, 288, 24, 296, 56, 296, 120, 264, 224, 232, 416, 40, 416, 40, 288, 16, 200, -8, 72)
+uv = PackedVector2Array(16, 24, 288, 24, 296, 56, 296, 120, 264, 224, 232, 416, 40, 416, 40, 288, 16, 200, -8, 72)
+
+[node name="StaticBody2D" type="StaticBody2D" parent="Node2D/Platforms2/Platform2"]
+rotation = 3.14159
+physics_material_override = SubResource("PhysicsMaterial_1wok7")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Node2D/Platforms2/Platform2/StaticBody2D"]
+position = Vector2(1.03711, 152.719)
+scale = Vector2(0.222, 0.424)
+shape = SubResource("RectangleShape2D_f4nru")
+
+[node name="Platform7" type="Polygon2D" parent="Node2D/Platforms2"]
+texture_repeat = 3
+position = Vector2(5904, 2055.19)
+rotation = -3.14159
+scale = Vector2(10, -10)
+offset = Vector2(-153.189, -247.272)
+texture = ExtResource("15_yumsi")
+polygon = PackedVector2Array(16, 24, 288, 24, 296, 56, 296, 120, 264, 224, 232, 416, 40, 416, 40, 288, 16, 200, -8, 72)
+uv = PackedVector2Array(16, 24, 288, 24, 296, 56, 296, 120, 264, 224, 232, 416, 40, 416, 40, 288, 16, 200, -8, 72)
+
+[node name="StaticBody2D" type="StaticBody2D" parent="Node2D/Platforms2/Platform7"]
+rotation = 3.14159
+physics_material_override = SubResource("PhysicsMaterial_1wok7")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Node2D/Platforms2/Platform7/StaticBody2D"]
+position = Vector2(1.03711, 152.719)
+scale = Vector2(0.222, 0.424)
+shape = SubResource("RectangleShape2D_f4nru")
+
+[node name="Platform4" type="Polygon2D" parent="Node2D/Platforms2"]
+texture_repeat = 3
+position = Vector2(-7072, 2056)
+rotation = -3.14159
+scale = Vector2(10, -10)
+offset = Vector2(-153.189, -247.272)
+texture = ExtResource("15_yumsi")
+polygon = PackedVector2Array(16, 24, 288, 24, 296, 56, 296, 120, 264, 224, 232, 416, 40, 416, 40, 288, 16, 200, -8, 72)
+uv = PackedVector2Array(16, 24, 288, 24, 296, 56, 296, 120, 264, 224, 232, 416, 40, 416, 40, 288, 16, 200, -8, 72)
+
+[node name="StaticBody2D" type="StaticBody2D" parent="Node2D/Platforms2/Platform4"]
+rotation = 3.14159
+physics_material_override = SubResource("PhysicsMaterial_1wok7")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Node2D/Platforms2/Platform4/StaticBody2D"]
+position = Vector2(1.03723, 152.719)
+scale = Vector2(0.222, 0.424)
+shape = SubResource("RectangleShape2D_f4nru")
+
+[node name="Platform3" type="Polygon2D" parent="Node2D/Platforms2"]
+position = Vector2(-1.5083, 1888.65)
+rotation = -3.14159
+scale = Vector2(10, -10)
+offset = Vector2(-388.844, -233.125)
+texture = ExtResource("15_yumsi")
+polygon = PackedVector2Array(288, 48, 312, 32, 360, 24, 432, 24, 472, 24, 472, 56, 472, 80, 464, 104, 456, 168, 448, 288, 488, 376, 520, 400, 512, 416, 424, 424, 328, 432, 272, 424, 256, 408, 280, 384, 312, 344, 328, 296, 336, 232, 328, 176, 312, 128, 304, 80)
+uv = PackedVector2Array(288, 48, 312, 32, 360, 24, 432, 24, 472, 24, 472, 56, 472, 80, 464, 104, 456, 168, 448, 288, 488, 376, 520, 400, 512, 416, 424, 424, 328, 432, 272, 424, 256, 408, 280, 384, 312, 344, 328, 296, 336, 232, 328, 176, 312, 128, 304, 80)
+
+[node name="StaticBody2D" type="StaticBody2D" parent="Node2D/Platforms2/Platform3"]
+rotation = 3.14159
+physics_material_override = SubResource("PhysicsMaterial_1wok7")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Node2D/Platforms2/Platform3/StaticBody2D"]
+position = Vector2(7.19995, 136.065)
+scale = Vector2(0.125, 0.424)
+shape = SubResource("RectangleShape2D_f4nru")
+
+[node name="Platform8" type="Polygon2D" parent="Node2D/Platforms2"]
+position = Vector2(-9216, 1888.65)
+rotation = -3.14159
+scale = Vector2(10, -10)
+offset = Vector2(-388.844, -233.125)
+texture = ExtResource("15_yumsi")
+polygon = PackedVector2Array(288, 48, 312, 32, 360, 24, 432, 24, 472, 24, 472, 56, 472, 80, 464, 104, 456, 168, 448, 288, 488, 376, 520, 400, 512, 416, 424, 424, 328, 432, 272, 424, 256, 408, 280, 384, 312, 344, 328, 296, 336, 232, 328, 176, 312, 128, 304, 80)
+uv = PackedVector2Array(288, 48, 312, 32, 360, 24, 432, 24, 472, 24, 472, 56, 472, 80, 464, 104, 456, 168, 448, 288, 488, 376, 520, 400, 512, 416, 424, 424, 328, 432, 272, 424, 256, 408, 280, 384, 312, 344, 328, 296, 336, 232, 328, 176, 312, 128, 304, 80)
+
+[node name="StaticBody2D" type="StaticBody2D" parent="Node2D/Platforms2/Platform8"]
+rotation = 3.14159
+physics_material_override = SubResource("PhysicsMaterial_1wok7")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Node2D/Platforms2/Platform8/StaticBody2D"]
+position = Vector2(7.19922, 136.065)
+scale = Vector2(0.125, 0.424)
+shape = SubResource("RectangleShape2D_f4nru")
+
+[node name="Platform5" type="Polygon2D" parent="Node2D/Platforms2"]
+position = Vector2(3760, 1888.65)
+rotation = -3.14159
+scale = Vector2(10, -10)
+offset = Vector2(-388.844, -233.125)
+texture = ExtResource("15_yumsi")
+polygon = PackedVector2Array(288, 48, 312, 32, 360, 24, 432, 24, 472, 24, 472, 56, 472, 80, 464, 104, 456, 168, 448, 288, 488, 376, 520, 400, 512, 416, 424, 424, 328, 432, 272, 424, 256, 408, 280, 384, 312, 344, 328, 296, 336, 232, 328, 176, 312, 128, 304, 80)
+uv = PackedVector2Array(288, 48, 312, 32, 360, 24, 432, 24, 472, 24, 472, 56, 472, 80, 464, 104, 456, 168, 448, 288, 488, 376, 520, 400, 512, 416, 424, 424, 328, 432, 272, 424, 256, 408, 280, 384, 312, 344, 328, 296, 336, 232, 328, 176, 312, 128, 304, 80)
+
+[node name="StaticBody2D" type="StaticBody2D" parent="Node2D/Platforms2/Platform5"]
+rotation = 3.14159
+physics_material_override = SubResource("PhysicsMaterial_1wok7")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Node2D/Platforms2/Platform5/StaticBody2D"]
+position = Vector2(7.19971, 136.065)
+scale = Vector2(0.125, 0.424)
+shape = SubResource("RectangleShape2D_f4nru")
+
+[node name="Platforms3" type="Node2D" parent="Node2D"]
+z_index = 3
+position = Vector2(2157, 49)
+scale = Vector2(0.125, 0.125)
+
+[node name="Platform1" type="Polygon2D" parent="Node2D/Platforms3"]
+texture_repeat = 3
+position = Vector2(1718.49, 1696.65)
+rotation = -3.14159
+scale = Vector2(10, -10)
+offset = Vector2(-631.206, -229.665)
+texture = ExtResource("15_yumsi")
+polygon = PackedVector2Array(480, 48, 496, 40, 576, 40, 616, 32, 736, 32, 736, 56, 760, 72, 760, 112, 760, 152, 744, 168, 744, 208, 712, 256, 696, 296, 688, 336, 680, 392, 648, 424, 584, 424, 560, 376, 544, 344, 536, 296, 520, 232, 512, 176, 488, 112, 472, 72)
+uv = PackedVector2Array(480, 56, 496, 40, 576, 40, 616, 32, 736, 32, 736, 56, 760, 72, 760, 112, 760, 152, 744, 168, 744, 208, 712, 256, 696, 296, 688, 336, 680, 392, 648, 424, 584, 424, 560, 376, 544, 344, 536, 296, 520, 232, 512, 176, 488, 112, 472, 72)
+
+[node name="StaticBody2D" type="StaticBody2D" parent="Node2D/Platforms3/Platform1"]
+rotation = 3.14159
+physics_material_override = SubResource("PhysicsMaterial_1wok7")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Node2D/Platforms3/Platform1/StaticBody2D"]
+position = Vector2(31.9995, 116.865)
+scale = Vector2(0.193, 0.424)
+shape = SubResource("RectangleShape2D_f4nru")
+
+[node name="Platform6" type="Polygon2D" parent="Node2D/Platforms3"]
+texture_repeat = 3
+position = Vector2(-4176, 1696.65)
+scale = Vector2(10, 10)
+offset = Vector2(-631.206, -229.665)
+texture = ExtResource("15_yumsi")
+polygon = PackedVector2Array(480, 48, 496, 40, 576, 40, 616, 32, 736, 32, 736, 56, 760, 72, 760, 112, 760, 152, 744, 168, 744, 208, 712, 256, 696, 296, 688, 336, 680, 392, 648, 424, 584, 424, 560, 376, 544, 344, 536, 296, 520, 232, 512, 176, 488, 112, 472, 72)
+uv = PackedVector2Array(480, 56, 496, 40, 576, 40, 616, 32, 736, 32, 736, 56, 760, 72, 760, 112, 760, 152, 744, 168, 744, 208, 712, 256, 696, 296, 688, 336, 680, 392, 648, 424, 584, 424, 560, 376, 544, 344, 536, 296, 520, 232, 512, 176, 488, 112, 472, 72)
+
+[node name="StaticBody2D" type="StaticBody2D" parent="Node2D/Platforms3/Platform6"]
+rotation = 3.14159
+physics_material_override = SubResource("PhysicsMaterial_1wok7")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Node2D/Platforms3/Platform6/StaticBody2D"]
+position = Vector2(31.9993, 116.865)
+scale = Vector2(0.193, 0.424)
+shape = SubResource("RectangleShape2D_f4nru")
+
+[node name="Platform2" type="Polygon2D" parent="Node2D/Platforms3"]
+texture_repeat = 3
+position = Vector2(-2083.89, 2055.19)
+rotation = -3.14159
+scale = Vector2(10, -10)
+offset = Vector2(-153.189, -247.272)
+texture = ExtResource("15_yumsi")
+polygon = PackedVector2Array(16, 24, 288, 24, 296, 56, 296, 120, 264, 224, 232, 416, 40, 416, 40, 288, 16, 200, -8, 72)
+uv = PackedVector2Array(16, 24, 288, 24, 296, 56, 296, 120, 264, 224, 232, 416, 40, 416, 40, 288, 16, 200, -8, 72)
+
+[node name="StaticBody2D" type="StaticBody2D" parent="Node2D/Platforms3/Platform2"]
+rotation = 3.14159
+physics_material_override = SubResource("PhysicsMaterial_1wok7")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Node2D/Platforms3/Platform2/StaticBody2D"]
+position = Vector2(1.03711, 152.719)
+scale = Vector2(0.222, 0.424)
+shape = SubResource("RectangleShape2D_f4nru")
+
+[node name="Platform7" type="Polygon2D" parent="Node2D/Platforms3"]
+texture_repeat = 3
+position = Vector2(5904, 2055.19)
+rotation = -3.14159
+scale = Vector2(10, -10)
+offset = Vector2(-153.189, -247.272)
+texture = ExtResource("15_yumsi")
+polygon = PackedVector2Array(16, 24, 288, 24, 296, 56, 296, 120, 264, 224, 232, 416, 40, 416, 40, 288, 16, 200, -8, 72)
+uv = PackedVector2Array(16, 24, 288, 24, 296, 56, 296, 120, 264, 224, 232, 416, 40, 416, 40, 288, 16, 200, -8, 72)
+
+[node name="StaticBody2D" type="StaticBody2D" parent="Node2D/Platforms3/Platform7"]
+rotation = 3.14159
+physics_material_override = SubResource("PhysicsMaterial_1wok7")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Node2D/Platforms3/Platform7/StaticBody2D"]
+position = Vector2(1.03711, 152.719)
+scale = Vector2(0.222, 0.424)
+shape = SubResource("RectangleShape2D_f4nru")
+
+[node name="Platform4" type="Polygon2D" parent="Node2D/Platforms3"]
+texture_repeat = 3
+position = Vector2(-7072, 2056)
+rotation = -3.14159
+scale = Vector2(10, -10)
+offset = Vector2(-153.189, -247.272)
+texture = ExtResource("15_yumsi")
+polygon = PackedVector2Array(16, 24, 288, 24, 296, 56, 296, 120, 264, 224, 232, 416, 40, 416, 40, 288, 16, 200, -8, 72)
+uv = PackedVector2Array(16, 24, 288, 24, 296, 56, 296, 120, 264, 224, 232, 416, 40, 416, 40, 288, 16, 200, -8, 72)
+
+[node name="StaticBody2D" type="StaticBody2D" parent="Node2D/Platforms3/Platform4"]
+rotation = 3.14159
+physics_material_override = SubResource("PhysicsMaterial_1wok7")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Node2D/Platforms3/Platform4/StaticBody2D"]
+position = Vector2(1.03723, 152.719)
+scale = Vector2(0.222, 0.424)
+shape = SubResource("RectangleShape2D_f4nru")
+
+[node name="Platform3" type="Polygon2D" parent="Node2D/Platforms3"]
+position = Vector2(-1.5083, 1888.65)
+rotation = -3.14159
+scale = Vector2(10, -10)
+offset = Vector2(-388.844, -233.125)
+texture = ExtResource("15_yumsi")
+polygon = PackedVector2Array(288, 48, 312, 32, 360, 24, 432, 24, 472, 24, 472, 56, 472, 80, 464, 104, 456, 168, 448, 288, 488, 376, 520, 400, 512, 416, 424, 424, 328, 432, 272, 424, 256, 408, 280, 384, 312, 344, 328, 296, 336, 232, 328, 176, 312, 128, 304, 80)
+uv = PackedVector2Array(288, 48, 312, 32, 360, 24, 432, 24, 472, 24, 472, 56, 472, 80, 464, 104, 456, 168, 448, 288, 488, 376, 520, 400, 512, 416, 424, 424, 328, 432, 272, 424, 256, 408, 280, 384, 312, 344, 328, 296, 336, 232, 328, 176, 312, 128, 304, 80)
+
+[node name="StaticBody2D" type="StaticBody2D" parent="Node2D/Platforms3/Platform3"]
+rotation = 3.14159
+physics_material_override = SubResource("PhysicsMaterial_1wok7")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Node2D/Platforms3/Platform3/StaticBody2D"]
+position = Vector2(7.19995, 136.065)
+scale = Vector2(0.125, 0.424)
+shape = SubResource("RectangleShape2D_f4nru")
+
+[node name="Platform8" type="Polygon2D" parent="Node2D/Platforms3"]
+position = Vector2(-9216, 1888.65)
+rotation = -3.14159
+scale = Vector2(10, -10)
+offset = Vector2(-388.844, -233.125)
+texture = ExtResource("15_yumsi")
+polygon = PackedVector2Array(288, 48, 312, 32, 360, 24, 432, 24, 472, 24, 472, 56, 472, 80, 464, 104, 456, 168, 448, 288, 488, 376, 520, 400, 512, 416, 424, 424, 328, 432, 272, 424, 256, 408, 280, 384, 312, 344, 328, 296, 336, 232, 328, 176, 312, 128, 304, 80)
+uv = PackedVector2Array(288, 48, 312, 32, 360, 24, 432, 24, 472, 24, 472, 56, 472, 80, 464, 104, 456, 168, 448, 288, 488, 376, 520, 400, 512, 416, 424, 424, 328, 432, 272, 424, 256, 408, 280, 384, 312, 344, 328, 296, 336, 232, 328, 176, 312, 128, 304, 80)
+
+[node name="StaticBody2D" type="StaticBody2D" parent="Node2D/Platforms3/Platform8"]
+rotation = 3.14159
+physics_material_override = SubResource("PhysicsMaterial_1wok7")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Node2D/Platforms3/Platform8/StaticBody2D"]
+position = Vector2(7.19922, 136.065)
+scale = Vector2(0.125, 0.424)
+shape = SubResource("RectangleShape2D_f4nru")
+
+[node name="Platform5" type="Polygon2D" parent="Node2D/Platforms3"]
+position = Vector2(3760, 1888.65)
+rotation = -3.14159
+scale = Vector2(10, -10)
+offset = Vector2(-388.844, -233.125)
+texture = ExtResource("15_yumsi")
+polygon = PackedVector2Array(288, 48, 312, 32, 360, 24, 432, 24, 472, 24, 472, 56, 472, 80, 464, 104, 456, 168, 448, 288, 488, 376, 520, 400, 512, 416, 424, 424, 328, 432, 272, 424, 256, 408, 280, 384, 312, 344, 328, 296, 336, 232, 328, 176, 312, 128, 304, 80)
+uv = PackedVector2Array(288, 48, 312, 32, 360, 24, 432, 24, 472, 24, 472, 56, 472, 80, 464, 104, 456, 168, 448, 288, 488, 376, 520, 400, 512, 416, 424, 424, 328, 432, 272, 424, 256, 408, 280, 384, 312, 344, 328, 296, 336, 232, 328, 176, 312, 128, 304, 80)
+
+[node name="StaticBody2D" type="StaticBody2D" parent="Node2D/Platforms3/Platform5"]
+rotation = 3.14159
+physics_material_override = SubResource("PhysicsMaterial_1wok7")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Node2D/Platforms3/Platform5/StaticBody2D"]
+position = Vector2(7.19971, 136.065)
+scale = Vector2(0.125, 0.424)
+shape = SubResource("RectangleShape2D_f4nru")
+
+[node name="Platforms4" type="Node2D" parent="Node2D"]
+z_index = 3
+position = Vector2(4301, 49)
+scale = Vector2(0.125, 0.125)
+
+[node name="Platform1" type="Polygon2D" parent="Node2D/Platforms4"]
+texture_repeat = 3
+position = Vector2(1718.49, 1696.65)
+rotation = -3.14159
+scale = Vector2(10, -10)
+offset = Vector2(-631.206, -229.665)
+texture = ExtResource("15_yumsi")
+polygon = PackedVector2Array(480, 48, 496, 40, 576, 40, 616, 32, 736, 32, 736, 56, 760, 72, 760, 112, 760, 152, 744, 168, 744, 208, 712, 256, 696, 296, 688, 336, 680, 392, 648, 424, 584, 424, 560, 376, 544, 344, 536, 296, 520, 232, 512, 176, 488, 112, 472, 72)
+uv = PackedVector2Array(480, 56, 496, 40, 576, 40, 616, 32, 736, 32, 736, 56, 760, 72, 760, 112, 760, 152, 744, 168, 744, 208, 712, 256, 696, 296, 688, 336, 680, 392, 648, 424, 584, 424, 560, 376, 544, 344, 536, 296, 520, 232, 512, 176, 488, 112, 472, 72)
+
+[node name="StaticBody2D" type="StaticBody2D" parent="Node2D/Platforms4/Platform1"]
+rotation = 3.14159
+physics_material_override = SubResource("PhysicsMaterial_1wok7")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Node2D/Platforms4/Platform1/StaticBody2D"]
+position = Vector2(31.9995, 116.865)
+scale = Vector2(0.193, 0.424)
+shape = SubResource("RectangleShape2D_f4nru")
+
+[node name="Platform6" type="Polygon2D" parent="Node2D/Platforms4"]
+texture_repeat = 3
+position = Vector2(-4176, 1696.65)
+scale = Vector2(10, 10)
+offset = Vector2(-631.206, -229.665)
+texture = ExtResource("15_yumsi")
+polygon = PackedVector2Array(480, 48, 496, 40, 576, 40, 616, 32, 736, 32, 736, 56, 760, 72, 760, 112, 760, 152, 744, 168, 744, 208, 712, 256, 696, 296, 688, 336, 680, 392, 648, 424, 584, 424, 560, 376, 544, 344, 536, 296, 520, 232, 512, 176, 488, 112, 472, 72)
+uv = PackedVector2Array(480, 56, 496, 40, 576, 40, 616, 32, 736, 32, 736, 56, 760, 72, 760, 112, 760, 152, 744, 168, 744, 208, 712, 256, 696, 296, 688, 336, 680, 392, 648, 424, 584, 424, 560, 376, 544, 344, 536, 296, 520, 232, 512, 176, 488, 112, 472, 72)
+
+[node name="StaticBody2D" type="StaticBody2D" parent="Node2D/Platforms4/Platform6"]
+rotation = 3.14159
+physics_material_override = SubResource("PhysicsMaterial_1wok7")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Node2D/Platforms4/Platform6/StaticBody2D"]
+position = Vector2(31.9993, 116.865)
+scale = Vector2(0.193, 0.424)
+shape = SubResource("RectangleShape2D_f4nru")
+
+[node name="Platform2" type="Polygon2D" parent="Node2D/Platforms4"]
+texture_repeat = 3
+position = Vector2(-2083.89, 2055.19)
+rotation = -3.14159
+scale = Vector2(10, -10)
+offset = Vector2(-153.189, -247.272)
+texture = ExtResource("15_yumsi")
+polygon = PackedVector2Array(16, 24, 288, 24, 296, 56, 296, 120, 264, 224, 232, 416, 40, 416, 40, 288, 16, 200, -8, 72)
+uv = PackedVector2Array(16, 24, 288, 24, 296, 56, 296, 120, 264, 224, 232, 416, 40, 416, 40, 288, 16, 200, -8, 72)
+
+[node name="StaticBody2D" type="StaticBody2D" parent="Node2D/Platforms4/Platform2"]
+rotation = 3.14159
+physics_material_override = SubResource("PhysicsMaterial_1wok7")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Node2D/Platforms4/Platform2/StaticBody2D"]
+position = Vector2(1.03711, 152.719)
+scale = Vector2(0.222, 0.424)
+shape = SubResource("RectangleShape2D_f4nru")
+
+[node name="Platform7" type="Polygon2D" parent="Node2D/Platforms4"]
+texture_repeat = 3
+position = Vector2(5904, 2055.19)
+rotation = -3.14159
+scale = Vector2(10, -10)
+offset = Vector2(-153.189, -247.272)
+texture = ExtResource("15_yumsi")
+polygon = PackedVector2Array(16, 24, 288, 24, 296, 56, 296, 120, 264, 224, 232, 416, 40, 416, 40, 288, 16, 200, -8, 72)
+uv = PackedVector2Array(16, 24, 288, 24, 296, 56, 296, 120, 264, 224, 232, 416, 40, 416, 40, 288, 16, 200, -8, 72)
+
+[node name="StaticBody2D" type="StaticBody2D" parent="Node2D/Platforms4/Platform7"]
+rotation = 3.14159
+physics_material_override = SubResource("PhysicsMaterial_1wok7")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Node2D/Platforms4/Platform7/StaticBody2D"]
+position = Vector2(1.03711, 152.719)
+scale = Vector2(0.222, 0.424)
+shape = SubResource("RectangleShape2D_f4nru")
+
+[node name="Platform4" type="Polygon2D" parent="Node2D/Platforms4"]
+texture_repeat = 3
+position = Vector2(-7072, 2056)
+rotation = -3.14159
+scale = Vector2(10, -10)
+offset = Vector2(-153.189, -247.272)
+texture = ExtResource("15_yumsi")
+polygon = PackedVector2Array(16, 24, 288, 24, 296, 56, 296, 120, 264, 224, 232, 416, 40, 416, 40, 288, 16, 200, -8, 72)
+uv = PackedVector2Array(16, 24, 288, 24, 296, 56, 296, 120, 264, 224, 232, 416, 40, 416, 40, 288, 16, 200, -8, 72)
+
+[node name="StaticBody2D" type="StaticBody2D" parent="Node2D/Platforms4/Platform4"]
+rotation = 3.14159
+physics_material_override = SubResource("PhysicsMaterial_1wok7")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Node2D/Platforms4/Platform4/StaticBody2D"]
+position = Vector2(1.03723, 152.719)
+scale = Vector2(0.222, 0.424)
+shape = SubResource("RectangleShape2D_f4nru")
+
+[node name="Platform3" type="Polygon2D" parent="Node2D/Platforms4"]
+position = Vector2(-1.5083, 1888.65)
+rotation = -3.14159
+scale = Vector2(10, -10)
+offset = Vector2(-388.844, -233.125)
+texture = ExtResource("15_yumsi")
+polygon = PackedVector2Array(288, 48, 312, 32, 360, 24, 432, 24, 472, 24, 472, 56, 472, 80, 464, 104, 456, 168, 448, 288, 488, 376, 520, 400, 512, 416, 424, 424, 328, 432, 272, 424, 256, 408, 280, 384, 312, 344, 328, 296, 336, 232, 328, 176, 312, 128, 304, 80)
+uv = PackedVector2Array(288, 48, 312, 32, 360, 24, 432, 24, 472, 24, 472, 56, 472, 80, 464, 104, 456, 168, 448, 288, 488, 376, 520, 400, 512, 416, 424, 424, 328, 432, 272, 424, 256, 408, 280, 384, 312, 344, 328, 296, 336, 232, 328, 176, 312, 128, 304, 80)
+
+[node name="StaticBody2D" type="StaticBody2D" parent="Node2D/Platforms4/Platform3"]
+rotation = 3.14159
+physics_material_override = SubResource("PhysicsMaterial_1wok7")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Node2D/Platforms4/Platform3/StaticBody2D"]
+position = Vector2(7.19995, 136.065)
+scale = Vector2(0.125, 0.424)
+shape = SubResource("RectangleShape2D_f4nru")
+
+[node name="Platform8" type="Polygon2D" parent="Node2D/Platforms4"]
+position = Vector2(-9216, 1888.65)
+rotation = -3.14159
+scale = Vector2(10, -10)
+offset = Vector2(-388.844, -233.125)
+texture = ExtResource("15_yumsi")
+polygon = PackedVector2Array(288, 48, 312, 32, 360, 24, 432, 24, 472, 24, 472, 56, 472, 80, 464, 104, 456, 168, 448, 288, 488, 376, 520, 400, 512, 416, 424, 424, 328, 432, 272, 424, 256, 408, 280, 384, 312, 344, 328, 296, 336, 232, 328, 176, 312, 128, 304, 80)
+uv = PackedVector2Array(288, 48, 312, 32, 360, 24, 432, 24, 472, 24, 472, 56, 472, 80, 464, 104, 456, 168, 448, 288, 488, 376, 520, 400, 512, 416, 424, 424, 328, 432, 272, 424, 256, 408, 280, 384, 312, 344, 328, 296, 336, 232, 328, 176, 312, 128, 304, 80)
+
+[node name="StaticBody2D" type="StaticBody2D" parent="Node2D/Platforms4/Platform8"]
+rotation = 3.14159
+physics_material_override = SubResource("PhysicsMaterial_1wok7")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Node2D/Platforms4/Platform8/StaticBody2D"]
+position = Vector2(7.19922, 136.065)
+scale = Vector2(0.125, 0.424)
+shape = SubResource("RectangleShape2D_f4nru")
+
+[node name="Platform5" type="Polygon2D" parent="Node2D/Platforms4"]
+position = Vector2(3760, 1888.65)
+rotation = -3.14159
+scale = Vector2(10, -10)
+offset = Vector2(-388.844, -233.125)
+texture = ExtResource("15_yumsi")
+polygon = PackedVector2Array(288, 48, 312, 32, 360, 24, 432, 24, 472, 24, 472, 56, 472, 80, 464, 104, 456, 168, 448, 288, 488, 376, 520, 400, 512, 416, 424, 424, 328, 432, 272, 424, 256, 408, 280, 384, 312, 344, 328, 296, 336, 232, 328, 176, 312, 128, 304, 80)
+uv = PackedVector2Array(288, 48, 312, 32, 360, 24, 432, 24, 472, 24, 472, 56, 472, 80, 464, 104, 456, 168, 448, 288, 488, 376, 520, 400, 512, 416, 424, 424, 328, 432, 272, 424, 256, 408, 280, 384, 312, 344, 328, 296, 336, 232, 328, 176, 312, 128, 304, 80)
+
+[node name="StaticBody2D" type="StaticBody2D" parent="Node2D/Platforms4/Platform5"]
+rotation = 3.14159
+physics_material_override = SubResource("PhysicsMaterial_1wok7")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Node2D/Platforms4/Platform5/StaticBody2D"]
+position = Vector2(7.19971, 136.065)
+scale = Vector2(0.125, 0.424)
+shape = SubResource("RectangleShape2D_f4nru")
+
+[node name="Platforms5" type="Node2D" parent="Node2D"]
+z_index = 3
+position = Vector2(-4307, 49)
+scale = Vector2(0.125, 0.125)
+
+[node name="Platform1" type="Polygon2D" parent="Node2D/Platforms5"]
+texture_repeat = 3
+position = Vector2(1718.49, 1696.65)
+rotation = -3.14159
+scale = Vector2(10, -10)
+offset = Vector2(-631.206, -229.665)
+texture = ExtResource("15_yumsi")
+polygon = PackedVector2Array(480, 48, 496, 40, 576, 40, 616, 32, 736, 32, 736, 56, 760, 72, 760, 112, 760, 152, 744, 168, 744, 208, 712, 256, 696, 296, 688, 336, 680, 392, 648, 424, 584, 424, 560, 376, 544, 344, 536, 296, 520, 232, 512, 176, 488, 112, 472, 72)
+uv = PackedVector2Array(480, 56, 496, 40, 576, 40, 616, 32, 736, 32, 736, 56, 760, 72, 760, 112, 760, 152, 744, 168, 744, 208, 712, 256, 696, 296, 688, 336, 680, 392, 648, 424, 584, 424, 560, 376, 544, 344, 536, 296, 520, 232, 512, 176, 488, 112, 472, 72)
+
+[node name="StaticBody2D" type="StaticBody2D" parent="Node2D/Platforms5/Platform1"]
+rotation = 3.14159
+physics_material_override = SubResource("PhysicsMaterial_1wok7")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Node2D/Platforms5/Platform1/StaticBody2D"]
+position = Vector2(31.9995, 116.865)
+scale = Vector2(0.193, 0.424)
+shape = SubResource("RectangleShape2D_f4nru")
+
+[node name="Platform6" type="Polygon2D" parent="Node2D/Platforms5"]
+texture_repeat = 3
+position = Vector2(-4176, 1696.65)
+scale = Vector2(10, 10)
+offset = Vector2(-631.206, -229.665)
+texture = ExtResource("15_yumsi")
+polygon = PackedVector2Array(480, 48, 496, 40, 576, 40, 616, 32, 736, 32, 736, 56, 760, 72, 760, 112, 760, 152, 744, 168, 744, 208, 712, 256, 696, 296, 688, 336, 680, 392, 648, 424, 584, 424, 560, 376, 544, 344, 536, 296, 520, 232, 512, 176, 488, 112, 472, 72)
+uv = PackedVector2Array(480, 56, 496, 40, 576, 40, 616, 32, 736, 32, 736, 56, 760, 72, 760, 112, 760, 152, 744, 168, 744, 208, 712, 256, 696, 296, 688, 336, 680, 392, 648, 424, 584, 424, 560, 376, 544, 344, 536, 296, 520, 232, 512, 176, 488, 112, 472, 72)
+
+[node name="StaticBody2D" type="StaticBody2D" parent="Node2D/Platforms5/Platform6"]
+rotation = 3.14159
+physics_material_override = SubResource("PhysicsMaterial_1wok7")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Node2D/Platforms5/Platform6/StaticBody2D"]
+position = Vector2(31.9993, 116.865)
+scale = Vector2(0.193, 0.424)
+shape = SubResource("RectangleShape2D_f4nru")
+
+[node name="Platform2" type="Polygon2D" parent="Node2D/Platforms5"]
+texture_repeat = 3
+position = Vector2(-2083.89, 2055.19)
+rotation = -3.14159
+scale = Vector2(10, -10)
+offset = Vector2(-153.189, -247.272)
+texture = ExtResource("15_yumsi")
+polygon = PackedVector2Array(16, 24, 288, 24, 296, 56, 296, 120, 264, 224, 232, 416, 40, 416, 40, 288, 16, 200, -8, 72)
+uv = PackedVector2Array(16, 24, 288, 24, 296, 56, 296, 120, 264, 224, 232, 416, 40, 416, 40, 288, 16, 200, -8, 72)
+
+[node name="StaticBody2D" type="StaticBody2D" parent="Node2D/Platforms5/Platform2"]
+rotation = 3.14159
+physics_material_override = SubResource("PhysicsMaterial_1wok7")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Node2D/Platforms5/Platform2/StaticBody2D"]
+position = Vector2(1.03711, 152.719)
+scale = Vector2(0.222, 0.424)
+shape = SubResource("RectangleShape2D_f4nru")
+
+[node name="Platform7" type="Polygon2D" parent="Node2D/Platforms5"]
+texture_repeat = 3
+position = Vector2(5904, 2055.19)
+rotation = -3.14159
+scale = Vector2(10, -10)
+offset = Vector2(-153.189, -247.272)
+texture = ExtResource("15_yumsi")
+polygon = PackedVector2Array(16, 24, 288, 24, 296, 56, 296, 120, 264, 224, 232, 416, 40, 416, 40, 288, 16, 200, -8, 72)
+uv = PackedVector2Array(16, 24, 288, 24, 296, 56, 296, 120, 264, 224, 232, 416, 40, 416, 40, 288, 16, 200, -8, 72)
+
+[node name="StaticBody2D" type="StaticBody2D" parent="Node2D/Platforms5/Platform7"]
+rotation = 3.14159
+physics_material_override = SubResource("PhysicsMaterial_1wok7")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Node2D/Platforms5/Platform7/StaticBody2D"]
+position = Vector2(1.03711, 152.719)
+scale = Vector2(0.222, 0.424)
+shape = SubResource("RectangleShape2D_f4nru")
+
+[node name="Platform4" type="Polygon2D" parent="Node2D/Platforms5"]
+texture_repeat = 3
+position = Vector2(-7072, 2056)
+rotation = -3.14159
+scale = Vector2(10, -10)
+offset = Vector2(-153.189, -247.272)
+texture = ExtResource("15_yumsi")
+polygon = PackedVector2Array(16, 24, 288, 24, 296, 56, 296, 120, 264, 224, 232, 416, 40, 416, 40, 288, 16, 200, -8, 72)
+uv = PackedVector2Array(16, 24, 288, 24, 296, 56, 296, 120, 264, 224, 232, 416, 40, 416, 40, 288, 16, 200, -8, 72)
+
+[node name="StaticBody2D" type="StaticBody2D" parent="Node2D/Platforms5/Platform4"]
+rotation = 3.14159
+physics_material_override = SubResource("PhysicsMaterial_1wok7")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Node2D/Platforms5/Platform4/StaticBody2D"]
+position = Vector2(1.03723, 152.719)
+scale = Vector2(0.222, 0.424)
+shape = SubResource("RectangleShape2D_f4nru")
+
+[node name="Platform3" type="Polygon2D" parent="Node2D/Platforms5"]
+position = Vector2(-1.5083, 1888.65)
+rotation = -3.14159
+scale = Vector2(10, -10)
+offset = Vector2(-388.844, -233.125)
+texture = ExtResource("15_yumsi")
+polygon = PackedVector2Array(288, 48, 312, 32, 360, 24, 432, 24, 472, 24, 472, 56, 472, 80, 464, 104, 456, 168, 448, 288, 488, 376, 520, 400, 512, 416, 424, 424, 328, 432, 272, 424, 256, 408, 280, 384, 312, 344, 328, 296, 336, 232, 328, 176, 312, 128, 304, 80)
+uv = PackedVector2Array(288, 48, 312, 32, 360, 24, 432, 24, 472, 24, 472, 56, 472, 80, 464, 104, 456, 168, 448, 288, 488, 376, 520, 400, 512, 416, 424, 424, 328, 432, 272, 424, 256, 408, 280, 384, 312, 344, 328, 296, 336, 232, 328, 176, 312, 128, 304, 80)
+
+[node name="StaticBody2D" type="StaticBody2D" parent="Node2D/Platforms5/Platform3"]
+rotation = 3.14159
+physics_material_override = SubResource("PhysicsMaterial_1wok7")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Node2D/Platforms5/Platform3/StaticBody2D"]
+position = Vector2(7.19995, 136.065)
+scale = Vector2(0.125, 0.424)
+shape = SubResource("RectangleShape2D_f4nru")
+
+[node name="Platform8" type="Polygon2D" parent="Node2D/Platforms5"]
+position = Vector2(-9216, 1888.65)
+rotation = -3.14159
+scale = Vector2(10, -10)
+offset = Vector2(-388.844, -233.125)
+texture = ExtResource("15_yumsi")
+polygon = PackedVector2Array(288, 48, 312, 32, 360, 24, 432, 24, 472, 24, 472, 56, 472, 80, 464, 104, 456, 168, 448, 288, 488, 376, 520, 400, 512, 416, 424, 424, 328, 432, 272, 424, 256, 408, 280, 384, 312, 344, 328, 296, 336, 232, 328, 176, 312, 128, 304, 80)
+uv = PackedVector2Array(288, 48, 312, 32, 360, 24, 432, 24, 472, 24, 472, 56, 472, 80, 464, 104, 456, 168, 448, 288, 488, 376, 520, 400, 512, 416, 424, 424, 328, 432, 272, 424, 256, 408, 280, 384, 312, 344, 328, 296, 336, 232, 328, 176, 312, 128, 304, 80)
+
+[node name="StaticBody2D" type="StaticBody2D" parent="Node2D/Platforms5/Platform8"]
+rotation = 3.14159
+physics_material_override = SubResource("PhysicsMaterial_1wok7")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Node2D/Platforms5/Platform8/StaticBody2D"]
+position = Vector2(7.19922, 136.065)
+scale = Vector2(0.125, 0.424)
+shape = SubResource("RectangleShape2D_f4nru")
+
+[node name="Platform5" type="Polygon2D" parent="Node2D/Platforms5"]
+position = Vector2(3760, 1888.65)
+rotation = -3.14159
+scale = Vector2(10, -10)
+offset = Vector2(-388.844, -233.125)
+texture = ExtResource("15_yumsi")
+polygon = PackedVector2Array(288, 48, 312, 32, 360, 24, 432, 24, 472, 24, 472, 56, 472, 80, 464, 104, 456, 168, 448, 288, 488, 376, 520, 400, 512, 416, 424, 424, 328, 432, 272, 424, 256, 408, 280, 384, 312, 344, 328, 296, 336, 232, 328, 176, 312, 128, 304, 80)
+uv = PackedVector2Array(288, 48, 312, 32, 360, 24, 432, 24, 472, 24, 472, 56, 472, 80, 464, 104, 456, 168, 448, 288, 488, 376, 520, 400, 512, 416, 424, 424, 328, 432, 272, 424, 256, 408, 280, 384, 312, 344, 328, 296, 336, 232, 328, 176, 312, 128, 304, 80)
+
+[node name="StaticBody2D" type="StaticBody2D" parent="Node2D/Platforms5/Platform5"]
+rotation = 3.14159
+physics_material_override = SubResource("PhysicsMaterial_1wok7")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Node2D/Platforms5/Platform5/StaticBody2D"]
+position = Vector2(7.19971, 136.065)
+scale = Vector2(0.125, 0.424)
+shape = SubResource("RectangleShape2D_f4nru")
+
+[node name="CharacterBody2D" type="CharacterBody2D" parent="."]
+position = Vector2(64, -154)
+script = ExtResource("4_73i8n")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="CharacterBody2D"]
+z_index = 7
+position = Vector2(-246, -39)
+scale = Vector2(4.14016, 3.90016)
+shape = SubResource("CircleShape2D_wv50j")
+debug_color = Color(0.0196078, 0.564706, 0.870588, 0.419608)
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="CharacterBody2D"]
+z_index = 7
+position = Vector2(-244, 34)
+scale = Vector2(1.43188, -3.38586)
+shape = SubResource("CircleShape2D_wv50j")
+debug_color = Color(0.0196078, 0.564706, 0.870588, 0.419608)
+
+[node name="CollisionShape2D5" type="CollisionShape2D" parent="CharacterBody2D"]
+z_index = 7
+position = Vector2(-257, 76)
+scale = Vector2(0.844753, 1)
+shape = SubResource("CircleShape2D_wv50j")
+debug_color = Color(0.0196078, 0.564706, 0.870588, 0.419608)
+
+[node name="CollisionShape2D6" type="CollisionShape2D" parent="CharacterBody2D"]
+z_index = 7
+position = Vector2(-235, 76)
+scale = Vector2(0.844753, 1)
+shape = SubResource("CircleShape2D_wv50j")
+debug_color = Color(0.0196078, 0.564706, 0.870588, 0.419608)
+
+[node name="CollisionShape2D3" type="CollisionShape2D" parent="CharacterBody2D"]
+z_index = 7
+position = Vector2(-256.75, 70.5)
+scale = Vector2(1.43188, -3.38586)
+shape = SubResource("RectangleShape2D_wwtrm")
+debug_color = Color(0.0196078, 0.564706, 0.870588, 0.419608)
+
+[node name="CollisionShape2D4" type="CollisionShape2D" parent="CharacterBody2D"]
+z_index = 7
+position = Vector2(-235, 70)
+scale = Vector2(1.43188, -3.38586)
+shape = SubResource("RectangleShape2D_wwtrm")
+debug_color = Color(0.0196078, 0.564706, 0.870588, 0.419608)
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="CharacterBody2D"]
+light_mask = 4
+z_index = 4
+position = Vector2(-247, 1)
+scale = Vector2(0.340165, 0.340165)
+sprite_frames = SubResource("SpriteFrames_mkbkf")
+animation = &"Idling"
+frame_progress = 0.709627
+
+[node name="PointLight2D" type="PointLight2D" parent="CharacterBody2D"]
+visible = false
+light_mask = 0
+z_index = 20
+z_as_relative = false
+texture_filter = 2
+texture_repeat = 1
+position = Vector2(-248, -41)
+color = Color(0.517647, 0.337255, 0.6, 1)
+energy = 3.31
+range_item_cull_mask = 3
+shadow_color = Color(0, 0, 0, 0.172549)
+shadow_filter = 1
+texture = ExtResource("12_fyas7")
+texture_scale = 1.03
+
+[node name="Camera2D" type="Camera2D" parent="CharacterBody2D" node_paths=PackedStringArray("leftpoint", "rightpoint")]
+position = Vector2(-261, -369)
+process_callback = 0
+position_smoothing_enabled = true
+rotation_smoothing_enabled = true
+editor_draw_limits = true
+script = ExtResource("3_bvenk")
+leftpoint = NodePath("../../LeftPoint")
+rightpoint = NodePath("../../RightPoint")
+
+[node name="Stalactites" type="Node2D" parent="."]
+position = Vector2(-2679, -3683)
+
+[node name="FG_St_Big" type="Polygon2D" parent="Stalactites"]
+z_index = -9
+z_as_relative = false
+texture_repeat = 1
+position = Vector2(-2353, -386)
+scale = Vector2(0.75, 0.75)
+offset = Vector2(-122, -129)
+antialiased = true
+texture = ExtResource("5_fh74m")
+polygon = PackedVector2Array(8, 24, 264, 24, 264, 64, 224, 152, 176, 232, 144, 304, 120, 296, 64, 200, 8, 104, -16, 24)
+uv = PackedVector2Array(8, 24, 264, 24, 264, 64, 224, 152, 176, 232, 144, 304, 120, 296, 64, 200, 8, 104, -16, 24)
+
+[node name="FG_St_Small" type="Polygon2D" parent="Stalactites"]
+z_index = -9
+z_as_relative = false
+texture_repeat = 1
+position = Vector2(-2186, -281)
+scale = Vector2(0.75, 0.75)
+offset = Vector2(-289, -234)
+antialiased = true
+texture = ExtResource("5_fh74m")
+polygon = PackedVector2Array(264, 136, 328, 136, 344, 136, 328, 296, 312, 352, 280, 360, 256, 320, 256, 272, 248, 216, 240, 152)
+uv = PackedVector2Array(264, 128, 328, 128, 344, 128, 328, 296, 312, 352, 280, 360, 256, 320, 256, 272, 248, 216, 240, 152)
+
+[node name="FG_St_Long" type="Polygon2D" parent="Stalactites"]
+z_index = -9
+z_as_relative = false
+texture_repeat = 1
+position = Vector2(-2055, -378)
+scale = Vector2(0.75, 0.75)
+offset = Vector2(-420, -137)
+antialiased = true
+texture = ExtResource("5_fh74m")
+polygon = PackedVector2Array(352, -8, 496, -8, 504, 64, 496, 152, 480, 232, 472, 312, 448, 360, 432, 376, 400, 352, 392, 264, 376, 176, 352, 96, 336, -8)
+uv = PackedVector2Array(352, -8, 496, -8, 504, 64, 496, 152, 480, 232, 472, 312, 448, 360, 432, 376, 400, 352, 392, 264, 376, 176, 352, 96, 336, -8)
+
+[node name="FG_St_Long2" type="Polygon2D" parent="Stalactites"]
+z_index = -9
+z_as_relative = false
+texture_repeat = 1
+position = Vector2(-1861, -335)
+scale = Vector2(0.75, 0.75)
+offset = Vector2(-614, -180)
+antialiased = true
+texture = ExtResource("5_fh74m")
+polygon = PackedVector2Array(568, 56, 672, 56, 688, 88, 672, 144, 672, 232, 656, 312, 640, 368, 608, 368, 600, 312, 576, 264, 576, 168, 560, 88)
+uv = PackedVector2Array(568, 56, 672, 56, 688, 88, 672, 144, 672, 232, 656, 312, 640, 368, 608, 368, 600, 312, 576, 264, 576, 168, 560, 88)
+
+[node name="FG_St_Thin" type="Polygon2D" parent="Stalactites"]
+z_index = -9
+z_as_relative = false
+texture_repeat = 1
+position = Vector2(-1699, -319)
+scale = Vector2(0.75, 0.75)
+offset = Vector2(-776, -196)
+antialiased = true
+texture = ExtResource("5_fh74m")
+polygon = PackedVector2Array(736, 72, 808, 72, 808, 144, 816, 224, 832, 304, 816, 368, 792, 392, 768, 376, 752, 336, 744, 272, 728, 160, 720, 80)
+uv = PackedVector2Array(736, 72, 808, 72, 808, 144, 816, 224, 832, 304, 816, 368, 792, 392, 768, 376, 752, 336, 744, 272, 728, 160, 720, 80)
+
+[node name="FG_St_Mid" type="Polygon2D" parent="Stalactites"]
+z_index = -9
+z_as_relative = false
+texture_repeat = 1
+position = Vector2(-1502, -365)
+scale = Vector2(0.75, 0.75)
+offset = Vector2(-973, -150)
+antialiased = true
+texture = ExtResource("5_fh74m")
+polygon = PackedVector2Array(896, 24, 1056, 16, 1056, 104, 1016, 184, 1016, 264, 968, 352, 952, 360, 936, 336, 936, 256, 912, 200, 912, 120, 880, 88, 880, 24)
+uv = PackedVector2Array(896, 24, 1056, 16, 1056, 104, 1016, 184, 1016, 264, 968, 352, 952, 360, 936, 336, 936, 256, 912, 200, 912, 120, 880, 88, 880, 24)
+
+[node name="FG_Rock_Big" type="Polygon2D" parent="Stalactites"]
+z_index = -9
+z_as_relative = false
+texture_repeat = 1
+position = Vector2(-1151, -399)
+scale = Vector2(0.75, 0.75)
+offset = Vector2(-1324, -116)
+antialiased = true
+texture = ExtResource("5_fh74m")
+polygon = PackedVector2Array(1120, 64, 1312, 56, 1512, 48, 1560, 48, 1552, 104, 1496, 176, 1384, 248, 1328, 224, 1232, 224, 1176, 192, 1104, 136, 1096, 64)
+uv = PackedVector2Array(1120, 64, 1312, 56, 1512, 48, 1560, 48, 1552, 104, 1496, 176, 1384, 248, 1328, 224, 1232, 224, 1176, 192, 1104, 136, 1096, 64)
+
+[node name="FG_Rock_Thin" type="Polygon2D" parent="Stalactites"]
+z_index = -9
+z_as_relative = false
+texture_repeat = 1
+position = Vector2(-496, -437)
+scale = Vector2(0.75, 0.75)
+offset = Vector2(-1979, -78)
+antialiased = true
+texture = ExtResource("5_fh74m")
+polygon = PackedVector2Array(1792, 40, 2160, 40, 2144, 72, 2104, 104, 2056, 128, 1992, 144, 1936, 144, 1880, 120, 1816, 96)
+uv = PackedVector2Array(1792, 40, 2160, 40, 2144, 72, 2104, 104, 2056, 128, 1992, 144, 1936, 144, 1880, 120, 1816, 96)
+
+[node name="FG_Rock_Thin2" type="Polygon2D" parent="Stalactites"]
+z_index = -9
+z_as_relative = false
+texture_repeat = 1
+position = Vector2(-139, -451)
+scale = Vector2(0.75, 0.75)
+offset = Vector2(-2336, -64)
+antialiased = true
+texture = ExtResource("5_fh74m")
+polygon = PackedVector2Array(2192, 40, 2464, 8, 2480, 32, 2464, 56, 2448, 96, 2424, 136, 2296, 136, 2264, 112, 2208, 88, 2168, 56)
+uv = PackedVector2Array(2192, 40, 2464, 8, 2480, 32, 2464, 56, 2448, 96, 2424, 136, 2296, 136, 2264, 112, 2208, 88, 2168, 56)
+
+[node name="FG_Rock_Big2" type="Polygon2D" parent="Stalactites"]
+z_index = -9
+z_as_relative = false
+texture_repeat = 1
+position = Vector2(-509, -241)
+scale = Vector2(0.75, 0.75)
+offset = Vector2(-1966, -274)
+antialiased = true
+texture = ExtResource("5_fh74m")
+polygon = PackedVector2Array(1704, 200, 2280, 200, 2280, 240, 2192, 368, 2024, 384, 1944, 368, 1840, 384, 1776, 352, 1744, 320, 1680, 240)
+uv = PackedVector2Array(1704, 200, 2280, 200, 2280, 240, 2192, 368, 2024, 384, 1944, 368, 1840, 384, 1776, 352, 1744, 320, 1680, 240)
+
+[node name="FG_St_Thin2" type="Polygon2D" parent="Stalactites"]
+z_index = -9
+z_as_relative = false
+texture_repeat = 1
+position = Vector2(-915, -86)
+scale = Vector2(0.75, 0.75)
+offset = Vector2(-1560, -429)
+antialiased = true
+texture = ExtResource("5_fh74m")
+polygon = PackedVector2Array(1520, 216, 1600, 256, 1600, 424, 1608, 552, 1616, 688, 1576, 760, 1544, 720, 1544, 584, 1512, 520, 1512, 400, 1488, 280, 1496, 224)
+uv = PackedVector2Array(1520, 216, 1600, 256, 1600, 424, 1608, 552, 1616, 688, 1576, 760, 1544, 720, 1544, 584, 1512, 520, 1512, 400, 1488, 280, 1496, 224)
+
+[node name="FG_Rock_Big3" type="Polygon2D" parent="Stalactites"]
+z_index = -9
+z_as_relative = false
+texture_repeat = 1
+position = Vector2(-1294, -18)
+scale = Vector2(0.75, 0.75)
+offset = Vector2(-1181, -497)
+antialiased = true
+texture = ExtResource("5_fh74m")
+polygon = PackedVector2Array(960, 440, 1392, 416, 1408, 440, 1392, 472, 1376, 504, 1344, 584, 1256, 648, 1080, 656, 1056, 592, 984, 536, 928, 480)
+uv = PackedVector2Array(960, 440, 1392, 416, 1408, 440, 1392, 472, 1376, 504, 1344, 584, 1256, 648, 1080, 656, 1056, 592, 984, 536, 928, 480)
+
+[node name="FG_Rock_Thin3" type="Polygon2D" parent="Stalactites"]
+z_index = -9
+z_as_relative = false
+texture_repeat = 1
+position = Vector2(-1896, -80)
+scale = Vector2(0.75, 0.75)
+offset = Vector2(-579, -435)
+antialiased = true
+texture = ExtResource("5_fh74m")
+polygon = PackedVector2Array(368, 400, 824, 400, 824, 464, 768, 512, 672, 528, 456, 528, 368, 488, 344, 448)
+uv = PackedVector2Array(368, 400, 824, 400, 824, 464, 768, 512, 672, 528, 456, 528, 368, 488, 344, 448)
+
+[node name="FG_St_Long3" type="Polygon2D" parent="Stalactites"]
+z_index = -9
+z_as_relative = false
+texture_repeat = 1
+position = Vector2(-2293, 13)
+scale = Vector2(0.75, 0.75)
+offset = Vector2(-182, -528)
+antialiased = true
+texture = ExtResource("5_fh74m")
+polygon = PackedVector2Array(112, 352, 248, 376, 240, 448, 232, 504, 240, 608, 216, 704, 192, 768, 152, 768, 160, 656, 136, 552, 128, 472, 72, 376)
+uv = PackedVector2Array(112, 352, 248, 376, 240, 448, 232, 504, 240, 608, 216, 704, 192, 768, 152, 768, 160, 656, 136, 552, 128, 472, 72, 376)
+
+[node name="FG_Rock_Thin4" type="Polygon2D" parent="Stalactites"]
+z_index = -9
+z_as_relative = false
+texture_repeat = 1
+position = Vector2(-1796, 238)
+scale = Vector2(0.75, 0.75)
+offset = Vector2(-679, -753)
+antialiased = true
+texture = ExtResource("5_fh74m")
+polygon = PackedVector2Array(496, 680, 904, 696, 912, 752, 880, 832, 792, 880, 736, 848, 648, 840, 560, 824, 504, 792, 440, 744, 448, 696)
+uv = PackedVector2Array(496, 680, 904, 696, 912, 752, 880, 832, 792, 880, 736, 848, 648, 840, 560, 824, 504, 792, 440, 744, 448, 696)
+
+[node name="BG_St_Thin" type="Polygon2D" parent="Stalactites"]
+z_index = -9
+z_as_relative = false
+texture_repeat = 1
+position = Vector2(-2289, 694)
+scale = Vector2(0.75, 0.75)
+offset = Vector2(-186, -1209)
+antialiased = true
+texture = ExtResource("5_fh74m")
+polygon = PackedVector2Array(128, 936, 176, 920, 224, 960, 240, 1032, 224, 1096, 232, 1288, 256, 1480, 208, 1568, 160, 1528, 160, 1376, 136, 1120, 112, 1000)
+uv = PackedVector2Array(128, 936, 176, 920, 224, 960, 240, 1032, 224, 1096, 232, 1288, 256, 1480, 208, 1568, 160, 1528, 160, 1376, 136, 1120, 112, 1000)
+
+[node name="BG_St_Big" type="Polygon2D" parent="Stalactites"]
+z_index = -9
+z_as_relative = false
+texture_repeat = 1
+position = Vector2(-1976, 637)
+scale = Vector2(0.75, 0.75)
+offset = Vector2(-499, -1152)
+antialiased = true
+texture = ExtResource("5_fh74m")
+polygon = PackedVector2Array(392, 1024, 608, 1024, 600, 1112, 576, 1168, 568, 1264, 520, 1376, 488, 1368, 456, 1240, 424, 1136, 384, 1048)
+uv = PackedVector2Array(392, 1024, 608, 1024, 600, 1112, 576, 1168, 568, 1264, 520, 1376, 488, 1368, 456, 1240, 424, 1136, 384, 1048)
+
+[node name="BG_Pillar" type="Polygon2D" parent="Stalactites"]
+z_index = -9
+z_as_relative = false
+texture_repeat = 1
+position = Vector2(-1495, 956)
+scale = Vector2(0.75, 0.75)
+offset = Vector2(-980, -1471)
+antialiased = true
+texture = ExtResource("5_fh74m")
+polygon = PackedVector2Array(768, 960, 1200, 960, 1208, 1000, 1168, 1048, 1168, 1168, 1104, 1312, 1112, 1816, 1216, 2056, 1120, 2136, 808, 2128, 704, 2032, 728, 1968, 832, 1872, 840, 1328, 800, 1104)
+uv = PackedVector2Array(768, 960, 1200, 960, 1208, 1000, 1168, 1048, 1168, 1168, 1104, 1312, 1112, 1816, 1216, 2056, 1120, 2136, 808, 2128, 704, 2032, 728, 1968, 832, 1872, 840, 1328, 776, 1112)
+
+[node name="BG_Rock_Piece" type="Polygon2D" parent="Stalactites"]
+z_index = -9
+z_as_relative = false
+texture_repeat = 1
+position = Vector2(-983, 625)
+scale = Vector2(0.75, 0.75)
+offset = Vector2(-1492, -1140)
+antialiased = true
+texture = ExtResource("5_fh74m")
+polygon = PackedVector2Array(1320, 1056, 1608, 1056, 1664, 1112, 1664, 1200, 1600, 1232, 1336, 1232, 1312, 1232)
+uv = PackedVector2Array(1320, 1056, 1608, 1056, 1664, 1112, 1664, 1200, 1600, 1232, 1336, 1232, 1312, 1232)
+
+[node name="BG_Rock_Piece2" type="Polygon2D" parent="Stalactites"]
+z_index = -9
+z_as_relative = false
+texture_repeat = 1
+position = Vector2(-995, 835)
+scale = Vector2(0.75, 0.75)
+offset = Vector2(-1480, -1350)
+antialiased = true
+texture = ExtResource("5_fh74m")
+polygon = PackedVector2Array(1304, 1264, 1656, 1264, 1728, 1328, 1728, 1384, 1680, 1424, 1328, 1424, 1288, 1416, 1288, 1264)
+uv = PackedVector2Array(1304, 1264, 1656, 1264, 1728, 1328, 1728, 1384, 1680, 1424, 1328, 1424, 1288, 1416, 1288, 1264)
+
+[node name="BG_Rock_Piece3" type="Polygon2D" parent="Stalactites"]
+z_index = -9
+z_as_relative = false
+texture_repeat = 1
+position = Vector2(-1050, 1134)
+scale = Vector2(0.75, 0.75)
+offset = Vector2(-1425, -1649)
+antialiased = true
+texture = ExtResource("5_fh74m")
+polygon = PackedVector2Array(1224, 1496, 1696, 1504, 1712, 1592, 1704, 1768, 1504, 1816, 1232, 1760, 1160, 1648)
+uv = PackedVector2Array(1224, 1496, 1696, 1504, 1712, 1592, 1704, 1768, 1504, 1816, 1232, 1760, 1160, 1648)
+
+[node name="BG_St_Standing" type="Polygon2D" parent="Stalactites"]
+z_index = -9
+z_as_relative = false
+texture_repeat = 1
+position = Vector2(-533, 1009)
+scale = Vector2(0.75, 0.75)
+offset = Vector2(-1942, -1524)
+antialiased = true
+texture = ExtResource("5_fh74m")
+polygon = PackedVector2Array(1888, 864, 1816, 1880, 1728, 1912, 1688, 1960, 1936, 1968, 2120, 1944, 2160, 1928, 2040, 1624, 1976, 1104, 1952, 832, 1896, 808)
+uv = PackedVector2Array(1888, 864, 1816, 1880, 1728, 1912, 1688, 1960, 1936, 1968, 2120, 1944, 2160, 1928, 2040, 1624, 1976, 1104, 1952, 832, 1896, 808)
+
+[node name="BG_St_Huge" type="Polygon2D" parent="Stalactites"]
+z_index = -9
+z_as_relative = false
+texture_repeat = 1
+position = Vector2(-27, 625)
+scale = Vector2(0.75, 0.75)
+offset = Vector2(-2448, -1140)
+antialiased = true
+texture = ExtResource("5_fh74m")
+polygon = PackedVector2Array(1944, 592, 3000, 608, 2968, 712, 2616, 1808, 2464, 2128, 2384, 2104, 1904, 640)
+uv = PackedVector2Array(1944, 592, 3000, 608, 2968, 712, 2616, 1808, 2464, 2128, 2384, 2104, 1904, 640)
+
+[node name="BG_Pillar2" type="Polygon2D" parent="Stalactites"]
+z_index = -9
+z_as_relative = false
+texture_repeat = 1
+position = Vector2(623, 838)
+scale = Vector2(0.75, 0.75)
+offset = Vector2(-3098, -1353)
+antialiased = true
+texture = ExtResource("5_fh74m")
+polygon = PackedVector2Array(3032, 632, 3304, 640, 3304, 904, 3280, 1192, 3208, 1304, 3304, 1584, 3328, 1880, 3304, 2104, 3112, 2136, 2920, 2096, 2952, 1856, 2992, 1456, 2976, 1016, 3008, 672)
+uv = PackedVector2Array(3032, 632, 3304, 640, 3304, 904, 3280, 1192, 3208, 1304, 3304, 1584, 3328, 1880, 3304, 2104, 3112, 2136, 2920, 2096, 2952, 1856, 2992, 1456, 2976, 1016, 3008, 672)
+
+[node name="ParallaxBackground" type="ParallaxBackground" parent="."]
+script = ExtResource("1_bya60")
+colorA = Color(0.29, 0.29, 0.29, 1)
+colorB = Color(0.356863, 0.470588, 0.717647, 1)
+rangeLayerMax = 2.0
+
+[node name="ParallaxLayer7" type="ParallaxLayer" parent="ParallaxBackground"]
+motion_scale = Vector2(0.1, 0.1)
+motion_offset = Vector2(480, 600)
+
+[node name="Polygon2D7" type="Polygon2D" parent="ParallaxBackground/ParallaxLayer7"]
+clip_children = 2
+light_mask = 3
+z_as_relative = false
+texture_filter = 2
+texture_repeat = 1
+position = Vector2(241, -147)
+scale = Vector2(-16.743, 371.951)
+offset = Vector2(-127.255, -4.119)
+antialiased = true
+texture = SubResource("GradientTexture2D_nit5r")
+polygon = PackedVector2Array(3.8147e-06, 0, 256, 0, 256, 8, 1.90735e-06, 8)
+uv = PackedVector2Array(3.8147e-06, 0, 64, 0, 64, 64, 1.90735e-06, 64)
+
+[node name="ParallaxLayer5" type="ParallaxLayer" parent="ParallaxBackground"]
+motion_scale = Vector2(0.1, 0.1)
+motion_offset = Vector2(600, 800)
+
+[node name="BackgroundHill2" type="Polygon2D" parent="ParallaxBackground/ParallaxLayer5"]
+light_mask = 4
+position = Vector2(281, 159)
+offset = Vector2(-2123, -646)
+texture = ExtResource("12_0ynwd")
+polygon = PackedVector2Array(-64, 928, 40, 816, 128, 608, 280, 424, 456, 280, 704, 200, 1096, 144, 1680, 80, 2328, -24, 2680, 0, 3264, 144, 3648, 456, 3944, 840, 3960, 1152, 3088, 1272, 920, 1248, 40, 1128)
+uv = PackedVector2Array(-64, 928, 40, 816, 128, 608, 280, 424, 456, 280, 704, 200, 1096, 144, 1680, 80, 2328, -24, 2680, 0, 3264, 144, 3648, 456, 3944, 840, 3960, 1152, 3088, 1272, 920, 1248, 40, 1128)
+
+[node name="ChurchHouse" type="Polygon2D" parent="ParallaxBackground/ParallaxLayer5/BackgroundHill2"]
+clip_children = 2
+light_mask = 4
+position = Vector2(-88, -574)
+scale = Vector2(0.5, 0.5)
+offset = Vector2(-594, -1100)
+texture = ExtResource("13_t07u8")
+polygon = PackedVector2Array(200, 616, 304, 608, 544, 600, 584, 632, 592, 864, 760, 840, 1088, 832, 1112, 952, 1112, 1232, 1112, 1312, 1032, 1328, 888, 1328, 728, 1328, 504, 1328, 352, 1328, 152, 1320, 128, 1136, 128, 704, 144, 632)
+uv = PackedVector2Array(200, 616, 304, 608, 544, 600, 584, 632, 592, 864, 760, 840, 1088, 832, 1112, 952, 1112, 1232, 1112, 1312, 1032, 1328, 888, 1328, 728, 1328, 504, 1328, 352, 1328, 152, 1320, 128, 1136, 128, 704, 144, 632)
+
+[node name="ParallaxLayer6" type="ParallaxLayer" parent="ParallaxBackground"]
+motion_scale = Vector2(0.5, 0.5)
+motion_offset = Vector2(2250, 550)
+motion_mirroring = Vector2(3500, 0)
+
+[node name="ForeGround" type="Node2D" parent="ParallaxBackground/ParallaxLayer6"]
+position = Vector2(320, 0)
+
+[node name="Top" type="Node2D" parent="ParallaxBackground/ParallaxLayer6/ForeGround"]
+z_index = 2
+position = Vector2(0, -48)
+scale = Vector2(0.74599, 0.75)
+
+[node name="BG_St_Huge3" type="Polygon2D" parent="ParallaxBackground/ParallaxLayer6/ForeGround/Top"]
+z_index = 1
+z_as_relative = false
+texture_repeat = 1
+position = Vector2(1316.37, -314.667)
+scale = Vector2(0.2582, -0.22318)
+offset = Vector2(-2448, -1140)
+antialiased = true
+texture = ExtResource("5_fh74m")
+polygon = PackedVector2Array(1944, 592, 3000, 608, 2968, 712, 2616, 1808, 2464, 2128, 2384, 2104, 1904, 640)
+uv = PackedVector2Array(1944, 592, 3000, 608, 2968, 712, 2616, 1808, 2464, 2128, 2384, 2104, 1904, 640)
+
+[node name="BG_Rock_Piece6" type="Polygon2D" parent="ParallaxBackground/ParallaxLayer6/ForeGround/Top"]
+z_index = 1
+z_as_relative = false
+texture_repeat = 1
+position = Vector2(1376.69, -148)
+scale = Vector2(1.05245, 1.73602)
+offset = Vector2(-1480, -1350)
+antialiased = true
+texture = ExtResource("5_fh74m")
+polygon = PackedVector2Array(1304, 1264, 1656, 1264, 1728, 1328, 1728, 1384, 1680, 1424, 1328, 1424, 1288, 1416, 1288, 1264)
+uv = PackedVector2Array(1304, 1264, 1656, 1264, 1728, 1328, 1728, 1384, 1680, 1424, 1328, 1424, 1288, 1416, 1288, 1264)
+
+[node name="BG_St_Thin4" type="Polygon2D" parent="ParallaxBackground/ParallaxLayer6/ForeGround/Top"]
+z_index = 1
+z_as_relative = false
+texture_repeat = 1
+position = Vector2(1340.5, -1212)
+scale = Vector2(1.70244, 0.840002)
+offset = Vector2(-186, -1209)
+antialiased = true
+texture = ExtResource("5_fh74m")
+polygon = PackedVector2Array(128, 936, 176, 920, 224, 960, 240, 1032, 224, 1096, 232, 1288, 256, 1480, 208, 1568, 160, 1528, 160, 1376, 136, 1120, 112, 1000)
+uv = PackedVector2Array(128, 936, 176, 920, 224, 960, 240, 1032, 224, 1096, 232, 1288, 256, 1480, 208, 1568, 160, 1528, 160, 1376, 136, 1120, 112, 1000)
+
+[node name="BG_St_Thin6" type="Polygon2D" parent="ParallaxBackground/ParallaxLayer6/ForeGround/Top"]
+z_index = 1
+z_as_relative = false
+texture_repeat = 1
+position = Vector2(2261.44, -1185.14)
+rotation = 0.239107
+scale = Vector2(2.32049, 0.781513)
+offset = Vector2(-186, -1209)
+antialiased = true
+texture = ExtResource("5_fh74m")
+polygon = PackedVector2Array(128, 936, 176, 920, 224, 960, 240, 1032, 224, 1096, 232, 1288, 256, 1480, 208, 1568, 160, 1528, 160, 1376, 136, 1120, 112, 1000)
+uv = PackedVector2Array(128, 936, 176, 920, 224, 960, 240, 1032, 224, 1096, 232, 1288, 256, 1480, 208, 1568, 160, 1528, 160, 1376, 136, 1120, 112, 1000)
+
+[node name="BG_St_Thin5" type="Polygon2D" parent="ParallaxBackground/ParallaxLayer6/ForeGround/Top"]
+z_index = 1
+z_as_relative = false
+texture_repeat = 1
+position = Vector2(1408.87, -1286.67)
+rotation = 0.137107
+scale = Vector2(1.14293, 0.420287)
+offset = Vector2(-186, -1209)
+antialiased = true
+texture = ExtResource("5_fh74m")
+polygon = PackedVector2Array(128, 936, 176, 920, 224, 960, 240, 1032, 224, 1096, 232, 1288, 256, 1480, 208, 1568, 160, 1528, 160, 1376, 136, 1120, 112, 1000)
+uv = PackedVector2Array(128, 936, 176, 920, 224, 960, 240, 1032, 224, 1096, 232, 1288, 256, 1480, 208, 1568, 160, 1528, 160, 1376, 136, 1120, 112, 1000)
+
+[node name="BG_St_Thin7" type="Polygon2D" parent="ParallaxBackground/ParallaxLayer6/ForeGround/Top"]
+z_index = 1
+z_as_relative = false
+texture_repeat = 1
+position = Vector2(1993.34, -282.743)
+rotation = 3.03077
+scale = Vector2(-2.41936, 0.949385)
+offset = Vector2(-186, -1209)
+antialiased = true
+texture = ExtResource("5_fh74m")
+polygon = PackedVector2Array(128, 936, 176, 920, 224, 960, 240, 1032, 224, 1096, 232, 1288, 256, 1480, 208, 1568, 160, 1528, 160, 1376, 136, 1120, 112, 1000)
+uv = PackedVector2Array(128, 936, 176, 920, 224, 960, 240, 1032, 224, 1096, 232, 1288, 256, 1480, 208, 1568, 160, 1528, 160, 1376, 136, 1120, 112, 1000)
+
+[node name="BG_St_Thin3" type="Polygon2D" parent="ParallaxBackground/ParallaxLayer6/ForeGround/Top"]
+z_index = 1
+z_as_relative = false
+texture_repeat = 1
+position = Vector2(1144.79, -1184)
+scale = Vector2(1.00538, 1)
+offset = Vector2(-186, -1209)
+antialiased = true
+texture = ExtResource("5_fh74m")
+polygon = PackedVector2Array(128, 936, 176, 920, 224, 960, 240, 1032, 224, 1096, 232, 1288, 256, 1480, 208, 1568, 160, 1528, 160, 1376, 136, 1120, 112, 1000)
+uv = PackedVector2Array(128, 936, 176, 920, 224, 960, 240, 1032, 224, 1096, 232, 1288, 256, 1480, 208, 1568, 160, 1528, 160, 1376, 136, 1120, 112, 1000)
+
+[node name="BG_St_Big3" type="Polygon2D" parent="ParallaxBackground/ParallaxLayer6/ForeGround/Top"]
+z_index = 1
+z_as_relative = false
+texture_repeat = 1
+position = Vector2(1002.69, -1274.67)
+scale = Vector2(1.20439, 1.15468)
+offset = Vector2(-499, -1152)
+antialiased = true
+texture = ExtResource("5_fh74m")
+polygon = PackedVector2Array(392, 1024, 608, 1024, 600, 1112, 576, 1168, 568, 1264, 520, 1376, 488, 1368, 456, 1240, 424, 1136, 384, 1048)
+uv = PackedVector2Array(392, 1024, 608, 1024, 600, 1112, 576, 1168, 568, 1264, 520, 1376, 488, 1368, 456, 1240, 424, 1136, 384, 1048)
+
+[node name="BG_Pillar4" type="Polygon2D" parent="ParallaxBackground/ParallaxLayer6/ForeGround/Top"]
+z_index = 1
+z_as_relative = false
+texture_repeat = 1
+position = Vector2(-1016.1, -785.333)
+scale = Vector2(1.27348, 1.48)
+offset = Vector2(-980, -1471)
+antialiased = true
+texture = ExtResource("5_fh74m")
+polygon = PackedVector2Array(768, 960, 1200, 960, 1208, 1000, 1168, 1048, 1168, 1168, 1104, 1312, 1112, 1816, 1216, 2056, 1120, 2136, 808, 2128, 704, 2032, 728, 1968, 832, 1872, 840, 1328, 800, 1104)
+uv = PackedVector2Array(768, 960, 1200, 960, 1208, 1000, 1168, 1048, 1168, 1168, 1104, 1312, 1112, 1816, 1216, 2056, 1120, 2136, 808, 2128, 704, 2032, 728, 1968, 832, 1872, 840, 1328, 776, 1112)
+
+[node name="BG_St_Thin2" type="Polygon2D" parent="ParallaxBackground/ParallaxLayer6/ForeGround/Top"]
+z_index = 1
+z_as_relative = false
+texture_repeat = 1
+position = Vector2(20.3965, -515.223)
+rotation = -3.10986
+scale = Vector2(-1.21578, 1)
+offset = Vector2(-186, -1209)
+antialiased = true
+texture = ExtResource("5_fh74m")
+polygon = PackedVector2Array(128, 936, 176, 920, 224, 960, 240, 1032, 224, 1096, 232, 1288, 256, 1480, 208, 1568, 160, 1528, 160, 1376, 136, 1120, 112, 1000)
+uv = PackedVector2Array(128, 936, 176, 920, 224, 960, 240, 1032, 224, 1096, 232, 1288, 256, 1480, 208, 1568, 160, 1528, 160, 1376, 136, 1120, 112, 1000)
+
+[node name="BG_St_Big2" type="Polygon2D" parent="ParallaxBackground/ParallaxLayer6/ForeGround/Top"]
+z_index = 1
+z_as_relative = false
+texture_repeat = 1
+position = Vector2(139.413, -408)
+rotation = 3.13119
+scale = Vector2(-1.08457, 1)
+offset = Vector2(-499, -1152)
+antialiased = true
+texture = ExtResource("5_fh74m")
+polygon = PackedVector2Array(392, 1024, 608, 1024, 600, 1112, 576, 1168, 568, 1264, 520, 1376, 488, 1368, 456, 1240, 424, 1136, 384, 1048)
+uv = PackedVector2Array(392, 1024, 608, 1024, 600, 1112, 576, 1168, 568, 1264, 520, 1376, 488, 1368, 456, 1240, 424, 1136, 384, 1048)
+
+[node name="BG_St_Big4" type="Polygon2D" parent="ParallaxBackground/ParallaxLayer6/ForeGround/Top"]
+z_index = 1
+z_as_relative = false
+texture_repeat = 1
+position = Vector2(2238.63, -232.007)
+rotation = 3.08163
+scale = Vector2(-1.08457, 1)
+offset = Vector2(-499, -1152)
+antialiased = true
+texture = ExtResource("5_fh74m")
+polygon = PackedVector2Array(392, 1024, 608, 1024, 600, 1112, 576, 1168, 568, 1264, 520, 1376, 488, 1368, 456, 1240, 424, 1136, 384, 1048)
+uv = PackedVector2Array(392, 1024, 608, 1024, 600, 1112, 576, 1168, 568, 1264, 520, 1376, 488, 1368, 456, 1240, 424, 1136, 384, 1048)
+
+[node name="BG_St_Huge2" type="Polygon2D" parent="ParallaxBackground/ParallaxLayer6/ForeGround/Top"]
+z_index = 1
+z_as_relative = false
+texture_repeat = 1
+position = Vector2(-1831.12, -1141.33)
+scale = Vector2(0.63354, 0.630153)
+offset = Vector2(-2448, -1140)
+antialiased = true
+texture = ExtResource("5_fh74m")
+polygon = PackedVector2Array(1944, 592, 3000, 608, 2968, 712, 2616, 1808, 2464, 2128, 2384, 2104, 1904, 640)
+uv = PackedVector2Array(1944, 592, 3000, 608, 2968, 712, 2616, 1808, 2464, 2128, 2384, 2104, 1904, 640)
+
+[node name="BG_St_Standing2" type="Polygon2D" parent="ParallaxBackground/ParallaxLayer6/ForeGround/Top"]
+z_index = 1
+z_as_relative = false
+texture_repeat = 1
+position = Vector2(1186.34, -337.333)
+scale = Vector2(1.00538, 1)
+offset = Vector2(-1942, -1524)
+antialiased = true
+texture = ExtResource("5_fh74m")
+polygon = PackedVector2Array(1888, 864, 1816, 1880, 1728, 1912, 1688, 1960, 1936, 1968, 2120, 1944, 2160, 1928, 2040, 1624, 1976, 1104, 1952, 832, 1896, 808)
+uv = PackedVector2Array(1888, 864, 1816, 1880, 1728, 1912, 1688, 1960, 1936, 1968, 2120, 1944, 2160, 1928, 2040, 1624, 1976, 1104, 1952, 832, 1896, 808)
+
+[node name="BG_St_Standing4" type="Polygon2D" parent="ParallaxBackground/ParallaxLayer6/ForeGround/Top"]
+z_index = 1
+z_as_relative = false
+texture_repeat = 1
+position = Vector2(2103.25, -307.999)
+rotation = 0.0657066
+scale = Vector2(1.0358, 0.834976)
+offset = Vector2(-1942, -1524)
+antialiased = true
+texture = ExtResource("5_fh74m")
+polygon = PackedVector2Array(1888, 864, 1816, 1880, 1728, 1912, 1688, 1960, 1936, 1968, 2120, 1944, 2160, 1928, 2040, 1624, 1976, 1104, 1952, 832, 1896, 808)
+uv = PackedVector2Array(1888, 864, 1816, 1880, 1728, 1912, 1688, 1960, 1936, 1968, 2120, 1944, 2160, 1928, 2040, 1624, 1976, 1104, 1952, 832, 1896, 808)
+
+[node name="BG_Rock_Piece5" type="Polygon2D" parent="ParallaxBackground/ParallaxLayer6/ForeGround/Top"]
+z_index = 1
+z_as_relative = false
+texture_repeat = 1
+position = Vector2(-9.37695, -344.013)
+rotation = -2.98039
+scale = Vector2(0.676452, -0.810824)
+offset = Vector2(-1492, -1140)
+antialiased = true
+texture = ExtResource("5_fh74m")
+polygon = PackedVector2Array(1320, 1056, 1608, 1056, 1664, 1112, 1664, 1200, 1600, 1232, 1336, 1232, 1312, 1232)
+uv = PackedVector2Array(1320, 1056, 1608, 1056, 1664, 1112, 1664, 1200, 1600, 1232, 1336, 1232, 1312, 1232)
+
+[node name="BG_St_Standing3" type="Polygon2D" parent="ParallaxBackground/ParallaxLayer6/ForeGround/Top"]
+z_index = 1
+z_as_relative = false
+texture_repeat = 1
+position = Vector2(-73.7273, -946.664)
+rotation = -3.13137
+scale = Vector2(-1.09396, 1)
+offset = Vector2(-1942, -1524)
+antialiased = true
+texture = ExtResource("5_fh74m")
+polygon = PackedVector2Array(1888, 864, 1816, 1880, 1728, 1912, 1688, 1960, 1936, 1968, 2120, 1944, 2160, 1928, 2040, 1624, 1976, 1104, 1952, 832, 1896, 808)
+uv = PackedVector2Array(1888, 864, 1816, 1880, 1728, 1912, 1688, 1960, 1936, 1968, 2120, 1944, 2160, 1928, 2040, 1624, 1976, 1104, 1952, 832, 1896, 808)
+
+[node name="BG_Rock_Piece4" type="Polygon2D" parent="ParallaxBackground/ParallaxLayer6/ForeGround/Top"]
+z_index = 1
+z_as_relative = false
+texture_repeat = 1
+position = Vector2(-16.086, -145.333)
+scale = Vector2(1.54732, 1.55854)
+offset = Vector2(-1425, -1649)
+antialiased = true
+texture = ExtResource("5_fh74m")
+polygon = PackedVector2Array(1224, 1496, 1696, 1504, 1712, 1592, 1704, 1768, 1504, 1816, 1232, 1760, 1160, 1648)
+uv = PackedVector2Array(1224, 1496, 1696, 1504, 1712, 1592, 1704, 1768, 1504, 1816, 1232, 1760, 1160, 1648)
+
+[node name="BG_Pillar3" type="Polygon2D" parent="ParallaxBackground/ParallaxLayer6/ForeGround/Top"]
+z_index = 1
+z_as_relative = false
+texture_repeat = 1
+position = Vector2(412.874, -681.333)
+scale = Vector2(1.2014, 1.19498)
+offset = Vector2(-3098, -1353)
+antialiased = true
+texture = ExtResource("5_fh74m")
+polygon = PackedVector2Array(3032, 632, 3304, 640, 3304, 904, 3280, 1192, 3208, 1304, 3304, 1584, 3328, 1880, 3304, 2104, 3112, 2136, 2920, 2096, 2952, 1856, 2992, 1456, 2976, 1016, 3008, 672)
+uv = PackedVector2Array(3032, 632, 3304, 640, 3304, 904, 3280, 1192, 3208, 1304, 3304, 1584, 3328, 1880, 3304, 2104, 3112, 2136, 2920, 2096, 2952, 1856, 2992, 1456, 2976, 1016, 3008, 672)
+
+[node name="ParallaxLayer3" type="ParallaxLayer" parent="ParallaxBackground"]
+motion_scale = Vector2(0.75, 0.75)
+motion_offset = Vector2(1551.96, 250)
+motion_mirroring = Vector2(3000, 0)
+
+[node name="ForeGround" type="Node2D" parent="ParallaxBackground/ParallaxLayer3"]
+position = Vector2(320, 0)
+
+[node name="Top" type="Node2D" parent="ParallaxBackground/ParallaxLayer3/ForeGround"]
+z_index = 2
+position = Vector2(0, -48)
+scale = Vector2(0.74599, 0.75)
+
+[node name="FG_St_Big3" type="Polygon2D" parent="ParallaxBackground/ParallaxLayer3/ForeGround/Top"]
+z_index = 2
+z_as_relative = false
+texture_repeat = 1
+position = Vector2(76.4085, -1336)
+offset = Vector2(-122, -129)
+antialiased = true
+texture = ExtResource("5_fh74m")
+polygon = PackedVector2Array(8, 24, 264, 24, 264, 64, 224, 152, 176, 232, 144, 304, 120, 296, 64, 200, 8, 104, -16, 24)
+uv = PackedVector2Array(8, 24, 264, 24, 264, 64, 224, 152, 176, 232, 144, 304, 120, 296, 64, 200, 8, 104, -16, 24)
+
+[node name="FG_St_Small3" type="Polygon2D" parent="ParallaxBackground/ParallaxLayer3/ForeGround/Top"]
+z_index = 2
+z_as_relative = false
+texture_repeat = 1
+position = Vector2(536.2, -1350.67)
+offset = Vector2(-289, -234)
+antialiased = true
+texture = ExtResource("5_fh74m")
+polygon = PackedVector2Array(264, 136, 328, 136, 344, 136, 328, 296, 312, 352, 280, 360, 256, 320, 256, 272, 248, 216, 240, 152)
+uv = PackedVector2Array(264, 128, 328, 128, 344, 128, 328, 296, 312, 352, 280, 360, 256, 320, 256, 272, 248, 216, 240, 152)
+
+[node name="FG_St_Small4" type="Polygon2D" parent="ParallaxBackground/ParallaxLayer3/ForeGround/Top"]
+z_index = 2
+z_as_relative = false
+texture_repeat = 1
+position = Vector2(1583.13, -1256)
+offset = Vector2(-289, -234)
+antialiased = true
+texture = ExtResource("5_fh74m")
+polygon = PackedVector2Array(264, 136, 328, 136, 344, 136, 328, 296, 312, 352, 280, 360, 256, 320, 256, 272, 248, 216, 240, 152)
+uv = PackedVector2Array(264, 128, 328, 128, 344, 128, 328, 296, 312, 352, 280, 360, 256, 320, 256, 272, 248, 216, 240, 152)
+
+[node name="FG_St_Small2" type="Polygon2D" parent="ParallaxBackground/ParallaxLayer3/ForeGround/Top"]
+z_index = 2
+z_as_relative = false
+texture_repeat = 1
+position = Vector2(-1392.58, -1257.67)
+offset = Vector2(-289, -234)
+antialiased = true
+texture = ExtResource("5_fh74m")
+polygon = PackedVector2Array(264, 136, 328, 136, 344, 136, 336.098, 215.023, 328, 296, 312, 352, 280, 360, 256, 320, 256, 272, 248, 216, 240, 152)
+uv = PackedVector2Array(264, 136, 328, 136, 344, 136, 336.098, 215.023, 328, 296, 312, 352, 280, 360, 256, 320, 256, 272, 248, 216, 240, 152)
+
+[node name="FG_St_Long6" type="Polygon2D" parent="ParallaxBackground/ParallaxLayer3/ForeGround/Top"]
+z_index = 2
+z_as_relative = false
+texture_repeat = 1
+position = Vector2(-1282.58, -1185.67)
+offset = Vector2(-420, -137)
+antialiased = true
+texture = ExtResource("5_fh74m")
+polygon = PackedVector2Array(352, -8, 496, -8, 504, 64, 496, 152, 480, 232, 472, 312, 448, 360, 432, 376, 400, 352, 392, 264, 376, 176, 352, 96, 336, -8)
+uv = PackedVector2Array(352, -8, 496, -8, 504, 64, 496, 152, 480, 232, 472, 312, 448, 360, 432, 376, 400, 352, 392, 264, 376, 176, 352, 96, 336, -8)
+
+[node name="FG_St_Long8" type="Polygon2D" parent="ParallaxBackground/ParallaxLayer3/ForeGround/Top"]
+z_index = 2
+z_as_relative = false
+texture_repeat = 1
+position = Vector2(1920.94, -1205.33)
+offset = Vector2(-420, -137)
+antialiased = true
+texture = ExtResource("5_fh74m")
+polygon = PackedVector2Array(352, -8, 496, -8, 504, 64, 496, 152, 480, 232, 472, 312, 448, 360, 432, 376, 400, 352, 392, 264, 376, 176, 352, 96, 336, -8)
+uv = PackedVector2Array(352, -8, 496, -8, 504, 64, 496, 152, 480, 232, 472, 312, 448, 360, 432, 376, 400, 352, 392, 264, 376, 176, 352, 96, 336, -8)
+
+[node name="FG_St_Long4" type="Polygon2D" parent="ParallaxBackground/ParallaxLayer3/ForeGround/Top"]
+z_index = 2
+z_as_relative = false
+texture_repeat = 1
+position = Vector2(620.652, -1313.33)
+offset = Vector2(-420, -137)
+antialiased = true
+texture = ExtResource("5_fh74m")
+polygon = PackedVector2Array(352, -8, 496, -8, 504, 64, 496, 152, 480, 232, 472, 312, 448, 360, 432, 376, 400, 352, 392, 264, 376, 176, 352, 96, 336, -8)
+uv = PackedVector2Array(352, -8, 496, -8, 504, 64, 496, 152, 480, 232, 472, 312, 448, 360, 432, 376, 400, 352, 392, 264, 376, 176, 352, 96, 336, -8)
+
+[node name="FG_St_Long7" type="Polygon2D" parent="ParallaxBackground/ParallaxLayer3/ForeGround/Top"]
+z_index = 2
+z_as_relative = false
+texture_repeat = 1
+position = Vector2(1743.98, -1337.36)
+rotation = -0.127929
+offset = Vector2(-420, -137)
+antialiased = true
+texture = ExtResource("5_fh74m")
+polygon = PackedVector2Array(352, -8, 496, -8, 504, 64, 496, 152, 480, 232, 472, 312, 448, 360, 432, 376, 400, 352, 392, 264, 376, 176, 352, 96, 336, -8)
+uv = PackedVector2Array(352, -8, 496, -8, 504, 64, 496, 152, 480, 232, 472, 312, 448, 360, 432, 376, 400, 352, 392, 264, 376, 176, 352, 96, 336, -8)
+
+[node name="FG_St_Mid4" type="Polygon2D" parent="ParallaxBackground/ParallaxLayer3/ForeGround/Top"]
+z_index = 2
+z_as_relative = false
+texture_repeat = 1
+position = Vector2(749.34, -1313.33)
+offset = Vector2(-973, -150)
+antialiased = true
+texture = ExtResource("5_fh74m")
+polygon = PackedVector2Array(896, 24, 1056, 16, 1056, 104, 1016, 184, 1016, 264, 968, 352, 952, 360, 936, 336, 936, 256, 912, 200, 912, 120, 880, 88, 880, 24)
+uv = PackedVector2Array(896, 24, 1056, 16, 1056, 104, 1016, 184, 1016, 264, 968, 352, 952, 360, 936, 336, 936, 256, 912, 200, 912, 120, 880, 88, 880, 24)
+
+[node name="FG_St_Mid3" type="Polygon2D" parent="ParallaxBackground/ParallaxLayer3/ForeGround/Top"]
+z_index = 2
+z_as_relative = false
+texture_repeat = 1
+position = Vector2(-1049.58, -1070.67)
+offset = Vector2(-973, -150)
+antialiased = true
+texture = ExtResource("5_fh74m")
+polygon = PackedVector2Array(896, 24, 1056, 16, 1056, 104, 1016, 184, 1016, 264, 968, 352, 952, 360, 936, 336, 936, 256, 912, 200, 912, 120, 880, 88, 880, 24)
+uv = PackedVector2Array(896, 24, 1056, 16, 1056, 104, 1016, 184, 1016, 264, 968, 352, 952, 360, 936, 336, 936, 256, 912, 200, 912, 120, 880, 88, 880, 24)
+
+[node name="FG_St_Mid2" type="Polygon2D" parent="ParallaxBackground/ParallaxLayer3/ForeGround/Top"]
+z_index = 2
+z_as_relative = false
+texture_repeat = 1
+position = Vector2(-554.967, -1236)
+offset = Vector2(-973, -150)
+antialiased = true
+texture = ExtResource("5_fh74m")
+polygon = PackedVector2Array(896, 24, 1056, 16, 1056, 104, 1016, 184, 1016, 264, 968, 352, 952, 360, 936, 336, 936, 256, 912, 200, 912, 120, 880, 88, 880, 24)
+uv = PackedVector2Array(896, 24, 1056, 16, 1056, 104, 1016, 184, 1016, 264, 968, 352, 952, 360, 936, 336, 936, 256, 912, 200, 912, 120, 880, 88, 880, 24)
+
+[node name="FG_St_Mid5" type="Polygon2D" parent="ParallaxBackground/ParallaxLayer3/ForeGround/Top"]
+z_index = 2
+z_as_relative = false
+texture_repeat = 1
+position = Vector2(1663.56, -1262.67)
+offset = Vector2(-973, -150)
+antialiased = true
+texture = ExtResource("5_fh74m")
+polygon = PackedVector2Array(896, 24, 1056, 16, 1056, 104, 1016, 184, 1016, 264, 968, 352, 952, 360, 936, 336, 936, 256, 912, 200, 912, 120, 880, 88, 880, 24)
+uv = PackedVector2Array(896, 24, 1056, 16, 1056, 104, 1016, 184, 1016, 264, 968, 352, 952, 360, 936, 336, 936, 256, 912, 200, 912, 120, 880, 88, 880, 24)
+
+[node name="FG_Rock_Big6" type="Polygon2D" parent="ParallaxBackground/ParallaxLayer3/ForeGround/Top"]
+z_index = 2
+z_as_relative = false
+texture_repeat = 1
+position = Vector2(332.444, -1410.67)
+offset = Vector2(-1324, -116)
+antialiased = true
+texture = ExtResource("5_fh74m")
+polygon = PackedVector2Array(1120, 64, 1312, 56, 1512, 48, 1560, 48, 1552, 104, 1496, 176, 1384, 248, 1328, 224, 1232, 224, 1176, 192, 1104, 136, 1096, 64)
+uv = PackedVector2Array(1120, 64, 1312, 56, 1512, 48, 1560, 48, 1552, 104, 1496, 176, 1384, 248, 1328, 224, 1232, 224, 1176, 192, 1104, 136, 1096, 64)
+
+[node name="FG_Rock_Thin6" type="Polygon2D" parent="ParallaxBackground/ParallaxLayer3/ForeGround/Top"]
+z_index = 2
+z_as_relative = false
+texture_repeat = 1
+position = Vector2(-1282.04, -1313.34)
+rotation = 0.261799
+offset = Vector2(-1979, -78)
+antialiased = true
+texture = ExtResource("5_fh74m")
+polygon = PackedVector2Array(1792, 40, 2160, 40, 2144, 72, 2104, 104, 2056, 128, 1992, 144, 1936, 144, 1880, 120, 1816, 96)
+uv = PackedVector2Array(1792, 40, 2160, 40, 2144, 72, 2104, 104, 2056, 128, 1992, 144, 1936, 144, 1880, 120, 1816, 96)
+
+[node name="FG_Rock_Thin7" type="Polygon2D" parent="ParallaxBackground/ParallaxLayer3/ForeGround/Top"]
+z_index = 2
+z_as_relative = false
+texture_repeat = 1
+position = Vector2(-380.702, -1286.67)
+offset = Vector2(-2336, -64)
+antialiased = true
+texture = ExtResource("5_fh74m")
+polygon = PackedVector2Array(2192, 40, 2464, 8, 2480, 32, 2464, 56, 2448, 96, 2424, 136, 2296, 136, 2264, 112, 2208, 88, 2168, 56)
+uv = PackedVector2Array(2192, 40, 2464, 8, 2480, 32, 2464, 56, 2448, 96, 2424, 136, 2296, 136, 2264, 112, 2208, 88, 2168, 56)
+
+[node name="FG_Rock_Thin11" type="Polygon2D" parent="ParallaxBackground/ParallaxLayer3/ForeGround/Top"]
+z_index = 2
+z_as_relative = false
+texture_repeat = 1
+position = Vector2(2076.44, -1362.67)
+offset = Vector2(-2336, -64)
+antialiased = true
+texture = ExtResource("5_fh74m")
+polygon = PackedVector2Array(2192, 40, 2464, 8, 2480, 32, 2464, 56, 2448, 96, 2424, 136, 2296, 136, 2264, 112, 2208, 88, 2168, 56)
+uv = PackedVector2Array(2192, 40, 2464, 8, 2480, 32, 2464, 56, 2448, 96, 2424, 136, 2296, 136, 2264, 112, 2208, 88, 2168, 56)
+
+[node name="FG_Rock_Big7" type="Polygon2D" parent="ParallaxBackground/ParallaxLayer3/ForeGround/Top"]
+z_index = 2
+z_as_relative = false
+texture_repeat = 1
+position = Vector2(-351.211, -1380)
+offset = Vector2(-1966, -274)
+antialiased = true
+texture = ExtResource("5_fh74m")
+polygon = PackedVector2Array(1704, 200, 2280, 200, 2280, 240, 2192, 368, 2024, 384, 1944, 368, 1840, 384, 1776, 352, 1744, 320, 1680, 240)
+uv = PackedVector2Array(1704, 200, 2280, 200, 2280, 240, 2192, 368, 2024, 384, 1944, 368, 1840, 384, 1776, 352, 1744, 320, 1680, 240)
+
+[node name="FG_Rock_Big10" type="Polygon2D" parent="ParallaxBackground/ParallaxLayer3/ForeGround/Top"]
+z_index = 2
+z_as_relative = false
+texture_repeat = 1
+position = Vector2(1471.87, -1405.33)
+offset = Vector2(-1966, -274)
+antialiased = true
+texture = ExtResource("5_fh74m")
+polygon = PackedVector2Array(1704, 200, 2280, 200, 2280, 240, 2192, 368, 2024, 384, 1944, 368, 1840, 384, 1776, 352, 1744, 320, 1680, 240)
+uv = PackedVector2Array(1704, 200, 2280, 200, 2280, 240, 2192, 368, 2024, 384, 1944, 368, 1840, 384, 1776, 352, 1744, 320, 1680, 240)
+
+[node name="FG_Rock_Thin8" type="Polygon2D" parent="ParallaxBackground/ParallaxLayer3/ForeGround/Top"]
+z_index = 2
+z_as_relative = false
+texture_repeat = 1
+position = Vector2(-812.343, -1278.67)
+offset = Vector2(-679, -753)
+antialiased = true
+texture = ExtResource("5_fh74m")
+polygon = PackedVector2Array(496, 680, 904, 696, 912, 752, 880, 832, 792, 880, 736, 848, 648, 840, 560, 824, 504, 792, 440, 744, 448, 696)
+uv = PackedVector2Array(496, 680, 904, 696, 912, 752, 880, 832, 792, 880, 736, 848, 648, 840, 560, 824, 504, 792, 440, 744, 448, 696)
+
+[node name="FG_Rock_Thin9" type="Polygon2D" parent="ParallaxBackground/ParallaxLayer3/ForeGround/Top"]
+z_index = 2
+z_as_relative = false
+texture_repeat = 1
+position = Vector2(1136.74, -1401.33)
+offset = Vector2(-679, -753)
+antialiased = true
+texture = ExtResource("5_fh74m")
+polygon = PackedVector2Array(496, 680, 904, 696, 912, 752, 880, 832, 792, 880, 736, 848, 648, 840, 560, 824, 504, 792, 440, 744, 448, 696)
+uv = PackedVector2Array(496, 680, 904, 696, 912, 752, 880, 832, 792, 880, 736, 848, 648, 840, 560, 824, 504, 792, 440, 744, 448, 696)
+
+[node name="FG_Rock_Big8" type="Polygon2D" parent="ParallaxBackground/ParallaxLayer3/ForeGround/Top"]
+z_index = 2
+z_as_relative = false
+texture_repeat = 1
+position = Vector2(-1063.02, -1313.33)
+offset = Vector2(-1181, -497)
+antialiased = true
+texture = ExtResource("5_fh74m")
+polygon = PackedVector2Array(960, 440, 1392, 416, 1408, 440, 1392, 472, 1376, 504, 1344, 584, 1256, 648, 1080, 656, 1056, 592, 984, 536, 928, 480)
+uv = PackedVector2Array(960, 440, 1392, 416, 1408, 440, 1392, 472, 1376, 504, 1344, 584, 1256, 648, 1080, 656, 1056, 592, 984, 536, 928, 480)
+
+[node name="FG_Rock_Big11" type="Polygon2D" parent="ParallaxBackground/ParallaxLayer3/ForeGround/Top"]
+z_index = 2
+z_as_relative = false
+texture_repeat = 1
+position = Vector2(1843.19, -1401.33)
+offset = Vector2(-1181, -497)
+antialiased = true
+texture = ExtResource("5_fh74m")
+polygon = PackedVector2Array(960, 440, 1392, 416, 1408, 440, 1392, 472, 1376, 504, 1344, 584, 1256, 648, 1080, 656, 1056, 592, 984, 536, 928, 480)
+uv = PackedVector2Array(960, 440, 1392, 416, 1408, 440, 1392, 472, 1376, 504, 1344, 584, 1256, 648, 1080, 656, 1056, 592, 984, 536, 928, 480)
+
+[node name="FG_Rock_Big9" type="Polygon2D" parent="ParallaxBackground/ParallaxLayer3/ForeGround/Top"]
+z_index = 2
+z_as_relative = false
+texture_repeat = 1
+position = Vector2(895.454, -1410.67)
+offset = Vector2(-1181, -497)
+antialiased = true
+texture = ExtResource("5_fh74m")
+polygon = PackedVector2Array(960, 440, 1392, 416, 1408, 440, 1392, 472, 1376, 504, 1344, 584, 1256, 648, 1080, 656, 1056, 592, 984, 536, 928, 480)
+uv = PackedVector2Array(960, 440, 1392, 416, 1408, 440, 1392, 472, 1376, 504, 1344, 584, 1256, 648, 1080, 656, 1056, 592, 984, 536, 928, 480)
+
+[node name="FG_St_Big2" type="Polygon2D" parent="ParallaxBackground/ParallaxLayer3/ForeGround/Top"]
+z_index = 2
+z_as_relative = false
+texture_repeat = 1
+position = Vector2(-1466.58, -1369.67)
+offset = Vector2(-122, -129)
+antialiased = true
+texture = ExtResource("5_fh74m")
+polygon = PackedVector2Array(8, 24, 264, 24, 264, 64, 224, 152, 176, 232, 144, 304, 120, 296, 64, 200, 8, 104, -16, 24)
+uv = PackedVector2Array(8, 24, 264, 24, 264, 64, 224, 152, 176, 232, 144, 304, 120, 296, 64, 200, 8, 104, -16, 24)
+
+[node name="FG_St_Thin3" type="Polygon2D" parent="ParallaxBackground/ParallaxLayer3/ForeGround/Top"]
+z_index = 2
+z_as_relative = false
+texture_repeat = 1
+position = Vector2(-1003.58, -1257.67)
+offset = Vector2(-1560, -429)
+antialiased = true
+texture = ExtResource("5_fh74m")
+polygon = PackedVector2Array(1520, 216, 1600, 256, 1600, 424, 1608, 552, 1616, 688, 1576, 760, 1544, 720, 1544, 584, 1512, 520, 1512, 400, 1488, 280, 1496, 224)
+uv = PackedVector2Array(1520, 216, 1600, 256, 1600, 424, 1608, 552, 1616, 688, 1576, 760, 1544, 720, 1544, 584, 1512, 520, 1512, 400, 1488, 280, 1496, 224)
+
+[node name="FG_St_Thin4" type="Polygon2D" parent="ParallaxBackground/ParallaxLayer3/ForeGround/Top"]
+z_index = 2
+z_as_relative = false
+texture_repeat = 1
+position = Vector2(2024.16, -1201.33)
+offset = Vector2(-1560, -429)
+antialiased = true
+texture = ExtResource("5_fh74m")
+polygon = PackedVector2Array(1520, 216, 1600, 256, 1600, 424, 1608, 552, 1616, 688, 1576, 760, 1544, 720, 1544, 584, 1512, 520, 1512, 400, 1488, 280, 1496, 224)
+uv = PackedVector2Array(1520, 216, 1600, 256, 1600, 424, 1608, 552, 1616, 688, 1576, 760, 1544, 720, 1544, 584, 1512, 520, 1512, 400, 1488, 280, 1496, 224)
+
+[node name="FG_Rock_Big5" type="Polygon2D" parent="ParallaxBackground/ParallaxLayer3/ForeGround/Top"]
+z_index = 2
+z_as_relative = false
+texture_repeat = 1
+position = Vector2(-790.895, -1388)
+offset = Vector2(-1966, -274)
+antialiased = true
+texture = ExtResource("5_fh74m")
+polygon = PackedVector2Array(1704, 200, 2280, 200, 2280, 240, 2192, 368, 2024, 384, 1944, 368, 1840, 384, 1776, 352, 1744, 320, 1680, 240)
+uv = PackedVector2Array(1704, 200, 2280, 200, 2280, 240, 2192, 368, 2024, 384, 1944, 368, 1840, 384, 1776, 352, 1744, 320, 1680, 240)
+
+[node name="FG_Rock_Thin5" type="Polygon2D" parent="ParallaxBackground/ParallaxLayer3/ForeGround/Top"]
+z_index = 2
+z_as_relative = false
+texture_repeat = 1
+position = Vector2(-38.8745, -1417.33)
+offset = Vector2(-579, -435)
+antialiased = true
+texture = ExtResource("5_fh74m")
+polygon = PackedVector2Array(368, 400, 824, 400, 824, 464, 768, 512, 672, 528, 456, 528, 368, 488, 344, 448)
+uv = PackedVector2Array(368, 400, 824, 400, 824, 464, 768, 512, 672, 528, 456, 528, 368, 488, 344, 448)
+
+[node name="FG_Rock_Thin10" type="Polygon2D" parent="ParallaxBackground/ParallaxLayer3/ForeGround/Top"]
+z_index = 2
+z_as_relative = false
+texture_repeat = 1
+position = Vector2(1933, -1437.33)
+offset = Vector2(-579, -435)
+antialiased = true
+texture = ExtResource("5_fh74m")
+polygon = PackedVector2Array(368, 400, 824, 400, 824, 464, 768, 512, 672, 528, 456, 528, 368, 488, 344, 448)
+uv = PackedVector2Array(368, 400, 824, 400, 824, 464, 768, 512, 672, 528, 456, 528, 368, 488, 344, 448)
+
+[node name="FG_St_Long5" type="Polygon2D" parent="ParallaxBackground/ParallaxLayer3/ForeGround/Top"]
+z_index = 2
+z_as_relative = false
+texture_repeat = 1
+position = Vector2(-1157.58, -1166.67)
+offset = Vector2(-182, -528)
+antialiased = true
+texture = ExtResource("5_fh74m")
+polygon = PackedVector2Array(112, 352, 248, 376, 240, 448, 232, 504, 240, 608, 216, 704, 192, 768, 152, 768, 160, 656, 136, 552, 128, 472, 72, 376)
+uv = PackedVector2Array(112, 352, 248, 376, 240, 448, 232, 504, 240, 608, 216, 704, 192, 768, 152, 768, 160, 656, 136, 552, 128, 472, 72, 376)
+
+[node name="FG_Rock_Big4" type="Polygon2D" parent="ParallaxBackground/ParallaxLayer3/ForeGround/Top"]
+z_index = 2
+z_as_relative = false
+texture_repeat = 1
+position = Vector2(-1187.58, -1401.67)
+offset = Vector2(-1324, -116)
+antialiased = true
+texture = ExtResource("5_fh74m")
+polygon = PackedVector2Array(1120, 64, 1312, 56, 1512, 48, 1560, 48, 1552, 104, 1496, 176, 1384, 248, 1328, 224, 1232, 224, 1176, 192, 1104, 136, 1096, 64)
+uv = PackedVector2Array(1120, 64, 1312, 56, 1512, 48, 1560, 48, 1552, 104, 1496, 176, 1384, 248, 1328, 224, 1232, 224, 1176, 192, 1104, 136, 1096, 64)
+
+[node name="Bot" type="Node2D" parent="ParallaxBackground/ParallaxLayer3/ForeGround"]
+z_index = 2
+position = Vector2(-326, -37)
+rotation = 3.14159
+scale = Vector2(1, -1)
+
+[node name="FG_St_Long6" type="Polygon2D" parent="ParallaxBackground/ParallaxLayer3/ForeGround/Bot"]
+z_index = 2
+z_as_relative = false
+texture_repeat = 1
+position = Vector2(-450, -97)
+rotation = 3.14159
+scale = Vector2(0.75, 0.75)
+offset = Vector2(-614, -180)
+antialiased = true
+texture = ExtResource("5_fh74m")
+polygon = PackedVector2Array(568, 56, 672, 56, 688, 88, 672, 144, 672, 232, 656, 312, 640, 368, 608, 368, 600, 312, 576, 264, 576, 168, 560, 88)
+uv = PackedVector2Array(568, 56, 672, 56, 688, 88, 672, 144, 672, 232, 656, 312, 640, 368, 608, 368, 600, 312, 576, 264, 576, 168, 560, 88)
+
+[node name="FG_St_Long5" type="Polygon2D" parent="ParallaxBackground/ParallaxLayer3/ForeGround/Bot"]
+z_index = 2
+z_as_relative = false
+texture_repeat = 1
+position = Vector2(-171, -149)
+rotation = -3.14159
+scale = Vector2(0.75, 0.75)
+offset = Vector2(-614, -180)
+antialiased = true
+texture = ExtResource("5_fh74m")
+polygon = PackedVector2Array(568, 56, 672, 56, 688, 88, 672, 144, 672, 232, 656, 312, 640, 368, 608, 368, 600, 312, 576, 264, 576, 168, 560, 88)
+uv = PackedVector2Array(568, 56, 672, 56, 688, 88, 672, 144, 672, 232, 656, 312, 640, 368, 608, 368, 600, 312, 576, 264, 576, 168, 560, 88)
+
+[node name="FG_St_Long9" type="Polygon2D" parent="ParallaxBackground/ParallaxLayer3/ForeGround/Bot"]
+z_index = 2
+z_as_relative = false
+texture_repeat = 1
+position = Vector2(-1295, -116.997)
+rotation = -3.14159
+scale = Vector2(0.75, 0.75)
+offset = Vector2(-614, -180)
+antialiased = true
+texture = ExtResource("5_fh74m")
+polygon = PackedVector2Array(568, 56, 672, 56, 688, 88, 672, 144, 672, 232, 656, 312, 640, 368, 608, 368, 600, 312, 576, 264, 576, 168, 560, 88)
+uv = PackedVector2Array(568, 56, 672, 56, 688, 88, 672, 144, 672, 232, 656, 312, 640, 368, 608, 368, 600, 312, 576, 264, 576, 168, 560, 88)
+
+[node name="FG_St_Thin4" type="Polygon2D" parent="ParallaxBackground/ParallaxLayer3/ForeGround/Bot"]
+z_index = 2
+z_as_relative = false
+texture_repeat = 1
+position = Vector2(131, -154)
+rotation = 3.14159
+scale = Vector2(0.75, 0.75)
+offset = Vector2(-776, -196)
+antialiased = true
+texture = ExtResource("5_fh74m")
+polygon = PackedVector2Array(736, 72, 808, 72, 808, 144, 816, 224, 832, 304, 816, 368, 792, 392, 768, 376, 752, 336, 744, 272, 728, 160, 720, 80)
+uv = PackedVector2Array(736, 72, 808, 72, 808, 144, 816, 224, 832, 304, 816, 368, 792, 392, 768, 376, 752, 336, 744, 272, 728, 160, 720, 80)
+
+[node name="FG_St_Mid4" type="Polygon2D" parent="ParallaxBackground/ParallaxLayer3/ForeGround/Bot"]
+z_index = 2
+z_as_relative = false
+texture_repeat = 1
+position = Vector2(-83.9998, -120)
+rotation = -3.14159
+scale = Vector2(0.75, 0.75)
+offset = Vector2(-973, -150)
+antialiased = true
+texture = ExtResource("5_fh74m")
+polygon = PackedVector2Array(896, 24, 1056, 16, 1056, 104, 1016, 184, 1016, 264, 968, 352, 952, 360, 936, 336, 936, 256, 912, 200, 912, 120, 880, 88, 880, 24)
+uv = PackedVector2Array(896, 24, 1056, 16, 1056, 104, 1016, 184, 1016, 264, 968, 352, 952, 360, 936, 336, 936, 256, 912, 200, 912, 120, 880, 88, 880, 24)
+
+[node name="FG_St_Mid3" type="Polygon2D" parent="ParallaxBackground/ParallaxLayer3/ForeGround/Bot"]
+z_index = 2
+z_as_relative = false
+texture_repeat = 1
+position = Vector2(-735, -167)
+rotation = 3.14159
+scale = Vector2(0.75, 0.75)
+offset = Vector2(-973, -150)
+antialiased = true
+texture = ExtResource("5_fh74m")
+polygon = PackedVector2Array(896, 24, 1056, 16, 1056, 104, 1016, 184, 1016, 264, 968, 352, 952, 360, 936, 336, 936, 256, 912, 200, 912, 120, 880, 88, 880, 24)
+uv = PackedVector2Array(896, 24, 1056, 16, 1056, 104, 1016, 184, 1016, 264, 968, 352, 952, 360, 936, 336, 936, 256, 912, 200, 912, 120, 880, 88, 880, 24)
+
+[node name="FG_St_Mid8" type="Polygon2D" parent="ParallaxBackground/ParallaxLayer3/ForeGround/Bot"]
+z_index = 2
+z_as_relative = false
+texture_repeat = 1
+position = Vector2(-1435, -147)
+rotation = 3.14159
+scale = Vector2(0.75, 0.75)
+offset = Vector2(-973, -150)
+antialiased = true
+texture = ExtResource("5_fh74m")
+polygon = PackedVector2Array(896, 24, 1056, 16, 1056, 104, 1016, 184, 1016, 264, 968, 352, 952, 360, 936, 336, 936, 256, 912, 200, 912, 120, 880, 88, 880, 24)
+uv = PackedVector2Array(896, 24, 1056, 16, 1056, 104, 1016, 184, 1016, 264, 968, 352, 952, 360, 936, 336, 936, 256, 912, 200, 912, 120, 880, 88, 880, 24)
+
+[node name="FG_St_Mid7" type="Polygon2D" parent="ParallaxBackground/ParallaxLayer3/ForeGround/Bot"]
+z_index = 2
+z_as_relative = false
+texture_repeat = 1
+position = Vector2(-1835, -129.001)
+rotation = 3.14159
+scale = Vector2(0.75, 0.75)
+offset = Vector2(-973, -150)
+antialiased = true
+texture = ExtResource("5_fh74m")
+polygon = PackedVector2Array(896, 24, 1056, 16, 1056, 104, 1016, 184, 1016, 264, 968, 352, 952, 360, 936, 336, 936, 256, 912, 200, 912, 120, 880, 88, 880, 24)
+uv = PackedVector2Array(896, 24, 1056, 16, 1056, 104, 1016, 184, 1016, 264, 968, 352, 952, 360, 936, 336, 936, 256, 912, 200, 912, 120, 880, 88, 880, 24)
+
+[node name="FG_St_Mid6" type="Polygon2D" parent="ParallaxBackground/ParallaxLayer3/ForeGround/Bot"]
+z_index = 2
+z_as_relative = false
+texture_repeat = 1
+position = Vector2(283, -137)
+rotation = 3.14159
+scale = Vector2(0.75, 0.75)
+offset = Vector2(-973, -150)
+antialiased = true
+texture = ExtResource("5_fh74m")
+polygon = PackedVector2Array(896, 24, 1056, 16, 1056, 104, 1016, 184, 1016, 264, 968, 352, 952, 360, 936, 336, 936, 256, 912, 200, 912, 120, 880, 88, 880, 24)
+uv = PackedVector2Array(896, 24, 1056, 16, 1056, 104, 1016, 184, 1016, 264, 968, 352, 952, 360, 936, 336, 936, 256, 912, 200, 912, 120, 880, 88, 880, 24)
+
+[node name="FG_Rock_Big8" type="Polygon2D" parent="ParallaxBackground/ParallaxLayer3/ForeGround/Bot"]
+z_index = 2
+z_as_relative = false
+texture_repeat = 1
+position = Vector2(809.481, -33.0002)
+rotation = 3.20256
+scale = Vector2(0.75, 0.75)
+offset = Vector2(-1324, -116)
+antialiased = true
+texture = ExtResource("5_fh74m")
+polygon = PackedVector2Array(1120, 64, 1312, 56, 1512, 48, 1560, 48, 1552, 104, 1496, 176, 1384, 248, 1328, 224, 1232, 224, 1176, 192, 1104, 136, 1096, 64)
+uv = PackedVector2Array(1120, 64, 1312, 56, 1512, 48, 1560, 48, 1552, 104, 1496, 176, 1384, 248, 1328, 224, 1232, 224, 1176, 192, 1104, 136, 1096, 64)
+
+[node name="FG_Rock_Thin7" type="Polygon2D" parent="ParallaxBackground/ParallaxLayer3/ForeGround/Bot"]
+z_index = 2
+z_as_relative = false
+texture_repeat = 1
+position = Vector2(32.9997, -108)
+rotation = 3.14159
+scale = Vector2(0.75, 0.75)
+offset = Vector2(-1979, -78)
+antialiased = true
+texture = ExtResource("5_fh74m")
+polygon = PackedVector2Array(1792, 40, 2160, 40, 2144, 72, 2104, 104, 2056, 128, 1992, 144, 1936, 144, 1880, 120, 1816, 96)
+uv = PackedVector2Array(1792, 40, 2160, 40, 2144, 72, 2104, 104, 2056, 128, 1992, 144, 1936, 144, 1880, 120, 1816, 96)
+
+[node name="FG_Rock_Thin8" type="Polygon2D" parent="ParallaxBackground/ParallaxLayer3/ForeGround/Bot"]
+z_index = 2
+z_as_relative = false
+texture_repeat = 1
+position = Vector2(-1569, -67.0042)
+rotation = 3.14159
+scale = Vector2(0.75, 0.75)
+offset = Vector2(-1979, -78)
+antialiased = true
+texture = ExtResource("5_fh74m")
+polygon = PackedVector2Array(1792, 40, 2160, 40, 2144, 72, 2104, 104, 2056, 128, 1992, 144, 1936, 144, 1880, 120, 1816, 96)
+uv = PackedVector2Array(1792, 40, 2160, 40, 2144, 72, 2104, 104, 2056, 128, 1992, 144, 1936, 144, 1880, 120, 1816, 96)
+
+[node name="FG_Rock_Big9" type="Polygon2D" parent="ParallaxBackground/ParallaxLayer3/ForeGround/Bot"]
+z_index = 2
+z_as_relative = false
+texture_repeat = 1
+position = Vector2(559, -62.9999)
+rotation = 3.14159
+scale = Vector2(0.75, 0.75)
+offset = Vector2(-1966, -274)
+antialiased = true
+texture = ExtResource("5_fh74m")
+polygon = PackedVector2Array(1704, 200, 2280, 200, 2280, 240, 2192, 368, 2024, 384, 1944, 368, 1840, 384, 1776, 352, 1744, 320, 1680, 240)
+uv = PackedVector2Array(1704, 200, 2280, 200, 2280, 240, 2192, 368, 2024, 384, 1944, 368, 1840, 384, 1776, 352, 1744, 320, 1680, 240)
+
+[node name="FG_Rock_Big11" type="Polygon2D" parent="ParallaxBackground/ParallaxLayer3/ForeGround/Bot"]
+z_index = 2
+z_as_relative = false
+texture_repeat = 1
+position = Vector2(-1674, -19.0071)
+rotation = 3.14159
+scale = Vector2(0.75, 0.75)
+offset = Vector2(-1966, -274)
+antialiased = true
+texture = ExtResource("5_fh74m")
+polygon = PackedVector2Array(1704, 200, 2280, 200, 2280, 240, 2192, 368, 2024, 384, 1944, 368, 1840, 384, 1776, 352, 1744, 320, 1680, 240)
+uv = PackedVector2Array(1704, 200, 2280, 200, 2280, 240, 2192, 368, 2024, 384, 1944, 368, 1840, 384, 1776, 352, 1744, 320, 1680, 240)
+
+[node name="FG_St_Thin5" type="Polygon2D" parent="ParallaxBackground/ParallaxLayer3/ForeGround/Bot"]
+z_index = 2
+z_as_relative = false
+texture_repeat = 1
+position = Vector2(-988, -154)
+rotation = 3.14159
+scale = Vector2(0.75, 0.75)
+offset = Vector2(-1560, -429)
+antialiased = true
+texture = ExtResource("5_fh74m")
+polygon = PackedVector2Array(1520, 216, 1600, 256, 1600, 424, 1608, 552, 1616, 688, 1576, 760, 1544, 720, 1544, 584, 1512, 520, 1512, 400, 1488, 280, 1496, 224)
+uv = PackedVector2Array(1520, 216, 1600, 256, 1600, 424, 1608, 552, 1616, 688, 1576, 760, 1544, 720, 1544, 584, 1512, 520, 1512, 400, 1488, 280, 1496, 224)
+
+[node name="FG_St_Thin6" type="Polygon2D" parent="ParallaxBackground/ParallaxLayer3/ForeGround/Bot"]
+z_index = 2
+z_as_relative = false
+texture_repeat = 1
+position = Vector2(-1492, -109.999)
+rotation = 3.14159
+scale = Vector2(0.75, 0.75)
+offset = Vector2(-1560, -429)
+antialiased = true
+texture = ExtResource("5_fh74m")
+polygon = PackedVector2Array(1520, 216, 1600, 256, 1600, 424, 1608, 552, 1616, 688, 1576, 760, 1544, 720, 1544, 584, 1512, 520, 1512, 400, 1488, 280, 1496, 224)
+uv = PackedVector2Array(1520, 216, 1600, 256, 1600, 424, 1608, 552, 1616, 688, 1576, 760, 1544, 720, 1544, 584, 1512, 520, 1512, 400, 1488, 280, 1496, 224)
+
+[node name="FG_St_Long7" type="Polygon2D" parent="ParallaxBackground/ParallaxLayer3/ForeGround/Bot"]
+z_index = 2
+z_as_relative = false
+texture_repeat = 1
+position = Vector2(-920, -116.998)
+rotation = 3.14159
+scale = Vector2(0.75, 0.75)
+offset = Vector2(-182, -528)
+antialiased = true
+texture = ExtResource("5_fh74m")
+polygon = PackedVector2Array(112, 352, 248, 376, 240, 448, 232, 504, 240, 608, 216, 704, 192, 768, 152, 768, 160, 656, 136, 552, 128, 472, 72, 376)
+uv = PackedVector2Array(112, 352, 248, 376, 240, 448, 232, 504, 240, 608, 216, 704, 192, 768, 152, 768, 160, 656, 136, 552, 128, 472, 72, 376)
+
+[node name="FG_St_Long8" type="Polygon2D" parent="ParallaxBackground/ParallaxLayer3/ForeGround/Bot"]
+z_index = 2
+z_as_relative = false
+texture_repeat = 1
+position = Vector2(-784, -120)
+rotation = 3.14159
+scale = Vector2(0.75, 0.75)
+offset = Vector2(-182, -528)
+antialiased = true
+texture = ExtResource("5_fh74m")
+polygon = PackedVector2Array(112, 352, 248, 376, 240, 448, 232, 504, 240, 608, 216, 704, 192, 768, 152, 768, 160, 656, 136, 552, 128, 472, 72, 376)
+uv = PackedVector2Array(112, 352, 248, 376, 240, 448, 232, 504, 240, 608, 216, 704, 192, 768, 152, 768, 160, 656, 136, 552, 128, 472, 72, 376)
+
+[node name="FG_St_Big2" type="Polygon2D" parent="ParallaxBackground/ParallaxLayer3/ForeGround/Bot"]
+z_index = 2
+z_as_relative = false
+texture_repeat = 1
+position = Vector2(206, -120)
+rotation = 3.14159
+scale = Vector2(0.75, 0.75)
+offset = Vector2(-122, -129)
+antialiased = true
+texture = ExtResource("5_fh74m")
+polygon = PackedVector2Array(8, 24, 264, 24, 264, 64, 224, 152, 176, 232, 144, 304, 120, 296, 64, 200, 8, 104, -16, 24)
+uv = PackedVector2Array(8, 24, 264, 24, 264, 64, 224, 152, 176, 232, 144, 304, 120, 296, 64, 200, 8, 104, -16, 24)
+
+[node name="FG_St_Big3" type="Polygon2D" parent="ParallaxBackground/ParallaxLayer3/ForeGround/Bot"]
+z_index = 2
+z_as_relative = false
+texture_repeat = 1
+position = Vector2(-1232, -102.004)
+rotation = 3.14159
+scale = Vector2(0.75, 0.75)
+offset = Vector2(-122, -129)
+antialiased = true
+texture = ExtResource("5_fh74m")
+polygon = PackedVector2Array(8, 24, 264, 24, 264, 64, 224, 152, 176, 232, 144, 304, 120, 296, 64, 200, 8, 104, -16, 24)
+uv = PackedVector2Array(8, 24, 264, 24, 264, 64, 224, 152, 176, 232, 144, 304, 120, 296, 64, 200, 8, 104, -16, 24)
+
+[node name="FG_St_Long4" type="Polygon2D" parent="ParallaxBackground/ParallaxLayer3/ForeGround/Bot"]
+z_index = 2
+z_as_relative = false
+texture_repeat = 1
+position = Vector2(684, -120)
+rotation = 3.0215
+scale = Vector2(0.75, 0.75)
+offset = Vector2(-182, -528)
+antialiased = true
+texture = ExtResource("5_fh74m")
+polygon = PackedVector2Array(112, 352, 248, 376, 240, 448, 232, 504, 240, 608, 216, 704, 192, 768, 152, 768, 160, 656, 136, 552, 128, 472, 72, 376)
+uv = PackedVector2Array(112, 352, 248, 376, 240, 448, 232, 504, 240, 608, 216, 704, 192, 768, 152, 768, 160, 656, 136, 552, 128, 472, 72, 376)
+
+[node name="FG_St_Small2" type="Polygon2D" parent="ParallaxBackground/ParallaxLayer3/ForeGround/Bot"]
+z_index = 2
+z_as_relative = false
+texture_repeat = 1
+position = Vector2(739, -76)
+rotation = 3.14159
+scale = Vector2(0.75, 0.75)
+offset = Vector2(-289, -234)
+antialiased = true
+texture = ExtResource("5_fh74m")
+polygon = PackedVector2Array(264, 136, 328, 136, 344, 136, 328, 296, 312, 352, 280, 360, 256, 320, 256, 272, 248, 216, 240, 152)
+uv = PackedVector2Array(264, 128, 328, 128, 344, 128, 328, 296, 312, 352, 280, 360, 256, 320, 256, 272, 248, 216, 240, 152)
+
+[node name="FG_St_Mid5" type="Polygon2D" parent="ParallaxBackground/ParallaxLayer3/ForeGround/Bot"]
+z_index = 2
+z_as_relative = false
+texture_repeat = 1
+position = Vector2(621, -98)
+rotation = -3.14159
+scale = Vector2(0.75, 0.75)
+offset = Vector2(-973, -150)
+antialiased = true
+texture = ExtResource("5_fh74m")
+polygon = PackedVector2Array(896, 24, 1056, 16, 1056, 104, 1016, 184, 1016, 264, 968, 352, 952, 360, 936, 336, 936, 256, 912, 200, 912, 120, 880, 88, 880, 24)
+uv = PackedVector2Array(896, 24, 1056, 16, 1056, 104, 1016, 184, 1016, 264, 968, 352, 952, 360, 936, 336, 936, 256, 912, 200, 912, 120, 880, 88, 880, 24)
+
+[node name="FG_Rock_Thin6" type="Polygon2D" parent="ParallaxBackground/ParallaxLayer3/ForeGround/Bot"]
+z_index = 2
+z_as_relative = false
+texture_repeat = 1
+position = Vector2(269, -63)
+rotation = 3.14159
+scale = Vector2(0.75, 0.75)
+offset = Vector2(-679, -753)
+antialiased = true
+texture = ExtResource("5_fh74m")
+polygon = PackedVector2Array(496, 680, 904, 696, 912, 752, 880, 832, 792, 880, 736, 848, 648, 840, 560, 824, 504, 792, 440, 744, 448, 696)
+uv = PackedVector2Array(496, 680, 904, 696, 912, 752, 880, 832, 792, 880, 736, 848, 648, 840, 560, 824, 504, 792, 440, 744, 448, 696)
+
+[node name="FG_Rock_Thin5" type="Polygon2D" parent="ParallaxBackground/ParallaxLayer3/ForeGround/Bot"]
+z_index = 2
+z_as_relative = false
+texture_repeat = 1
+position = Vector2(-27.9995, -67)
+rotation = -3.14159
+scale = Vector2(0.75, 0.75)
+offset = Vector2(-579, -435)
+antialiased = true
+texture = ExtResource("5_fh74m")
+polygon = PackedVector2Array(368, 400, 824, 400, 824, 464, 768, 512, 672, 528, 456, 528, 368, 488, 344, 448)
+uv = PackedVector2Array(368, 400, 824, 400, 824, 464, 768, 512, 672, 528, 456, 528, 368, 488, 344, 448)
+
+[node name="FG_Rock_Big5" type="Polygon2D" parent="ParallaxBackground/ParallaxLayer3/ForeGround/Bot"]
+z_index = 2
+z_as_relative = false
+texture_repeat = 1
+position = Vector2(-316, -76)
+rotation = -3.14159
+scale = Vector2(0.75, 0.75)
+offset = Vector2(-1181, -497)
+antialiased = true
+texture = ExtResource("5_fh74m")
+polygon = PackedVector2Array(960, 440, 1392, 416, 1408, 440, 1392, 472, 1376, 504, 1344, 584, 1256, 648, 1080, 656, 1056, 592, 984, 536, 928, 480)
+uv = PackedVector2Array(960, 440, 1392, 416, 1408, 440, 1392, 472, 1376, 504, 1344, 584, 1256, 648, 1080, 656, 1056, 592, 984, 536, 928, 480)
+
+[node name="FG_Rock_Big10" type="Polygon2D" parent="ParallaxBackground/ParallaxLayer3/ForeGround/Bot"]
+z_index = 2
+z_as_relative = false
+texture_repeat = 1
+position = Vector2(-1364, -22.9912)
+rotation = -3.10231
+scale = Vector2(0.75, 0.75)
+offset = Vector2(-1181, -497)
+antialiased = true
+texture = ExtResource("5_fh74m")
+polygon = PackedVector2Array(960, 440, 1392, 416, 1408, 440, 1392, 472, 1376, 504, 1344, 584, 1256, 648, 1080, 656, 1056, 592, 984, 536, 928, 480)
+uv = PackedVector2Array(960, 440, 1392, 416, 1408, 440, 1392, 472, 1376, 504, 1344, 584, 1256, 648, 1080, 656, 1056, 592, 984, 536, 928, 480)
+
+[node name="FG_Rock_Big6" type="Polygon2D" parent="ParallaxBackground/ParallaxLayer3/ForeGround/Bot"]
+z_index = 2
+z_as_relative = false
+texture_repeat = 1
+position = Vector2(-894, -20)
+rotation = -3.14159
+scale = Vector2(0.75, 0.75)
+offset = Vector2(-1181, -497)
+antialiased = true
+texture = ExtResource("5_fh74m")
+polygon = PackedVector2Array(960, 440, 1392, 416, 1408, 440, 1392, 472, 1376, 504, 1344, 584, 1256, 648, 1080, 656, 1056, 592, 984, 536, 928, 480)
+uv = PackedVector2Array(960, 440, 1392, 416, 1408, 440, 1392, 472, 1376, 504, 1344, 584, 1256, 648, 1080, 656, 1056, 592, 984, 536, 928, 480)
+
+[node name="FG_St_Mid2" type="Polygon2D" parent="ParallaxBackground/ParallaxLayer3/ForeGround/Bot"]
+z_index = 2
+z_as_relative = false
+texture_repeat = 1
+position = Vector2(-1035, -63)
+rotation = 3.14159
+scale = Vector2(0.75, 0.75)
+offset = Vector2(-973, -150)
+antialiased = true
+texture = ExtResource("5_fh74m")
+polygon = PackedVector2Array(896, 24, 1056, 16, 1056, 104, 1016, 184, 1016, 264, 968, 352, 952, 360, 936, 336, 936, 256, 912, 200, 912, 120, 880, 88, 880, 24)
+uv = PackedVector2Array(896, 24, 1056, 16, 1056, 104, 1016, 184, 1016, 264, 968, 352, 952, 360, 936, 336, 936, 256, 912, 200, 912, 120, 880, 88, 880, 24)
+
+[node name="FG_St_Thin3" type="Polygon2D" parent="ParallaxBackground/ParallaxLayer3/ForeGround/Bot"]
+z_index = 2
+z_as_relative = false
+texture_repeat = 1
+position = Vector2(-507, -137)
+rotation = -3.14159
+scale = Vector2(0.75, 0.75)
+offset = Vector2(-1560, -429)
+antialiased = true
+texture = ExtResource("5_fh74m")
+polygon = PackedVector2Array(1520, 216, 1600, 256, 1600, 424, 1608, 552, 1616, 688, 1576, 760, 1544, 720, 1544, 584, 1512, 520, 1512, 400, 1488, 280, 1496, 224)
+uv = PackedVector2Array(1520, 216, 1600, 256, 1600, 424, 1608, 552, 1616, 688, 1576, 760, 1544, 720, 1544, 584, 1512, 520, 1512, 400, 1488, 280, 1496, 224)
+
+[node name="FG_Rock_Big4" type="Polygon2D" parent="ParallaxBackground/ParallaxLayer3/ForeGround/Bot"]
+z_index = 2
+z_as_relative = false
+texture_repeat = 1
+position = Vector2(-650, -42)
+rotation = 3.14159
+scale = Vector2(0.75, 0.75)
+offset = Vector2(-1966, -274)
+antialiased = true
+texture = ExtResource("5_fh74m")
+polygon = PackedVector2Array(1704, 200, 2280, 200, 2280, 240, 2192, 368, 2024, 384, 1944, 368, 1840, 384, 1776, 352, 1744, 320, 1680, 240)
+uv = PackedVector2Array(1704, 200, 2280, 200, 2280, 240, 2192, 368, 2024, 384, 1944, 368, 1840, 384, 1776, 352, 1744, 320, 1680, 240)
+
+[node name="FG_Rock_Big7" type="Polygon2D" parent="ParallaxBackground/ParallaxLayer3/ForeGround/Bot"]
+z_index = 2
+z_as_relative = false
+texture_repeat = 1
+position = Vector2(-1075, -20)
+rotation = -3.14159
+scale = Vector2(0.75, 0.75)
+offset = Vector2(-1324, -116)
+antialiased = true
+texture = ExtResource("5_fh74m")
+polygon = PackedVector2Array(1120, 64, 1312, 56, 1512, 48, 1560, 48, 1552, 104, 1496, 176, 1384, 248, 1328, 224, 1232, 224, 1176, 192, 1104, 136, 1096, 64)
+uv = PackedVector2Array(1120, 64, 1312, 56, 1512, 48, 1560, 48, 1552, 104, 1496, 176, 1384, 248, 1328, 224, 1232, 224, 1176, 192, 1104, 136, 1096, 64)
+
+[node name="Left2" type="Node2D" parent="ParallaxBackground/ParallaxLayer3/ForeGround"]
+visible = false
+position = Vector2(-380, 0)
+rotation = 3.14159
+scale = Vector2(1, -1)
+
+[node name="FG_Rock_Thin7" type="Polygon2D" parent="ParallaxBackground/ParallaxLayer3/ForeGround/Left2"]
+z_as_relative = false
+texture_repeat = 1
+position = Vector2(-1285.77, -899.116)
+rotation = -1.69337
+scale = Vector2(-0.75, 0.75)
+offset = Vector2(-2336, -64)
+antialiased = true
+texture = ExtResource("5_fh74m")
+polygon = PackedVector2Array(2192, 40, 2464, 8, 2480, 32, 2464, 56, 2448, 96, 2424, 136, 2296, 136, 2264, 112, 2208, 88, 2168, 56)
+uv = PackedVector2Array(2192, 40, 2464, 8, 2480, 32, 2464, 56, 2448, 96, 2424, 136, 2296, 136, 2264, 112, 2208, 88, 2168, 56)
+
+[node name="FG_Rock_Big4" type="Polygon2D" parent="ParallaxBackground/ParallaxLayer3/ForeGround/Left2"]
+z_as_relative = false
+texture_repeat = 1
+position = Vector2(-1266, -314)
+rotation = -1.57079
+scale = Vector2(-0.75, 0.75)
+offset = Vector2(-1181, -497)
+antialiased = true
+texture = ExtResource("5_fh74m")
+polygon = PackedVector2Array(960, 440, 1392, 416, 1408, 440, 1392, 472, 1376, 504, 1344, 584, 1256, 648, 1080, 656, 1056, 592, 984, 536, 928, 480)
+uv = PackedVector2Array(960, 440, 1392, 416, 1408, 440, 1392, 472, 1376, 504, 1344, 584, 1256, 648, 1080, 656, 1056, 592, 984, 536, 928, 480)
+
+[node name="FG_Rock_Big6" type="Polygon2D" parent="ParallaxBackground/ParallaxLayer3/ForeGround/Left2"]
+z_as_relative = false
+texture_repeat = 1
+position = Vector2(-1260, -478)
+rotation = -1.57079
+scale = Vector2(-0.75, 0.75)
+offset = Vector2(-1324, -116)
+antialiased = true
+texture = ExtResource("5_fh74m")
+polygon = PackedVector2Array(1120, 64, 1312, 56, 1512, 48, 1560, 48, 1552, 104, 1496, 176, 1384, 248, 1328, 224, 1232, 224, 1176, 192, 1104, 136, 1096, 64)
+uv = PackedVector2Array(1120, 64, 1312, 56, 1512, 48, 1560, 48, 1552, 104, 1496, 176, 1384, 248, 1328, 224, 1232, 224, 1176, 192, 1104, 136, 1096, 64)
+
+[node name="FG_Rock_Big5" type="Polygon2D" parent="ParallaxBackground/ParallaxLayer3/ForeGround/Left2"]
+z_as_relative = false
+texture_repeat = 1
+position = Vector2(-1257, -639)
+rotation = -1.57079
+scale = Vector2(-0.75, 0.75)
+offset = Vector2(-1966, -274)
+antialiased = true
+texture = ExtResource("5_fh74m")
+polygon = PackedVector2Array(1704, 200, 2280, 200, 2280, 240, 2192, 368, 2024, 384, 1944, 368, 1840, 384, 1776, 352, 1744, 320, 1680, 240)
+uv = PackedVector2Array(1704, 200, 2280, 200, 2280, 240, 2192, 368, 2024, 384, 1944, 368, 1840, 384, 1776, 352, 1744, 320, 1680, 240)
+
+[node name="FG_Rock_Thin5" type="Polygon2D" parent="ParallaxBackground/ParallaxLayer3/ForeGround/Left2"]
+z_as_relative = false
+texture_repeat = 1
+position = Vector2(-1265.83, -125.99)
+rotation = -1.6827
+scale = Vector2(-0.75, 0.75)
+offset = Vector2(-2336, -64)
+antialiased = true
+texture = ExtResource("5_fh74m")
+polygon = PackedVector2Array(2192, 40, 2464, 8, 2480, 32, 2464, 56, 2448, 96, 2424, 136, 2296, 136, 2264, 112, 2208, 88, 2168, 56)
+uv = PackedVector2Array(2192, 40, 2464, 8, 2480, 32, 2464, 56, 2448, 96, 2424, 136, 2296, 136, 2264, 112, 2208, 88, 2168, 56)
+
+[node name="Left" type="Node2D" parent="ParallaxBackground/ParallaxLayer3/ForeGround"]
+visible = false
+
+[node name="FG_Rock_Thin7" type="Polygon2D" parent="ParallaxBackground/ParallaxLayer3/ForeGround/Left"]
+z_as_relative = false
+texture_repeat = 1
+position = Vector2(-1274, -897)
+rotation = -1.69337
+scale = Vector2(-0.75, 0.75)
+offset = Vector2(-2336, -64)
+antialiased = true
+texture = ExtResource("5_fh74m")
+polygon = PackedVector2Array(2192, 40, 2464, 8, 2480, 32, 2464, 56, 2448, 96, 2424, 136, 2296, 136, 2264, 112, 2208, 88, 2168, 56)
+uv = PackedVector2Array(2192, 40, 2464, 8, 2480, 32, 2464, 56, 2448, 96, 2424, 136, 2296, 136, 2264, 112, 2208, 88, 2168, 56)
+
+[node name="FG_Rock_Big4" type="Polygon2D" parent="ParallaxBackground/ParallaxLayer3/ForeGround/Left"]
+z_as_relative = false
+texture_repeat = 1
+position = Vector2(-1255, -310)
+rotation = -1.61716
+scale = Vector2(-0.75, 0.75)
+offset = Vector2(-1181, -497)
+antialiased = true
+texture = ExtResource("5_fh74m")
+polygon = PackedVector2Array(960, 440, 1392, 416, 1408, 440, 1392, 472, 1376, 504, 1344, 584, 1256, 648, 1080, 656, 1056, 592, 984, 536, 928, 480)
+uv = PackedVector2Array(960, 440, 1392, 416, 1408, 440, 1392, 472, 1376, 504, 1344, 584, 1256, 648, 1080, 656, 1056, 592, 984, 536, 928, 480)
+
+[node name="FG_Rock_Big6" type="Polygon2D" parent="ParallaxBackground/ParallaxLayer3/ForeGround/Left"]
+z_as_relative = false
+texture_repeat = 1
+position = Vector2(-1260, -478)
+rotation = -1.57079
+scale = Vector2(-0.75, 0.75)
+offset = Vector2(-1324, -116)
+antialiased = true
+texture = ExtResource("5_fh74m")
+polygon = PackedVector2Array(1120, 64, 1312, 56, 1512, 48, 1560, 48, 1552, 104, 1496, 176, 1384, 248, 1328, 224, 1232, 224, 1176, 192, 1104, 136, 1096, 64)
+uv = PackedVector2Array(1120, 64, 1312, 56, 1512, 48, 1560, 48, 1552, 104, 1496, 176, 1384, 248, 1328, 224, 1232, 224, 1176, 192, 1104, 136, 1096, 64)
+
+[node name="FG_Rock_Big7" type="Polygon2D" parent="ParallaxBackground/ParallaxLayer3/ForeGround/Left"]
+z_as_relative = false
+texture_repeat = 1
+position = Vector2(-1247, -1063)
+rotation = -0.54024
+scale = Vector2(0.585, 0.75)
+offset = Vector2(-1324, -116)
+antialiased = true
+texture = ExtResource("5_fh74m")
+polygon = PackedVector2Array(1120, 64, 1312, 56, 1512, 48, 1560, 48, 1552, 104, 1496, 176, 1384, 248, 1328, 224, 1232, 224, 1176, 192, 1104, 136, 1096, 64)
+uv = PackedVector2Array(1120, 64, 1312, 56, 1512, 48, 1560, 48, 1552, 104, 1496, 176, 1384, 248, 1328, 224, 1232, 224, 1176, 192, 1104, 136, 1096, 64)
+
+[node name="FG_Rock_Big8" type="Polygon2D" parent="ParallaxBackground/ParallaxLayer3/ForeGround/Left"]
+z_as_relative = false
+texture_repeat = 1
+position = Vector2(898, -1057)
+rotation = 0.600511
+scale = Vector2(0.585, 0.75)
+offset = Vector2(-1324, -116)
+antialiased = true
+texture = ExtResource("5_fh74m")
+polygon = PackedVector2Array(1120, 64, 1312, 56, 1512, 48, 1560, 48, 1552, 104, 1496, 176, 1384, 248, 1328, 224, 1232, 224, 1176, 192, 1104, 136, 1096, 64)
+uv = PackedVector2Array(1120, 64, 1312, 56, 1512, 48, 1560, 48, 1552, 104, 1496, 176, 1384, 248, 1328, 224, 1232, 224, 1176, 192, 1104, 136, 1096, 64)
+
+[node name="FG_Rock_Big5" type="Polygon2D" parent="ParallaxBackground/ParallaxLayer3/ForeGround/Left"]
+z_as_relative = false
+texture_repeat = 1
+position = Vector2(-1257, -639)
+rotation = -1.57079
+scale = Vector2(-0.75, 0.75)
+offset = Vector2(-1966, -274)
+antialiased = true
+texture = ExtResource("5_fh74m")
+polygon = PackedVector2Array(1704, 200, 2280, 200, 2280, 240, 2192, 368, 2024, 384, 1944, 368, 1840, 384, 1776, 352, 1744, 320, 1680, 240)
+uv = PackedVector2Array(1704, 200, 2280, 200, 2280, 240, 2192, 368, 2024, 384, 1944, 368, 1840, 384, 1776, 352, 1744, 320, 1680, 240)
+
+[node name="FG_Rock_Thin5" type="Polygon2D" parent="ParallaxBackground/ParallaxLayer3/ForeGround/Left"]
+z_as_relative = false
+texture_repeat = 1
+position = Vector2(-1289, -127)
+rotation = -1.68212
+scale = Vector2(-0.75, 0.75)
+offset = Vector2(-2336, -64)
+antialiased = true
+texture = ExtResource("5_fh74m")
+polygon = PackedVector2Array(2192, 40, 2464, 8, 2480, 32, 2464, 56, 2448, 96, 2424, 136, 2296, 136, 2264, 112, 2208, 88, 2168, 56)
+uv = PackedVector2Array(2192, 40, 2464, 8, 2480, 32, 2464, 56, 2448, 96, 2424, 136, 2296, 136, 2264, 112, 2208, 88, 2168, 56)
+
+[node name="ParallaxLayer12" type="ParallaxLayer" parent="ParallaxBackground"]
+motion_scale = Vector2(0.1, 0.1)
+motion_offset = Vector2(600, 800)
+
+[node name="PointLight2D" type="PointLight2D" parent="ParallaxBackground/ParallaxLayer12"]
+light_mask = 0
+z_index = 6
+z_as_relative = false
+position = Vector2(68, -541)
+scale = Vector2(0.5, 0.5)
+color = Color(0.760784, 0.466667, 0.168627, 1)
+energy = 16.0
+range_layer_min = -100
+range_item_cull_mask = 4
+texture = ExtResource("12_fyas7")
+texture_scale = 14.72
+
+[node name="ParallaxBackground2" type="ParallaxBackground" parent="."]
+layer = 5
+
+[node name="ParallaxLayer3" type="ParallaxLayer" parent="ParallaxBackground2"]
+motion_mirroring = Vector2(2040, 0)
+
+[node name="Polygon2D7" type="Polygon2D" parent="ParallaxBackground2/ParallaxLayer3"]
+clip_children = 2
+light_mask = 3
+z_index = 7
+z_as_relative = false
+texture_filter = 1
+texture_repeat = 1
+position = Vector2(941, 1939)
+rotation = 1.57106
+scale = Vector2(25, 255)
+offset = Vector2(-128, -4.11876)
+antialiased = true
+texture = ExtResource("1_4lo0i")
+polygon = PackedVector2Array(3.8147e-06, 0, 256, 0, 256, 8, 1.90735e-06, 8)
+uv = PackedVector2Array(3.8147e-06, 0, 256, 0, 256.005, 1.06684, 0.0575008, 1.12375)
+
+[node name="ParallaxLayer2" type="ParallaxLayer" parent="ParallaxBackground2"]
+scale = Vector2(1, 1.00322)
+motion_mirroring = Vector2(2031.53, 0)
+
+[node name="Polygon2D3" type="Polygon2D" parent="ParallaxBackground2/ParallaxLayer2"]
+z_index = 4
+z_as_relative = false
+texture_filter = 1
+texture_repeat = 3
+position = Vector2(1045, -86)
+rotation = -1.57079
+scale = Vector2(0.398, 253.92)
+offset = Vector2(-128, -4.11876)
+antialiased = true
+texture = ExtResource("1_4lo0i")
+polygon = PackedVector2Array(3.8147e-06, 0, 256, 0, 256, 8, 1.90735e-06, 8)
+uv = PackedVector2Array(3.8147e-06, 0, 256, 0, 256.005, 1.06684, 0.0575008, 1.12375)
+
+[node name="LeftPoint" type="StaticBody2D" parent="."]
+position = Vector2(-5179, 0)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="LeftPoint"]
+position = Vector2(-369, 0)
+shape = SubResource("SegmentShape2D_s0sew")
+
+[node name="RightPoint" type="StaticBody2D" parent="."]
+position = Vector2(5463, 3)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="RightPoint"]
+position = Vector2(-390, -4)
+shape = SubResource("SegmentShape2D_ormf1")
