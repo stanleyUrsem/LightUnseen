@@ -1,0 +1,27 @@
+[gd_scene load_steps=4 format=3 uid="uid://cxttpknfshb0i"]
+
+[ext_resource type="Script" path="res://testCasting.gd" id="1_0f26e"]
+[ext_resource type="TileSet" uid="uid://5d8p6vofvrki" path="res://Maps/Town/towntiles.tres" id="2_50wy5"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_yqfag"]
+
+[node name="Node2D" type="Node2D"]
+
+[node name="WanderCast" type="ShapeCast2D" parent="."]
+z_index = 8
+position = Vector2(-14.75, -0.5)
+shape = SubResource("RectangleShape2D_yqfag")
+target_position = Vector2(0, 0)
+script = ExtResource("1_0f26e")
+
+[node name="Polygon2D" type="Polygon2D" parent="WanderCast"]
+color = Color(1, 0.619608, 0.619608, 1)
+polygon = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
+
+[node name="TileMap" type="TileMap" parent="."]
+tile_set = ExtResource("2_50wy5")
+format = 2
+layer_0/tile_data = PackedInt32Array(-65537, 131072, 11, -196610, 65536, 9, -131074, 65536, 10, -65538, 65536, 11, -196609, 131072, 9, -131073, 131072, 10, -262144, 196608, 9, -196608, 196608, 10, -131072, 196608, 11, -196611, 0, 9, -131075, 0, 10, -65539, 0, 11, -262147, 0, 8, -262146, 65536, 8, -262145, 131072, 8, -327680, 196608, 8)
+
+[node name="Camera2D" type="Camera2D" parent="."]
+zoom = Vector2(5, 5)

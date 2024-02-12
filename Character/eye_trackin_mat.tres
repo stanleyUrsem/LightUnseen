@@ -1,0 +1,9 @@
+[gd_resource type="ShaderMaterial" load_steps=2 format=3 uid="uid://ced4lpkaxd2tl"]
+
+[ext_resource type="Shader" path="res://Character/eye_tracking.gdshader" id="1_n3vir"]
+
+[resource]
+shader = ExtResource("1_n3vir")
+shader_parameter/offset_multiplier = 1.5
+shader_parameter/mouse_dir = Vector2(1, 0)
+shader_parameter/exposure = 0.7

@@ -1,0 +1,120 @@
+[gd_resource type="AnimationNodeBlendTree" load_steps=26 format=3 uid="uid://dwagnu1kpo72l"]
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_sg8f2"]
+animation = &"Spinner"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_erm2w"]
+animation = &"Transform_Standing"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_15jne"]
+animation = &"Transform_Back_Standing"
+play_mode = 1
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_8o8td"]
+animation = &"Aura"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_k48p2"]
+animation = &"Pierce"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_kn2yw"]
+animation = &"FrontSlam"
+
+[sub_resource type="AnimationNodeAdd2" id="AnimationNodeAdd2_vsrtq"]
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_ijwri"]
+animation = &"Dodge"
+
+[sub_resource type="AnimationNodeOneShot" id="AnimationNodeOneShot_f8ftv"]
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_cep3n"]
+animation = &"Idle"
+
+[sub_resource type="AnimationNodeBlend2" id="AnimationNodeBlend2_lpk1b"]
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_5mmvr"]
+animation = &"LeftRightAttack"
+
+[sub_resource type="AnimationNodeBlend2" id="AnimationNodeBlend2_qxjwy"]
+
+[sub_resource type="AnimationNodeOneShot" id="AnimationNodeOneShot_pf2t3"]
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_58h1v"]
+animation = &"Roll"
+
+[sub_resource type="AnimationNodeOneShot" id="AnimationNodeOneShot_woilw"]
+
+[sub_resource type="AnimationNodeOneShot" id="AnimationNodeOneShot_k8wsf"]
+
+[sub_resource type="AnimationNodeOneShot" id="AnimationNodeOneShot_fnjcd"]
+
+[sub_resource type="AnimationNodeAdd2" id="AnimationNodeAdd2_ta8on"]
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_hblmp"]
+animation = &"TurnLeft"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_gcbxe"]
+animation = &"TurnRight"
+
+[sub_resource type="AnimationNodeOneShot" id="AnimationNodeOneShot_uaafg"]
+
+[sub_resource type="AnimationNodeOneShot" id="AnimationNodeOneShot_1s5tf"]
+
+[sub_resource type="AnimationNodeOneShot" id="AnimationNodeOneShot_fvc5j"]
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_k4efp"]
+animation = &"Walking"
+
+[resource]
+graph_offset = Vector2(-342.163, 58.1825)
+nodes/Animation/node = SubResource("AnimationNodeAnimation_k48p2")
+nodes/Animation/position = Vector2(-400, 260)
+"nodes/Animation 2/node" = SubResource("AnimationNodeAnimation_sg8f2")
+"nodes/Animation 2/position" = Vector2(-120, 480)
+"nodes/Animation 4/node" = SubResource("AnimationNodeAnimation_erm2w")
+"nodes/Animation 4/position" = Vector2(-2580, -540)
+"nodes/Animation 5/node" = SubResource("AnimationNodeAnimation_15jne")
+"nodes/Animation 5/position" = Vector2(-2400, -300)
+"nodes/Animation 6/node" = SubResource("AnimationNodeAnimation_8o8td")
+"nodes/Animation 6/position" = Vector2(600, 380)
+nodes/Attack/node = SubResource("AnimationNodeAnimation_kn2yw")
+nodes/Attack/position = Vector2(-640, 240)
+nodes/Aura/node = SubResource("AnimationNodeAdd2_vsrtq")
+nodes/Aura/position = Vector2(780, 180)
+nodes/Dodge/node = SubResource("AnimationNodeAnimation_ijwri")
+nodes/Dodge/position = Vector2(-1220, -20)
+nodes/FrontSlam/node = SubResource("AnimationNodeOneShot_f8ftv")
+nodes/FrontSlam/position = Vector2(-400, -20)
+nodes/Idle/node = SubResource("AnimationNodeAnimation_cep3n")
+nodes/Idle/position = Vector2(-3040, -660)
+nodes/IdleToWalk/node = SubResource("AnimationNodeBlend2_lpk1b")
+nodes/IdleToWalk/position = Vector2(-2777.96, -588.239)
+nodes/LRAttack/node = SubResource("AnimationNodeAnimation_5mmvr")
+nodes/LRAttack/position = Vector2(-980, 60)
+nodes/LeftOrRight/node = SubResource("AnimationNodeBlend2_qxjwy")
+nodes/LeftOrRight/position = Vector2(1160, 580)
+nodes/Pierce/node = SubResource("AnimationNodeOneShot_pf2t3")
+nodes/Pierce/position = Vector2(-180, 0)
+nodes/Roll/node = SubResource("AnimationNodeAnimation_58h1v")
+nodes/Roll/position = Vector2(-1400, -60)
+nodes/Sweep/node = SubResource("AnimationNodeOneShot_woilw")
+nodes/Sweep/position = Vector2(60, 200)
+nodes/Transform/node = SubResource("AnimationNodeOneShot_k8wsf")
+nodes/Transform/position = Vector2(-2160, -680)
+nodes/TransformBack/node = SubResource("AnimationNodeOneShot_fnjcd")
+nodes/TransformBack/position = Vector2(-1920, -460)
+nodes/Turn/node = SubResource("AnimationNodeAdd2_ta8on")
+nodes/Turn/position = Vector2(1400, 80)
+nodes/TurnLeft/node = SubResource("AnimationNodeAnimation_hblmp")
+nodes/TurnLeft/position = Vector2(920, 460)
+nodes/TurnRight/node = SubResource("AnimationNodeAnimation_gcbxe")
+nodes/TurnRight/position = Vector2(940, 680)
+nodes/UseDodge/node = SubResource("AnimationNodeOneShot_uaafg")
+nodes/UseDodge/position = Vector2(-900, -160)
+nodes/UseLRAttack/node = SubResource("AnimationNodeOneShot_1s5tf")
+nodes/UseLRAttack/position = Vector2(-640, 0)
+nodes/UseRoll/node = SubResource("AnimationNodeOneShot_fvc5j")
+nodes/UseRoll/position = Vector2(-1200, -260)
+nodes/Walk/node = SubResource("AnimationNodeAnimation_k4efp")
+nodes/Walk/position = Vector2(-2940, -500)
+nodes/output/position = Vector2(2120, 60)
+node_connections = [&"Aura", 0, &"Sweep", &"Aura", 1, &"Animation 6", &"FrontSlam", 0, &"UseLRAttack", &"FrontSlam", 1, &"Attack", &"IdleToWalk", 0, &"Idle", &"IdleToWalk", 1, &"Walk", &"LeftOrRight", 0, &"TurnLeft", &"LeftOrRight", 1, &"TurnRight", &"Pierce", 0, &"FrontSlam", &"Pierce", 1, &"Animation", &"Sweep", 0, &"Pierce", &"Sweep", 1, &"Animation 2", &"Transform", 0, &"IdleToWalk", &"Transform", 1, &"Animation 4", &"TransformBack", 0, &"Transform", &"TransformBack", 1, &"Animation 5", &"Turn", 0, &"Aura", &"Turn", 1, &"LeftOrRight", &"UseDodge", 0, &"UseRoll", &"UseDodge", 1, &"Dodge", &"UseLRAttack", 0, &"UseDodge", &"UseLRAttack", 1, &"LRAttack", &"UseRoll", 0, &"TransformBack", &"UseRoll", 1, &"Roll", &"output", 0, &"Turn"]

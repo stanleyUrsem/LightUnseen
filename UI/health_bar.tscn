@@ -1,0 +1,13 @@
+[gd_scene load_steps=3 format=3 uid="uid://do6bo3ah2bwc1"]
+
+[ext_resource type="Texture2D" uid="uid://cv7ouy5kh041t" path="res://UI/health_back.png" id="1_v1kes"]
+[ext_resource type="Texture2D" uid="uid://bxkpior6fg3cj" path="res://UI/health_fill.png" id="2_imcit"]
+
+[node name="TextureProgressBar" type="TextureProgressBar"]
+texture_filter = 1
+size_flags_horizontal = 3
+size_flags_stretch_ratio = 0.2
+value = 44.0
+fill_mode = 3
+texture_under = ExtResource("1_v1kes")
+texture_progress = ExtResource("2_imcit")

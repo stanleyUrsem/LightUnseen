@@ -1,0 +1,113 @@
+[gd_scene load_steps=9 format=3 uid="uid://cruih81xbrmu0"]
+
+[ext_resource type="Texture2D" uid="uid://c6idovjh6dmeb" path="res://Character/Textures/SionTD/slime_area.png" id="1_jpqt1"]
+[ext_resource type="Script" path="res://Mobs/Textures/Slime/bubble.gd" id="2_qegdk"]
+
+[sub_resource type="Animation" id="Animation_ljx8w"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [2]
+}
+
+[sub_resource type="Animation" id="Animation_fpten"]
+resource_name = "new_animation_1"
+length = 0.7
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [0, 2, 4, 6, 8, 10, 12, 14]
+}
+
+[sub_resource type="Animation" id="Animation_orxgv"]
+resource_name = "new_animation_2"
+length = 0.7
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [1, 3, 5, 7, 9, 11, 13, 15]
+}
+
+[sub_resource type="Animation" id="Animation_rfeaw"]
+resource_name = "new_animation_3"
+length = 0.7
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [16, 18, 20, 22, 24, 26, 28, 30]
+}
+
+[sub_resource type="Animation" id="Animation_thd4e"]
+resource_name = "new_animation_4"
+length = 0.7
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [17, 19, 21, 23, 25, 27, 29, 31]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_eb782"]
+_data = {
+"RESET": SubResource("Animation_ljx8w"),
+"new_animation_1": SubResource("Animation_fpten"),
+"new_animation_2": SubResource("Animation_orxgv"),
+"new_animation_3": SubResource("Animation_rfeaw"),
+"new_animation_4": SubResource("Animation_thd4e")
+}
+
+[node name="Node2D" type="Sprite2D" node_paths=PackedStringArray("anim")]
+z_index = 4
+texture_filter = 1
+texture = ExtResource("1_jpqt1")
+hframes = 16
+vframes = 2
+frame = 2
+region_enabled = true
+region_rect = Rect2(32, 0, 256, 32)
+script = ExtResource("2_qegdk")
+anim = NodePath("AnimationPlayer")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_eb782")
+}

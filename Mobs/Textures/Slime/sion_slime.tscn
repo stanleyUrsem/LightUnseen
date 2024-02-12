@@ -1,0 +1,29 @@
+[gd_scene load_steps=5 format=3 uid="uid://cibvwfxuu6nxu"]
+
+[ext_resource type="Script" path="res://Mobs/Textures/Slime/SlimePool.gd" id="1_lalek"]
+[ext_resource type="Material" uid="uid://vkas5ib21cmi" path="res://Mobs/Textures/Slime/slime_mat.tres" id="2_pa02i"]
+[ext_resource type="Texture2D" uid="uid://b33o8btubbrkw" path="res://Mobs/Textures/Slime/sion_slime_area.tres" id="6_86q4x"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_d26b8"]
+radius = 14.0357
+
+[node name="Node2D" type="StaticBody2D" node_paths=PackedStringArray("slime_area")]
+y_sort_enabled = true
+script = ExtResource("1_lalek")
+bubble_path = "res://Mobs/Textures/Slime/bubble.tscn"
+slime_edge = "res://slime_area.tscn"
+slime_area_path = "res://Mobs/Textures/Slime/sion_slime_area.tres"
+max_expand = 2.0
+expand_duration = 0.1
+expand_increase = 0.1
+bubbles_per_unit = 1
+bubbles_circle = 0.25
+slime_area = NodePath("Sprite2D")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture_filter = 1
+material = ExtResource("2_pa02i")
+texture = ExtResource("6_86q4x")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_d26b8")

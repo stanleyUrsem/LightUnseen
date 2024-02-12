@@ -1,0 +1,273 @@
+[gd_scene load_steps=25 format=3 uid="uid://c0doq5crsa0n3"]
+
+[ext_resource type="PackedScene" uid="uid://cy7fitk5e2igo" path="res://Character/Sion.tscn" id="1_fr2kf"]
+[ext_resource type="Texture2D" uid="uid://bjg43116ojkgo" path="res://Character/Textures/SionTD/sion_slime.png" id="2_e22qo"]
+[ext_resource type="Script" path="res://Character/SionSlimeMovement.gd" id="2_g30vo"]
+[ext_resource type="AnimationLibrary" uid="uid://b3qldowl02rgl" path="res://Character/Sion_anim_slime_lib.tres" id="3_4nlxg"]
+[ext_resource type="Script" path="res://Character/Slime_Pool.gd" id="4_55o8f"]
+[ext_resource type="AnimationNodeBlendTree" uid="uid://dwagnu1kpo72l" path="res://Character/sion_slime_blend_tree.tres" id="4_k7aob"]
+[ext_resource type="PackedScene" uid="uid://cruih81xbrmu0" path="res://Mobs/Textures/Slime/bubble.tscn" id="5_3cl86"]
+[ext_resource type="Script" path="res://Abilities/AbilityData.gd" id="5_vter4"]
+[ext_resource type="Texture2D" uid="uid://du7kk8q5flkxn" path="res://Character/Textures/Slime/front_3_slime_pool.tres" id="6_m2cm6"]
+[ext_resource type="Script" path="res://TrailEffectByPosition.gd" id="7_ha5na"]
+[ext_resource type="Texture2D" uid="uid://g6t5gtb4h8l5" path="res://Character/Textures/Slime/front_2_slime_pool.tres" id="7_huccx"]
+[ext_resource type="Texture2D" uid="uid://ddp1ktwl6nul2" path="res://Character/Textures/Slime/front_1_slime_pool.tres" id="8_gdd8s"]
+
+[sub_resource type="Curve" id="Curve_pta3y"]
+_data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(0.503311, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 3
+
+[sub_resource type="Curve" id="Curve_w0yuc"]
+_data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(0.496689, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 3
+
+[sub_resource type="Curve" id="Curve_uk0ss"]
+_data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(0.498896, 0.503734), 2.65605, 2.65605, 0, 0, Vector2(1, 1), 0.0, 0.0, 0, 0]
+point_count = 3
+
+[sub_resource type="Curve" id="Curve_b4eud"]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(0.99999, 0), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 3
+
+[sub_resource type="Gradient" id="Gradient_pb58u"]
+interpolation_mode = 1
+offsets = PackedFloat32Array(0, 0.671463)
+colors = PackedColorArray(0.1875, 0.269531, 0.746094, 1, 1, 1, 1, 0)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_3i5ui"]
+gradient = SubResource("Gradient_pb58u")
+width = 32
+height = 32
+fill = 1
+fill_from = Vector2(0.5, 0.5)
+metadata/_snap_enabled = true
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_bqff2"]
+size = Vector2(30, 30)
+
+[sub_resource type="Resource" id="Resource_i0tsv"]
+script = ExtResource("5_vter4")
+keyBinds = Array[String](["attack"])
+displayName = "FrontSlam"
+description = ""
+iconPath = ""
+abilityPath = "res://Abilities/slam_dust.tscn"
+animName = "FrontSlam"
+useOneShot = true
+oneShot = 1
+value = 0.0
+damage = 5.0
+speed = 0.0
+useMouseAim = false
+rotateToMouse = true
+
+[sub_resource type="Resource" id="Resource_3uekc"]
+script = ExtResource("5_vter4")
+keyBinds = Array[String](["move_horizontal", "attack"])
+displayName = "Pierce"
+description = ""
+iconPath = ""
+abilityPath = "res://Abilities/slam_dust.tscn"
+animName = "Pierce"
+useOneShot = true
+oneShot = 1
+value = 0.0
+damage = 15.0
+speed = 0.0
+useMouseAim = false
+rotateToMouse = true
+
+[sub_resource type="Resource" id="Resource_w7ver"]
+script = ExtResource("5_vter4")
+keyBinds = Array[String](["move_vertical", "attack"])
+displayName = "Sweep"
+description = ""
+iconPath = ""
+abilityPath = "res://Abilities/slam_dust.tscn"
+animName = "Sweep"
+useOneShot = true
+oneShot = 1
+value = 0.0
+damage = 5.0
+speed = 0.0
+useMouseAim = false
+rotateToMouse = true
+
+[sub_resource type="Resource" id="Resource_41ru2"]
+script = ExtResource("5_vter4")
+keyBinds = Array[String](["lr_attack"])
+displayName = ""
+description = ""
+iconPath = ""
+abilityPath = "res://Character/slime_particle.tscn"
+animName = "UseLRAttack"
+useOneShot = true
+oneShot = 1
+value = 0.0
+damage = 3.0
+speed = 60.0
+useMouseAim = true
+rotateToMouse = false
+
+[sub_resource type="Curve" id="Curve_d13gj"]
+_data = [Vector2(0, 2), 0.0, 0.0, 0, 0, Vector2(0.512141, 1), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[node name="Sion" instance=ExtResource("1_fr2kf")]
+script = ExtResource("2_g30vo")
+brake_multiplier = 0.9
+rollVelocity = 10.0
+rollCurve = SubResource("Curve_pta3y")
+dodgeCurve = SubResource("Curve_w0yuc")
+SPEED = 150.0
+
+[node name="Art" parent="." index="0"]
+z_index = 9
+
+[node name="Eyes" parent="Art" index="0"]
+z_index = 2
+
+[node name="Body" parent="Art" index="1"]
+texture = ExtResource("2_e22qo")
+vframes = 16
+
+[node name="Hood_inside" parent="Art" index="2"]
+scale = Vector2(1e-05, 1e-05)
+
+[node name="Hood_outside" parent="Art" index="3"]
+position = Vector2(0.10511, 0.504498)
+scale = Vector2(1e-05, 1e-05)
+
+[node name="Tentacles" type="Node2D" parent="." index="1"]
+z_index = 9
+position = Vector2(0, 8)
+
+[node name="Tentacle_1" type="Sprite2D" parent="Tentacles" index="0"]
+z_index = 1
+texture_filter = 1
+position = Vector2(-3, 5)
+rotation = 3.14159
+scale = Vector2(1e-05, 1e-05)
+texture = ExtResource("2_e22qo")
+offset = Vector2(-1, -16)
+hframes = 4
+vframes = 13
+frame = 34
+
+[node name="Tentacle_2" type="Sprite2D" parent="Tentacles" index="1"]
+modulate = Color(0.92549, 0.92549, 0.92549, 1)
+texture_filter = 1
+position = Vector2(0, 9)
+rotation = 3.14159
+scale = Vector2(1e-05, 1e-05)
+texture = ExtResource("2_e22qo")
+offset = Vector2(0.986289, -15.9977)
+hframes = 4
+vframes = 13
+frame = 34
+
+[node name="Area2D" type="Area2D" parent="." index="2" node_paths=PackedStringArray("pool_timer", "pool_sprites", "colliderShape")]
+z_index = 3
+position = Vector2(-0.773941, 15.0959)
+scale = Vector2(0.5, 0.45)
+collision_layer = 4
+collision_mask = 2
+script = ExtResource("4_55o8f")
+bubble_node = ExtResource("5_3cl86")
+bubbles_per_unit = 1.0
+bubbles_radius = 0.7
+scaleRange = Vector2(0.5, 1)
+damage_cooldown = 0.1
+pool_timer = NodePath("Timer")
+pool_scale_curve = SubResource("Curve_uk0ss")
+pool_sprites = [NodePath("Back"), NodePath("Front3"), NodePath("Front2"), NodePath("Front")]
+auto_start = true
+damage = 2.0
+colliderShape = NodePath("Node2D")
+
+[node name="Front" type="Line2D" parent="Area2D" index="0" node_paths=PackedStringArray("node")]
+top_level = true
+z_index = 3
+texture_repeat = 2
+width = 30.0
+width_curve = SubResource("Curve_b4eud")
+texture = ExtResource("6_m2cm6")
+texture_mode = 1
+script = ExtResource("7_ha5na")
+node = NodePath("../..")
+max_length = 15
+
+[node name="Front2" type="Line2D" parent="Area2D" index="1" node_paths=PackedStringArray("node")]
+top_level = true
+z_index = 2
+texture_repeat = 2
+points = PackedVector2Array(-165.163, 5.987)
+width = 30.0
+texture = ExtResource("7_huccx")
+texture_mode = 1
+script = ExtResource("7_ha5na")
+node = NodePath("../..")
+max_length = 15
+
+[node name="Front3" type="Line2D" parent="Area2D" index="2" node_paths=PackedStringArray("node")]
+top_level = true
+z_index = 1
+texture_repeat = 2
+width = 30.0
+texture = ExtResource("8_gdd8s")
+texture_mode = 1
+script = ExtResource("7_ha5na")
+node = NodePath("../..")
+max_length = 15
+
+[node name="Back" type="Line2D" parent="Area2D" index="3" node_paths=PackedStringArray("node")]
+top_level = true
+texture_repeat = 2
+width = 30.0
+texture = SubResource("GradientTexture2D_3i5ui")
+texture_mode = 1
+script = ExtResource("7_ha5na")
+node = NodePath("../..")
+max_length = 15
+
+[node name="Node2D" type="CollisionShape2D" parent="Area2D" index="4"]
+texture_filter = 3
+shape = SubResource("RectangleShape2D_bqff2")
+
+[node name="Timer" type="Timer" parent="Area2D" index="5"]
+wait_time = 3.0
+one_shot = true
+autostart = true
+
+[node name="AnimationPlayer" parent="." index="3"]
+libraries = {
+"": ExtResource("3_4nlxg")
+}
+
+[node name="AnimationTree" parent="." index="4"]
+libraries = {
+"": ExtResource("3_4nlxg")
+}
+tree_root = ExtResource("4_k7aob")
+parameters/Drill/active = false
+parameters/Drill/internal_active = false
+parameters/Drill/request = 0
+parameters/FrontSlam/active = false
+parameters/FrontSlam/internal_active = false
+parameters/FrontSlam/request = 0
+parameters/Pierce/active = false
+parameters/Pierce/internal_active = false
+parameters/Pierce/request = 0
+parameters/Sweep/active = false
+parameters/Sweep/internal_active = false
+parameters/Sweep/request = 0
+
+[node name="Abilities" parent="." index="6"]
+abilityData = Array[ExtResource("5_vter4")]([SubResource("Resource_i0tsv"), SubResource("Resource_3uekc"), SubResource("Resource_w7ver"), SubResource("Resource_41ru2")])
+timer_duration = 0.5
+movement_duration = 0.1
+dist_multiplier = 0.1
+move_curve = SubResource("Curve_d13gj")
+
+[connection signal="body_entered" from="Area2D" to="Area2D" method="apply_damage_on_enter"]
+[connection signal="body_exited" from="Area2D" to="Area2D" method="on_exit"]

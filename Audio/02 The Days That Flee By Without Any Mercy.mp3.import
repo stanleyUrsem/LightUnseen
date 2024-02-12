@@ -1,0 +1,19 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+uid="uid://c36tkhhf4j8mx"
+path="res://.godot/imported/02 The Days That Flee By Without Any Mercy.mp3-735254fe76d9be7a8804912f2eb285a7.mp3str"
+
+[deps]
+
+source_file="res://Audio/02 The Days That Flee By Without Any Mercy.mp3"
+dest_files=["res://.godot/imported/02 The Days That Flee By Without Any Mercy.mp3-735254fe76d9be7a8804912f2eb285a7.mp3str"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

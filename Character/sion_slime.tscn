@@ -1,0 +1,288 @@
+[gd_scene load_steps=25 format=3 uid="uid://c0doq5crsa0n3"]
+
+[ext_resource type="PackedScene" uid="uid://cy7fitk5e2igo" path="res://Character/Sion.tscn" id="1_fr2kf"]
+[ext_resource type="Texture2D" uid="uid://bjg43116ojkgo" path="res://Character/Textures/SionTD/sion_slime.png" id="2_e22qo"]
+[ext_resource type="Script" path="res://Character/SionSlimeMovement.gd" id="2_g30vo"]
+[ext_resource type="AnimationLibrary" uid="uid://b3qldowl02rgl" path="res://Character/Sion_anim_slime_lib.tres" id="3_4nlxg"]
+[ext_resource type="AnimationNodeBlendTree" uid="uid://dwagnu1kpo72l" path="res://Character/sion_slime_blend_tree.tres" id="4_k7aob"]
+[ext_resource type="Script" path="res://Abilities/AbilityData.gd" id="5_vter4"]
+[ext_resource type="Texture2D" uid="uid://b8rr4g55nk4t1" path="res://UI/Skills.png" id="7_cllf1"]
+
+[sub_resource type="Curve" id="Curve_pta3y"]
+_data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(0.159696, 1), 0.0, 0.0, 0, 0, Vector2(0.882129, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 4
+
+[sub_resource type="Curve" id="Curve_w0yuc"]
+_data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(0.496689, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 3
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_akmsi"]
+atlas = ExtResource("7_cllf1")
+region = Rect2(128, 64, 32, 32)
+
+[sub_resource type="Resource" id="Resource_d7g3s"]
+script = ExtResource("5_vter4")
+keyBinds = Array[String](["roll"])
+abilityPath = ""
+animName = "UseRoll"
+animNodeType = 0
+oneShot = 1
+value = 0.0
+animOnly = true
+damage = 0.0
+speed = 0.0
+useMouseAim = false
+toggle = false
+hold = false
+hold_index = 0
+rotateToMouse = false
+displayName = "Roll"
+description = ""
+icon = SubResource("AtlasTexture_akmsi")
+form_type = 1
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_658df"]
+atlas = ExtResource("7_cllf1")
+region = Rect2(128, 96, 32, 32)
+
+[sub_resource type="Resource" id="Resource_kbnx8"]
+script = ExtResource("5_vter4")
+keyBinds = Array[String](["Aura"])
+abilityPath = "res://Character/Slime_Pool.tscn"
+animName = "Aura"
+animNodeType = 2
+oneShot = 0
+value = 0.0
+animOnly = false
+damage = 5.0
+speed = 5.0
+useMouseAim = false
+toggle = true
+hold = false
+hold_index = 0
+rotateToMouse = false
+displayName = "Aura"
+description = ""
+icon = SubResource("AtlasTexture_658df")
+form_type = 1
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_cpneb"]
+atlas = ExtResource("7_cllf1")
+region = Rect2(32, 96, 32, 32)
+
+[sub_resource type="Resource" id="Resource_i0tsv"]
+script = ExtResource("5_vter4")
+keyBinds = Array[String](["attack"])
+abilityPath = "res://Abilities/slam_dust.tscn"
+animName = "FrontSlam"
+animNodeType = 0
+oneShot = 1
+value = 0.0
+animOnly = false
+damage = 5.0
+speed = 0.0
+useMouseAim = false
+toggle = false
+hold = false
+hold_index = 0
+rotateToMouse = true
+displayName = "FrontSlam"
+description = ""
+icon = SubResource("AtlasTexture_cpneb")
+form_type = 1
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_6oa4d"]
+atlas = ExtResource("7_cllf1")
+region = Rect2(64, 96, 32, 32)
+
+[sub_resource type="Resource" id="Resource_3uekc"]
+script = ExtResource("5_vter4")
+keyBinds = Array[String](["move_horizontal", "attack"])
+abilityPath = "res://Abilities/slam_dust.tscn"
+animName = "Pierce"
+animNodeType = 0
+oneShot = 1
+value = 0.0
+animOnly = false
+damage = 15.0
+speed = 0.0
+useMouseAim = false
+toggle = false
+hold = true
+hold_index = 1
+rotateToMouse = true
+displayName = "Pierce"
+description = ""
+icon = SubResource("AtlasTexture_6oa4d")
+form_type = 1
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_f8gta"]
+atlas = ExtResource("7_cllf1")
+region = Rect2(96, 96, 32, 32)
+
+[sub_resource type="Resource" id="Resource_w7ver"]
+script = ExtResource("5_vter4")
+keyBinds = Array[String](["move_vertical", "attack"])
+abilityPath = "res://Abilities/slime_spin.tscn"
+animName = "Sweep"
+animNodeType = 0
+oneShot = 1
+value = 0.0
+animOnly = false
+damage = 5.0
+speed = 2.0
+useMouseAim = true
+toggle = false
+hold = false
+hold_index = 0
+rotateToMouse = false
+displayName = "Sweep"
+description = ""
+icon = SubResource("AtlasTexture_f8gta")
+form_type = 1
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_kytqp"]
+atlas = ExtResource("7_cllf1")
+region = Rect2(0, 96, 32, 32)
+
+[sub_resource type="Resource" id="Resource_41ru2"]
+script = ExtResource("5_vter4")
+keyBinds = Array[String](["lr_attack"])
+abilityPath = "res://Character/slime_particle.tscn"
+animName = "UseLRAttack"
+animNodeType = 0
+oneShot = 1
+value = 0.0
+animOnly = false
+damage = 3.0
+speed = 60.0
+useMouseAim = true
+toggle = false
+hold = false
+hold_index = 0
+rotateToMouse = false
+displayName = "Slime Pool"
+description = ""
+icon = SubResource("AtlasTexture_kytqp")
+form_type = 1
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_lurrf"]
+atlas = ExtResource("7_cllf1")
+region = Rect2(96, 64, 32, 32)
+
+[sub_resource type="Resource" id="Resource_ep15f"]
+script = ExtResource("5_vter4")
+keyBinds = Array[String](["Human_Transform"])
+abilityPath = ""
+animName = "TransformBack"
+animNodeType = 0
+oneShot = 1
+value = 0.0
+animOnly = true
+damage = 0.0
+speed = 0.0
+useMouseAim = false
+toggle = false
+hold = false
+hold_index = 0
+rotateToMouse = false
+displayName = "Transform"
+description = ""
+icon = SubResource("AtlasTexture_lurrf")
+form_type = 1
+
+[sub_resource type="Curve" id="Curve_d13gj"]
+_data = [Vector2(0, 2), 0.0, 0.0, 0, 0, Vector2(0.512141, 1), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[node name="Sion" instance=ExtResource("1_fr2kf")]
+script = ExtResource("2_g30vo")
+brake_multiplier = 0.9
+roll_max = 1.0
+transform_index = 1
+rollVelocity = 10.0
+rollCurve = SubResource("Curve_pta3y")
+dodgeCurve = SubResource("Curve_w0yuc")
+SPEED = 150.0
+
+[node name="Art" parent="." index="0"]
+z_index = 9
+
+[node name="Eyes" parent="Art" index="0"]
+z_index = 2
+
+[node name="Body" parent="Art" index="1"]
+texture = ExtResource("2_e22qo")
+hframes = 5
+vframes = 17
+
+[node name="Hood_inside" parent="Art" index="2"]
+scale = Vector2(1e-05, 1e-05)
+
+[node name="Hood_outside" parent="Art" index="3"]
+position = Vector2(0.10511, 0.504498)
+scale = Vector2(1e-05, 1e-05)
+
+[node name="Tentacles" type="Node2D" parent="." index="1"]
+z_index = 9
+position = Vector2(0, 8)
+
+[node name="Tentacle_1" type="Sprite2D" parent="Tentacles" index="0"]
+z_index = 1
+texture_filter = 1
+position = Vector2(-3, 5)
+rotation = 3.14159
+scale = Vector2(1e-05, 1e-05)
+texture = ExtResource("2_e22qo")
+offset = Vector2(-1, -16)
+hframes = 5
+vframes = 17
+frame = 29
+
+[node name="Tentacle_2" type="Sprite2D" parent="Tentacles" index="1"]
+modulate = Color(0.92549, 0.92549, 0.92549, 1)
+texture_filter = 1
+position = Vector2(0, 9)
+rotation = 3.14159
+scale = Vector2(1e-05, 1e-05)
+texture = ExtResource("2_e22qo")
+offset = Vector2(0.986289, -15.9977)
+hframes = 5
+vframes = 17
+frame = 29
+
+[node name="AnimationPlayer" parent="." index="2"]
+libraries = {
+"": ExtResource("3_4nlxg")
+}
+
+[node name="AnimationTree" parent="." index="3"]
+libraries = {
+"": ExtResource("3_4nlxg")
+}
+tree_root = ExtResource("4_k7aob")
+parameters/Aura/add_amount = 0.0
+parameters/FrontSlam/active = false
+parameters/FrontSlam/internal_active = false
+parameters/FrontSlam/request = 0
+parameters/IdleToWalk/blend_amount = 0.0
+parameters/Pierce/active = false
+parameters/Pierce/internal_active = false
+parameters/Pierce/request = 0
+parameters/Sweep/active = false
+parameters/Sweep/internal_active = false
+parameters/Sweep/request = 0
+parameters/TransformBack/active = false
+parameters/TransformBack/internal_active = false
+parameters/TransformBack/request = 0
+
+[node name="Abilities" parent="." index="5" node_paths=PackedStringArray("abilitySpawns")]
+abilityData = Array[ExtResource("5_vter4")]([SubResource("Resource_d7g3s"), SubResource("Resource_kbnx8"), SubResource("Resource_i0tsv"), SubResource("Resource_3uekc"), SubResource("Resource_w7ver"), SubResource("Resource_41ru2"), SubResource("Resource_ep15f")])
+abilitySpawns = [NodePath("../AbilitySpawns/LeftArm"), NodePath("../AbilitySpawns/RightArm"), NodePath("../AbilitySpawns/Bottom")]
+timer_duration = 0.5
+movement_duration = 0.1
+dist_multiplier = 0.1
+move_curve = SubResource("Curve_d13gj")
+
+[node name="Bottom" type="Marker2D" parent="AbilitySpawns" index="2"]
+position = Vector2(0, 7.5)

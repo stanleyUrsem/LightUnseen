@@ -1,0 +1,241 @@
+[gd_scene load_steps=16 format=3 uid="uid://cb1hxs17blbw1"]
+
+[ext_resource type="PackedScene" uid="uid://cpbwya8pbxv60" path="res://Abilities/rock_throw.tscn" id="1_w4m65"]
+[ext_resource type="Resource" uid="uid://dnp7nim7h2edt" path="res://Abilities/slime_particle_stats.tres" id="2_1vwn2"]
+[ext_resource type="Texture2D" uid="uid://bjg43116ojkgo" path="res://Character/Textures/SionTD/sion_slime.png" id="2_2877v"]
+
+[sub_resource type="Animation" id="Animation_jwef3"]
+resource_name = "Flying"
+length = 0.2
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [4]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Sprite2D:rotation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [0.0, 3.14159, 6.28319]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Sprite2D:scale")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(1, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_rm2aq"]
+resource_name = "Hit"
+length = 0.2
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Sprite2D:frame")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 1,
+"values": [4, 5, 6]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Sprite2D:scale")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.2),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [Vector2(1, 1), Vector2(1e-05, 1e-05)]
+}
+
+[sub_resource type="Animation" id="Animation_0qcpl"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Sprite2D:rotation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [3.14159]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Sprite2D:scale")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(1, 1)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("AnimationTree:parameters/Fly/request")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [2]
+}
+
+[sub_resource type="Animation" id="Animation_1n5ji"]
+resource_name = "Throw"
+length = 0.3
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 1,
+"values": [0, 1, 2, 3]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Sprite2D:scale")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(1, 1)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("AnimationTree:parameters/Fly/request")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0.3),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [1]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_qkbq1"]
+_data = {
+"Flying": SubResource("Animation_jwef3"),
+"Hit": SubResource("Animation_rm2aq"),
+"RESET": SubResource("Animation_0qcpl"),
+"Throw": SubResource("Animation_1n5ji")
+}
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_l2mpi"]
+animation = &"Hit"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_emdp4"]
+animation = &"Throw"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_uid2x"]
+animation = &"Flying"
+
+[sub_resource type="AnimationNodeOneShot" id="AnimationNodeOneShot_4as3g"]
+
+[sub_resource type="AnimationNodeOneShot" id="AnimationNodeOneShot_st6s1"]
+
+[sub_resource type="AnimationNodeTimeScale" id="AnimationNodeTimeScale_28ifa"]
+
+[sub_resource type="AnimationNodeBlendTree" id="AnimationNodeBlendTree_117b6"]
+graph_offset = Vector2(-799.385, 84.5495)
+nodes/Animation/node = SubResource("AnimationNodeAnimation_uid2x")
+nodes/Animation/position = Vector2(-700, 280)
+"nodes/Animation 2/node" = SubResource("AnimationNodeAnimation_l2mpi")
+"nodes/Animation 2/position" = Vector2(-320, 400)
+"nodes/Animation 3/node" = SubResource("AnimationNodeAnimation_emdp4")
+"nodes/Animation 3/position" = Vector2(-960, 80)
+nodes/Fly/node = SubResource("AnimationNodeOneShot_4as3g")
+nodes/Fly/position = Vector2(-320, 140)
+nodes/Hit/node = SubResource("AnimationNodeOneShot_st6s1")
+nodes/Hit/position = Vector2(-102.992, 149.801)
+nodes/Speed/node = SubResource("AnimationNodeTimeScale_28ifa")
+nodes/Speed/position = Vector2(-500, 300)
+node_connections = [&"Fly", 0, &"Animation 3", &"Fly", 1, &"Speed", &"Hit", 0, &"Fly", &"Hit", 1, &"Animation 2", &"Speed", 0, &"Animation", &"output", 0, &"Hit"]
+
+[node name="RockThrow" node_paths=PackedStringArray("animBody") instance=ExtResource("1_w4m65")]
+z_index = 9
+animBody = NodePath(".")
+data = ExtResource("2_1vwn2")
+
+[node name="Sprite2D" parent="." index="0"]
+rotation = 3.14159
+texture = ExtResource("2_2877v")
+hframes = 5
+vframes = 2
+region_enabled = true
+region_rect = Rect2(0, 480, 160, 64)
+
+[node name="AnimationTree" parent="." index="1"]
+libraries = {
+"": SubResource("AnimationLibrary_qkbq1")
+}
+tree_root = SubResource("AnimationNodeBlendTree_117b6")
+parameters/Fly/request = 2
+
+[node name="AnimationPlayer" parent="." index="2"]
+libraries = {
+"": SubResource("AnimationLibrary_qkbq1")
+}

@@ -1,0 +1,15 @@
+[gd_scene load_steps=4 format=3 uid="uid://cphulh825kn6q"]
+
+[ext_resource type="PackedScene" uid="uid://ciorncioitqgm" path="res://UI/Regular_Hotkey.tscn" id="1_swueb"]
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_8nxug"]
+load_path = "res://.godot/imported/Skills.png-cee4d12548bdfb0d072a5d639d650fd0.ctex"
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_6x8x5"]
+atlas = SubResource("CompressedTexture2D_8nxug")
+region = Rect2(32, 0, 32, 32)
+
+[node name="Slime" instance=ExtResource("1_swueb")]
+
+[node name="Background" parent="." index="0"]
+texture = SubResource("AtlasTexture_6x8x5")

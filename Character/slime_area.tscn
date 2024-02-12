@@ -1,0 +1,9 @@
+[gd_scene load_steps=2 format=3 uid="uid://d0cr7b1mwd7cl"]
+
+[ext_resource type="Script" path="res://Mobs/Textures/Slime/SlimePool.gd" id="1_y4c1s"]
+
+[node name="Slime_Area" type="AnimatableBody2D"]
+sync_to_physics = false
+script = ExtResource("1_y4c1s")
+bubble_path = "res://Mobs/Textures/Slime/bubble.tscn"
+slime_area_path = "res://Slime_Pool.tscn"

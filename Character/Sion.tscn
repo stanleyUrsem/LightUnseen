@@ -1,0 +1,237 @@
+[gd_scene load_steps=28 format=3 uid="uid://cy7fitk5e2igo"]
+
+[ext_resource type="Script" path="res://Character/SionMovement.gd" id="1_6msgt"]
+[ext_resource type="Material" uid="uid://ced4lpkaxd2tl" path="res://Character/eye_trackin_mat.tres" id="2_0sc1b"]
+[ext_resource type="Texture2D" uid="uid://drjxif1fbcwgl" path="res://Character/Textures/SionTD/sion_eyes.png" id="3_fy46l"]
+[ext_resource type="Script" path="res://MouseToShader.gd" id="4_m734i"]
+[ext_resource type="Texture2D" uid="uid://drt0776viph56" path="res://Character/Textures/SionTD/sion_body.png" id="5_2ihxm"]
+[ext_resource type="Texture2D" uid="uid://c4f5b6qgb4gxb" path="res://Character/Textures/SionTD/sion_hood_inside.png" id="6_kkpto"]
+[ext_resource type="AnimationNodeBlendTree" uid="uid://cgvcqonlcymq2" path="res://Character/Textures/SionTD/topdownChar.tres" id="7_uuyot"]
+[ext_resource type="Script" path="res://Abilities/Chaos/Abilities.gd" id="8_q0dv7"]
+[ext_resource type="Texture2D" uid="uid://c6qmka5nfma7d" path="res://Character/Textures/SionTD/sion_hood_outside.png" id="8_u3pcf"]
+[ext_resource type="AnimationLibrary" uid="uid://djunng5ihvoqo" path="res://Character/Sion_anim_lib.tres" id="9_tbhmy"]
+[ext_resource type="Script" path="res://Abilities/AbilityData.gd" id="9_v7fjf"]
+[ext_resource type="Script" path="res://Hittable.gd" id="10_tav8q"]
+[ext_resource type="Texture2D" uid="uid://b8rr4g55nk4t1" path="res://UI/Skills.png" id="12_ex3p6"]
+[ext_resource type="Script" path="res://Character/StatsHolder.gd" id="13_ip521"]
+[ext_resource type="Script" path="res://StatsResource.gd" id="15_h1vve"]
+
+[sub_resource type="Curve" id="Curve_lstxf"]
+_data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(0.5, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 3
+
+[sub_resource type="Curve" id="Curve_j4n5k"]
+_data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(0.503311, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 3
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_irf28"]
+size = Vector2(6, 18)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_8tnnf"]
+atlas = ExtResource("12_ex3p6")
+region = Rect2(64, 64, 32, 32)
+
+[sub_resource type="Resource" id="Resource_2n130"]
+script = ExtResource("9_v7fjf")
+keyBinds = Array[String](["attack"])
+abilityPath = "res://Abilities/rock_throw.tscn"
+animName = "UseAttack"
+animNodeType = 0
+oneShot = 1
+value = 0.0
+animOnly = false
+damage = 5.0
+speed = 3.0
+useMouseAim = true
+toggle = false
+hold = false
+hold_index = 0
+rotateToMouse = false
+displayName = ""
+description = ""
+icon = SubResource("AtlasTexture_8tnnf")
+form_type = 0
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_mfw2e"]
+atlas = ExtResource("12_ex3p6")
+region = Rect2(32, 64, 32, 32)
+
+[sub_resource type="Resource" id="Resource_7yir2"]
+script = ExtResource("9_v7fjf")
+keyBinds = Array[String](["lr_attack"])
+abilityPath = "res://Abilities/rock_throw.tscn"
+animName = "UseLRAttack"
+animNodeType = 0
+oneShot = 1
+value = 0.0
+animOnly = false
+damage = 10.0
+speed = 5.0
+useMouseAim = false
+toggle = false
+hold = false
+hold_index = 0
+rotateToMouse = false
+displayName = ""
+description = ""
+icon = SubResource("AtlasTexture_mfw2e")
+form_type = 0
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ss36l"]
+atlas = ExtResource("12_ex3p6")
+region = Rect2(0, 64, 32, 32)
+
+[sub_resource type="Resource" id="Resource_of7x3"]
+script = ExtResource("9_v7fjf")
+keyBinds = Array[String](["roll"])
+abilityPath = ""
+animName = "UseRoll"
+animNodeType = 0
+oneShot = 1
+value = 0.0
+animOnly = true
+damage = 0.0
+speed = 0.0
+useMouseAim = false
+toggle = false
+hold = false
+hold_index = 0
+rotateToMouse = false
+displayName = "Roll"
+description = ""
+icon = SubResource("AtlasTexture_ss36l")
+form_type = 0
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ljg4r"]
+atlas = ExtResource("12_ex3p6")
+region = Rect2(96, 64, 32, 32)
+
+[sub_resource type="Resource" id="Resource_1dcvl"]
+script = ExtResource("9_v7fjf")
+keyBinds = Array[String](["Slime_Transform"])
+abilityPath = ""
+animName = "Transform"
+animNodeType = 0
+oneShot = 1
+value = 0.0
+animOnly = true
+damage = 0.0
+speed = 0.0
+useMouseAim = false
+toggle = false
+hold = false
+hold_index = 0
+rotateToMouse = false
+displayName = "Slime Transform"
+description = ""
+icon = SubResource("AtlasTexture_ljg4r")
+form_type = 0
+
+[sub_resource type="Resource" id="Resource_2frdm"]
+script = ExtResource("15_h1vve")
+health = 100.0
+mana = 1.0
+defense = 1.0
+stamina = 1.0
+
+[node name="Sion" type="CharacterBody2D"]
+y_sort_enabled = true
+collision_layer = 16
+motion_mode = 1
+script = ExtResource("1_6msgt")
+dodgeVelocity = 5.0
+dodgeDuration = 1.0
+stopMovement = true
+rollCurve = SubResource("Curve_lstxf")
+dodgeCurve = SubResource("Curve_j4n5k")
+SPEED = 100.0
+
+[node name="Art" type="Node2D" parent="."]
+
+[node name="Eyes" type="Sprite2D" parent="Art" node_paths=PackedStringArray("user", "mat_nodes")]
+z_index = 6
+texture_filter = 1
+material = ExtResource("2_0sc1b")
+texture = ExtResource("3_fy46l")
+hframes = 4
+vframes = 10
+script = ExtResource("4_m734i")
+user = NodePath("../..")
+mat_nodes = [NodePath(".")]
+
+[node name="Body" type="Sprite2D" parent="Art"]
+z_index = 1
+texture_filter = 1
+texture = ExtResource("5_2ihxm")
+hframes = 4
+vframes = 10
+
+[node name="Hood_inside" type="Sprite2D" parent="Art"]
+texture_filter = 1
+texture = ExtResource("6_kkpto")
+hframes = 4
+vframes = 10
+
+[node name="Hood_outside" type="Sprite2D" parent="Art"]
+z_index = 2
+texture_filter = 1
+texture = ExtResource("8_u3pcf")
+hframes = 4
+vframes = 10
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": ExtResource("9_tbhmy")
+}
+
+[node name="AnimationTree" type="AnimationTree" parent="."]
+libraries = {
+"": ExtResource("9_tbhmy")
+}
+tree_root = ExtResource("7_uuyot")
+anim_player = NodePath("../AnimationPlayer")
+parameters/IdleToWalk/blend_amount = 0
+parameters/LeftOrRight/blend_amount = 1.0
+parameters/Transform/active = false
+parameters/Transform/internal_active = false
+parameters/Transform/request = 0
+parameters/Turn/add_amount = 1.0
+parameters/UseAttack/active = false
+parameters/UseAttack/internal_active = false
+parameters/UseAttack/request = 0
+parameters/UseDodge/active = false
+parameters/UseDodge/internal_active = false
+parameters/UseDodge/request = 0
+parameters/UseLRAttack/active = false
+parameters/UseLRAttack/internal_active = false
+parameters/UseLRAttack/request = 0
+parameters/UseRoll/active = false
+parameters/UseRoll/internal_active = false
+parameters/UseRoll/request = 0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, 5)
+shape = SubResource("RectangleShape2D_irf28")
+script = ExtResource("10_tav8q")
+type = 1
+
+[node name="Abilities" type="Node2D" parent="." node_paths=PackedStringArray("charMovement", "abilitySpawns")]
+script = ExtResource("8_q0dv7")
+charMovement = NodePath("..")
+abilityData = Array[ExtResource("9_v7fjf")]([SubResource("Resource_2n130"), SubResource("Resource_7yir2"), SubResource("Resource_of7x3"), SubResource("Resource_1dcvl")])
+abilitySpawns = [NodePath("../AbilitySpawns/LeftArm"), NodePath("../AbilitySpawns/RightArm")]
+timer_duration = 2.0
+
+[node name="AbilitySpawns" type="Node2D" parent="."]
+
+[node name="LeftArm" type="Marker2D" parent="AbilitySpawns"]
+position = Vector2(-4, 12)
+
+[node name="RightArm" type="Marker2D" parent="AbilitySpawns"]
+position = Vector2(3, 12)
+
+[node name="Stats" type="Node2D" parent="."]
+script = ExtResource("13_ip521")
+stats_resource = SubResource("Resource_2frdm")
+
+[node name="Passives" type="Node2D" parent="."]

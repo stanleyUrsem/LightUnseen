@@ -1,0 +1,13 @@
+[gd_resource type="Resource" script_class="AbilityData" load_steps=2 format=3 uid="uid://b8m67wi1101u8"]
+
+[ext_resource type="Script" path="res://Abilities/AbilityData.gd" id="1_o6qxg"]
+
+[resource]
+script = ExtResource("1_o6qxg")
+keyBind = ""
+displayName = ""
+description = ""
+iconPath = ""
+abilityPath = ""
+damage = 0.0
+speed = 0.0

@@ -1,0 +1,22 @@
+[gd_resource type="ShaderMaterial" load_steps=4 format=3 uid="uid://vkas5ib21cmi"]
+
+[ext_resource type="Shader" path="res://Mobs/Textures/Slime/SlimeColoring.gdshader" id="1_jm0jq"]
+
+[sub_resource type="Gradient" id="Gradient_l26o3"]
+offsets = PackedFloat32Array(0, 0.313131, 0.686869, 1)
+colors = PackedColorArray(0.375097, 0.00165445, 0.654049, 1, 0.984314, 0.145098, 0.462745, 1, 0.110045, 0.345439, 0.998364, 1, 0.2, 0.184314, 0.815686, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_byfrb"]
+gradient = SubResource("Gradient_l26o3")
+use_hdr = true
+fill_from = Vector2(0, 1)
+fill_to = Vector2(0, 0)
+metadata/_snap_enabled = true
+
+[resource]
+shader = ExtResource("1_jm0jq")
+shader_parameter/alpha = 1.0
+shader_parameter/resolution = 0.9
+shader_parameter/resolution_vertex = 10.0
+shader_parameter/multiplier = 0.0
+shader_parameter/gradient = SubResource("GradientTexture2D_byfrb")

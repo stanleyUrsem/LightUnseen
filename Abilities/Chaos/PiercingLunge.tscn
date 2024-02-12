@@ -1,0 +1,5 @@
+[gd_scene load_steps=2 format=3 uid="uid://b0rq45n6220jc"]
+
+[ext_resource type="PackedScene" uid="uid://den4bmu8diymo" path="res://Abilities/Ability.tscn" id="1_a778a"]
+
+[node name="Ability" instance=ExtResource("1_a778a")]

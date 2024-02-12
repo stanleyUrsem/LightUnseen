@@ -1,0 +1,11 @@
+[gd_resource type="Resource" script_class="SlimeStatsResource" load_steps=2 format=3 uid="uid://c5bfqfeua4liy"]
+
+[ext_resource type="Script" path="res://Mobs/SlimeStatsResource.gd" id="1_6g2t6"]
+
+[resource]
+script = ExtResource("1_6g2t6")
+inv_space = 15
+health = 25.0
+mana = 5.0
+defense = 6.0
+stamina = 20.0

@@ -1,0 +1,7 @@
+[gd_scene load_steps=2 format=3 uid="uid://by61rqsox01au"]
+
+[ext_resource type="Script" path="res://Abilities/Chaos/Abilities.gd" id="1_fde2k"]
+
+[node name="ChaosAbilities" type="Node2D"]
+script = ExtResource("1_fde2k")
+abilityData = null

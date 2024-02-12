@@ -1,0 +1,7 @@
+[gd_resource type="GradientTexture2D" load_steps=2 format=3 uid="uid://brusbnty2yahs"]
+
+[ext_resource type="Gradient" uid="uid://b36kqsyq80pta" path="res://Maps/fog_gradient.tres" id="1_pvljv"]
+
+[resource]
+gradient = ExtResource("1_pvljv")
+fill_to = Vector2(0, 1)

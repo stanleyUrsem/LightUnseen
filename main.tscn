@@ -1,0 +1,107 @@
+[gd_scene load_steps=15 format=3 uid="uid://cnqpiju56w2xv"]
+
+[ext_resource type="PackedScene" uid="uid://cy7fitk5e2igo" path="res://Character/Sion.tscn" id="1_5cn6k"]
+[ext_resource type="Script" path="res://Maps/MapSwitcher.gd" id="1_d2nxu"]
+[ext_resource type="Script" path="res://Character/MouseHandler.gd" id="2_40pnx"]
+[ext_resource type="Script" path="res://Maps/FogManager.gd" id="3_car1c"]
+[ext_resource type="Material" uid="uid://cb02vfirc38kd" path="res://Maps/Town/foggy.tres" id="4_y6xfu"]
+[ext_resource type="Script" path="res://CameraZoom.gd" id="6_6oo4f"]
+[ext_resource type="PackedScene" uid="uid://c3by2vkm71518" path="res://UI/HUD.tscn" id="6_ovusk"]
+[ext_resource type="Script" path="res://Character/PlayerTransformer.gd" id="7_n5qm7"]
+[ext_resource type="PackedScene" uid="uid://c0doq5crsa0n3" path="res://Character/sion_slime.tscn" id="8_x3a12"]
+[ext_resource type="Script" path="res://EventsManager.gd" id="10_1dmyj"]
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_w1ckx"]
+noise_type = 2
+frequency = 0.2312
+fractal_octaves = 3
+fractal_lacunarity = 0.345
+fractal_gain = 2.83
+cellular_jitter = -1.124
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_nkjmm"]
+width = 64
+height = 64
+seamless = true
+seamless_blend_skirt = 0.901
+noise = SubResource("FastNoiseLite_w1ckx")
+
+[sub_resource type="Environment" id="Environment_qfgc8"]
+background_mode = 3
+background_energy_multiplier = 1.42
+reflected_light_source = 1
+tonemap_mode = 2
+tonemap_exposure = 0.23
+tonemap_white = 3.97
+glow_enabled = true
+glow_levels/1 = 8.16
+glow_levels/2 = 5.08
+glow_levels/3 = 8.43
+glow_levels/4 = 6.4
+glow_levels/5 = 0.22
+glow_levels/6 = 0.36
+glow_levels/7 = 1.23
+glow_normalized = true
+glow_intensity = 2.99
+glow_strength = 1.28
+glow_mix = 0.0
+glow_bloom = 0.12
+glow_blend_mode = 1
+glow_hdr_threshold = 0.79
+glow_hdr_scale = 0.63
+glow_hdr_luminance_cap = 73.73
+glow_map_strength = 0.74
+glow_map = SubResource("NoiseTexture2D_nkjmm")
+
+[sub_resource type="Curve" id="Curve_5fogj"]
+_data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(0.541578, 0.652632), 2.32322, 2.32322, 0, 0, Vector2(0.626866, 0.926316), 0.0, 0.0, 0, 0, Vector2(1, 1), 1.4, 0.0, 0, 0]
+point_count = 4
+
+[node name="MAIN" type="Node2D" node_paths=PackedStringArray("camera")]
+y_sort_enabled = true
+script = ExtResource("1_d2nxu")
+camera = NodePath("Camera2D")
+switch_speed = 5.0
+maps = Array[String]([""])
+active_map = "res://Maps/Central.tscn"
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_qfgc8")
+
+[node name="FogManager" type="Node2D" parent="."]
+script = ExtResource("3_car1c")
+mat = ExtResource("4_y6xfu")
+duration = 1.0
+heightToZoom = {
+0: Vector2(4.5, 0.07),
+1: Vector2(4, 0.07),
+2: Vector2(3.5, 0.07),
+3: Vector2(3, 0.07)
+}
+curve = SubResource("Curve_5fogj")
+
+[node name="Camera2D" type="Camera2D" parent="." node_paths=PackedStringArray("playerTransformer", "follow_targets")]
+zoom = Vector2(3, 3)
+process_callback = 0
+position_smoothing_enabled = true
+rotation_smoothing_enabled = true
+drag_horizontal_enabled = true
+drag_vertical_enabled = true
+editor_draw_limits = true
+editor_draw_drag_margin = true
+script = ExtResource("2_40pnx")
+playerTransformer = NodePath("../PlayerTransformer")
+follow_targets = [null]
+
+[node name="CameraZoom" type="Node2D" parent="."]
+script = ExtResource("6_6oo4f")
+
+[node name="HUD" parent="." instance=ExtResource("6_ovusk")]
+
+[node name="PlayerTransformer" type="Node2D" parent="."]
+script = ExtResource("7_n5qm7")
+forms = Array[PackedScene]([ExtResource("1_5cn6k"), ExtResource("8_x3a12")])
+saved_pos = Vector2(-430.407, 1110)
+
+[node name="EventsManager" type="Node2D" parent="."]
+script = ExtResource("10_1dmyj")

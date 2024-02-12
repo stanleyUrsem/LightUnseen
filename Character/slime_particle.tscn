@@ -1,0 +1,173 @@
+[gd_scene load_steps=10 format=3 uid="uid://ctpjb7ikc0cd8"]
+
+[ext_resource type="Script" path="res://Character/SlimeAcidAction.gd" id="1_7d8gx"]
+[ext_resource type="Texture2D" uid="uid://c6idovjh6dmeb" path="res://Character/Textures/SionTD/slime_area.png" id="2_rriat"]
+
+[sub_resource type="Curve" id="Curve_a3owg"]
+_data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(0.501104, 0.514523), 2.56575, 2.56575, 0, 0, Vector2(1, 1), 0.0, 0.0, 0, 0]
+point_count = 3
+
+[sub_resource type="Curve" id="Curve_s7qqr"]
+_data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(0.497, 1.239), -1.08751, -1.08751, 0, 0, Vector2(1, 1), 0.0, 0.0, 0, 0]
+point_count = 3
+
+[sub_resource type="Animation" id="Animation_6f8vw"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("SlimeArea:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+tracks/1/type = "bezier"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:position:x")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"handle_modes": PackedInt32Array(0),
+"points": PackedFloat32Array(0, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0)
+}
+tracks/2/type = "bezier"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath(".:position:y")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"handle_modes": PackedInt32Array(0),
+"points": PackedFloat32Array(0, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0)
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath(".:scale")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(1, 1)]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("SlimeArea:skew")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("SlimeArea:scale")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(1, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_4cxvm"]
+resource_name = "new_animation"
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("SlimeArea:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.5, 0.7, 0.8),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [0, 1, 2, 3, 0, 1, 2]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("SlimeArea:skew")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.3, 0.7, 1),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [0.0, 0.513127, -0.328122, 0.0]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_3rqam"]
+_data = {
+"RESET": SubResource("Animation_6f8vw"),
+"new_animation": SubResource("Animation_4cxvm")
+}
+
+[sub_resource type="Gradient" id="Gradient_wl1tk"]
+interpolation_mode = 1
+offsets = PackedFloat32Array(0.123487, 0.2954, 0.610169)
+colors = PackedColorArray(0, 0.054, 0.36, 1, 0.0504, 0.09684, 0.36, 1, 0, 0.087, 0.58, 0.227451)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_l87nd"]
+size = Vector2(10, 10)
+
+[node name="Slime_Particle" type="AnimatableBody2D" node_paths=PackedStringArray("anim", "animBody", "fadeTimer")]
+z_index = 7
+collision_layer = 4
+collision_mask = 3
+sync_to_physics = false
+script = ExtResource("1_7d8gx")
+xCurve = SubResource("Curve_a3owg")
+yCurve = SubResource("Curve_s7qqr")
+anim = NodePath("AnimationPlayer")
+steps_ahead = 1.0
+animBody = NodePath(".")
+fadeTimer = NodePath("Timer")
+
+[node name="SlimeArea" type="Sprite2D" parent="."]
+texture = ExtResource("2_rriat")
+hframes = 2
+vframes = 2
+region_enabled = true
+region_rect = Rect2(0, 0, 32, 32)
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_3rqam")
+}
+
+[node name="GPUParticles2D" type="CPUParticles2D" parent="."]
+amount = 16
+speed_scale = 2.0
+local_coords = true
+emission_shape = 2
+emission_sphere_radius = 5.85
+direction = Vector2(0, 0)
+spread = 180.0
+gravity = Vector2(-49.57, 0)
+orbit_velocity_min = -0.1
+orbit_velocity_max = 0.1
+color_ramp = SubResource("Gradient_wl1tk")
+hue_variation_min = -1.0
+hue_variation_max = 1.0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(-1, 0)
+shape = SubResource("RectangleShape2D_l87nd")
+
+[node name="Timer" type="Timer" parent="."]

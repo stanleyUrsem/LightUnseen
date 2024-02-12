@@ -1,0 +1,77 @@
+[gd_scene load_steps=6 format=3 uid="uid://ciorncioitqgm"]
+
+[ext_resource type="Script" path="res://UI/HotkeyData.gd" id="1_bscai"]
+[ext_resource type="Texture2D" uid="uid://7k3g4luofu1" path="res://UI/Skills.png" id="1_mc777"]
+[ext_resource type="Theme" uid="uid://8oe8akinpd2h" path="res://UI/UI_default.tres" id="2_inc16"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_o5thb"]
+atlas = ExtResource("1_mc777")
+region = Rect2(0, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_m4pac"]
+atlas = ExtResource("1_mc777")
+region = Rect2(128, 64, 32, 32)
+
+[node name="Regular" type="AspectRatioContainer"]
+offset_right = 128.0
+offset_bottom = 128.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+size_flags_stretch_ratio = 0.25
+script = ExtResource("1_bscai")
+
+[node name="Background" type="TextureRect" parent="."]
+layout_mode = 2
+texture = SubResource("AtlasTexture_o5thb")
+
+[node name="Icon" type="TextureRect" parent="Background"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = SubResource("AtlasTexture_m4pac")
+stretch_mode = 4
+
+[node name="H" type="HBoxContainer" parent="Background"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Control" type="Control" parent="Background/H"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_stretch_ratio = 0.11
+
+[node name="V" type="VBoxContainer" parent="Background/H"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="Control" type="Control" parent="Background/H/V"]
+layout_mode = 2
+size_flags_vertical = 3
+size_flags_stretch_ratio = 0.15
+
+[node name="Keybind" type="RichTextLabel" parent="Background/H/V"]
+clip_contents = false
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 4
+theme = ExtResource("2_inc16")
+bbcode_enabled = true
+text = "L-STICK UP+ [color=#87D638]A[/color]"
+fit_content = true
+scroll_active = false
+
+[node name="Control2" type="Control" parent="Background/H/V"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="Control2" type="Control" parent="Background/H"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_stretch_ratio = 0.05

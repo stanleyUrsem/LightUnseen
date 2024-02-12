@@ -1,0 +1,66 @@
+[gd_scene load_steps=8 format=3 uid="uid://c3by2vkm71518"]
+
+[ext_resource type="Theme" uid="uid://8oe8akinpd2h" path="res://UI/UI_default.tres" id="1_cm84j"]
+[ext_resource type="Script" path="res://UI/HealthManager.gd" id="2_dkh7l"]
+[ext_resource type="PackedScene" uid="uid://do6bo3ah2bwc1" path="res://UI/health_bar.tscn" id="3_lewpx"]
+[ext_resource type="Script" path="res://HotkeyManager.gd" id="5_67m5h"]
+[ext_resource type="PackedScene" uid="uid://ciorncioitqgm" path="res://UI/Regular_Hotkey.tscn" id="5_pxbx0"]
+[ext_resource type="PackedScene" uid="uid://cphulh825kn6q" path="res://UI/Slime_Hotkey.tscn" id="6_wumhh"]
+[ext_resource type="PackedScene" uid="uid://tdx2srbane7" path="res://UI/Animated_Hotkey.tscn" id="7_nrh51"]
+
+[node name="HUD" type="CanvasLayer"]
+
+[node name="Node2D" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme = ExtResource("1_cm84j")
+
+[node name="Health" type="FlowContainer" parent="Node2D"]
+self_modulate = Color(1, 1, 1, 0)
+texture_filter = 1
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -212.0
+offset_bottom = 68.0
+grow_horizontal = 0
+pivot_offset = Vector2(120, 40)
+theme = ExtResource("1_cm84j")
+script = ExtResource("2_dkh7l")
+health_bar = ExtResource("3_lewpx")
+
+[node name="H" type="HBoxContainer" parent="Node2D"]
+layout_mode = 1
+anchors_preset = -1
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 0
+
+[node name="Control" type="Control" parent="Node2D/H"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_stretch_ratio = 0.8
+
+[node name="HotkeyContainer" type="GridContainer" parent="Node2D/H"]
+layout_mode = 2
+size_flags_horizontal = 3
+columns = 5
+script = ExtResource("5_67m5h")
+hotkey_size = 128
+regular_hotkey = ExtResource("5_pxbx0")
+slime_hotkey = ExtResource("6_wumhh")
+animated_slime_hotkey = ExtResource("7_nrh51")
+
+[node name="Control2" type="Control" parent="Node2D/H"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_stretch_ratio = 0.8

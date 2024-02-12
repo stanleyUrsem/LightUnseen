@@ -1,0 +1,23 @@
+[gd_resource type="Resource" script_class="AbilityData" load_steps=2 format=3 uid="uid://dnp7nim7h2edt"]
+
+[ext_resource type="Script" path="res://Abilities/AbilityData.gd" id="1_w3aq8"]
+
+[resource]
+script = ExtResource("1_w3aq8")
+keyBinds = Array[String]([])
+abilityPath = ""
+animName = ""
+animNodeType = 0
+oneShot = 0
+value = 0.0
+animOnly = false
+damage = 0.0
+speed = 15.0
+useMouseAim = false
+toggle = false
+hold = false
+hold_index = 0
+rotateToMouse = false
+displayName = ""
+description = ""
+form_type = 0

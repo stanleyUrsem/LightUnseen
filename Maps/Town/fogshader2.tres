@@ -1,0 +1,23 @@
+[gd_resource type="ShaderMaterial" load_steps=4 format=3 uid="uid://b13fw8a7kkw7x"]
+
+[ext_resource type="Shader" path="res://node_2d.gdshader" id="1_x3htd"]
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_rinsj"]
+noise_type = 4
+frequency = 0.009
+fractal_lacunarity = 2.665
+fractal_gain = 0.55
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_82opv"]
+invert = true
+generate_mipmaps = false
+seamless = true
+seamless_blend_skirt = 0.586
+noise = SubResource("FastNoiseLite_rinsj")
+
+[resource]
+shader = ExtResource("1_x3htd")
+shader_parameter/speeds = PackedFloat32Array(0.1, 0.125, 0.15)
+shader_parameter/direction = Vector2(-1, 0.1)
+shader_parameter/resolutions = PackedVector2Array(1, 1, 0.5, 0.5, 2, 2)
+shader_parameter/noise = SubResource("NoiseTexture2D_82opv")

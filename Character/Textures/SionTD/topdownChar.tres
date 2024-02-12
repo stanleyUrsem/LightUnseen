@@ -1,0 +1,83 @@
+[gd_resource type="AnimationNodeBlendTree" load_steps=18 format=3 uid="uid://cgvcqonlcymq2"]
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_u6wjl"]
+animation = &"Transform"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_kn2yw"]
+animation = &"Attack"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_ijwri"]
+animation = &"Dodge"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_cep3n"]
+animation = &"Idle"
+
+[sub_resource type="AnimationNodeBlend2" id="AnimationNodeBlend2_wf5ne"]
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_5mmvr"]
+animation = &"LeftRightAttack"
+
+[sub_resource type="AnimationNodeBlend2" id="AnimationNodeBlend2_qxjwy"]
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_58h1v"]
+animation = &"Roll"
+
+[sub_resource type="AnimationNodeOneShot" id="AnimationNodeOneShot_0nrxr"]
+
+[sub_resource type="AnimationNodeAdd2" id="AnimationNodeAdd2_ta8on"]
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_hblmp"]
+animation = &"TurnLeft"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_gcbxe"]
+animation = &"TurnRight"
+
+[sub_resource type="AnimationNodeOneShot" id="AnimationNodeOneShot_f8ftv"]
+
+[sub_resource type="AnimationNodeOneShot" id="AnimationNodeOneShot_uaafg"]
+
+[sub_resource type="AnimationNodeOneShot" id="AnimationNodeOneShot_1s5tf"]
+
+[sub_resource type="AnimationNodeOneShot" id="AnimationNodeOneShot_fvc5j"]
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_k4efp"]
+animation = &"Walking"
+
+[resource]
+graph_offset = Vector2(-1760.53, 62.8367)
+nodes/Animation/node = SubResource("AnimationNodeAnimation_u6wjl")
+nodes/Animation/position = Vector2(-1440, 380)
+nodes/Attack/node = SubResource("AnimationNodeAnimation_kn2yw")
+nodes/Attack/position = Vector2(-130.791, 625.715)
+nodes/Dodge/node = SubResource("AnimationNodeAnimation_ijwri")
+nodes/Dodge/position = Vector2(-558.108, 345.12)
+nodes/Idle/node = SubResource("AnimationNodeAnimation_cep3n")
+nodes/Idle/position = Vector2(-1740, 100)
+nodes/IdleToWalk/node = SubResource("AnimationNodeBlend2_wf5ne")
+nodes/IdleToWalk/position = Vector2(-1580, 100)
+nodes/LRAttack/node = SubResource("AnimationNodeAnimation_5mmvr")
+nodes/LRAttack/position = Vector2(-330.368, 422.856)
+nodes/LeftOrRight/node = SubResource("AnimationNodeBlend2_qxjwy")
+nodes/LeftOrRight/position = Vector2(255.167, 827.278)
+nodes/Roll/node = SubResource("AnimationNodeAnimation_58h1v")
+nodes/Roll/position = Vector2(-738.419, 293.464)
+nodes/Transform/node = SubResource("AnimationNodeOneShot_0nrxr")
+nodes/Transform/position = Vector2(-1200, 100)
+nodes/Turn/node = SubResource("AnimationNodeAdd2_ta8on")
+nodes/Turn/position = Vector2(788.22, 434.23)
+nodes/TurnLeft/node = SubResource("AnimationNodeAnimation_hblmp")
+nodes/TurnLeft/position = Vector2(12.5841, 698.661)
+nodes/TurnRight/node = SubResource("AnimationNodeAnimation_gcbxe")
+nodes/TurnRight/position = Vector2(39.2543, 924.671)
+nodes/UseAttack/node = SubResource("AnimationNodeOneShot_f8ftv")
+nodes/UseAttack/position = Vector2(255.096, 471.673)
+nodes/UseDodge/node = SubResource("AnimationNodeOneShot_uaafg")
+nodes/UseDodge/position = Vector2(-253.746, 196.945)
+nodes/UseLRAttack/node = SubResource("AnimationNodeOneShot_1s5tf")
+nodes/UseLRAttack/position = Vector2(15.9392, 363.539)
+nodes/UseRoll/node = SubResource("AnimationNodeOneShot_fvc5j")
+nodes/UseRoll/position = Vector2(-542.456, 94.0881)
+nodes/Walk/node = SubResource("AnimationNodeAnimation_k4efp")
+nodes/Walk/position = Vector2(-1740, 260)
+nodes/output/position = Vector2(1440, 280)
+node_connections = [&"IdleToWalk", 0, &"Idle", &"IdleToWalk", 1, &"Walk", &"LeftOrRight", 0, &"TurnLeft", &"LeftOrRight", 1, &"TurnRight", &"Transform", 0, &"IdleToWalk", &"Transform", 1, &"Animation", &"Turn", 0, &"UseAttack", &"Turn", 1, &"LeftOrRight", &"UseAttack", 0, &"UseLRAttack", &"UseAttack", 1, &"Attack", &"UseDodge", 0, &"UseRoll", &"UseDodge", 1, &"Dodge", &"UseLRAttack", 0, &"UseDodge", &"UseLRAttack", 1, &"LRAttack", &"UseRoll", 0, &"Transform", &"UseRoll", 1, &"Roll", &"output", 0, &"Turn"]

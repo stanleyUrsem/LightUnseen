@@ -1,0 +1,139 @@
+[gd_scene load_steps=13 format=3 uid="uid://fvdwn2dxk5kd"]
+
+[ext_resource type="Script" path="res://Character/TrailEffect.gd" id="1_dxjsd"]
+
+[sub_resource type="Gradient" id="Gradient_yvaix"]
+interpolation_mode = 1
+offsets = PackedFloat32Array(0, 0.671463)
+colors = PackedColorArray(0.1875, 0.269531, 0.746094, 1, 1, 1, 1, 0)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_w7lrr"]
+gradient = SubResource("Gradient_yvaix")
+width = 32
+height = 32
+fill = 1
+fill_from = Vector2(0.5, 0.5)
+metadata/_snap_enabled = true
+
+[sub_resource type="Gradient" id="Gradient_xrsdo"]
+interpolation_mode = 1
+offsets = PackedFloat32Array(0, 0.683453)
+colors = PackedColorArray(0.21875, 0.316406, 0.875, 1, 1, 1, 1, 0)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_pc6oh"]
+gradient = SubResource("Gradient_xrsdo")
+width = 22
+height = 22
+fill = 1
+fill_from = Vector2(0.5, 0.5)
+
+[sub_resource type="Curve" id="Curve_s5sf8"]
+_data = [Vector2(0.562358, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="Gradient" id="Gradient_an2dp"]
+interpolation_mode = 1
+offsets = PackedFloat32Array(0.450839, 0.683453)
+colors = PackedColorArray(0.296875, 0.414063, 0.898438, 1, 1, 1, 1, 0)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_hv1on"]
+gradient = SubResource("Gradient_an2dp")
+width = 26
+height = 26
+fill = 1
+fill_from = Vector2(0.5, 0.5)
+
+[sub_resource type="Gradient" id="Gradient_t1e07"]
+interpolation_mode = 1
+offsets = PackedFloat32Array(0.552632, 0.683453)
+colors = PackedColorArray(0.386719, 0.539063, 0.996094, 1, 1, 1, 1, 0)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_eebk2"]
+gradient = SubResource("Gradient_t1e07")
+width = 28
+height = 28
+fill = 1
+fill_from = Vector2(0.5, 0.5)
+
+[sub_resource type="Gradient" id="Gradient_bkjah"]
+interpolation_mode = 1
+offsets = PackedFloat32Array(0, 0.671463)
+colors = PackedColorArray(0.1875, 0.269531, 0.746094, 1, 1, 1, 1, 0)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_mkfb5"]
+gradient = SubResource("Gradient_bkjah")
+width = 32
+height = 32
+fill = 1
+fill_from = Vector2(0.5, 0.5)
+metadata/_snap_enabled = true
+
+[node name="Node2D" type="Node2D"]
+
+[node name="Camera2D" type="Camera2D" parent="."]
+
+[node name="Node2D" type="Node2D" parent="."]
+
+[node name="TrailEffect" type="Line2D" parent="Node2D"]
+texture_repeat = 2
+position = Vector2(-158.74, -50.7968)
+points = PackedVector2Array(0, 0, 5, 0)
+width = 5.0
+texture = SubResource("GradientTexture2D_w7lrr")
+texture_mode = 1
+script = ExtResource("1_dxjsd")
+max_length = 15
+
+[node name="Node2D2" type="Node2D" parent="."]
+position = Vector2(0.227028, 0.181473)
+
+[node name="CPUParticles2D4" type="CPUParticles2D" parent="Node2D2"]
+z_index = 3
+amount = 15
+lifetime = 0.5
+speed_scale = 0.25
+texture = SubResource("GradientTexture2D_pc6oh")
+emission_shape = 1
+emission_sphere_radius = 2.5
+gravity = Vector2(0, 0)
+scale_amount_curve = SubResource("Curve_s5sf8")
+hue_variation_min = -0.46
+hue_variation_max = 1.0
+
+[node name="CPUParticles2D3" type="CPUParticles2D" parent="Node2D2"]
+z_index = 2
+amount = 15
+lifetime = 0.5
+speed_scale = 0.25
+texture = SubResource("GradientTexture2D_hv1on")
+emission_shape = 1
+emission_sphere_radius = 2.5
+gravity = Vector2(0, 0)
+scale_amount_curve = SubResource("Curve_s5sf8")
+hue_variation_min = -0.46
+hue_variation_max = 1.0
+
+[node name="CPUParticles2D" type="CPUParticles2D" parent="Node2D2"]
+z_index = 1
+amount = 15
+lifetime = 0.5
+speed_scale = 0.25
+texture = SubResource("GradientTexture2D_eebk2")
+emission_shape = 1
+emission_sphere_radius = 2.5
+gravity = Vector2(0, 0)
+scale_amount_curve = SubResource("Curve_s5sf8")
+hue_variation_min = -0.46
+hue_variation_max = 1.0
+
+[node name="CPUParticles2D2" type="CPUParticles2D" parent="Node2D2"]
+amount = 15
+lifetime = 0.5
+speed_scale = 0.25
+texture = SubResource("GradientTexture2D_mkfb5")
+emission_shape = 1
+emission_sphere_radius = 2.5
+gravity = Vector2(0, 0)
+scale_amount_curve = SubResource("Curve_s5sf8")
+hue_variation_min = -0.46
+hue_variation_max = 1.0
