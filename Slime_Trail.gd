@@ -8,23 +8,32 @@ extends AbilityAction
 @export var pool_scale_curve : Curve
 @export var pool_particles : Array[CPUParticles2D]
 @export var auto_start : bool
+@export var auto_fade : bool
 @export var damage_time : float
 @export var colliderShape : CollisionShape2D
+@export var bubbleColor : Color
 var created_bubbles : Array
 var entered_bodies : Dictionary
 var current_size:Vector2	
 
 func _ready():
-	var p_prng = PRNG.new(9091023)
-	_setup(data,Vector2.ZERO,get_parent(),null,Vector2.ZERO,p_prng)
-
+	if(auto_start):
+		var p_prng = PRNG.new(9091023)
+		_setup(Vector2.ZERO,get_parent(),Vector2.ZERO,p_prng)
+func _fade():
+	if(auto_fade):
+		super()
+	else:
+		return
 func _on_setup():
+	super()
 	scale = Vector2.ZERO
 	current_size.x = prng.range_f_v(scaleRange)
 	current_size.y = prng.range_f_v(scaleRange)
 	damage_time = 1.0 /  data.speed
 	scale_pool()
-	pool_timer.timeout.connect(remove_pool)
+	if(!auto_start):
+		pool_timer.timeout.connect(remove_pool)
 	
 func scale_pool():
 	var scale_tween = get_tree().create_tween()
@@ -39,6 +48,7 @@ func scale_pool():
 func _on_pool_start():
 	create_bubbles()
 func remove_pool():
+	print("REMOVING POOL")
 	var remove_tween = get_tree().create_tween()
 	remove_tween.tween_method(func(x):
 		var clr = Color(1,1,1,x)
@@ -48,18 +58,17 @@ func remove_pool():
 		,1.0,0.0,0.5)
 	remove_tween.tween_callback(func(): queue_free())
 	
-func _OnHit(collision):
-	if(isHit): return
-	isHit = true
-func _ApplyDamage(collision):
+func _ApplyDamage(collision,is_cast=false):
 	var hit = super(collision)
 	if(hit != null && entered_bodies.has(collision)):
 		entered_bodies[collision]= hit
 func apply_damage_on_enter(body):
-	var hit = body.get_node_or_null("Collider")
+	var hit = body.get_node_or_null("Hittable")
 	if(hit is Hittable):
 		entered_bodies[body] = hit
-		hit.OnHit.emit(-damage)
+		hit_pos = body.global_position
+		_ShowHit()
+		hit.OnHit.emit(damage,user)
 		
 func _physics_process(delta):
 	super(delta)
@@ -72,7 +81,7 @@ func _process(delta):
 		for key in entered_bodies.keys():
 			var value = entered_bodies[key]
 			if(value != null):
-				value.OnHit.emit(-damage)
+				value.OnHit.emit(damage,user)
 		damage_time =  1.0 /  data.speed	
 
 func on_exit(body):
@@ -85,6 +94,7 @@ func create_bubbles():
 	#print("size: ", current_size)
 	while(created_bubbles.size() < amount_bubbles):
 		var bubble = bubble_node.instantiate()
+		bubble.modulate = bubbleColor
 		add_child(bubble)
 		created_bubbles.append(bubble)
 	

@@ -3,12 +3,14 @@ extends MovableAbilityaction
 @export var animPlayer : AnimationPlayer
 @export var spawn_points : Array[Marker2D]
 @export var slime_particle : PackedScene
-@export var amount_loops : int
+@export var amount_loops : float
+@export var per_loops : float
 
-var current_loops : int
+var current_loops : float
 var saved_direction
 var reflected_direction
 var reflect_tween : Tween
+
 func _on_setup():
 	super()
 	current_loops = 0
@@ -25,11 +27,10 @@ func add_loop():
 
 
 
-func _OnHit(collision):
+func _OnHit(collision,is_cast=false):
 	if(isHit):
 		return
-	super(collision)
-	_ApplyDamage(collision)
+	super(collision,is_cast)
 	if(collision is KinematicCollision2D):
 		#var reflect = collision.get_remainder().bounce(collision.get_normal())
 		var reflect = direction.bounce(collision.get_normal())
@@ -41,17 +42,24 @@ func reflect():
 		reflect_tween.kill()
 	var duration = prng.range_f(0.5,1.5)
 	reflect_tween = get_tree().create_tween()
-	reflect_tween.tween_method(set_direction,Vector2.ZERO,reflected_direction,duration)
-	reflect_tween.tween_method(set_direction,Vector2.ZERO,-reflected_direction,duration)
-	
+	#reflect_tween.tween_method(set_direction,Vector2.ZERO,reflected_direction,duration)
+	#reflect_tween.tween_method(set_direction,Vector2.ZERO,-reflected_direction,duration)
+	reflect_tween.tween_callback(func():
+		set_direction(reflected_direction))
+	reflect_tween.tween_interval(duration)
+	reflect_tween.tween_callback(func():
+		set_direction(-reflected_direction)
+		isHit = false)
 
 func set_direction(dir):
 	direction = dir
 
 func create_slime_particle(spawn_index: int,move_dir:Vector2):
+	if(fmod(current_loops,per_loops) != 0.0):
+		return
 	var spawn_node = get_tree().root.get_child(0)
 	var slime = slime_particle.instantiate() as MovableAbilityaction
 	spawn_node.add_child(slime)
-	slime._setup(null,spawn_points[spawn_index].global_position,
-	user,mouseHandler,move_dir,prng)
+	slime._setup(spawn_points[spawn_index].global_position,
+	user,move_dir,prng)
 	slime.damage = data.damage / spawn_points.size()

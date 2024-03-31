@@ -1,7 +1,10 @@
-[gd_resource type="AnimationNodeBlendTree" load_steps=26 format=3 uid="uid://dwagnu1kpo72l"]
+[gd_resource type="AnimationNodeBlendTree" load_steps=28 format=3 uid="uid://dwagnu1kpo72l"]
 
 [sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_sg8f2"]
 animation = &"Spinner"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_s1f6m"]
+animation = &"Death"
 
 [sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_erm2w"]
 animation = &"Transform_Standing"
@@ -20,6 +23,8 @@ animation = &"Pierce"
 animation = &"FrontSlam"
 
 [sub_resource type="AnimationNodeAdd2" id="AnimationNodeAdd2_vsrtq"]
+
+[sub_resource type="AnimationNodeBlend2" id="AnimationNodeBlend2_mlq2p"]
 
 [sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_ijwri"]
 animation = &"Dodge"
@@ -65,56 +70,60 @@ animation = &"TurnRight"
 animation = &"Walking"
 
 [resource]
-graph_offset = Vector2(-342.163, 58.1825)
+graph_offset = Vector2(-249.209, 373.727)
 nodes/Animation/node = SubResource("AnimationNodeAnimation_k48p2")
 nodes/Animation/position = Vector2(-400, 260)
 "nodes/Animation 2/node" = SubResource("AnimationNodeAnimation_sg8f2")
-"nodes/Animation 2/position" = Vector2(-120, 480)
+"nodes/Animation 2/position" = Vector2(-400, 480)
+"nodes/Animation 3/node" = SubResource("AnimationNodeAnimation_s1f6m")
+"nodes/Animation 3/position" = Vector2(-400, 680)
 "nodes/Animation 4/node" = SubResource("AnimationNodeAnimation_erm2w")
-"nodes/Animation 4/position" = Vector2(-2580, -540)
+"nodes/Animation 4/position" = Vector2(-400, 900)
 "nodes/Animation 5/node" = SubResource("AnimationNodeAnimation_15jne")
-"nodes/Animation 5/position" = Vector2(-2400, -300)
+"nodes/Animation 5/position" = Vector2(-400, 1100)
 "nodes/Animation 6/node" = SubResource("AnimationNodeAnimation_8o8td")
-"nodes/Animation 6/position" = Vector2(600, 380)
+"nodes/Animation 6/position" = Vector2(-400, 1320)
 nodes/Attack/node = SubResource("AnimationNodeAnimation_kn2yw")
-nodes/Attack/position = Vector2(-640, 240)
+nodes/Attack/position = Vector2(-400, 1540)
 nodes/Aura/node = SubResource("AnimationNodeAdd2_vsrtq")
-nodes/Aura/position = Vector2(780, 180)
+nodes/Aura/position = Vector2(2000, 1660)
+nodes/Death/node = SubResource("AnimationNodeBlend2_mlq2p")
+nodes/Death/position = Vector2(2460, 1600)
 nodes/Dodge/node = SubResource("AnimationNodeAnimation_ijwri")
-nodes/Dodge/position = Vector2(-1220, -20)
+nodes/Dodge/position = Vector2(-400, 1740)
 nodes/FrontSlam/node = SubResource("AnimationNodeOneShot_f8ftv")
-nodes/FrontSlam/position = Vector2(-400, -20)
+nodes/FrontSlam/position = Vector2(1320, 1760)
 nodes/Idle/node = SubResource("AnimationNodeAnimation_cep3n")
-nodes/Idle/position = Vector2(-3040, -660)
+nodes/Idle/position = Vector2(-400, 1960)
 nodes/IdleToWalk/node = SubResource("AnimationNodeBlend2_lpk1b")
-nodes/IdleToWalk/position = Vector2(-2777.96, -588.239)
+nodes/IdleToWalk/position = Vector2(-60, 1920)
 nodes/LRAttack/node = SubResource("AnimationNodeAnimation_5mmvr")
-nodes/LRAttack/position = Vector2(-980, 60)
+nodes/LRAttack/position = Vector2(-400, 2160)
 nodes/LeftOrRight/node = SubResource("AnimationNodeBlend2_qxjwy")
-nodes/LeftOrRight/position = Vector2(1160, 580)
+nodes/LeftOrRight/position = Vector2(-60, 2560)
 nodes/Pierce/node = SubResource("AnimationNodeOneShot_pf2t3")
-nodes/Pierce/position = Vector2(-180, 0)
+nodes/Pierce/position = Vector2(1540, 1720)
 nodes/Roll/node = SubResource("AnimationNodeAnimation_58h1v")
-nodes/Roll/position = Vector2(-1400, -60)
+nodes/Roll/position = Vector2(-400, 2380)
 nodes/Sweep/node = SubResource("AnimationNodeOneShot_woilw")
-nodes/Sweep/position = Vector2(60, 200)
+nodes/Sweep/position = Vector2(1780, 1700)
 nodes/Transform/node = SubResource("AnimationNodeOneShot_k8wsf")
-nodes/Transform/position = Vector2(-2160, -680)
+nodes/Transform/position = Vector2(160, 1900)
 nodes/TransformBack/node = SubResource("AnimationNodeOneShot_fnjcd")
-nodes/TransformBack/position = Vector2(-1920, -460)
+nodes/TransformBack/position = Vector2(380, 1860)
 nodes/Turn/node = SubResource("AnimationNodeAdd2_ta8on")
-nodes/Turn/position = Vector2(1400, 80)
+nodes/Turn/position = Vector2(2240, 1640)
 nodes/TurnLeft/node = SubResource("AnimationNodeAnimation_hblmp")
-nodes/TurnLeft/position = Vector2(920, 460)
+nodes/TurnLeft/position = Vector2(-400, 2600)
 nodes/TurnRight/node = SubResource("AnimationNodeAnimation_gcbxe")
-nodes/TurnRight/position = Vector2(940, 680)
+nodes/TurnRight/position = Vector2(-400, 2800)
 nodes/UseDodge/node = SubResource("AnimationNodeOneShot_uaafg")
-nodes/UseDodge/position = Vector2(-900, -160)
+nodes/UseDodge/position = Vector2(860, 1820)
 nodes/UseLRAttack/node = SubResource("AnimationNodeOneShot_1s5tf")
-nodes/UseLRAttack/position = Vector2(-640, 0)
+nodes/UseLRAttack/position = Vector2(1080, 1780)
 nodes/UseRoll/node = SubResource("AnimationNodeOneShot_fvc5j")
-nodes/UseRoll/position = Vector2(-1200, -260)
+nodes/UseRoll/position = Vector2(640, 1840)
 nodes/Walk/node = SubResource("AnimationNodeAnimation_k4efp")
-nodes/Walk/position = Vector2(-2940, -500)
-nodes/output/position = Vector2(2120, 60)
-node_connections = [&"Aura", 0, &"Sweep", &"Aura", 1, &"Animation 6", &"FrontSlam", 0, &"UseLRAttack", &"FrontSlam", 1, &"Attack", &"IdleToWalk", 0, &"Idle", &"IdleToWalk", 1, &"Walk", &"LeftOrRight", 0, &"TurnLeft", &"LeftOrRight", 1, &"TurnRight", &"Pierce", 0, &"FrontSlam", &"Pierce", 1, &"Animation", &"Sweep", 0, &"Pierce", &"Sweep", 1, &"Animation 2", &"Transform", 0, &"IdleToWalk", &"Transform", 1, &"Animation 4", &"TransformBack", 0, &"Transform", &"TransformBack", 1, &"Animation 5", &"Turn", 0, &"Aura", &"Turn", 1, &"LeftOrRight", &"UseDodge", 0, &"UseRoll", &"UseDodge", 1, &"Dodge", &"UseLRAttack", 0, &"UseDodge", &"UseLRAttack", 1, &"LRAttack", &"UseRoll", 0, &"TransformBack", &"UseRoll", 1, &"Roll", &"output", 0, &"Turn"]
+nodes/Walk/position = Vector2(-400, 3020)
+nodes/output/position = Vector2(2700, 1620)
+node_connections = [&"Aura", 0, &"Sweep", &"Aura", 1, &"Animation 6", &"Death", 0, &"Turn", &"Death", 1, &"Animation 3", &"FrontSlam", 0, &"UseLRAttack", &"FrontSlam", 1, &"Attack", &"IdleToWalk", 0, &"Idle", &"IdleToWalk", 1, &"Walk", &"LeftOrRight", 0, &"TurnLeft", &"LeftOrRight", 1, &"TurnRight", &"Pierce", 0, &"FrontSlam", &"Pierce", 1, &"Animation", &"Sweep", 0, &"Pierce", &"Sweep", 1, &"Animation 2", &"Transform", 0, &"IdleToWalk", &"Transform", 1, &"Animation 4", &"TransformBack", 0, &"Transform", &"TransformBack", 1, &"Animation 5", &"Turn", 0, &"Aura", &"Turn", 1, &"LeftOrRight", &"UseDodge", 0, &"UseRoll", &"UseDodge", 1, &"Dodge", &"UseLRAttack", 0, &"UseDodge", &"UseLRAttack", 1, &"LRAttack", &"UseRoll", 0, &"TransformBack", &"UseRoll", 1, &"Roll", &"output", 0, &"Death"]

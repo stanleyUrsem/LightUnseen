@@ -1,6 +1,9 @@
-extends Resource
+extends SkillData
 
 class_name PassiveData
+
+@export var has_condition : bool
+@export var delay : float
 
 @export var damage_increase : float
 @export_range(0,100) var damage_increase_percentage : float

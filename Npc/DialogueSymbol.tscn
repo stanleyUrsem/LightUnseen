@@ -1,0 +1,73 @@
+[gd_scene load_steps=9 format=3 uid="uid://wkasc01p3c5y"]
+
+[ext_resource type="Theme" uid="uid://8oe8akinpd2h" path="res://UI/UI_default.tres" id="1_u4j8y"]
+[ext_resource type="Shader" path="res://swap_color.gdshader" id="2_2du6w"]
+[ext_resource type="Texture2D" uid="uid://c5jxxtp0an06n" path="res://Npc/npc_grad.png" id="3_2jjso"]
+[ext_resource type="Texture2D" uid="uid://b5xrieew6lrk8" path="res://UI/Skills.png" id="4_5623b"]
+
+[sub_resource type="Gradient" id="Gradient_o4qsp"]
+interpolation_mode = 1
+interpolation_color_space = 1
+offsets = PackedFloat32Array(0, 0.0555556, 0.111111, 0.166667, 0.222222, 0.277778, 0.333333, 0.388889, 0.444444, 0.5, 0.555556, 0.611111, 0.666667, 0.722222, 0.777778, 0.833333, 0.888889, 0.944444)
+colors = PackedColorArray(0, 0, 0, 0, 0.0768358, 0.0768358, 0.0768358, 1, 0.122252, 0.122252, 0.122252, 1, 0.733005, 0.733005, 0.733005, 1, 0.427493, 0.427493, 0.427493, 1, 0.176419, 0.176419, 0.176419, 1, 0.129558, 0.129559, 0.129558, 1, 0.252028, 0.252028, 0.252028, 1, 0.349081, 0.345, 0.32311, 1, 0.301961, 0.184314, 0.145098, 1, 0.360784, 0.231373, 0.172549, 1, 0.2, 0.129412, 0.0941176, 1, 0.321569, 0.207843, 0.152941, 1, 0.137255, 0.6, 0.352941, 1, 0.14902, 0.658824, 0.388235, 1, 0.0705882, 0.0470588, 0.0431373, 1, 0.0705882, 0.0470588, 0.0352941, 1, 0.101961, 0.0784314, 0.0666667, 1)
+metadata/_snap_count = 18
+metadata/_snap_enabled = true
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_bkj7j"]
+gradient = SubResource("Gradient_o4qsp")
+width = 18
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_be4qn"]
+shader = ExtResource("2_2du6w")
+shader_parameter/alpha_override = 1.0
+shader_parameter/num_colors = 18
+shader_parameter/precision = 0.0
+shader_parameter/index = null
+shader_parameter/palette_in = ExtResource("3_2jjso")
+shader_parameter/palette_out = SubResource("GradientTexture1D_bkj7j")
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_kk42d"]
+atlas = ExtResource("4_5623b")
+region = Rect2(0, 128, 32, 32)
+
+[node name="ConvSymbol" type="PanelContainer"]
+self_modulate = Color(1, 1, 1, 0)
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_right = -1884.0
+offset_bottom = -1044.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("1_u4j8y")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+layout_mode = 2
+
+[node name="AspectRatioContainer" type="AspectRatioContainer" parent="VBoxContainer"]
+layout_mode = 2
+
+[node name="TextureRect" type="TextureRect" parent="VBoxContainer/AspectRatioContainer"]
+material = SubResource("ShaderMaterial_be4qn")
+layout_mode = 2
+texture = SubResource("AtlasTexture_kk42d")
+
+[node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer"]
+layout_mode = 2
+
+[node name="Control2" type="Control" parent="VBoxContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_stretch_ratio = 0.5
+
+[node name="Button" type="Button" parent="VBoxContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+disabled = true
+button_mask = 0
+text = "R"
+
+[node name="Control" type="Control" parent="VBoxContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_stretch_ratio = 0.5

@@ -5,10 +5,8 @@ extends TileManager
 @export var offset_radius : float
 @export var amount : int
 @export var safe_loops : int
-var prng : PRNG
 var current_index
 func _preload_scene():
-	prng = PRNG.new(RandomNumberGenerator.new().randf_range(-999,999))
 	tile = preload("res://Maps/grass.tscn")
 func _create_tiles():
 	for i in amount:
@@ -35,6 +33,10 @@ func _create_tile(tilePos,layer):
 	if(current_index == 0):
 		super(tilePos,layer)
 		created_tile.setup(prng.range_f(-99,99),prng.range_i_mn(4,7))
+		var resource_amount = prng.range_i_mn(2,5)
+		created_tile.set_meta("resource_amount", resource_amount)
+
+		created_tile.OnPickUp.connect(_erase_tile)
 		return
 		
 	if(prng.value() >= (1.0-chance)):
@@ -57,6 +59,10 @@ func _create_tile(tilePos,layer):
 		if(check_other_layers(tilePos+offset_i,layer)):
 			print("This should not be called")
 		created_tile.setup(prng.range_f(-99,99),prng.range_i_mn(4,7))
-		created_tile.position += Vector2(offset_i)
+		created_tile.global_position += Vector2(offset_i)
 		created_tile.scale = Vector2(1.0,1.0) * prng.range_f(scale_range.x,scale_range.y)
-	
+		var resource_amount = prng.range_i_mn(2,5)
+		created_tile.set_meta("resource_amount", resource_amount)
+
+		created_tile.OnPickUp.connect(_erase_tile)
+		

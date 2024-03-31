@@ -1,0 +1,13 @@
+[gd_scene load_steps=4 format=3 uid="uid://cijb0sp4oe3fv"]
+
+[ext_resource type="PackedScene" uid="uid://ctpjb7ikc0cd8" path="res://Character/slime_particle.tscn" id="1_olba3"]
+[ext_resource type="Material" uid="uid://vkas5ib21cmi" path="res://Mobs/Textures/Slime/slime_mat.tres" id="2_uhs67"]
+[ext_resource type="Script" path="res://MovableSkill.gd" id="3_hw0hv"]
+
+[node name="Slime_Particle" instance=ExtResource("1_olba3")]
+material = ExtResource("2_uhs67")
+collision_mask = 17
+script = ExtResource("3_hw0hv")
+
+[node name="SlimeArea" parent="." index="0"]
+use_parent_material = true

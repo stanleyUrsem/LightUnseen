@@ -1,0 +1,48 @@
+[gd_scene load_steps=3 format=3 uid="uid://dkiansib7q7f4"]
+
+[ext_resource type="Theme" uid="uid://8oe8akinpd2h" path="res://UI/UI_default.tres" id="1_fnqmx"]
+[ext_resource type="Script" path="res://UI/notification.gd" id="2_g1cny"]
+
+[node name="Control" type="Control" node_paths=PackedStringArray("label")]
+layout_mode = 3
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -60.0
+offset_top = -5.0
+offset_right = 60.0
+offset_bottom = 5.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 4
+theme = ExtResource("1_fnqmx")
+script = ExtResource("2_g1cny")
+label = NodePath("PanelContainer/RichTextLabel")
+
+[node name="PanelContainer" type="PanelContainer" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -6.6175
+offset_top = -6.0
+offset_right = 6.6175
+offset_bottom = 6.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 3
+size_flags_vertical = 4
+theme = ExtResource("1_fnqmx")
+theme_type_variation = &"PanelVariant"
+
+[node name="RichTextLabel" type="RichTextLabel" parent="PanelContainer"]
+layout_mode = 2
+bbcode_enabled = true
+fit_content = true
+scroll_active = false
+autowrap_mode = 0
+shortcut_keys_enabled = false

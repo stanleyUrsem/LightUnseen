@@ -1,5 +1,5 @@
 
-extends "res://Abilities/SkillData.gd"
+extends SkillData
 class_name AbilityData
 
 @export var keyBinds : Array[String]
@@ -15,11 +15,13 @@ enum AnimationNodeType {ONESHOT,BLEND,ADD}
 
 @export var animOnly : bool
 @export var damage : float
+@export var mana : float
 @export var speed : float
 @export var useMouseAim : bool
 @export var toggle : bool
 @export var hold : bool
 @export var hold_index : int
+@export var hotkey_index : int
 
 @export var rotateToMouse : bool
 #< == > 

@@ -11,7 +11,6 @@ radius = 14.0357
 y_sort_enabled = true
 script = ExtResource("1_lalek")
 bubble_path = "res://Mobs/Textures/Slime/bubble.tscn"
-slime_edge = "res://slime_area.tscn"
 slime_area_path = "res://Mobs/Textures/Slime/sion_slime_area.tres"
 max_expand = 2.0
 expand_duration = 0.1

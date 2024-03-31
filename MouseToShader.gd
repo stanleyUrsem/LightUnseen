@@ -1,27 +1,31 @@
-extends Sprite2D
+extends Node2D
 
 @export var mouse_handler : MouseHandler
-@export var user : Node2D
-@export var mat_nodes : Array[Node2D]
+@export var user : Node
+@export var mat_nodes : Array[Node]
 var mats : Array[Material]
+
+var mouseGlobalPos : Vector2
+var direction : Vector2
+
 func _ready():
 	for node in mat_nodes:
 		mats.append(node.get_material())
-#	mats = get_material()
-	mouse_handler = get_node("/root/MAIN/Camera2D")
-
+		
 func _process(delta):
+	mouseGlobalPos = get_global_mouse_position()
+	
 	if(user== null):
 		return
-	var direction = HelperFunctions.get_mouse_direction(user,mouse_handler)
+	direction = get_mouse_direction() * get_parent().scale
 	
 	for mat in mats:
-		mat.set_shader_parameter("mouse_dir", direction * get_parent().scale)
+		mat.set_shader_parameter("mouse_dir", direction )
 		
 	
 func get_mouse_direction()-> Vector2:
-	var mousePos = mouse_handler.mouseGlobalPos
-	var pos = user.position
+	var mousePos = mouseGlobalPos
+	var pos = user.global_position
 #	print(" ")
 #	print("Mouse: ",mouse_handler.mouseClickPos)
 #	print("Mouse Motion: ",mouse_handler.mouseMotionPos)

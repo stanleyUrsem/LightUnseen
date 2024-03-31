@@ -52,7 +52,14 @@ func weighted_range(weightedtable : Array[WeightedTuple]):
 	var x = range_i_mn(0,sumOfWeight)
 	return look_up_value(weightedtable,x)
 
-
+func random_unit_circle_random_degrees(inside,degrees_range)-> Vector2:
+	var theta = lerp(degrees_range.x,degrees_range.y,value())
+	var radius = value()
+	
+	if(inside):
+		return Vector2(radius * cos(theta),radius * sin(theta))
+	else:
+		return Vector2(cos(theta),sin(theta))
 
 func random_unit_circle(inside)-> Vector2:
 	var theta = lerp(0.0,360.0,value())
@@ -93,7 +100,7 @@ func random_torus(amountSpheres,outerRadius,innerRadius, inside)-> Vector2:
 
 
 func random_element(array):
-	return array[range_i_mn(0,array.size())]
+	return array[range_i_mn(0,array.size()-1)]
 
 
 

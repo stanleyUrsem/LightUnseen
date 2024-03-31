@@ -1,0 +1,33 @@
+[gd_resource type="ShaderMaterial" load_steps=4 format=3 uid="uid://dudlqxdmi4yry"]
+
+[ext_resource type="Shader" path="res://UI/health_bar.gdshader" id="1_cwjl3"]
+[ext_resource type="Texture2D" uid="uid://bxkpior6fg3cj" path="res://UI/health_fill.png" id="2_yv2d0"]
+[ext_resource type="Texture2D" uid="uid://cv7ouy5kh041t" path="res://UI/health_back.png" id="3_mpl51"]
+
+[resource]
+resource_local_to_scene = true
+shader = ExtResource("1_cwjl3")
+shader_parameter/color = Color(0.572549, 0, 0, 1)
+shader_parameter/resolution = 1.6
+shader_parameter/size = 0.4
+shader_parameter/resolution_under = 0.0
+shader_parameter/division_under = -1.0
+shader_parameter/step_under = 0.02
+shader_parameter/step_sdf = 2.95
+shader_parameter/pixel_size = 25.0
+shader_parameter/backFill_brightness = 0.9
+shader_parameter/fV = 0.845
+shader_parameter/fVx = 1.0
+shader_parameter/under_mult = 1.0
+shader_parameter/big_wave_freq_range = Vector2(0.145, 0.2)
+shader_parameter/big_wave_amp_range = Vector2(0.155, 0.025)
+shader_parameter/main_wave_freq_range = Vector2(0.025, 0.15)
+shader_parameter/main_wave_amp_range = Vector2(0.02, 0.002)
+shader_parameter/under_region_origin = Vector2(0, 0)
+shader_parameter/under_region_size = Vector2(1, 1)
+shader_parameter/under_atlas_size = Vector2(1, 1)
+shader_parameter/over_region_origin = null
+shader_parameter/over_region_size = Vector2(1, 1)
+shader_parameter/over_atlas_size = Vector2(1, 1)
+shader_parameter/under = ExtResource("3_mpl51")
+shader_parameter/over = ExtResource("2_yv2d0")

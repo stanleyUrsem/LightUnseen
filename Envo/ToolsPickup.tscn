@@ -1,0 +1,28 @@
+[gd_scene load_steps=5 format=3 uid="uid://hjpvhnb6a7bb"]
+
+[ext_resource type="PackedScene" uid="uid://dukvne4q1byuu" path="res://Envo/pickup.tscn" id="1_80b4s"]
+[ext_resource type="Script" path="res://Envo/ToolsPickup.gd" id="2_w23lo"]
+[ext_resource type="Texture2D" uid="uid://cgt4u6x0ednng" path="res://Envo/pickups.png" id="3_3f1pe"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ksq83"]
+size = Vector2(29.0548, 22.197)
+
+[node name="Tools" instance=ExtResource("1_80b4s")]
+script = ExtResource("2_w23lo")
+
+[node name="Sprite2D" parent="." index="0"]
+position = Vector2(-3.12167, 3.56762)
+texture = ExtResource("3_3f1pe")
+hframes = 3
+vframes = 2
+
+[node name="Sprite2D2" type="Sprite2D" parent="." index="1"]
+position = Vector2(9.43933, 1.33786)
+texture = ExtResource("3_3f1pe")
+hframes = 3
+vframes = 2
+frame = 1
+
+[node name="CollisionShape2D" parent="." index="2"]
+position = Vector2(4.52738, 1.09852)
+shape = SubResource("RectangleShape2D_ksq83")

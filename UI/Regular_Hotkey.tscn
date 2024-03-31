@@ -1,7 +1,7 @@
 [gd_scene load_steps=6 format=3 uid="uid://ciorncioitqgm"]
 
 [ext_resource type="Script" path="res://UI/HotkeyData.gd" id="1_bscai"]
-[ext_resource type="Texture2D" uid="uid://7k3g4luofu1" path="res://UI/Skills.png" id="1_mc777"]
+[ext_resource type="Texture2D" uid="uid://b5xrieew6lrk8" path="res://UI/Skills.png" id="1_mc777"]
 [ext_resource type="Theme" uid="uid://8oe8akinpd2h" path="res://UI/UI_default.tres" id="2_inc16"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_o5thb"]
@@ -12,19 +12,25 @@ region = Rect2(0, 0, 32, 32)
 atlas = ExtResource("1_mc777")
 region = Rect2(128, 64, 32, 32)
 
-[node name="Regular" type="AspectRatioContainer"]
-offset_right = 128.0
-offset_bottom = 128.0
-size_flags_horizontal = 3
-size_flags_vertical = 3
+[node name="Regular" type="AspectRatioContainer" node_paths=PackedStringArray("icon")]
+offset_right = 64.0
+offset_bottom = 64.0
+size_flags_horizontal = 2
+size_flags_vertical = 2
 size_flags_stretch_ratio = 0.25
+theme = ExtResource("2_inc16")
 script = ExtResource("1_bscai")
+icon = NodePath("Background/Icon")
+available = Color(1.2, 1.2, 1.2, 1)
+unavailable = Color(0.282353, 0.282353, 0.282353, 1)
 
 [node name="Background" type="TextureRect" parent="."]
+self_modulate = Color(0.75, 0.75, 0.75, 1)
 layout_mode = 2
 texture = SubResource("AtlasTexture_o5thb")
 
 [node name="Icon" type="TextureRect" parent="Background"]
+self_modulate = Color(1.2, 1.2, 1.2, 1)
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -57,11 +63,14 @@ size_flags_vertical = 3
 size_flags_stretch_ratio = 0.15
 
 [node name="Keybind" type="RichTextLabel" parent="Background/H/V"]
+self_modulate = Color(0.75, 0.75, 0.75, 1)
 clip_contents = false
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 4
 theme = ExtResource("2_inc16")
+theme_override_constants/outline_size = 0
+theme_override_font_sizes/normal_font_size = 8
 bbcode_enabled = true
 text = "L-STICK UP+ [color=#87D638]A[/color]"
 fit_content = true

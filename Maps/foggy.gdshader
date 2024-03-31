@@ -5,6 +5,7 @@ uniform int height;
 uniform int new_height;
 uniform float transition;
 uniform sampler2D gradient;
+varying vec4 modulate;
 float easeInOutCubic(float x) 
 {
 	return x < 0.5 ? 4.0 * x * x * x : 1.0 - pow(-2.0 * x + 2.0, 3.0) / 2.0;
@@ -50,7 +51,11 @@ vec4 adjustUv(vec2 uv,float minUv, float maxUv, vec4 signUv, int index)
 	
 	return  textureLod(gradient,(vec2(uv.x,fullUv)),0) * uvStep;	
 }
-
+void vertex()
+{
+	modulate = COLOR;
+	
+}
 void fragment() {
 	// Place fragment code here.
 	
@@ -70,7 +75,8 @@ void fragment() {
 //	float y = uv1;
 //	vec4 clr1 =  textureLod(gradient,(vec2(UV.x,uv1)),0);
 //	COLOR = vec4(y,y,y,1);
-	COLOR = clr1+clr2+clr3+clr4;
+	COLOR = (clr1+clr2+clr3+clr4);
+	COLOR *= modulate;
 //	COLOR = clr1+clr2;
 //	COLOR= textureLod(gradient,(vec2(UV.x, y)),0);
 	//COLOR= textureLod(gradient,(vec2(UV)),0);

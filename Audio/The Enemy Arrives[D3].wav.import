@@ -1,0 +1,24 @@
+[remap]
+
+importer="wav"
+type="AudioStreamWAV"
+uid="uid://ccte5xm41qb2y"
+path="res://.godot/imported/The Enemy Arrives[D3].wav-8a5239c2543673449610cf971100ca81.sample"
+
+[deps]
+
+source_file="res://Audio/The Enemy Arrives[D3].wav"
+dest_files=["res://.godot/imported/The Enemy Arrives[D3].wav-8a5239c2543673449610cf971100ca81.sample"]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop_mode=0
+edit/loop_begin=0
+edit/loop_end=-1
+compress/mode=0

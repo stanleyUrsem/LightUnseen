@@ -1,0 +1,22 @@
+[gd_scene load_steps=4 format=3 uid="uid://dypygfriyagwn"]
+
+[ext_resource type="PackedScene" uid="uid://dukvne4q1byuu" path="res://Envo/pickup.tscn" id="1_0xwv5"]
+[ext_resource type="Material" uid="uid://dlo3kh48c6xhw" path="res://Maps/Particles.tres" id="2_56lgc"]
+[ext_resource type="Texture2D" uid="uid://cgt4u6x0ednng" path="res://Envo/pickups.png" id="2_aa51y"]
+
+[node name="Node2D" node_paths=PackedStringArray("animPlayer") instance=ExtResource("1_0xwv5")]
+material = ExtResource("2_56lgc")
+collision_mask = 16
+monitoring = false
+type = 1
+animPlayer = NodePath("AnimationPlayer")
+
+[node name="Sprite2D" parent="." index="0"]
+use_parent_material = true
+texture = ExtResource("2_aa51y")
+hframes = 3
+vframes = 2
+frame = 4
+
+[node name="CollisionShape2D" parent="." index="1"]
+visible = false

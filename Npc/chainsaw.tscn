@@ -1,0 +1,37 @@
+[gd_scene load_steps=4 format=3 uid="uid://gvcqp7ly1grr"]
+
+[ext_resource type="Script" path="res://Npc/DynamicAnimSpriteWithEnd.gd" id="1_cai8x"]
+[ext_resource type="PackedScene" uid="uid://0gm4x5jo4ix5" path="res://Npc/chainsaw_sprite.tscn" id="2_jqpjt"]
+[ext_resource type="Texture2D" uid="uid://c5rakthphg8f1" path="res://Npc/reginald.png" id="2_mst1g"]
+
+[node name="chainsaw" type="StaticBody2D" node_paths=PackedStringArray("rotationHolders", "col_parent", "fadeTimer", "body")]
+collision_layer = 64
+collision_mask = 16
+script = ExtResource("1_cai8x")
+end_frame = "chain_saw_end"
+rotationHolders = [NodePath("0"), NodePath("90"), NodePath("180"), NodePath("270")]
+animSpriteTemplate = ExtResource("2_jqpjt")
+animation_name = "chain_saw"
+col_parent = NodePath(".")
+offset = Vector2(0, 1)
+fadeTimer = NodePath("Timer")
+body = NodePath(".")
+
+[node name="0" type="Node2D" parent="."]
+
+[node name="90" type="Node2D" parent="."]
+rotation = 1.5708
+
+[node name="180" type="Node2D" parent="."]
+rotation = -3.14159
+
+[node name="270" type="Node2D" parent="."]
+rotation = -1.5708
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("2_mst1g")
+hframes = 10
+vframes = 9
+frame = 23
+
+[node name="Timer" type="Timer" parent="."]

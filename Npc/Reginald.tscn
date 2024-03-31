@@ -1,0 +1,457 @@
+[gd_scene load_steps=50 format=3 uid="uid://cvh0oggiq2or1"]
+
+[ext_resource type="PackedScene" uid="uid://cyykl3v265n8g" path="res://Npc/Farmer.tscn" id="1_r5mj0"]
+[ext_resource type="Material" uid="uid://cnbo7g8vbwquo" path="res://Npc/Reginald_Shader.tres" id="2_esd33"]
+[ext_resource type="Texture2D" uid="uid://c5rakthphg8f1" path="res://Npc/reginald.png" id="5_7r2gp"]
+[ext_resource type="Script" path="res://SkillStats.gd" id="5_obc6q"]
+[ext_resource type="Script" path="res://Npc/HostileNPC.gd" id="6_n7xhb"]
+[ext_resource type="Script" path="res://AnimationTransition.gd" id="6_qkddo"]
+[ext_resource type="Script" path="res://StatsResource.gd" id="7_tkfr1"]
+[ext_resource type="Theme" uid="uid://8oe8akinpd2h" path="res://UI/UI_default.tres" id="8_fkjeu"]
+
+[sub_resource type="Animation" id="Animation_yn8o3"]
+resource_name = "Bombs"
+length = 0.4
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 1,
+"values": [0, 20, 21, 22]
+}
+
+[sub_resource type="Animation" id="Animation_j2gnr"]
+resource_name = "Chainsaw"
+length = 0.4
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 1,
+"values": [0, 14, 15, 16]
+}
+
+[sub_resource type="Animation" id="Animation_3mwrt"]
+resource_name = "Death"
+
+[sub_resource type="Animation" id="Animation_cuasj"]
+resource_name = "Idle"
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.3, 0.4, 0.5, 0.6),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [0, 1, 2, 3, 4, 3]
+}
+
+[sub_resource type="Animation" id="Animation_xv16q"]
+resource_name = "LeftTurn"
+length = 0.1
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(-1, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_64ggj"]
+resource_name = "Orb"
+length = 0.4
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 1,
+"values": [0, 17, 18, 19]
+}
+
+[sub_resource type="Animation" id="Animation_byhlp"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Sprite2D:scale")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(-1, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_6pbk5"]
+resource_name = "RightTurn"
+length = 0.1
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(1, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_m2eah"]
+resource_name = "Still"
+length = 0.1
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+
+[sub_resource type="Animation" id="Animation_bikxy"]
+resource_name = "Walk"
+length = 0.6
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.4, 0.5),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [5, 6, 7, 8, 9, 10]
+}
+
+[sub_resource type="Animation" id="Animation_8ae0k"]
+resource_name = "laser"
+length = 0.4
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 1,
+"values": [0, 11, 12, 13]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_lmkmn"]
+_data = {
+"Bombs": SubResource("Animation_yn8o3"),
+"Chainsaw": SubResource("Animation_j2gnr"),
+"Death": SubResource("Animation_3mwrt"),
+"Idle": SubResource("Animation_cuasj"),
+"LeftTurn": SubResource("Animation_xv16q"),
+"Orb": SubResource("Animation_64ggj"),
+"RESET": SubResource("Animation_byhlp"),
+"RightTurn": SubResource("Animation_6pbk5"),
+"Still": SubResource("Animation_m2eah"),
+"Walk": SubResource("Animation_bikxy"),
+"laser": SubResource("Animation_8ae0k")
+}
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_lpuw8"]
+animation = &"laser"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_0di4g"]
+animation = &"Idle"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_12ibj"]
+animation = &"Walk"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_ch3cj"]
+animation = &"Still"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_vhq0x"]
+animation = &"Death"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_83n6n"]
+animation = &"Chainsaw"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_6y1ac"]
+animation = &"Bombs"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_n3ql4"]
+animation = &"Orb"
+
+[sub_resource type="AnimationNodeBlend2" id="AnimationNodeBlend2_wn5km"]
+
+[sub_resource type="AnimationNodeBlend2" id="AnimationNodeBlend2_8vlhw"]
+
+[sub_resource type="AnimationNodeBlend2" id="AnimationNodeBlend2_dsw0q"]
+
+[sub_resource type="AnimationNodeAdd2" id="AnimationNodeAdd2_7pr04"]
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_yx7t5"]
+animation = &"LeftTurn"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_iri7w"]
+animation = &"RightTurn"
+
+[sub_resource type="AnimationNodeBlend2" id="AnimationNodeBlend2_8u42j"]
+
+[sub_resource type="AnimationNodeOneShot" id="AnimationNodeOneShot_refww"]
+
+[sub_resource type="AnimationNodeOneShot" id="AnimationNodeOneShot_0uvsl"]
+
+[sub_resource type="AnimationNodeOneShot" id="AnimationNodeOneShot_6acma"]
+
+[sub_resource type="AnimationNodeOneShot" id="AnimationNodeOneShot_88re5"]
+
+[sub_resource type="AnimationNodeBlendTree" id="AnimationNodeBlendTree_awkl7"]
+graph_offset = Vector2(-387.548, 88.0464)
+nodes/Animation/node = SubResource("AnimationNodeAnimation_n3ql4")
+nodes/Animation/position = Vector2(-180, 260)
+"nodes/Animation 2/node" = SubResource("AnimationNodeAnimation_lpuw8")
+"nodes/Animation 2/position" = Vector2(-180, 140)
+"nodes/Animation 3/node" = SubResource("AnimationNodeAnimation_0di4g")
+"nodes/Animation 3/position" = Vector2(-720, -60)
+"nodes/Animation 4/node" = SubResource("AnimationNodeAnimation_12ibj")
+"nodes/Animation 4/position" = Vector2(-520, 60)
+"nodes/Animation 5/node" = SubResource("AnimationNodeAnimation_ch3cj")
+"nodes/Animation 5/position" = Vector2(-740, -200)
+"nodes/Animation 6/node" = SubResource("AnimationNodeAnimation_vhq0x")
+"nodes/Animation 6/position" = Vector2(1700, 260)
+"nodes/Animation 7/node" = SubResource("AnimationNodeAnimation_83n6n")
+"nodes/Animation 7/position" = Vector2(-180, 380)
+"nodes/Animation 8/node" = SubResource("AnimationNodeAnimation_6y1ac")
+"nodes/Animation 8/position" = Vector2(-180, 500)
+nodes/Death/node = SubResource("AnimationNodeBlend2_wn5km")
+nodes/Death/position = Vector2(1900, 80)
+nodes/LeftOrRight/node = SubResource("AnimationNodeBlend2_8vlhw")
+nodes/LeftOrRight/position = Vector2(1300, 500)
+nodes/StillToIdle/node = SubResource("AnimationNodeBlend2_dsw0q")
+nodes/StillToIdle/position = Vector2(-560, -200)
+nodes/Turn/node = SubResource("AnimationNodeAdd2_7pr04")
+nodes/Turn/position = Vector2(1460, 200)
+nodes/TurnLeft/node = SubResource("AnimationNodeAnimation_yx7t5")
+nodes/TurnLeft/position = Vector2(1080, 580)
+nodes/TurnRight/node = SubResource("AnimationNodeAnimation_iri7w")
+nodes/TurnRight/position = Vector2(1080, 700)
+nodes/Walk/node = SubResource("AnimationNodeBlend2_8u42j")
+nodes/Walk/position = Vector2(-260, -160)
+nodes/bombs/node = SubResource("AnimationNodeOneShot_refww")
+nodes/bombs/position = Vector2(780, 300)
+nodes/chainsaw/node = SubResource("AnimationNodeOneShot_0uvsl")
+nodes/chainsaw/position = Vector2(473.527, 155.963)
+nodes/laser/node = SubResource("AnimationNodeOneShot_6acma")
+nodes/laser/position = Vector2(40, -100)
+nodes/orb/node = SubResource("AnimationNodeOneShot_88re5")
+nodes/orb/position = Vector2(254.755, 22.5688)
+nodes/output/position = Vector2(2160, 80)
+node_connections = [&"Death", 0, &"Turn", &"Death", 1, &"Animation 6", &"LeftOrRight", 0, &"TurnLeft", &"LeftOrRight", 1, &"TurnRight", &"StillToIdle", 0, &"Animation 5", &"StillToIdle", 1, &"Animation 3", &"Turn", 0, &"bombs", &"Turn", 1, &"LeftOrRight", &"Walk", 0, &"StillToIdle", &"Walk", 1, &"Animation 4", &"bombs", 0, &"chainsaw", &"bombs", 1, &"Animation 8", &"chainsaw", 0, &"orb", &"chainsaw", 1, &"Animation 7", &"laser", 0, &"Walk", &"laser", 1, &"Animation 2", &"orb", 0, &"laser", &"orb", 1, &"Animation", &"output", 0, &"Death"]
+
+[sub_resource type="Resource" id="Resource_jxa60"]
+script = ExtResource("5_obc6q")
+cooldown = 10.0
+speed = 0.0
+damage = 25.0
+mana_usage = 0.0
+health_usage = 0.0
+
+[sub_resource type="Resource" id="Resource_bpv34"]
+script = ExtResource("6_qkddo")
+animName = "chainsaw"
+animType = 0
+one_shot = 1
+blend_add_value = 0.0
+
+[sub_resource type="Resource" id="Resource_x4qs2"]
+script = ExtResource("5_obc6q")
+cooldown = 7.0
+speed = 0.0
+damage = 5.0
+mana_usage = 0.0
+health_usage = 0.0
+
+[sub_resource type="Resource" id="Resource_6uxqi"]
+script = ExtResource("6_qkddo")
+animName = "orb"
+animType = 0
+one_shot = 1
+blend_add_value = 0.0
+
+[sub_resource type="Resource" id="Resource_4o5io"]
+script = ExtResource("5_obc6q")
+cooldown = 5.0
+speed = 0.0
+damage = 2.5
+mana_usage = 0.0
+health_usage = 0.0
+
+[sub_resource type="Resource" id="Resource_ob6au"]
+script = ExtResource("6_qkddo")
+animName = "bomb"
+animType = 0
+one_shot = 1
+blend_add_value = 0.0
+
+[sub_resource type="Resource" id="Resource_vp10i"]
+script = ExtResource("5_obc6q")
+cooldown = 15.0
+speed = 0.0
+damage = 60.0
+mana_usage = 0.0
+health_usage = 0.0
+
+[sub_resource type="Resource" id="Resource_8hm2g"]
+script = ExtResource("6_qkddo")
+animName = "laser"
+animType = 0
+one_shot = 1
+blend_add_value = 0.0
+
+[sub_resource type="Resource" id="Resource_0tpwg"]
+script = ExtResource("7_tkfr1")
+health = 600.0
+mana = 1.0
+defense = 1.0
+stamina = 1.0
+
+[node name="Reginald" instance=ExtResource("1_r5mj0")]
+
+[node name="Sprite2D" parent="." index="0"]
+material = ExtResource("2_esd33")
+texture = ExtResource("5_7r2gp")
+hframes = 10
+vframes = 9
+
+[node name="AnimationPlayer" parent="." index="1"]
+libraries = {
+"": SubResource("AnimationLibrary_lmkmn")
+}
+
+[node name="AnimationTree" parent="." index="2"]
+active = false
+libraries = {
+"": SubResource("AnimationLibrary_lmkmn")
+}
+tree_root = SubResource("AnimationNodeBlendTree_awkl7")
+parameters/bombs/active = false
+parameters/bombs/internal_active = false
+parameters/bombs/request = 0
+parameters/chainsaw/active = false
+parameters/chainsaw/internal_active = false
+parameters/chainsaw/request = 0
+parameters/laser/active = false
+parameters/laser/internal_active = false
+parameters/laser/request = 0
+parameters/orb/active = false
+parameters/orb/internal_active = false
+parameters/orb/request = 0
+
+[node name="AI" parent="." index="5" node_paths=PackedStringArray("attackRoot", "leftBot", "rightTop", "text_label")]
+script = ExtResource("6_n7xhb")
+attackRoot = NodePath("../Node2D")
+leftBot = NodePath("../HitMarkers/L")
+rightTop = NodePath("../HitMarkers/R")
+att_1_stats = SubResource("Resource_jxa60")
+att_1_hitPath = "res://Npc/chainsaw.tscn"
+att_1_animTrans = SubResource("Resource_bpv34")
+att_2_stats = SubResource("Resource_x4qs2")
+att_2_hitPath = "res://Npc/orb.tscn"
+att_2_animTrans = SubResource("Resource_6uxqi")
+att_3_stats = SubResource("Resource_4o5io")
+att_3_hitPath = "res://Npc/bombs.tscn"
+att_3_animTrans = SubResource("Resource_ob6au")
+att_4_stats = SubResource("Resource_vp10i")
+att_4_hitPath = "res://Npc/laser.tscn"
+att_4_animTrans = SubResource("Resource_8hm2g")
+stats_resource = SubResource("Resource_0tpwg")
+text_label = NodePath("../Control/PanelContainer/RichTextLabel")
+disabled_states = Array[String](["Idle", "Wander"])
+
+[node name="RichTextLabel" parent="." index="7"]
+visible = false
+offset_left = -62.0
+offset_top = -76.0
+offset_right = 66.0
+offset_bottom = -12.0
+
+[node name="Control" type="Control" parent="." index="11"]
+z_index = 13
+layout_mode = 3
+anchors_preset = 0
+offset_left = -101.0
+offset_top = -49.0
+offset_right = 99.0
+offset_bottom = -9.0
+
+[node name="PanelContainer" type="PanelContainer" parent="Control" index="0"]
+modulate = Color(1, 1, 1, 0)
+self_modulate = Color(0.5, 0.5, 0.5, 1)
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -6.6175
+offset_top = -6.0
+offset_right = 6.6175
+offset_bottom = 6.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 3
+size_flags_vertical = 4
+theme = ExtResource("8_fkjeu")
+
+[node name="RichTextLabel" type="RichTextLabel" parent="Control/PanelContainer" index="0"]
+layout_mode = 2
+bbcode_enabled = true
+fit_content = true
+scroll_active = false
+autowrap_mode = 0
+shortcut_keys_enabled = false

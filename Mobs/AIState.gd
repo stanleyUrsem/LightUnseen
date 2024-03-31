@@ -5,6 +5,7 @@ class_name AIState
 
 
 var chance : int
+var max_times_called : int
 var condition : Callable
 var stateFunction: Callable
 var onEnterFunction: Callable
@@ -15,15 +16,17 @@ var parentState
 var allowExit
 var loop
 var called
-
+var called_amount
 var ai
 var anims
 
-func _init(p_stateName, p_parentState, p_AI, p_anims):
+func _init(p_stateName, p_parentState, p_AI, p_anims, p_max_times = -1):
 	stateName = p_stateName
 	parentState = p_parentState
 	ai = p_AI
 	anims = p_anims
+	max_times_called = p_max_times
+	called_amount = 0
 	_pre_setup()
 
 func setup(p_condition:Callable, p_stateFunction:Callable, p_chance: int):
@@ -41,7 +44,9 @@ func setup(p_condition:Callable, p_stateFunction:Callable, p_chance: int):
 
 func _pre_setup():
 	pass
-
+func remove_self():
+	if(parentState != null):
+		parentState.states.erase(self)
 func add_state(state: AIState):
 	states.append(state)
 	
@@ -65,7 +70,7 @@ func _on_enter():
 
 func _on_exit():
 	called = false
-	
+	called_amount = 0
 	#if(onExitFunction.is_null()):
 		#return
 	#onExitFunction.call()

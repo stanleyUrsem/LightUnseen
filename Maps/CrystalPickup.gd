@@ -1,6 +1,4 @@
-extends StaticBody2D
+extends Interactable
 
-class_name CrystalPickUp
 
 signal OnPickUp(sprite,on_erased, duration)
-

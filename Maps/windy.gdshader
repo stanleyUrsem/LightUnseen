@@ -1,4 +1,6 @@
 shader_type canvas_item;
+render_mode blend_mix;
+
 #include "res://Maps/TileUV.gdshaderinc"
 #include "res://Maps/Town/HelperFunctions.gdshaderinc"
 // helpful to visually debug the noise scrolling texture.

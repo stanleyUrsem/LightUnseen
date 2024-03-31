@@ -1,11 +1,12 @@
-extends Area2D
+extends Interactable
 var entered : bool
 var sprite
 var short_frame
 var long_frame
+signal OnPickUp(sprite,on_erased, duration)
 
 func setup(offset,frame):
-	sprite = get_node("Sprite2D") as Sprite2D
+	sprite = get_node("TileSprite") as Sprite2D
 	sprite.material = sprite.material.duplicate()
 	sprite.material.set_shader_parameter("offset", offset)
 	sprite.frame = frame

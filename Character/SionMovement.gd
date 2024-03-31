@@ -1,19 +1,30 @@
 extends CharacterMovement
+class_name SionMovement
+
 @export var transform_index : int
 @export var player_transformer : PlayerTransformer
 @export var dodgeVelocity = 6000.0
 @export var dodgeDuration = 0.4
 @export var rollVelocity = 5.0
 @export var rollDuration = 0.5
-@export var stopMovement = false
+@export var stopMovement : bool
+
+@export var statsHolder : StatsHolder
 @export var rollCurve : Curve
 @export var dodgeCurve : Curve
+var follow : bool
+var follow_target : Node2D
+var follow_offset : Vector2
 var rollTween
 var dodgeTween
 var art_node
+var talkable_npcs : Array[ConversationHolder]
+var lastPos
+var diff
+var diff_length
 func _ready():
 	art_node = get_node("Art")
-	stopMovement = false
+	#stopMovement = false
 	animChar = SionTDAnimations.new()
 	animChar._setup(get_node("AnimationTree"))
 	
@@ -29,13 +40,30 @@ func _move():
 #	print(velocity)
 
 func _physics_process(delta):
+	if(follow_target!= null):
+		var new_pos =  follow_target.global_position + follow_offset
+		diff = new_pos - global_position
+		global_position = new_pos
+		diff_length = diff.length()
+		_idleOrWalk(diff_length)
+	
 	if(stopMovement): return
 	
 	#_mobility()
 	_move()
+	talk()
 	#_transform()
 	#move_and_slide()
 #	_attacks()
+func enable_follow(target,offset):
+	lastPos = global_position
+	follow_target = target
+	follow_offset = offset
+	stopMovement = true
+	#animChar._idle()
+func disable_follow():
+	stopMovement = false
+	follow_target = null
 func _set_dodge_velocity(x):
 	var new_velocity = lerp(Vector2.ZERO, get_end_velocity(dodgeVelocity),dodgeCurve.sample(x))
 	_setVelocity(new_velocity)
@@ -77,13 +105,14 @@ func dodge():
 func roll():
 	if(rollTween != null && rollTween.is_valid()):
 		rollTween.kill()
+		stopMovement = false
 		return;
 		
 	#animChar._roll()
 	rollTween  = get_tree().create_tween()
 	rollTween.tween_method(_set_roll_velocity,0.0,1.0,rollDuration)
 	rollTween.tween_callback(reset_velocity)	
-	
+	#statsHolder.damage()
 #func _mobility():
 	#if Input.is_action_just_pressed("dodge"):
 		#if(dodgeTween != null && dodgeTween.is_valid()):
@@ -113,9 +142,19 @@ func _transform(index:int):
 	#if Input.is_action_just_pressed("Human_Transform"):
 	#player_transformer._set_form(0)
 
-func _attacks():
-	if Input.is_action_just_pressed("attack"):
-		animChar._attack()
-	if Input.is_action_just_pressed("lr_attack"):
-		animChar._lrattack()
+func talk():
+	
+	if(!Input.is_action_just_pressed("talk")):
+		return
+	
+	var closest_npc = null
+	var dist = 9999
+	
+	for npc in talkable_npcs:
+		var npc_dist = global_position.distance_to(npc.get_parent().global_position)
+		if(dist <=npc_dist):
+			dist = npc_dist
+			closest_npc = npc
+	if(closest_npc!= null):
+		closest_npc.start_convo()
 

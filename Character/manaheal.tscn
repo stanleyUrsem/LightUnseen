@@ -1,0 +1,65 @@
+[gd_scene load_steps=9 format=3 uid="uid://d3own3do3t3k"]
+
+[ext_resource type="Texture2D" uid="uid://86eioys7com5" path="res://Abilities/fx.png" id="1_1qutn"]
+[ext_resource type="Script" path="res://Character/mana_heal_effect.gd" id="1_8pvsb"]
+
+[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_e5dja"]
+blend_mode = 1
+particles_animation = true
+particles_anim_h_frames = 4
+particles_anim_v_frames = 5
+particles_anim_loop = false
+
+[sub_resource type="Curve" id="Curve_addo8"]
+_data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(0.814917, 0), 0.0, 0.0, 0, 0, Vector2(1, 1), 0.504936, 0.0, 0, 0]
+point_count = 3
+
+[sub_resource type="Gradient" id="Gradient_mnlym"]
+colors = PackedColorArray(1, 1, 1, 1, 1, 1, 1, 0)
+
+[sub_resource type="Gradient" id="Gradient_2t1rr"]
+offsets = PackedFloat32Array(0, 0.4, 0.7)
+colors = PackedColorArray(0, 0.535117, 0.535117, 1, 0.00999999, 0.538, 1, 1, 0, 0.648903, 0.355994, 1)
+metadata/_snap_enabled = true
+
+[sub_resource type="Curve" id="Curve_brdtq"]
+max_value = 5.0
+_data = [Vector2(0, 0), 0.0, 3.5066, 0, 0, Vector2(0.0733591, 2), 0.0, 0.0, 0, 0, Vector2(1, 5), 0.0, 0.0, 0, 0]
+point_count = 3
+
+[sub_resource type="Curve" id="Curve_45ybx"]
+_data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(0.247104, 0.332263), 0.0, 0.0, 0, 0, Vector2(0.517375, 0.311397), -0.536426, -0.536426, 0, 0, Vector2(0.687259, 0.613965), 0.0, 0.0, 0, 0, Vector2(0.880309, 0.603531), 0.0, 0.0, 0, 0, Vector2(1, 1), 0.0, 0.0, 0, 0]
+point_count = 6
+
+[node name="CPUParticles2D" type="CPUParticles2D"]
+material = SubResource("CanvasItemMaterial_e5dja")
+amount = 16
+speed_scale = 0.5
+explosiveness = 0.5
+randomness = 0.3
+lifetime_randomness = 1.0
+texture = ExtResource("1_1qutn")
+emission_shape = 3
+emission_rect_extents = Vector2(15, 10)
+direction = Vector2(0, -5)
+spread = 0.0
+gravity = Vector2(0, 0)
+initial_velocity_min = 1.0
+initial_velocity_max = 5.0
+orbit_velocity_max = 1.0
+orbit_velocity_curve = SubResource("Curve_addo8")
+radial_accel_curve = SubResource("Curve_addo8")
+scale_amount_min = 0.5
+scale_amount_max = 0.5
+color_ramp = SubResource("Gradient_mnlym")
+color_initial_ramp = SubResource("Gradient_2t1rr")
+hue_variation_min = -1.0
+hue_variation_max = 1.0
+anim_speed_min = 1.0
+anim_speed_max = 1.0
+script = ExtResource("1_8pvsb")
+alpha_curve = SubResource("Curve_brdtq")
+radial_range = Vector2(1, 5)
+change_curve = SubResource("Curve_45ybx")
+velo_max_range = Vector2(0, 10)
+rect_ext_range = Vector2(1, 5)

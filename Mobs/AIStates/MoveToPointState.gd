@@ -15,5 +15,5 @@ func setup_vars(p_search_state: SearchState):
 
 
 func _on_enter():
-	ai.mobMovement.stopMovement()
+	ai.mobMovement.resetMovement()
 	anims._walk()

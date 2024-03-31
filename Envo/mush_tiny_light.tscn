@@ -1,0 +1,17 @@
+[gd_scene load_steps=4 format=3 uid="uid://b3ogpiqdut6tp"]
+
+[ext_resource type="PackedScene" uid="uid://bovyfxi6ev0n3" path="res://Envo/mush_big_light.tscn" id="1_cxc52"]
+[ext_resource type="Texture2D" uid="uid://bt5qxwtqwc7vo" path="res://Envo/envo_tiles.png" id="2_ypc31"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_7tidt"]
+atlas = ExtResource("2_ypc31")
+region = Rect2(160, 208, 16, 16)
+
+[node name="Tiny_light" instance=ExtResource("1_cxc52")]
+
+[node name="Sprite2D4" parent="." index="0"]
+texture = SubResource("AtlasTexture_7tidt")
+
+[node name="Node2D" parent="." index="1"]
+position = Vector2(-0.743256, 2.89869)
+scale = Vector2(0.5, 0.5)

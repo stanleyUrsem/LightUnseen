@@ -1,44 +1,23 @@
-extends Node2D
+extends SkillAction
 
 class_name AbilityAction
-
-
-@export var fadeTimer : Timer
 var obtainCondition : Callable
+
 @export var data : AbilityData
-var damage
-var isSetup : bool
-var isHit : bool
-var direction
-var user : Node2D
 var mouseHandler
-var saved_fade
-var delta_time
-var prng : PRNG
-func _setup(p_data : AbilityData, useLocation , p_user : Node2D, p_MouseHandler, p_direction,p_prng):
+
+func setup_vars(p_data : AbilityData,p_MouseHandler):
+	mouseHandler = p_MouseHandler
 	if(p_data != null):
 		data = p_data
-	user = p_user
-	prng = p_prng
-	mouseHandler = p_MouseHandler
-	position = useLocation
-	damage = data.damage
-	print("Speed: %d" % data.speed)
-	isSetup = true
-	isHit = false
-	saved_fade = fadeTimer.wait_time
-	fadeTimer.timeout.connect(func(): queue_free())
-	direction = (_GetMouseDirection() if data.useMouseAim else p_direction)
-	_on_setup()
-	#print(direction)
+		_setup_vars(data.speed,data.damage)
+
 
 func _on_setup():
-	pass
+	isHit = false
+	direction = (_GetMouseDirection() if data.useMouseAim else direction)
 
-func _physics_process(delta):
-	delta_time = delta
-	#if(isSetup):
-		#_Move()
+
 
 func _GetMouseDirection()-> Vector2:
 	var mousePos = mouseHandler.mouseGlobalPos
@@ -62,16 +41,6 @@ func _fadeout(time : float = 0):
 	else:
 		fadeTimer.start(saved_fade)
 
-func _ApplyDamage(collision):
-	var hit = collision.get_collider().get_node_or_null("Collider")
-	if(hit is Hittable):
-		hit.OnHit.emit(-damage)
-		return hit
-	return null
-
-func _OnHit(collision):
-	if(isHit): return
-	isHit = true
 
 func _OnUse():
 	pass

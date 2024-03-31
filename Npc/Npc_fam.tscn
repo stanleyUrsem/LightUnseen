@@ -1,0 +1,174 @@
+[gd_scene load_steps=16 format=3 uid="uid://dg0hecc6jw1b2"]
+
+[ext_resource type="Script" path="res://Npc/LinesCutscene.gd" id="1_c1r0j"]
+[ext_resource type="Gradient" uid="uid://gljx7de0240n" path="res://Npc/Kole.tres" id="4_gwqwl"]
+[ext_resource type="Texture2D" uid="uid://br7u3fpkb7c2f" path="res://Character/Textures/SionTD/eyes.png" id="4_h4xef"]
+[ext_resource type="Texture2D" uid="uid://donk4eeujo6qo" path="res://Character/Textures/SionTD/sion.png" id="5_3fgjw"]
+[ext_resource type="Shader" path="res://swap_color.gdshader" id="5_g2p6k"]
+[ext_resource type="Texture2D" uid="uid://c5jxxtp0an06n" path="res://Npc/npc_grad.png" id="6_31gl3"]
+[ext_resource type="AnimationNodeBlendTree" uid="uid://cgvcqonlcymq2" path="res://Character/Textures/SionTD/topdownChar.tres" id="7_go07s"]
+[ext_resource type="Script" path="res://Hittable.gd" id="8_tgtg4"]
+[ext_resource type="Theme" uid="uid://8oe8akinpd2h" path="res://UI/UI_default.tres" id="9_0xxf8"]
+[ext_resource type="AnimationLibrary" uid="uid://lnws725ttw6n" path="res://Character/Sion_3_anim_lib.tres" id="10_ttskh"]
+[ext_resource type="AudioStream" uid="uid://cu7op8f6bqvd1" path="res://SFX/Voices/UI_Click_Tap_Hybrid_Smooth_mono.wav" id="11_uxig2"]
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_4sdn7"]
+gradient = ExtResource("4_gwqwl")
+width = 18
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_hpvkl"]
+shader = ExtResource("5_g2p6k")
+shader_parameter/alpha_override = 1.0
+shader_parameter/num_colors = 18
+shader_parameter/precision = 0.0
+shader_parameter/index = null
+shader_parameter/palette_in = ExtResource("6_31gl3")
+shader_parameter/palette_out = SubResource("GradientTexture1D_4sdn7")
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_irf28"]
+size = Vector2(6, 18)
+
+[sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_etprp"]
+random_pitch = 1.5
+streams_count = 1
+stream_0/stream = ExtResource("11_uxig2")
+stream_0/weight = 1.0
+
+[node name="Kole" type="Node2D" node_paths=PackedStringArray("anim", "label", "audio_player")]
+y_sort_enabled = true
+script = ExtResource("1_c1r0j")
+anim = NodePath("AnimationPlayer")
+label = NodePath("Control/PanelContainer/RichTextLabel")
+audio_player = NodePath("Control/PanelContainer/Voice")
+audio_per_letters = 3.0
+
+[node name="Art" type="Node2D" parent="."]
+z_index = 2
+material = SubResource("ShaderMaterial_hpvkl")
+
+[node name="Eyes" type="Node2D" parent="Art"]
+use_parent_material = true
+position = Vector2(0, 1)
+
+[node name="Eyes" type="Sprite2D" parent="Art/Eyes"]
+modulate = Color(1.2, 1.2, 1.2, 1)
+z_index = 3
+texture_filter = 1
+use_parent_material = true
+position = Vector2(-1, -2)
+scale = Vector2(0.5, 0.7)
+texture = ExtResource("4_h4xef")
+hframes = 4
+vframes = 3
+frame = 7
+
+[node name="Eyes2" type="Sprite2D" parent="Art/Eyes"]
+modulate = Color(1.2, 1.2, 1.2, 1)
+z_index = 3
+texture_filter = 1
+use_parent_material = true
+position = Vector2(2, -2)
+scale = Vector2(0.5, 0.7)
+texture = ExtResource("4_h4xef")
+hframes = 4
+vframes = 3
+frame = 7
+
+[node name="Body" type="Sprite2D" parent="Art"]
+z_index = 1
+texture_filter = 1
+use_parent_material = true
+texture = ExtResource("5_3fgjw")
+hframes = 5
+vframes = 11
+
+[node name="AnimationTree" type="AnimationTree" parent="."]
+deterministic = false
+libraries = {
+"": ExtResource("10_ttskh")
+}
+tree_root = ExtResource("7_go07s")
+anim_player = NodePath("../AnimationPlayer")
+parameters/Death/blend_amount = 0.0
+parameters/Harvest/active = false
+parameters/Harvest/internal_active = false
+parameters/Harvest/request = 0
+parameters/IdleToWalk/blend_amount = 0
+parameters/LeftOrRight/blend_amount = 1.0
+parameters/Mine/active = false
+parameters/Mine/internal_active = false
+parameters/Mine/request = 0
+parameters/OneShot/active = false
+parameters/OneShot/internal_active = false
+parameters/OneShot/request = 0
+parameters/Transform/active = false
+parameters/Transform/internal_active = false
+parameters/Transform/request = 0
+parameters/Turn/add_amount = 1.0
+parameters/UseAttack/active = false
+parameters/UseAttack/internal_active = false
+parameters/UseAttack/request = 0
+parameters/UseDodge/active = false
+parameters/UseDodge/internal_active = false
+parameters/UseDodge/request = 0
+parameters/UseLRAttack/active = false
+parameters/UseLRAttack/internal_active = false
+parameters/UseLRAttack/request = 0
+parameters/UseRoll/active = false
+parameters/UseRoll/internal_active = false
+parameters/UseRoll/request = 0
+
+[node name="Hittable" type="CollisionShape2D" parent="."]
+visible = false
+z_index = 3
+position = Vector2(0, 5)
+shape = SubResource("RectangleShape2D_irf28")
+script = ExtResource("8_tgtg4")
+type = 1
+
+[node name="Control" type="Control" parent="."]
+z_index = 13
+layout_mode = 3
+anchors_preset = 0
+offset_left = -101.0
+offset_top = -49.0
+offset_right = 99.0
+offset_bottom = -9.0
+
+[node name="PanelContainer" type="PanelContainer" parent="Control"]
+modulate = Color(1, 1, 1, 0)
+self_modulate = Color(0.5, 0.5, 0.5, 1)
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -6.6175
+offset_top = -6.0
+offset_right = 6.6175
+offset_bottom = 6.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 3
+size_flags_vertical = 4
+theme = ExtResource("9_0xxf8")
+
+[node name="RichTextLabel" type="RichTextLabel" parent="Control/PanelContainer"]
+layout_mode = 2
+bbcode_enabled = true
+fit_content = true
+scroll_active = false
+autowrap_mode = 0
+shortcut_keys_enabled = false
+
+[node name="Voice" type="AudioStreamPlayer" parent="Control/PanelContainer"]
+stream = SubResource("AudioStreamRandomizer_etprp")
+pitch_scale = 0.66
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": ExtResource("10_ttskh")
+}
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]

@@ -1,0 +1,45 @@
+[gd_resource type="Environment" load_steps=3 format=3 uid="uid://dmbd6a6ueyg62"]
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_0x5rk"]
+noise_type = 2
+frequency = 0.2312
+fractal_octaves = 3
+fractal_lacunarity = 0.345
+fractal_gain = 2.83
+cellular_jitter = -1.124
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_nkjmm"]
+width = 64
+height = 64
+seamless = true
+seamless_blend_skirt = 0.901
+noise = SubResource("FastNoiseLite_0x5rk")
+
+[resource]
+background_mode = 3
+background_energy_multiplier = 1.42
+background_canvas_max_layer = 2
+reflected_light_source = 1
+tonemap_mode = 2
+tonemap_exposure = 0.4
+tonemap_white = 3.69
+glow_enabled = true
+glow_levels/1 = 8.16
+glow_levels/2 = 5.08
+glow_levels/3 = 8.43
+glow_levels/4 = 6.4
+glow_levels/5 = 0.22
+glow_levels/6 = 0.36
+glow_levels/7 = 1.23
+glow_normalized = true
+glow_intensity = 1.15
+glow_strength = 0.67
+glow_mix = 0.0
+glow_bloom = 0.12
+glow_blend_mode = 1
+glow_hdr_threshold = 0.81
+glow_hdr_scale = 0.59
+glow_hdr_luminance_cap = 40.07
+glow_map_strength = 0.74
+glow_map = SubResource("NoiseTexture2D_nkjmm")
+adjustment_brightness = 0.96

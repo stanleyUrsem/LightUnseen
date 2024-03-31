@@ -1,0 +1,46 @@
+extends "res://Abilities/DynamicSizedAction.gd"
+
+class_name DynamicAnimSprite
+
+@export var animSpriteTemplate : PackedScene
+@export var sprites : Array[AnimatedSprite2D]
+@export var animation_name : String
+@export var col_parent : Node2D
+func _on_setup():
+	is_mob = true
+	var index = 0
+	for sprite in sprites:
+		index += 1
+		sprite.animation_finished.connect(func():
+			play_next(index)
+			)
+	sprites[0].play(animation_name)
+	#sprites[0].animation_finished.connect(_fadeout)
+	#for sprite in sprites:
+		#sprite.play(animation_name)
+
+func play_next(index):
+	if(index >= sprites.size()):
+		_fadeout()
+		return
+	sprites[index].play(animation_name)
+
+func create_duplicate_sprite(pos):
+	var animSprite = animSpriteTemplate.instantiate()
+	animSprite.position = pos
+	return animSprite
+#func create_collider(length):
+	#var col = colliderTemplate.instantiate()
+	#col.scale.x = length
+	#col.position.x = (length / 2.0)
+	#shapeCast = col
+	#col_parent.add_child(col)
+
+func _create_sprite(index,pos):
+	#if(index <= 2): 
+		#return
+	var animSprite = create_duplicate_sprite(pos)
+	add_child(animSprite)
+	var collider = animSprite.get_child(0)
+	collider.reparent(col_parent)
+	sprites.append(animSprite)

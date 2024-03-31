@@ -22,6 +22,7 @@ noise = SubResource("FastNoiseLite_6uw6g")
 [resource]
 shader = ExtResource("1_7u40p")
 shader_parameter/resolution = 7.252
+shader_parameter/alpha = 1.0
 shader_parameter/background = 14.0
 shader_parameter/time_speed = 0.1
 shader_parameter/offset = Vector2(0, 0)

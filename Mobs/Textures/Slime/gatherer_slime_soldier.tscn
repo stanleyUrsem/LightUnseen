@@ -1,0 +1,30 @@
+[gd_scene load_steps=7 format=3 uid="uid://lk7v88jvcnnq"]
+
+[ext_resource type="PackedScene" uid="uid://bkdu7ke3vkapc" path="res://Mobs/Textures/Slime/gatherer_slime.tscn" id="1_x2mdc"]
+[ext_resource type="Script" path="res://SoldierSlimeAI.gd" id="2_8imii"]
+[ext_resource type="Script" path="res://AnimationTransition.gd" id="3_7y6q0"]
+[ext_resource type="Script" path="res://SkillStats.gd" id="3_pw6iy"]
+
+[sub_resource type="Resource" id="Resource_dc2xy"]
+script = ExtResource("3_pw6iy")
+cooldown = 3.0
+speed = 5.0
+damage = -5.0
+mana_usage = 2.0
+health_usage = 0.0
+
+[sub_resource type="Resource" id="Resource_iqlci"]
+script = ExtResource("3_7y6q0")
+animName = "Attack"
+animType = 1
+one_shot = 0
+blend_add_value = 1.0
+
+[node name="GathererSlime_Soldier" instance=ExtResource("1_x2mdc")]
+
+[node name="AI" parent="." index="5"]
+script = ExtResource("2_8imii")
+attackStats = SubResource("Resource_dc2xy")
+skillHitPath = "res://Character/mob_slime_particle.tscn"
+attack_type = 1
+attackTransition = SubResource("Resource_iqlci")

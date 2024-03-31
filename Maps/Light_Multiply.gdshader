@@ -11,7 +11,7 @@ uniform float noiseAmmount = 0.1;
 uniform float offsetX = 0.0;
 
 uniform float flickerT = 0.6;
-
+uniform sampler2D SCREEN_TEXTURE : hint_screen_texture, filter_linear_mipmap;
 vec4 lerp(vec4 col1, vec4 col2, float t) {
 	float r = (col2.r - col1.r) * t + col1.r;
 	float g = (col2.g - col1.g) * t + col1.g;
@@ -20,6 +20,7 @@ vec4 lerp(vec4 col1, vec4 col2, float t) {
 }
 
 void fragment() {
+	vec4 screen = texture(SCREEN_TEXTURE,SCREEN_UV);
 	COLOR *= lerp(color1, color2, texture(noise, UV).r);
 	float dist = 1.0 - sqrt(pow(UV.x - 0.5, 2.0) + pow(UV.y - 0.5, 2.0));
 	float flickerValue = texture(noise, vec2(TIME + timeOffset, (TIME + timeOffset) * 0.9)).r;
@@ -32,5 +33,6 @@ void fragment() {
 	COLOR.a  = round(COLOR.a * 20.0) / 20.0;
 	COLOR.a  = clamp(COLOR.a, 0.0, 1.0);
 	COLOR.a *= step(.1,COLOR.a);
+	//COLOR.rgb += screen.rgb;
 //	COLOR.a = a;
 }

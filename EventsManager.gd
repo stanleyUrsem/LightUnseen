@@ -14,6 +14,10 @@ signal OnEnemyKilled(type)
 signal OnHitBy(type,amount_damage)
 signal OnDeath
 signal OnExplored(area)
-signal OnNpcDeath
+signal OnNpcDeath(type)
 signal OnPriestDeath
-
+signal OnSkillUsed(skill)
+signal OnSkillObtained(skill)
+signal OnNpcTalkToggle(player)
+signal OnToolsPickUp()
+signal OnNewGame()

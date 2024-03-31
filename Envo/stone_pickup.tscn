@@ -1,0 +1,15 @@
+[gd_scene load_steps=5 format=3 uid="uid://dd3381riaweua"]
+
+[ext_resource type="PackedScene" uid="uid://dukvne4q1byuu" path="res://Envo/pickup.tscn" id="1_kqelp"]
+[ext_resource type="Script" path="res://Envo/stone_pickup.gd" id="2_6gx1m"]
+[ext_resource type="Texture2D" uid="uid://bl06ut30dpicd" path="res://Envo/rockthrow.png" id="2_gkyyv"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_bljww"]
+atlas = ExtResource("2_gkyyv")
+region = Rect2(0, 0, 16, 16)
+
+[node name="Node2D" instance=ExtResource("1_kqelp")]
+script = ExtResource("2_6gx1m")
+
+[node name="Sprite2D" parent="." index="0"]
+texture = SubResource("AtlasTexture_bljww")

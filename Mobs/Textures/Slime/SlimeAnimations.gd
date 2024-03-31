@@ -23,4 +23,3 @@ func attack():
 	AnimatorHelper._playanimTreeBlend2D(_animator,"Attack",1)
 	AnimatorHelper._playanimTreeBlend2D(_animator,"StillToIdle",0)
 	AnimatorHelper._playanimTreeBlend2D(_animator,"Walk",0)
-		

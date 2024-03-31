@@ -5,7 +5,7 @@ class_name SearchState
 var sightCast
 var wanderState : WanderState
 var lowInv
-
+var use_saved_pos
 var foodPoint : Vector3
 var foodCollision : Object
 var point : Vector2:
@@ -20,14 +20,16 @@ func _pre_setup():
 		ai.stats.stamina > ai.stats.stamina_max/2.0)
 		,searchForFood,1)
 
-func setup_vars(p_sightCast:ShapeCast2D, p_wanderState: WanderState, p_lowInv: int):
+func setup_vars(p_sightCast:ShapeCast2D, 
+p_wanderState: WanderState, p_lowInv: int,
+p_use_saved_pos = false):
 	sightCast = p_sightCast
 	wanderState = p_wanderState
 	lowInv = p_lowInv
-
+	p_use_saved_pos = use_saved_pos
 func searchForFood():
 	if(!sightCast.is_colliding()):
-		wanderState.wander(2.0,0.1)
+		wanderState.wander(2.0,0.1,use_saved_pos)
 		return
 	
 	var valid_cols = sightCast.collision_result
@@ -50,6 +52,6 @@ func searchForFood():
 	if(dist < 999.0):
 		foodPoint = Vector3(pos.x,pos.y,1.0)
 		foodCollision = col
-		print("food point set ", foodPoint)
+		#print("food point set ", foodPoint)
 	else:
 		foodPoint = Vector3(0,0,0)

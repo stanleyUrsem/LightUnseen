@@ -1,0 +1,49 @@
+[gd_scene load_steps=7 format=3 uid="uid://dukvne4q1byuu"]
+
+[ext_resource type="Script" path="res://Pickup.gd" id="1_fe8kw"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_i4kmm"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_wud2t"]
+
+[sub_resource type="Animation" id="Animation_cw7n2"]
+resource_name = "Float"
+length = 3.0
+loop_mode = 1
+tracks/0/type = "bezier"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:position:y")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"handle_modes": PackedInt32Array(0, 0, 0),
+"points": PackedFloat32Array(-2, -0.25, 0, 0.25, 0, 5.67947, -0.784266, 0.397708, 0.702702, -6.84942, -2, -0.222959, -0.239253, 0.25, 0),
+"times": PackedFloat32Array(0, 1.49324, 3)
+}
+
+[sub_resource type="Animation" id="Animation_0hcih"]
+length = 0.001
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_wxhwx"]
+_data = {
+"Float": SubResource("Animation_cw7n2"),
+"RESET": SubResource("Animation_0hcih")
+}
+
+[node name="Node2D" type="Area2D"]
+script = ExtResource("1_fe8kw")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(0, -2)
+texture = SubResource("AtlasTexture_i4kmm")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_wud2t")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_wxhwx")
+}
+
+[connection signal="body_entered" from="." to="." method="_on_pickup"]

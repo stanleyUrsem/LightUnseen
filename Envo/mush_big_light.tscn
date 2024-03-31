@@ -1,0 +1,161 @@
+[gd_scene load_steps=23 format=3 uid="uid://bovyfxi6ev0n3"]
+
+[ext_resource type="Script" path="res://Envo/MushLight.gd" id="1_6s2ee"]
+[ext_resource type="Texture2D" uid="uid://cnj7y3d6l70to" path="res://Envo/light.tres" id="1_kip7k"]
+[ext_resource type="Material" uid="uid://c76forv1im2u0" path="res://Maps/Town/windy.tres" id="1_w0jx0"]
+[ext_resource type="Shader" path="res://swap_color.gdshader" id="2_0qtot"]
+[ext_resource type="Texture2D" uid="uid://dyehrawncsg8c" path="res://Maps/mush_grad.png" id="3_3s1a3"]
+[ext_resource type="Texture2D" uid="uid://bt5qxwtqwc7vo" path="res://Envo/envo_tiles.png" id="4_12syp"]
+
+[sub_resource type="Gradient" id="Gradient_tif71"]
+interpolation_mode = 1
+offsets = PackedFloat32Array(0, 0.142857, 0.285714, 0.428571, 0.571429, 0.714286, 0.857143, 1)
+colors = PackedColorArray(0.298039, 0.192157, 0.470588, 1, 0.253141, 0.161917, 0.390098, 1, 0.302116, 0.197956, 0.48568, 1, 0.301961, 0.301961, 0.368627, 1, 0.333333, 0.333333, 0.4, 1, 0.380392, 0.380392, 0.458824, 1, 0.415686, 0.415686, 0.501961, 1, 0.454902, 0.454902, 0.54902, 1)
+metadata/_snap_enabled = true
+metadata/_snap_count = 7
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_0iuyt"]
+gradient = SubResource("Gradient_tif71")
+width = 8
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_u0v51"]
+shader = ExtResource("2_0qtot")
+shader_parameter/alpha_override = 1.0
+shader_parameter/num_colors = 8
+shader_parameter/precision = 0.0
+shader_parameter/index = null
+shader_parameter/palette_in = ExtResource("3_3s1a3")
+shader_parameter/palette_out = SubResource("GradientTexture1D_0iuyt")
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ilqtk"]
+atlas = ExtResource("4_12syp")
+region = Rect2(128, 208, 16, 32)
+
+[sub_resource type="Gradient" id="Gradient_mkvf5"]
+offsets = PackedFloat32Array(0, 0.0534125, 0.0919881, 1)
+colors = PackedColorArray(0.2484, 0.2484, 0.2484, 0.619608, 0.303233, 0.303233, 0.303233, 0.776471, 0.670689, 0.67069, 0.670689, 0.101961, 0, 0, 0, 0)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_d4u2h"]
+gradient = SubResource("Gradient_mkvf5")
+width = 256
+height = 256
+fill = 1
+fill_from = Vector2(0.5, 0.5)
+fill_to = Vector2(0.4, 0.1)
+metadata/_snap_enabled = true
+
+[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_mjh00"]
+blend_mode = 3
+
+[sub_resource type="Gradient" id="Gradient_0pa1w"]
+colors = PackedColorArray(2, 2, 2, 0.0156863, 1, 1, 1, 0)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_35og1"]
+gradient = SubResource("Gradient_0pa1w")
+width = 256
+height = 256
+fill = 1
+fill_from = Vector2(0.5, 0.5)
+fill_to = Vector2(0.521368, 0)
+
+[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_a85uh"]
+blend_mode = 1
+
+[sub_resource type="Gradient" id="Gradient_nyqjq"]
+offsets = PackedFloat32Array(0, 0.484507, 0.619718, 0.701408, 0.920981)
+colors = PackedColorArray(0.247059, 0.247059, 0.247059, 0.537255, 0.709804, 0.709804, 0.709804, 0.333333, 0.498039, 0.498039, 0.498039, 0.105882, 0.333333, 0.333333, 0.333333, 0, 0, 0, 0, 0)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_4crgg"]
+gradient = SubResource("Gradient_nyqjq")
+width = 16
+height = 16
+fill = 1
+fill_from = Vector2(0.5, 0.5)
+fill_to = Vector2(0.4, 0)
+metadata/_snap_enabled = true
+
+[sub_resource type="Gradient" id="Gradient_ugv4e"]
+offsets = PackedFloat32Array(0, 0.490141, 1)
+colors = PackedColorArray(0.147541, 0.147541, 0.147541, 0, 1, 1, 1, 0.407843, 0, 0, 0, 0)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_0ngto"]
+gradient = SubResource("Gradient_ugv4e")
+height = 1
+fill_from = Vector2(1, 0)
+fill_to = Vector2(0, 0)
+metadata/_snap_enabled = true
+
+[sub_resource type="Gradient" id="Gradient_1yssh"]
+offsets = PackedFloat32Array(0.128694, 1)
+colors = PackedColorArray(0.670689, 0.67069, 0.670689, 0.101961, 0, 0, 0, 0)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_5i3di"]
+gradient = SubResource("Gradient_1yssh")
+width = 256
+height = 256
+fill = 1
+fill_from = Vector2(0.5, 0.5)
+fill_to = Vector2(0.4, 0.1)
+metadata/_snap_enabled = true
+
+[node name="Big_light" type="Node2D" node_paths=PackedStringArray("light")]
+script = ExtResource("1_6s2ee")
+light = NodePath("Node2D/PointLight2D")
+
+[node name="Sprite2D4" type="Sprite2D" parent="."]
+light_mask = 2
+material = SubResource("ShaderMaterial_u0v51")
+position = Vector2(-0.981644, 0.0998554)
+texture = SubResource("AtlasTexture_ilqtk")
+
+[node name="Node2D" type="Node2D" parent="."]
+modulate = Color(0.227451, 0.172549, 0.517647, 1)
+z_index = 1
+material = ExtResource("1_w0jx0")
+
+[node name="Sprite2D" type="Sprite2D" parent="Node2D"]
+visible = false
+texture_filter = 1
+use_parent_material = true
+position = Vector2(-0.911224, -5.25293)
+texture = ExtResource("1_kip7k")
+
+[node name="Sprite2D5" type="Sprite2D" parent="Node2D"]
+modulate = Color(3, 3, 3, 1)
+light_mask = 2
+texture_filter = 1
+use_parent_material = true
+position = Vector2(-0.911224, -5.25293)
+texture = SubResource("GradientTexture2D_d4u2h")
+
+[node name="Sprite2D6" type="Polygon2D" parent="Node2D"]
+visible = false
+texture_filter = 2
+material = SubResource("CanvasItemMaterial_mjh00")
+position = Vector2(-0.911224, -5.25293)
+texture = SubResource("GradientTexture2D_35og1")
+polygon = PackedVector2Array(-159.089, -90.7471, -127.089, -122.747, -95.0888, -154.747, 64.9112, -154.747, 128.911, -90.7471, 128.911, 69.2529, 64.9112, 133.253, -95.0888, 133.253, -159.089, 69.2529)
+uv = PackedVector2Array(-18.7746, 55.8498, 13.2254, 23.8498, 45.2254, -8.15018, 205.225, -8.15018, 269.225, 55.8498, 269.225, 215.85, 205.225, 279.85, 45.2254, 279.85, -18.7746, 215.85)
+
+[node name="Sprite2D3" type="Sprite2D" parent="Node2D"]
+light_mask = 2
+texture_filter = 1
+material = SubResource("CanvasItemMaterial_a85uh")
+use_parent_material = true
+position = Vector2(-0.0936432, -6.36781)
+texture = SubResource("GradientTexture2D_4crgg")
+
+[node name="Sprite2D2" type="Sprite2D" parent="Node2D"]
+light_mask = 2
+texture_filter = 1
+use_parent_material = true
+position = Vector2(-0.0936432, -6.36781)
+scale = Vector2(1.5, 1)
+texture = SubResource("GradientTexture2D_0ngto")
+
+[node name="PointLight2D" type="PointLight2D" parent="Node2D"]
+visible = false
+color = Color(0.25098, 0.2, 0.568627, 1)
+energy = 20.0
+texture = SubResource("GradientTexture2D_5i3di")
+texture_scale = 3.0

@@ -1,0 +1,24 @@
+[remap]
+
+importer="wav"
+type="AudioStreamWAV"
+uid="uid://dagukmfo2sin6"
+path="res://.godot/imported/Church LOOP SHORT.wav-83afdd7f71dff2aa045407a23177523e.sample"
+
+[deps]
+
+source_file="res://SFX/Voices/Church LOOP SHORT.wav"
+dest_files=["res://.godot/imported/Church LOOP SHORT.wav-83afdd7f71dff2aa045407a23177523e.sample"]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop_mode=0
+edit/loop_begin=0
+edit/loop_end=-1
+compress/mode=0

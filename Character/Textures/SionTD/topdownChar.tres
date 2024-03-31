@@ -1,4 +1,16 @@
-[gd_resource type="AnimationNodeBlendTree" load_steps=18 format=3 uid="uid://cgvcqonlcymq2"]
+[gd_resource type="AnimationNodeBlendTree" load_steps=26 format=3 uid="uid://cgvcqonlcymq2"]
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_fepq2"]
+animation = &"Death"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_3umd7"]
+animation = &"Mine"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_6l7wy"]
+animation = &"Harvest"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_8tev8"]
+animation = &"RESET"
 
 [sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_u6wjl"]
 animation = &"Transform"
@@ -6,8 +18,12 @@ animation = &"Transform"
 [sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_kn2yw"]
 animation = &"Attack"
 
+[sub_resource type="AnimationNodeBlend2" id="AnimationNodeBlend2_x1f3e"]
+
 [sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_ijwri"]
 animation = &"Dodge"
+
+[sub_resource type="AnimationNodeOneShot" id="AnimationNodeOneShot_ghcmo"]
 
 [sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_cep3n"]
 animation = &"Idle"
@@ -18,6 +34,10 @@ animation = &"Idle"
 animation = &"LeftRightAttack"
 
 [sub_resource type="AnimationNodeBlend2" id="AnimationNodeBlend2_qxjwy"]
+
+[sub_resource type="AnimationNodeOneShot" id="AnimationNodeOneShot_e6vvi"]
+
+[sub_resource type="AnimationNodeOneShot" id="AnimationNodeOneShot_r221p"]
 
 [sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_58h1v"]
 animation = &"Roll"
@@ -44,25 +64,41 @@ animation = &"TurnRight"
 animation = &"Walking"
 
 [resource]
-graph_offset = Vector2(-1760.53, 62.8367)
+graph_offset = Vector2(195.437, 310.028)
 nodes/Animation/node = SubResource("AnimationNodeAnimation_u6wjl")
-nodes/Animation/position = Vector2(-1440, 380)
+nodes/Animation/position = Vector2(-2040, 400)
+"nodes/Animation 2/node" = SubResource("AnimationNodeAnimation_fepq2")
+"nodes/Animation 2/position" = Vector2(820, 800)
+"nodes/Animation 3/node" = SubResource("AnimationNodeAnimation_3umd7")
+"nodes/Animation 3/position" = Vector2(-1660, 360)
+"nodes/Animation 4/node" = SubResource("AnimationNodeAnimation_6l7wy")
+"nodes/Animation 4/position" = Vector2(-1300, 380)
+"nodes/Animation 5/node" = SubResource("AnimationNodeAnimation_8tev8")
+"nodes/Animation 5/position" = Vector2(800, 660)
 nodes/Attack/node = SubResource("AnimationNodeAnimation_kn2yw")
 nodes/Attack/position = Vector2(-130.791, 625.715)
+nodes/Death/node = SubResource("AnimationNodeBlend2_x1f3e")
+nodes/Death/position = Vector2(1260, 400)
 nodes/Dodge/node = SubResource("AnimationNodeAnimation_ijwri")
 nodes/Dodge/position = Vector2(-558.108, 345.12)
+nodes/Harvest/node = SubResource("AnimationNodeOneShot_ghcmo")
+nodes/Harvest/position = Vector2(-1080, 100)
 nodes/Idle/node = SubResource("AnimationNodeAnimation_cep3n")
-nodes/Idle/position = Vector2(-1740, 100)
+nodes/Idle/position = Vector2(-2340, 120)
 nodes/IdleToWalk/node = SubResource("AnimationNodeBlend2_wf5ne")
-nodes/IdleToWalk/position = Vector2(-1580, 100)
+nodes/IdleToWalk/position = Vector2(-2180, 120)
 nodes/LRAttack/node = SubResource("AnimationNodeAnimation_5mmvr")
 nodes/LRAttack/position = Vector2(-330.368, 422.856)
 nodes/LeftOrRight/node = SubResource("AnimationNodeBlend2_qxjwy")
 nodes/LeftOrRight/position = Vector2(255.167, 827.278)
+nodes/Mine/node = SubResource("AnimationNodeOneShot_e6vvi")
+nodes/Mine/position = Vector2(-1380, 80)
+nodes/OneShot/node = SubResource("AnimationNodeOneShot_r221p")
+nodes/OneShot/position = Vector2(1040, 600)
 nodes/Roll/node = SubResource("AnimationNodeAnimation_58h1v")
 nodes/Roll/position = Vector2(-738.419, 293.464)
 nodes/Transform/node = SubResource("AnimationNodeOneShot_0nrxr")
-nodes/Transform/position = Vector2(-1200, 100)
+nodes/Transform/position = Vector2(-1800, 120)
 nodes/Turn/node = SubResource("AnimationNodeAdd2_ta8on")
 nodes/Turn/position = Vector2(788.22, 434.23)
 nodes/TurnLeft/node = SubResource("AnimationNodeAnimation_hblmp")
@@ -78,6 +114,6 @@ nodes/UseLRAttack/position = Vector2(15.9392, 363.539)
 nodes/UseRoll/node = SubResource("AnimationNodeOneShot_fvc5j")
 nodes/UseRoll/position = Vector2(-542.456, 94.0881)
 nodes/Walk/node = SubResource("AnimationNodeAnimation_k4efp")
-nodes/Walk/position = Vector2(-1740, 260)
+nodes/Walk/position = Vector2(-2340, 280)
 nodes/output/position = Vector2(1440, 280)
-node_connections = [&"IdleToWalk", 0, &"Idle", &"IdleToWalk", 1, &"Walk", &"LeftOrRight", 0, &"TurnLeft", &"LeftOrRight", 1, &"TurnRight", &"Transform", 0, &"IdleToWalk", &"Transform", 1, &"Animation", &"Turn", 0, &"UseAttack", &"Turn", 1, &"LeftOrRight", &"UseAttack", 0, &"UseLRAttack", &"UseAttack", 1, &"Attack", &"UseDodge", 0, &"UseRoll", &"UseDodge", 1, &"Dodge", &"UseLRAttack", 0, &"UseDodge", &"UseLRAttack", 1, &"LRAttack", &"UseRoll", 0, &"Transform", &"UseRoll", 1, &"Roll", &"output", 0, &"Turn"]
+node_connections = [&"Death", 0, &"Turn", &"Death", 1, &"OneShot", &"Harvest", 0, &"Mine", &"Harvest", 1, &"Animation 4", &"IdleToWalk", 0, &"Idle", &"IdleToWalk", 1, &"Walk", &"LeftOrRight", 0, &"TurnLeft", &"LeftOrRight", 1, &"TurnRight", &"Mine", 0, &"Transform", &"Mine", 1, &"Animation 3", &"OneShot", 0, &"Animation 5", &"OneShot", 1, &"Animation 2", &"Transform", 0, &"IdleToWalk", &"Transform", 1, &"Animation", &"Turn", 0, &"UseAttack", &"Turn", 1, &"LeftOrRight", &"UseAttack", 0, &"UseLRAttack", &"UseAttack", 1, &"Attack", &"UseDodge", 0, &"UseRoll", &"UseDodge", 1, &"Dodge", &"UseLRAttack", 0, &"UseDodge", &"UseLRAttack", 1, &"LRAttack", &"UseRoll", 0, &"Harvest", &"UseRoll", 1, &"Roll", &"output", 0, &"Death"]

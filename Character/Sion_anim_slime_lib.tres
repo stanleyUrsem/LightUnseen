@@ -1,233 +1,21 @@
-[gd_resource type="AnimationLibrary" load_steps=16 format=3 uid="uid://b3qldowl02rgl"]
+[gd_resource type="AnimationLibrary" load_steps=33 format=3 uid="uid://b3qldowl02rgl"]
 
-[sub_resource type="Animation" id="Animation_yi457"]
-resource_name = "Attack_3"
-length = 0.15
-step = 0.01
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("Art/Body:frame")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.05, 0.1),
-"transitions": PackedFloat32Array(1, 1, 1),
-"update": 1,
-"values": [45, 49, 50]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath(".:stopMovement")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0, 0.15),
-"transitions": PackedFloat32Array(1, 1),
-"update": 1,
-"values": [true, false]
-}
-tracks/2/type = "value"
-tracks/2/imported = false
-tracks/2/enabled = true
-tracks/2/path = NodePath("AbilitySpawns/RightArm:position")
-tracks/2/interp = 1
-tracks/2/loop_wrap = true
-tracks/2/keys = {
-"times": PackedFloat32Array(0, 0.05, 0.085, 0.1, 0.12, 0.15, 0.25),
-"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1),
-"update": 0,
-"values": [Vector2(3, 12), Vector2(13, 4), Vector2(16, 10), Vector2(16, -5), Vector2(16, -5), Vector2(3, 12), Vector2(3, 12)]
-}
-tracks/3/type = "value"
-tracks/3/imported = false
-tracks/3/enabled = true
-tracks/3/path = NodePath("AbilitySpawns/LeftArm:position")
-tracks/3/interp = 1
-tracks/3/loop_wrap = true
-tracks/3/keys = {
-"times": PackedFloat32Array(0, 0.085, 0.1, 0.12, 0.15, 0.3, 0.45),
-"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1),
-"update": 0,
-"values": [Vector2(-4, 12), Vector2(14, 5), Vector2(8, -7), Vector2(8, -7), Vector2(-4, 12), Vector2(10, 4), Vector2(-3, 12)]
-}
-tracks/4/type = "method"
-tracks/4/imported = false
-tracks/4/enabled = true
-tracks/4/path = NodePath("Abilities")
-tracks/4/interp = 1
-tracks/4/loop_wrap = true
-tracks/4/keys = {
-"times": PackedFloat32Array(0, 0.017, 0.0425, 0.102, 0.1105, 0.136, 0.1445),
-"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1),
-"values": [{
-"args": [2500.0, Vector2(0, 1)],
-"method": &"move_player"
-}, {
-"args": ["Tentacles", 180.0],
-"method": &"rotate_sprite_to_mouse"
-}, {
-"args": ["AbilitySpawns", 135.0],
-"method": &"rotate_sprite_to_mouse"
-}, {
-"args": [2, 0, Vector2(0, 0)],
-"method": &"useAbility"
-}, {
-"args": [2, 1, Vector2(0, 0)],
-"method": &"useAbility"
-}, {
-"args": ["Tentacles"],
-"method": &"reset_rotation"
-}, {
-"args": ["AbilitySpawns"],
-"method": &"reset_rotation"
-}]
-}
-tracks/5/type = "value"
-tracks/5/imported = false
-tracks/5/enabled = true
-tracks/5/path = NodePath("Art/Eyes:frame")
-tracks/5/interp = 1
-tracks/5/loop_wrap = true
-tracks/5/keys = {
-"times": PackedFloat32Array(0, 0.05, 0.1, 0.15, 0.2, 0.25),
-"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1),
-"update": 1,
-"values": [29, 25, 10, 32, 33, 34]
-}
-tracks/6/type = "value"
-tracks/6/imported = false
-tracks/6/enabled = true
-tracks/6/path = NodePath("Tentacles/Tentacle_1:rotation")
-tracks/6/interp = 1
-tracks/6/loop_wrap = true
-tracks/6/keys = {
-"times": PackedFloat32Array(0, 0.05, 0.15, 0.45),
-"transitions": PackedFloat32Array(1, 1, 1, 1),
-"update": 1,
-"values": [3.14159, 1.5708, 3.14159, 3.14159]
-}
-tracks/7/type = "value"
-tracks/7/imported = false
-tracks/7/enabled = true
-tracks/7/path = NodePath("Tentacles/Tentacle_2:rotation")
-tracks/7/interp = 1
-tracks/7/loop_wrap = true
-tracks/7/keys = {
-"times": PackedFloat32Array(0, 0.05, 0.15, 0.3, 0.45, 0.7, 0.8),
-"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1),
-"update": 1,
-"values": [3.14159, 1.5708, 3.14159, 1.5708, 3.14159, 3.14159, 2.66804]
-}
-tracks/8/type = "value"
-tracks/8/imported = false
-tracks/8/enabled = true
-tracks/8/path = NodePath("Tentacles/Tentacle_1:frame")
-tracks/8/interp = 1
-tracks/8/loop_wrap = true
-tracks/8/keys = {
-"times": PackedFloat32Array(0, 0.05, 0.1, 0.15, 0.2),
-"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
-"update": 1,
-"values": [34, 37, 38, 34, 33]
-}
-tracks/9/type = "value"
-tracks/9/imported = false
-tracks/9/enabled = true
-tracks/9/path = NodePath("Tentacles/Tentacle_2:frame")
-tracks/9/interp = 1
-tracks/9/loop_wrap = true
-tracks/9/keys = {
-"times": PackedFloat32Array(0, 0.05, 0.1, 0.15),
-"transitions": PackedFloat32Array(1, 1, 1, 1),
-"update": 1,
-"values": [34, 37, 38, 34]
-}
-tracks/10/type = "value"
-tracks/10/imported = false
-tracks/10/enabled = true
-tracks/10/path = NodePath("Tentacles/Tentacle_2:position")
-tracks/10/interp = 1
-tracks/10/loop_wrap = true
-tracks/10/keys = {
-"times": PackedFloat32Array(0, 0.05, 0.1, 0.15, 0.45),
-"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
-"update": 1,
-"values": [Vector2(8, -1), Vector2(0, -10), Vector2(-1, -2), Vector2(8, -1), Vector2(1, 8)]
-}
-tracks/11/type = "value"
-tracks/11/imported = false
-tracks/11/enabled = true
-tracks/11/path = NodePath("Tentacles/Tentacle_1:position")
-tracks/11/interp = 1
-tracks/11/loop_wrap = true
-tracks/11/keys = {
-"times": PackedFloat32Array(0, 0.05, 0.1, 0.15, 0.45),
-"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
-"update": 1,
-"values": [Vector2(-2, -1), Vector2(-3, -4), Vector2(-4, 1), Vector2(-2, -1), Vector2(-2, 7)]
-}
-tracks/12/type = "value"
-tracks/12/imported = false
-tracks/12/enabled = true
-tracks/12/path = NodePath("Art/Eyes:position")
-tracks/12/interp = 1
-tracks/12/loop_wrap = true
-tracks/12/keys = {
-"times": PackedFloat32Array(0, 0.05, 0.1, 0.15, 0.2, 0.25),
-"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1),
-"update": 1,
-"values": [Vector2(2, 0), Vector2(-1, -10), Vector2(-2, 2), Vector2(1, 0), Vector2(2, 0), Vector2(1, 0)]
-}
-tracks/13/type = "value"
-tracks/13/imported = false
-tracks/13/enabled = true
-tracks/13/path = NodePath("Art/Hood_inside:scale")
-tracks/13/interp = 1
-tracks/13/loop_wrap = true
-tracks/13/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Vector2(1e-05, 1e-05)]
-}
-tracks/14/type = "value"
-tracks/14/imported = false
-tracks/14/enabled = true
-tracks/14/path = NodePath("Art/Hood_outside:scale")
-tracks/14/interp = 1
-tracks/14/loop_wrap = true
-tracks/14/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Vector2(1e-05, 1e-05)]
-}
-tracks/15/type = "value"
-tracks/15/imported = false
-tracks/15/enabled = true
-tracks/15/path = NodePath("Tentacles/Tentacle_1:scale")
-tracks/15/interp = 1
-tracks/15/loop_wrap = true
-tracks/15/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Vector2(1, 1)]
-}
-tracks/16/type = "value"
-tracks/16/imported = false
-tracks/16/enabled = true
-tracks/16/path = NodePath("Tentacles/Tentacle_2:scale")
-tracks/16/interp = 1
-tracks/16/loop_wrap = true
-tracks/16/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Vector2(1, 1)]
-}
+[ext_resource type="AudioStream" uid="uid://c46wrjwknjm8y" path="res://SFX/GORE_Splat_Blunt_Hit_Bounce_mono.wav" id="1_6876s"]
+[ext_resource type="AudioStream" uid="uid://cx47vss7xgdwd" path="res://SFX/WHOOSH_Breath_mono.wav" id="2_12gli"]
+[ext_resource type="AudioStream" uid="uid://dh1v6nteol755" path="res://SFX/WHOOSH_Wide_Deep_Slow_stereo.wav" id="2_k7wiv"]
+[ext_resource type="AudioStream" uid="uid://cx0571rj3ahqp" path="res://SFX/WHOOSH_Whip_RR1_mono.wav" id="2_ocyd6"]
+[ext_resource type="AudioStream" uid="uid://dflvbta81tp01" path="res://SFX/TIME_WARP_Start_01_mono_Back.wav" id="3_bfd5h"]
+[ext_resource type="AudioStream" uid="uid://col26slnyxwiq" path="res://SFX/WHOOSH_Plain_Short_RR1_mono.wav" id="3_v0ul8"]
+[ext_resource type="AudioStream" uid="uid://h6qfa6esa5fn" path="res://SFX/TIME_WARP_Start_01_mono.wav" id="4_kq5oo"]
+[ext_resource type="AudioStream" uid="uid://bg3mnhx11tw6h" path="res://SFX/whoosh_swish_small_01.wav" id="4_yviq6"]
+[ext_resource type="AudioStream" uid="uid://cmjrdlhk63vnf" path="res://SFX/GORE_Splat_Hit_Short_mono.wav" id="5_1qj6j"]
+[ext_resource type="AudioStream" uid="uid://d2x0347arm4fb" path="res://SFX/Footsteps/footstep_mud_walk_03.wav" id="6_5ngkb"]
+[ext_resource type="AudioStream" uid="uid://b8fuboprinuy" path="res://SFX/FABRIC_Movement_Fast_01_mono.wav" id="6_xysc6"]
+[ext_resource type="AudioStream" uid="uid://bkoxghkyi5t8o" path="res://SFX/Footsteps/footstep_mud_walk_04.wav" id="7_ywfdb"]
+[ext_resource type="AudioStream" uid="uid://cfxndifmlb0lm" path="res://SFX/Footsteps/footstep_mud_walk_05.wav" id="8_ooe8w"]
+[ext_resource type="AudioStream" uid="uid://8sklnniecngc" path="res://SFX/Footsteps/footstep_mud_walk_06.wav" id="9_58sug"]
+[ext_resource type="AudioStream" uid="uid://ie5peaq0f5yj" path="res://SFX/Footsteps/footstep_mud_walk_07.wav" id="10_4rmpx"]
+[ext_resource type="AudioStream" uid="uid://tkjkiav8fi80" path="res://SFX/Footsteps/footstep_mud_walk_08.wav" id="11_2fe7w"]
 
 [sub_resource type="Animation" id="Animation_3a25u"]
 resource_name = "Aura"
@@ -247,6 +35,111 @@ tracks/0/keys = {
 "method": &"useAbility"
 }]
 }
+
+[sub_resource type="Animation" id="Animation_3nkwd"]
+resource_name = "Death"
+length = 0.8
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Art/Body:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [0, 82, 83, 84, 85, 86, 87, 88, 89]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Art/Eyes:frame")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Art/Eyes:position")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.4, 0.6, 0.7, 0.8),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [Vector2(0, 0), Vector2(0, -2), Vector2(-2, -2), Vector2(-2, -2), Vector2(-2.38419e-07, 4), Vector2(1, 8), Vector2(0, 14)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Art/Eyes:rotation")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0, 0.2, 0.3, 0.4, 0.6, 0.7, 0.8),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [0.0, -0.523598, -0.907584, -1.57079, -2.35619, -3.14159, -2.61799]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("Art/Eyes:modulate")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0, 0.2, 0.4, 0.7, 0.8),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 1), Color(0.678431, 0.678431, 0.678431, 1), Color(0.490196, 0.490196, 0.490196, 1), Color(0.34902, 0.34902, 0.34902, 1), Color(0.34902, 0.34902, 0.34902, 0.494118)]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath(".:stopMovement")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/6/type = "method"
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/path = NodePath("Stats")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/keys = {
+"times": PackedFloat32Array(0.8),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [],
+"method": &"activate_death"
+}]
+}
+tracks/7/type = "audio"
+tracks/7/imported = false
+tracks/7/enabled = true
+tracks/7/path = NodePath("AudioStreamPlayer")
+tracks/7/interp = 1
+tracks/7/loop_wrap = true
+tracks/7/keys = {
+"clips": [{
+"end_offset": 0.0,
+"start_offset": 0.0,
+"stream": ExtResource("1_6876s")
+}],
+"times": PackedFloat32Array(0)
+}
+tracks/7/use_blend = true
 
 [sub_resource type="Animation" id="Animation_hipwu"]
 resource_name = "Dodge"
@@ -387,7 +280,7 @@ tracks/10/keys = {
 [sub_resource type="Animation" id="Animation_sj0b1"]
 resource_name = "FrontSlam"
 length = 0.4
-step = 0.01
+step = 0.05
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
@@ -559,7 +452,7 @@ tracks/12/keys = {
 "times": PackedFloat32Array(0, 0.05, 0.1, 0.15, 0.2, 0.25),
 "transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1),
 "update": 1,
-"values": [Vector2(2, 0), Vector2(0, 0), Vector2(-2, 0), Vector2(5, 0), Vector2(2, 0), Vector2(1, 0)]
+"values": [Vector2(0.74008, 0), Vector2(-0.787451, 0), Vector2(4.41772, 0.118118), Vector2(1.8252, 0), Vector2(0.412601, 0.0496063), Vector2(0.156694, 0)]
 }
 tracks/13/type = "value"
 tracks/13/imported = false
@@ -609,6 +502,45 @@ tracks/16/keys = {
 "update": 0,
 "values": [Vector2(1, 1), Vector2(1, 2), Vector2(1, 1)]
 }
+tracks/17/type = "value"
+tracks/17/imported = false
+tracks/17/enabled = true
+tracks/17/path = NodePath("Art/Eyes:z_index")
+tracks/17/interp = 1
+tracks/17/loop_wrap = true
+tracks/17/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.15),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 1,
+"values": [2, 1, 2]
+}
+tracks/18/type = "value"
+tracks/18/imported = false
+tracks/18/enabled = true
+tracks/18/path = NodePath("Tentacles:modulate")
+tracks/18/interp = 1
+tracks/18/loop_wrap = true
+tracks/18/keys = {
+"times": PackedFloat32Array(0, 0.15, 0.2, 0.25, 0.4),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 1), Color(1.2, 1.2, 1.2, 1), Color(1.5, 1.5, 1.5, 1), Color(1.2, 1.2, 1.2, 1), Color(1, 1, 1, 1)]
+}
+tracks/19/type = "audio"
+tracks/19/imported = false
+tracks/19/enabled = true
+tracks/19/path = NodePath("AudioStreamPlayer")
+tracks/19/interp = 1
+tracks/19/loop_wrap = true
+tracks/19/keys = {
+"clips": [{
+"end_offset": 0.0,
+"start_offset": 0.0,
+"stream": ExtResource("2_ocyd6")
+}],
+"times": PackedFloat32Array(0)
+}
+tracks/19/use_blend = true
 
 [sub_resource type="Animation" id="Animation_b2kxb"]
 resource_name = "Idle"
@@ -888,6 +820,25 @@ tracks/11/keys = {
 "update": 0,
 "values": [Vector2(1e-05, 1e-05)]
 }
+tracks/12/type = "audio"
+tracks/12/imported = false
+tracks/12/enabled = true
+tracks/12/path = NodePath("AudioStreamPlayer")
+tracks/12/interp = 1
+tracks/12/loop_wrap = true
+tracks/12/keys = {
+"clips": [{
+"end_offset": 0.195,
+"start_offset": 0.0,
+"stream": ExtResource("2_12gli")
+}, {
+"end_offset": 0.0,
+"start_offset": 0.0,
+"stream": ExtResource("3_v0ul8")
+}],
+"times": PackedFloat32Array(0, 0.28)
+}
+tracks/12/use_blend = true
 
 [sub_resource type="Animation" id="Animation_64jtk"]
 resource_name = "Pierce"
@@ -1157,6 +1108,61 @@ tracks/16/keys = {
 "update": 1,
 "values": [Vector2(1, 1), Vector2(1, 2), Vector2(1.154, 1.48), Vector2(1, 2), Vector2(1.154, 1.48), Vector2(1, 2), Vector2(1, 2), Vector2(1, 2), Vector2(1.154, 1.48), Vector2(1, 2)]
 }
+tracks/17/type = "value"
+tracks/17/imported = false
+tracks/17/enabled = true
+tracks/17/path = NodePath("Tentacles:modulate")
+tracks/17/interp = 1
+tracks/17/loop_wrap = true
+tracks/17/keys = {
+"times": PackedFloat32Array(0, 0.05, 0.125, 0.175, 0.275, 0.375),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 1), Color(1.5, 1.5, 1.5, 1), Color(1, 1, 1, 1), Color(1.5, 1.5, 1.5, 1), Color(1.5, 1.5, 1.5, 1), Color(1, 1, 1, 1)]
+}
+tracks/18/type = "value"
+tracks/18/imported = false
+tracks/18/enabled = true
+tracks/18/path = NodePath("Art/Eyes:rotation")
+tracks/18/interp = 1
+tracks/18/loop_wrap = true
+tracks/18/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
+tracks/19/type = "audio"
+tracks/19/imported = false
+tracks/19/enabled = true
+tracks/19/path = NodePath("AudioStreamPlayer")
+tracks/19/interp = 1
+tracks/19/loop_wrap = true
+tracks/19/keys = {
+"clips": [{
+"end_offset": 0.0,
+"start_offset": 0.0,
+"stream": ExtResource("4_yviq6")
+}, {
+"end_offset": 0.0,
+"start_offset": 0.0,
+"stream": ExtResource("4_yviq6")
+}, {
+"end_offset": 0.0,
+"start_offset": 0.0,
+"stream": ExtResource("4_yviq6")
+}, {
+"end_offset": 0.0,
+"start_offset": 0.0,
+"stream": ExtResource("4_yviq6")
+}, {
+"end_offset": 0.0,
+"start_offset": 0.0,
+"stream": ExtResource("4_yviq6")
+}],
+"times": PackedFloat32Array(0, 0.0841632, 0.175, 0.25, 0.325)
+}
+tracks/19/use_blend = true
 
 [sub_resource type="Animation" id="Animation_rvnrv"]
 length = 0.001
@@ -1436,10 +1442,46 @@ tracks/22/keys = {
 "update": 1,
 "values": [2]
 }
+tracks/23/type = "value"
+tracks/23/imported = false
+tracks/23/enabled = true
+tracks/23/path = NodePath("Art/Eyes:modulate")
+tracks/23/interp = 1
+tracks/23/loop_wrap = true
+tracks/23/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+tracks/24/type = "value"
+tracks/24/imported = false
+tracks/24/enabled = true
+tracks/24/path = NodePath("Tentacles:modulate")
+tracks/24/interp = 1
+tracks/24/loop_wrap = true
+tracks/24/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+tracks/25/type = "value"
+tracks/25/imported = false
+tracks/25/enabled = true
+tracks/25/path = NodePath("Art:modulate")
+tracks/25/interp = 1
+tracks/25/loop_wrap = true
+tracks/25/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
 
 [sub_resource type="Animation" id="Animation_7fds2"]
 resource_name = "Roll"
-length = 0.75
+length = 0.35
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
@@ -1447,10 +1489,10 @@ tracks/0/path = NodePath("Art/Body:frame")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7),
-"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1),
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
 "update": 1,
-"values": [12, 11, 13, 14, 15, 16, 17, 10]
+"values": [12, 16, 17, 12]
 }
 tracks/1/type = "value"
 tracks/1/imported = false
@@ -1459,7 +1501,7 @@ tracks/1/path = NodePath(".:stopMovement")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
-"times": PackedFloat32Array(0, 0.75),
+"times": PackedFloat32Array(0, 0.3),
 "transitions": PackedFloat32Array(1, 1),
 "update": 1,
 "values": [true, false]
@@ -1471,63 +1513,63 @@ tracks/2/path = NodePath("Art/Eyes:frame")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/keys = {
-"times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7),
-"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1),
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
 "update": 1,
-"values": [11, 25, 12, 13, 14, 15, 16, 17]
+"values": [11, 15, 16, 11]
 }
 tracks/3/type = "value"
 tracks/3/imported = false
 tracks/3/enabled = true
-tracks/3/path = NodePath("Art/Hood_inside:frame")
+tracks/3/path = NodePath("Art/Eyes:position")
 tracks/3/interp = 1
 tracks/3/loop_wrap = true
 tracks/3/keys = {
-"times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7),
-"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1),
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
 "update": 1,
-"values": [11, 10, 12, 13, 14, 15, 16, 11]
+"values": [Vector2(-2, -1), Vector2(-4, -1), Vector2(-4, -1), Vector2(-2, -1)]
 }
 tracks/4/type = "value"
 tracks/4/imported = false
 tracks/4/enabled = true
-tracks/4/path = NodePath("Art/Hood_outside:frame")
+tracks/4/path = NodePath("Art/Eyes:rotation")
 tracks/4/interp = 1
 tracks/4/loop_wrap = true
 tracks/4/keys = {
-"times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7),
-"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1),
-"update": 1,
-"values": [11, 10, 12, 13, 14, 15, 16, 11]
-}
-tracks/5/type = "value"
-tracks/5/imported = false
-tracks/5/enabled = true
-tracks/5/path = NodePath("Art/Eyes:position")
-tracks/5/interp = 1
-tracks/5/loop_wrap = true
-tracks/5/keys = {
-"times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7),
-"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1),
-"update": 1,
-"values": [Vector2(-2, -1), Vector2(-1, -13), Vector2(-1, -1), Vector2(-4, 0), Vector2(-4, 0), Vector2(-4, -1), Vector2(-4, -1), Vector2(-2, -1)]
-}
-tracks/6/type = "value"
-tracks/6/imported = false
-tracks/6/enabled = true
-tracks/6/path = NodePath("Art/Eyes:rotation")
-tracks/6/interp = 1
-tracks/6/loop_wrap = true
-tracks/6/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 1,
 "values": [0.0]
 }
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("Art/Hood_outside:scale")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(1e-05, 1e-05)]
+}
+tracks/6/type = "value"
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/path = NodePath("Art/Hood_inside:scale")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(1e-05, 1e-05)]
+}
 tracks/7/type = "value"
 tracks/7/imported = false
 tracks/7/enabled = true
-tracks/7/path = NodePath("Art/Hood_outside:scale")
+tracks/7/path = NodePath("Tentacles/Tentacle_1:scale")
 tracks/7/interp = 1
 tracks/7/loop_wrap = true
 tracks/7/keys = {
@@ -1539,7 +1581,7 @@ tracks/7/keys = {
 tracks/8/type = "value"
 tracks/8/imported = false
 tracks/8/enabled = true
-tracks/8/path = NodePath("Art/Hood_inside:scale")
+tracks/8/path = NodePath("Tentacles/Tentacle_2:scale")
 tracks/8/interp = 1
 tracks/8/loop_wrap = true
 tracks/8/keys = {
@@ -1548,38 +1590,14 @@ tracks/8/keys = {
 "update": 0,
 "values": [Vector2(1e-05, 1e-05)]
 }
-tracks/9/type = "value"
+tracks/9/type = "method"
 tracks/9/imported = false
 tracks/9/enabled = true
-tracks/9/path = NodePath("Tentacles/Tentacle_1:scale")
+tracks/9/path = NodePath(".")
 tracks/9/interp = 1
 tracks/9/loop_wrap = true
 tracks/9/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Vector2(1e-05, 1e-05)]
-}
-tracks/10/type = "value"
-tracks/10/imported = false
-tracks/10/enabled = true
-tracks/10/path = NodePath("Tentacles/Tentacle_2:scale")
-tracks/10/interp = 1
-tracks/10/loop_wrap = true
-tracks/10/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Vector2(1e-05, 1e-05)]
-}
-tracks/11/type = "method"
-tracks/11/imported = false
-tracks/11/enabled = true
-tracks/11/path = NodePath(".")
-tracks/11/interp = 1
-tracks/11/loop_wrap = true
-tracks/11/keys = {
-"times": PackedFloat32Array(0, 0.1, 0.7),
+"times": PackedFloat32Array(0, 0.1, 0.3),
 "transitions": PackedFloat32Array(1, 1, 1),
 "values": [{
 "args": [],
@@ -1592,6 +1610,33 @@ tracks/11/keys = {
 "method": &"reset_max_speed"
 }]
 }
+tracks/10/type = "value"
+tracks/10/imported = false
+tracks/10/enabled = true
+tracks/10/path = NodePath("Art:modulate")
+tracks/10/interp = 1
+tracks/10/loop_wrap = true
+tracks/10/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 1), Color(1.5, 1.5, 1.5, 1), Color(1.5, 1, 1, 1), Color(1, 1, 1, 1)]
+}
+tracks/11/type = "audio"
+tracks/11/imported = false
+tracks/11/enabled = true
+tracks/11/path = NodePath("AudioStreamPlayer")
+tracks/11/interp = 1
+tracks/11/loop_wrap = true
+tracks/11/keys = {
+"clips": [{
+"end_offset": 0.0,
+"start_offset": 0.0,
+"stream": ExtResource("2_k7wiv")
+}],
+"times": PackedFloat32Array(-0.2)
+}
+tracks/11/use_blend = true
 
 [sub_resource type="Animation" id="Animation_b8m6l"]
 resource_name = "Spinner"
@@ -1652,8 +1697,8 @@ tracks/4/path = NodePath("Abilities")
 tracks/4/interp = 1
 tracks/4/loop_wrap = true
 tracks/4/keys = {
-"times": PackedFloat32Array(0.2, 0.212957, 0.282991, 0.297991, 0.342991, 0.347991),
-"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1),
+"times": PackedFloat32Array(0.2, 0.212957, 0.282991, 0.342991, 0.347991),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
 "values": [{
 "args": ["AbilitySpawns", 135.0],
 "method": &"rotate_sprite_to_mouse"
@@ -1662,9 +1707,6 @@ tracks/4/keys = {
 "method": &"rotate_sprite_to_mouse"
 }, {
 "args": [4, 0, Vector2(0, 0)],
-"method": &"useAbility"
-}, {
-"args": [4, 1, Vector2(0, 0)],
 "method": &"useAbility"
 }, {
 "args": ["Tentacles"],
@@ -1818,6 +1860,33 @@ tracks/16/keys = {
 "update": 1,
 "values": [Vector2(1, 1), Vector2(1, 3.5), Vector2(1, 1.5), Vector2(1, 1)]
 }
+tracks/17/type = "value"
+tracks/17/imported = false
+tracks/17/enabled = true
+tracks/17/path = NodePath("Tentacles:modulate")
+tracks/17/interp = 1
+tracks/17/loop_wrap = true
+tracks/17/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.15, 0.25, 0.3),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 1), Color(1.5, 1, 1.5, 1), Color(1.5, 1.5, 1.5, 1), Color(1.2, 1.2, 1.5, 1), Color(1, 1, 1, 1)]
+}
+tracks/18/type = "audio"
+tracks/18/imported = false
+tracks/18/enabled = true
+tracks/18/path = NodePath("AudioStreamPlayer")
+tracks/18/interp = 1
+tracks/18/loop_wrap = true
+tracks/18/keys = {
+"clips": [{
+"end_offset": 0.0,
+"start_offset": 0.0,
+"stream": ExtResource("6_xysc6")
+}],
+"times": PackedFloat32Array(-0.05)
+}
+tracks/18/use_blend = true
 
 [sub_resource type="Animation" id="Animation_pxb55"]
 resource_name = "Transform_Back_Standing"
@@ -1945,6 +2014,69 @@ tracks/9/keys = {
 "method": &"_transform"
 }]
 }
+tracks/10/type = "value"
+tracks/10/imported = false
+tracks/10/enabled = true
+tracks/10/path = NodePath(".:stopMovement")
+tracks/10/interp = 1
+tracks/10/loop_wrap = true
+tracks/10/keys = {
+"times": PackedFloat32Array(0, 0.6),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [false, true]
+}
+tracks/11/type = "value"
+tracks/11/imported = false
+tracks/11/enabled = true
+tracks/11/path = NodePath("Tentacles/Tentacle_2:position")
+tracks/11/interp = 1
+tracks/11/loop_wrap = true
+tracks/11/keys = {
+"times": PackedFloat32Array(0.6),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(6.25039, -0.673223)]
+}
+tracks/12/type = "value"
+tracks/12/imported = false
+tracks/12/enabled = true
+tracks/12/path = NodePath("Tentacles/Tentacle_1:position")
+tracks/12/interp = 1
+tracks/12/loop_wrap = true
+tracks/12/keys = {
+"times": PackedFloat32Array(0.6),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(-5.97638, -0.605509)]
+}
+tracks/13/type = "value"
+tracks/13/imported = false
+tracks/13/enabled = true
+tracks/13/path = NodePath("Art:modulate")
+tracks/13/interp = 1
+tracks/13/loop_wrap = true
+tracks/13/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.25, 0.3, 0.5, 0.6),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 1), Color(1, 1, 1, 1), Color(1.5, 1.5, 1.5, 1), Color(1.5, 1, 1.5, 1), Color(1.5, 1, 1, 1), Color(1, 1, 1, 1)]
+}
+tracks/14/type = "audio"
+tracks/14/imported = false
+tracks/14/enabled = true
+tracks/14/path = NodePath("AudioStreamPlayer")
+tracks/14/interp = 1
+tracks/14/loop_wrap = true
+tracks/14/keys = {
+"clips": [{
+"end_offset": 0.609,
+"start_offset": 0.0,
+"stream": ExtResource("3_bfd5h")
+}],
+"times": PackedFloat32Array(0)
+}
+tracks/14/use_blend = true
 
 [sub_resource type="Animation" id="Animation_dxci1"]
 resource_name = "Transform_Standing"
@@ -2082,6 +2214,73 @@ tracks/10/keys = {
 "update": 1,
 "values": [29]
 }
+tracks/11/type = "value"
+tracks/11/imported = false
+tracks/11/enabled = true
+tracks/11/path = NodePath(".:stopMovement")
+tracks/11/interp = 1
+tracks/11/loop_wrap = true
+tracks/11/keys = {
+"times": PackedFloat32Array(0, 0.6),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [true, false]
+}
+tracks/12/type = "value"
+tracks/12/imported = false
+tracks/12/enabled = true
+tracks/12/path = NodePath("Art:modulate")
+tracks/12/interp = 1
+tracks/12/loop_wrap = true
+tracks/12/keys = {
+"times": PackedFloat32Array(0, 0.3, 0.6),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 1), Color(1.75, 1.75, 1.75, 1), Color(1, 1, 1, 1)]
+}
+tracks/13/type = "value"
+tracks/13/imported = false
+tracks/13/enabled = true
+tracks/13/path = NodePath("Tentacles/Tentacle_2:position")
+tracks/13/interp = 1
+tracks/13/loop_wrap = true
+tracks/13/keys = {
+"times": PackedFloat32Array(0.6),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(6.83794, -0.959606)]
+}
+tracks/14/type = "value"
+tracks/14/imported = false
+tracks/14/enabled = true
+tracks/14/path = NodePath("Tentacles/Tentacle_1:position")
+tracks/14/interp = 1
+tracks/14/loop_wrap = true
+tracks/14/keys = {
+"times": PackedFloat32Array(0.6),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(-4.37655, -0.172504)]
+}
+tracks/15/type = "audio"
+tracks/15/imported = false
+tracks/15/enabled = true
+tracks/15/path = NodePath("AudioStreamPlayer")
+tracks/15/interp = 1
+tracks/15/loop_wrap = true
+tracks/15/keys = {
+"clips": [{
+"end_offset": 0.0,
+"start_offset": 0.318,
+"stream": ExtResource("4_kq5oo")
+}, {
+"end_offset": 0.0,
+"start_offset": 0.0938,
+"stream": ExtResource("5_1qj6j")
+}],
+"times": PackedFloat32Array(-0.5, 0.3)
+}
+tracks/15/use_blend = true
 
 [sub_resource type="Animation" id="Animation_3lqap"]
 resource_name = "TurnLeft"
@@ -2128,6 +2327,23 @@ tracks/1/keys = {
 "update": 0,
 "values": [Vector2(1, 1)]
 }
+
+[sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_ntps7"]
+playback_mode = 2
+random_volume_offset_db = 2.0
+streams_count = 6
+stream_0/stream = ExtResource("6_5ngkb")
+stream_0/weight = 1.0
+stream_1/stream = ExtResource("7_ywfdb")
+stream_1/weight = 1.0
+stream_2/stream = ExtResource("8_ooe8w")
+stream_2/weight = 1.0
+stream_3/stream = ExtResource("9_58sug")
+stream_3/weight = 1.0
+stream_4/stream = ExtResource("10_4rmpx")
+stream_4/weight = 1.0
+stream_5/stream = ExtResource("11_2fe7w")
+stream_5/weight = 1.0
 
 [sub_resource type="Animation" id="Animation_6piq7"]
 resource_name = "Walking"
@@ -2253,11 +2469,26 @@ tracks/9/keys = {
 "update": 1,
 "values": [false]
 }
+tracks/10/type = "audio"
+tracks/10/imported = false
+tracks/10/enabled = true
+tracks/10/path = NodePath("AudioStreamPlayer")
+tracks/10/interp = 1
+tracks/10/loop_wrap = true
+tracks/10/keys = {
+"clips": [{
+"end_offset": 0.0,
+"start_offset": 0.0,
+"stream": SubResource("AudioStreamRandomizer_ntps7")
+}],
+"times": PackedFloat32Array(0)
+}
+tracks/10/use_blend = true
 
 [resource]
 _data = {
-"Attack_3": SubResource("Animation_yi457"),
 "Aura": SubResource("Animation_3a25u"),
+"Death": SubResource("Animation_3nkwd"),
 "Dodge": SubResource("Animation_hipwu"),
 "FrontSlam": SubResource("Animation_sj0b1"),
 "Idle": SubResource("Animation_b2kxb"),

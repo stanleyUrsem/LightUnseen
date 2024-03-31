@@ -1,0 +1,45 @@
+[gd_scene load_steps=9 format=3 uid="uid://ce8airb1casuq"]
+
+[ext_resource type="PackedScene" uid="uid://dg0hecc6jw1b2" path="res://Npc/Npc_fam.tscn" id="1_o6tpf"]
+[ext_resource type="Shader" path="res://swap_color.gdshader" id="2_dub6k"]
+[ext_resource type="Texture2D" uid="uid://c5jxxtp0an06n" path="res://Npc/npc_grad.png" id="3_cn1ee"]
+[ext_resource type="Gradient" uid="uid://drjtrqarectey" path="res://Npc/Mischa.tres" id="4_5qchp"]
+[ext_resource type="AudioStream" uid="uid://cu7op8f6bqvd1" path="res://SFX/Voices/UI_Click_Tap_Hybrid_Smooth_mono.wav" id="5_8m1al"]
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_gqd3t"]
+gradient = ExtResource("4_5qchp")
+width = 18
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_v05e4"]
+shader = ExtResource("2_dub6k")
+shader_parameter/alpha_override = 1.0
+shader_parameter/num_colors = 18
+shader_parameter/precision = 0.0
+shader_parameter/index = null
+shader_parameter/palette_in = ExtResource("3_cn1ee")
+shader_parameter/palette_out = SubResource("GradientTexture1D_gqd3t")
+
+[sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_xr3nv"]
+random_pitch = 1.5
+streams_count = 1
+stream_0/stream = ExtResource("5_8m1al")
+stream_0/weight = 1.0
+
+[node name="Mischa" instance=ExtResource("1_o6tpf")]
+scale = Vector2(0.93, 0.93)
+
+[node name="Art" parent="." index="0"]
+material = SubResource("ShaderMaterial_v05e4")
+
+[node name="Eyes" parent="Art/Eyes" index="0"]
+frame = 2
+
+[node name="Eyes2" parent="Art/Eyes" index="1"]
+frame = 2
+
+[node name="AnimationTree" parent="." index="1"]
+parameters/IdleToWalk/blend_amount = 0.0
+
+[node name="Voice" parent="Control/PanelContainer" index="1"]
+stream = SubResource("AudioStreamRandomizer_xr3nv")
+pitch_scale = 1.2

@@ -2,7 +2,7 @@ extends Node
 
 class_name Hittable
 @export_enum("VISCIOUS","SOLID") var type : int
-signal OnHit(hit)
+signal OnHit(hit, user)
 
 
 	#if(changeDuration > 0):

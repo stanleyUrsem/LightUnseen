@@ -25,5 +25,10 @@ func _turn(turn : float):
 		AnimatorHelper._playanimTreeBlend2D(_animator,"LeftOrRight",1)
 	turnCurrent = turn
 
+func alive():
+	AnimatorHelper._playanimTreeBlend2D(_animator,"Death",0.0)
+			
+func death():
+	AnimatorHelper._playanimTreeBlend2D(_animator,"Death",1.0)
 
 

@@ -1,0 +1,40 @@
+[gd_resource type="ShaderMaterial" load_steps=4 format=3 uid="uid://dvx7bruw7hwqd"]
+
+[ext_resource type="Shader" path="res://UI/health_bar.gdshader" id="1_staew"]
+
+[sub_resource type="Gradient" id="Gradient_qoixk"]
+interpolation_mode = 1
+offsets = PackedFloat32Array(0, 0.0498688, 0.249344, 0.686825, 0.937365)
+colors = PackedColorArray(0, 0, 0, 0, 0, 0.174858, 0.335084, 1, 0, 0.291572, 0.533155, 1, 0, 0.328823, 0.596373, 1, 0.623278, 0.801237, 1, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_x71a1"]
+gradient = SubResource("Gradient_qoixk")
+use_hdr = true
+fill_from = Vector2(0.017094, 1)
+fill_to = Vector2(0, 0.025641)
+
+[resource]
+shader = ExtResource("1_staew")
+shader_parameter/color = Color(0.572549, 0, 0, 1)
+shader_parameter/resolution = 1.57
+shader_parameter/size = 0.3
+shader_parameter/resolution_under = 0.0
+shader_parameter/division_under = -1.0
+shader_parameter/step_under = 0.02
+shader_parameter/step_sdf = 14.775
+shader_parameter/pixel_size = 26.01
+shader_parameter/backFill_brightness = 0.77
+shader_parameter/fV = 0.975
+shader_parameter/fVx = 1.045
+shader_parameter/under_mult = 0.0
+shader_parameter/big_wave_freq_range = Vector2(0.145, 0.15)
+shader_parameter/big_wave_amp_range = Vector2(0.155, 0.15)
+shader_parameter/main_wave_freq_range = Vector2(0.025, 0.025)
+shader_parameter/main_wave_amp_range = Vector2(0.02, 0.02)
+shader_parameter/under_region_origin = Vector2(4, -0.08)
+shader_parameter/under_region_size = Vector2(42, 42)
+shader_parameter/under_atlas_size = Vector2(300, 43.4)
+shader_parameter/over_region_origin = Vector2(0.01, -0.07)
+shader_parameter/over_region_size = Vector2(1.925, 1.025)
+shader_parameter/over_atlas_size = Vector2(0.775, 0.985)
+shader_parameter/over = SubResource("GradientTexture2D_x71a1")

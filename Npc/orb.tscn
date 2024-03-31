@@ -1,0 +1,357 @@
+[gd_scene load_steps=18 format=3 uid="uid://bkr5b8ehbe43j"]
+
+[ext_resource type="Script" path="res://Npc/orb.gd" id="1_h0xhk"]
+[ext_resource type="Texture2D" uid="uid://c5rakthphg8f1" path="res://Npc/reginald.png" id="2_eh47f"]
+[ext_resource type="Shader" path="res://swap_color.gdshader" id="3_ik3en"]
+[ext_resource type="PackedScene" uid="uid://drlew1t8hcaub" path="res://Npc/orb_pool.tscn" id="4_onf40"]
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_lk410"]
+load_path = "res://.godot/imported/npc_grad.png-df171e15f076bafecc55b51988282185.ctex"
+
+[sub_resource type="Gradient" id="Gradient_71cs8"]
+interpolation_mode = 1
+interpolation_color_space = 1
+offsets = PackedFloat32Array(0, 0.0555556, 0.111111, 0.166667, 0.222222, 0.277778, 0.333333, 0.388889, 0.444444, 0.5, 0.555556, 0.611111, 0.666667, 0.722222, 0.777778, 0.833333, 0.888889, 0.944444, 1)
+colors = PackedColorArray(0, 0, 0, 0, 0.700415, 0.286638, 9.62615e-08, 1, 0.505465, 0.201145, 2.88785e-07, 1, 0.936317, 0.691691, 3.85046e-07, 1, 0.700415, 0.286638, 9.62615e-08, 1, 0.66, 0.275, 0, 1, 0.9, 0.7845, 0.27, 1, 0.25, 0.25, 0.25, 1, 0.36, 0.36, 0.36, 1, 0.43, 0.43, 0.43, 1, 0.787759, 0.787759, 0.78776, 1, 0.601223, 0.601223, 0.601223, 1, 0.741385, 0.741385, 0.741385, 1, 0.560665, 0.55043, 1.92523e-07, 1, 0.897113, 0.787427, 0.387057, 1, 0.0705882, 0.0470588, 0.0431373, 1, 0.0705882, 0.0470588, 0.0352941, 1, 0.101961, 0.0784314, 0.0666667, 1, 0.101961, 0.0784314, 0.0666667, 1)
+metadata/_snap_count = 18
+metadata/_snap_enabled = true
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_jornf"]
+gradient = SubResource("Gradient_71cs8")
+width = 18
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_05wbj"]
+shader = ExtResource("3_ik3en")
+shader_parameter/alpha_override = 1.0
+shader_parameter/num_colors = 18
+shader_parameter/precision = 0.0
+shader_parameter/index = null
+shader_parameter/palette_in = SubResource("CompressedTexture2D_lk410")
+shader_parameter/palette_out = SubResource("GradientTexture1D_jornf")
+
+[sub_resource type="Animation" id="Animation_hbljo"]
+resource_name = "Impact"
+length = 0.3
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [30]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Sprite2D:scale")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.3),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(1, 1), Vector2(0, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_7hw6x"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [30]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Sprite2D:scale")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(1, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_h6x64"]
+resource_name = "Throw"
+length = 1.5
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9, 1, 1.1, 1.2, 1.3, 1.4),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [30, 31, 32, 33, 34, 35, 36, 37, 38, 39, 40, 41, 42, 43, 44]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Sprite2D:scale")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(1, 1)]
+}
+tracks/2/type = "method"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath(".")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0.7, 0.9, 1.2),
+"transitions": PackedFloat32Array(1, 1, 1),
+"values": [{
+"args": [],
+"method": &"increase_scale"
+}, {
+"args": [],
+"method": &"increase_scale"
+}, {
+"args": [],
+"method": &"increase_scale"
+}]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_d4nyf"]
+_data = {
+"Impact": SubResource("Animation_hbljo"),
+"RESET": SubResource("Animation_7hw6x"),
+"Throw": SubResource("Animation_h6x64")
+}
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_xu37j"]
+animation = &"Impact"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_4ympm"]
+animation = &"Throw"
+
+[sub_resource type="AnimationNodeBlend2" id="AnimationNodeBlend2_nuhcv"]
+
+[sub_resource type="AnimationNodeBlendTree" id="AnimationNodeBlendTree_np0xe"]
+graph_offset = Vector2(-392.351, -42.6881)
+nodes/Animation/node = SubResource("AnimationNodeAnimation_4ympm")
+nodes/Animation/position = Vector2(-260, 40)
+"nodes/Animation 2/node" = SubResource("AnimationNodeAnimation_xu37j")
+"nodes/Animation 2/position" = Vector2(-180, 180)
+nodes/Throw/node = SubResource("AnimationNodeBlend2_nuhcv")
+nodes/Throw/position = Vector2(100, 20)
+nodes/output/position = Vector2(440, 100)
+node_connections = [&"Throw", 0, &"Animation", &"Throw", 1, &"Animation 2", &"output", 0, &"Throw"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_a1j3m"]
+radius = 6.40312
+
+[node name="Orb" type="AnimatableBody2D" node_paths=PackedStringArray("spawn_point_root", "fadeTimer", "body")]
+z_index = 5
+collision_layer = 4
+collision_mask = 16
+sync_to_physics = false
+script = ExtResource("1_h0xhk")
+pool = ExtResource("4_onf40")
+spawn_point_root = NodePath("Node2D")
+scale_increase_range = Vector2(0.3, 0.5)
+damage_time = 1.25
+fadeTimer = NodePath("Timer")
+body = NodePath(".")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+material = SubResource("ShaderMaterial_05wbj")
+texture = ExtResource("2_eh47f")
+hframes = 10
+vframes = 9
+frame = 30
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_d4nyf")
+}
+
+[node name="AnimationTree" type="AnimationTree" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_d4nyf")
+}
+tree_root = SubResource("AnimationNodeBlendTree_np0xe")
+anim_player = NodePath("../AnimationPlayer")
+parameters/Throw/blend_amount = 0
+
+[node name="Timer" type="Timer" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+visible = false
+shape = SubResource("CircleShape2D_a1j3m")
+
+[node name="Node2D" type="Node2D" parent="."]
+
+[node name="Marker2D" type="Marker2D" parent="Node2D"]
+position = Vector2(0, 16)
+
+[node name="Marker2D2" type="Marker2D" parent="Node2D"]
+position = Vector2(-10, 20)
+
+[node name="Marker2D3" type="Marker2D" parent="Node2D"]
+position = Vector2(9, 22)
+
+[node name="Marker2D4" type="Marker2D" parent="Node2D"]
+position = Vector2(-5, 28)
+
+[node name="Marker2D5" type="Marker2D" parent="Node2D"]
+position = Vector2(7, 30)
+
+[node name="Marker2D6" type="Marker2D" parent="Node2D"]
+position = Vector2(-6, 36)
+
+[node name="Marker2D7" type="Marker2D" parent="Node2D"]
+position = Vector2(11, 40)
+
+[node name="Marker2D8" type="Marker2D" parent="Node2D"]
+position = Vector2(-15, 39)
+
+[node name="Marker2D9" type="Marker2D" parent="Node2D"]
+position = Vector2(2, 46)
+
+[node name="Marker2D10" type="Marker2D" parent="Node2D"]
+position = Vector2(-20, 28)
+
+[node name="Marker2D11" type="Marker2D" parent="Node2D"]
+position = Vector2(-17, 13)
+
+[node name="Marker2D12" type="Marker2D" parent="Node2D"]
+position = Vector2(-27, 20)
+
+[node name="Marker2D13" type="Marker2D" parent="Node2D"]
+position = Vector2(-26, 31)
+
+[node name="Marker2D14" type="Marker2D" parent="Node2D"]
+position = Vector2(-22, 42)
+
+[node name="Marker2D15" type="Marker2D" parent="Node2D"]
+position = Vector2(-12, 45)
+
+[node name="Marker2D16" type="Marker2D" parent="Node2D"]
+position = Vector2(-6, 54)
+
+[node name="Marker2D17" type="Marker2D" parent="Node2D"]
+position = Vector2(-25, 51)
+
+[node name="Marker2D18" type="Marker2D" parent="Node2D"]
+position = Vector2(11, 54)
+
+[node name="Marker2D19" type="Marker2D" parent="Node2D"]
+position = Vector2(17, 46)
+
+[node name="Marker2D20" type="Marker2D" parent="Node2D"]
+position = Vector2(24, 39)
+
+[node name="Marker2D21" type="Marker2D" parent="Node2D"]
+position = Vector2(19, 31)
+
+[node name="Marker2D22" type="Marker2D" parent="Node2D"]
+position = Vector2(22, 22)
+
+[node name="Marker2D23" type="Marker2D" parent="Node2D"]
+position = Vector2(19, 14)
+
+[node name="Marker2D24" type="Marker2D" parent="Node2D"]
+position = Vector2(-35, 58)
+
+[node name="Marker2D25" type="Marker2D" parent="Node2D"]
+position = Vector2(-39, 48)
+
+[node name="Marker2D26" type="Marker2D" parent="Node2D"]
+position = Vector2(-33, 38)
+
+[node name="Marker2D27" type="Marker2D" parent="Node2D"]
+position = Vector2(-36, 26)
+
+[node name="Marker2D28" type="Marker2D" parent="Node2D"]
+position = Vector2(-47, 52)
+
+[node name="Marker2D29" type="Marker2D" parent="Node2D"]
+position = Vector2(-50, 61)
+
+[node name="Marker2D30" type="Marker2D" parent="Node2D"]
+position = Vector2(-24, 60)
+
+[node name="Marker2D31" type="Marker2D" parent="Node2D"]
+position = Vector2(-43, 40)
+
+[node name="Marker2D32" type="Marker2D" parent="Node2D"]
+position = Vector2(-4, 61)
+
+[node name="Marker2D33" type="Marker2D" parent="Node2D"]
+position = Vector2(-1, 69)
+
+[node name="Marker2D34" type="Marker2D" parent="Node2D"]
+position = Vector2(-10, 67)
+
+[node name="Marker2D35" type="Marker2D" parent="Node2D"]
+position = Vector2(9, 64)
+
+[node name="Marker2D36" type="Marker2D" parent="Node2D"]
+position = Vector2(23, 61)
+
+[node name="Marker2D37" type="Marker2D" parent="Node2D"]
+position = Vector2(27, 50)
+
+[node name="Marker2D38" type="Marker2D" parent="Node2D"]
+position = Vector2(34, 43)
+
+[node name="Marker2D39" type="Marker2D" parent="Node2D"]
+position = Vector2(31, 34)
+
+[node name="Marker2D40" type="Marker2D" parent="Node2D"]
+position = Vector2(34, 24)
+
+[node name="Marker2D41" type="Marker2D" parent="Node2D"]
+position = Vector2(32, 15)
+
+[node name="Marker2D42" type="Marker2D" parent="Node2D"]
+position = Vector2(28, 58)
+
+[node name="Marker2D43" type="Marker2D" parent="Node2D"]
+position = Vector2(35, 68)
+
+[node name="Marker2D44" type="Marker2D" parent="Node2D"]
+position = Vector2(41, 59)
+
+[node name="Marker2D45" type="Marker2D" parent="Node2D"]
+position = Vector2(37, 53)
+
+[node name="Marker2D46" type="Marker2D" parent="Node2D"]
+position = Vector2(20, 70)
+
+[node name="Marker2D47" type="Marker2D" parent="Node2D"]
+position = Vector2(18, 76)
+
+[node name="Marker2D48" type="Marker2D" parent="Node2D"]
+position = Vector2(-1, 73)
+
+[node name="Marker2D49" type="Marker2D" parent="Node2D"]
+position = Vector2(-17, 69)
+
+[node name="Marker2D50" type="Marker2D" parent="Node2D"]
+position = Vector2(-32, 66)
+
+[node name="Marker2D51" type="Marker2D" parent="Node2D"]
+position = Vector2(-47, 69)

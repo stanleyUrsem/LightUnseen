@@ -1,0 +1,59 @@
+[gd_scene load_steps=7 format=3 uid="uid://c3k65a5px1d18"]
+
+[ext_resource type="Theme" uid="uid://8oe8akinpd2h" path="res://UI/UI_default.tres" id="1_afp0f"]
+[ext_resource type="Script" path="res://UI/hit_number.gd" id="1_jujhx"]
+
+[sub_resource type="Curve" id="Curve_8uv08"]
+_data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(0.25784, 1), 0.0, 0.0, 0, 0, Vector2(0.498258, 1), 0.0, 0.0, 0, 0, Vector2(0.745645, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 5
+
+[sub_resource type="Curve" id="Curve_2bexq"]
+min_value = 16.0
+max_value = 32.0
+_data = [Vector2(0, 16), 0.0, 1.7784, 0, 0, Vector2(0.174216, 32), 0.0, 0.0, 0, 0, Vector2(0.30662, 16), 0.0, 0.0, 0, 0, Vector2(0.61324, 16.1132), 0.0, 0.0, 0, 0, Vector2(0.756098, 20.6733), 0.0, 0.0, 0, 0, Vector2(0.905923, 16), 0.0, 0.0, 0, 0]
+point_count = 6
+
+[sub_resource type="Curve" id="Curve_xwpa7"]
+max_value = 5.0
+_data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(1, 5), 12.1782, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="Curve" id="Curve_jqtld"]
+min_value = -10.0
+max_value = 10.0
+_data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(0.250871, 10), 0.0, 0.0, 0, 0, Vector2(0.508711, -10), 0.0, 0.0, 0, 0, Vector2(0.850174, 0), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 5
+
+[node name="Control" type="Control" node_paths=PackedStringArray("text_label")]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+script = ExtResource("1_jujhx")
+player_damage = Color(0.882353, 0.882353, 0.882353, 1)
+player_heal = Color(0.266667, 0.741176, 0.266667, 1)
+mob_damage = Color(0.690196, 0.156863, 0.156863, 1)
+duration = 1.0
+alpha_curve = SubResource("Curve_8uv08")
+size_curve = SubResource("Curve_2bexq")
+pos_x_curve = SubResource("Curve_xwpa7")
+pos_y_curve = SubResource("Curve_jqtld")
+text_label = NodePath("RichTextLabel")
+
+[node name="RichTextLabel" type="RichTextLabel" parent="."]
+process_mode = 3
+clip_contents = false
+layout_mode = 1
+anchors_preset = 14
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_top = -8.0
+offset_bottom = 8.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("1_afp0f")
+bbcode_enabled = true
+text = "[font_size=50]%d"
+fit_content = true
+autowrap_mode = 2

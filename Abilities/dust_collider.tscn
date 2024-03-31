@@ -1,0 +1,21 @@
+[gd_scene load_steps=3 format=3 uid="uid://bo8dmt6gfbpic"]
+
+[ext_resource type="Script" path="res://testCasting.gd" id="1_gy5np"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_tw25c"]
+size = Vector2(1, 1)
+
+[node name="Collider" type="ShapeCast2D"]
+self_modulate = Color(1, 1, 1, 0)
+z_index = -1
+position = Vector2(27, 0)
+scale = Vector2(55, 20)
+shape = SubResource("RectangleShape2D_tw25c")
+target_position = Vector2(0, 0)
+collision_mask = 16
+script = ExtResource("1_gy5np")
+
+[node name="Polygon2D" type="Polygon2D" parent="."]
+self_modulate = Color(1, 1, 1, 0.207843)
+color = Color(1, 0, 0, 1)
+polygon = PackedVector2Array(0.5, -0.5, 0.5, 0.5, -0.5, 0.5, -0.5, -0.5)

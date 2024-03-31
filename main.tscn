@@ -1,60 +1,440 @@
-[gd_scene load_steps=15 format=3 uid="uid://cnqpiju56w2xv"]
+[gd_scene load_steps=89 format=3 uid="uid://cnqpiju56w2xv"]
 
 [ext_resource type="PackedScene" uid="uid://cy7fitk5e2igo" path="res://Character/Sion.tscn" id="1_5cn6k"]
 [ext_resource type="Script" path="res://Maps/MapSwitcher.gd" id="1_d2nxu"]
 [ext_resource type="Script" path="res://Character/MouseHandler.gd" id="2_40pnx"]
+[ext_resource type="Environment" uid="uid://dmbd6a6ueyg62" path="res://main.tres" id="2_lxr3f"]
 [ext_resource type="Script" path="res://Maps/FogManager.gd" id="3_car1c"]
+[ext_resource type="Material" uid="uid://jsrado2eupua" path="res://Envo/a_1_fog.tres" id="4_55jgb"]
 [ext_resource type="Material" uid="uid://cb02vfirc38kd" path="res://Maps/Town/foggy.tres" id="4_y6xfu"]
 [ext_resource type="Script" path="res://CameraZoom.gd" id="6_6oo4f"]
+[ext_resource type="Material" uid="uid://bgm3w77m13kfi" path="res://Maps/b_1.tres" id="6_d01ni"]
 [ext_resource type="PackedScene" uid="uid://c3by2vkm71518" path="res://UI/HUD.tscn" id="6_ovusk"]
 [ext_resource type="Script" path="res://Character/PlayerTransformer.gd" id="7_n5qm7"]
+[ext_resource type="Shader" path="res://UI/health_bar.gdshader" id="8_ge6d8"]
 [ext_resource type="PackedScene" uid="uid://c0doq5crsa0n3" path="res://Character/sion_slime.tscn" id="8_x3a12"]
+[ext_resource type="Texture2D" uid="uid://bxkpior6fg3cj" path="res://UI/health_fill.png" id="9_27xqt"]
 [ext_resource type="Script" path="res://EventsManager.gd" id="10_1dmyj"]
-
-[sub_resource type="FastNoiseLite" id="FastNoiseLite_w1ckx"]
-noise_type = 2
-frequency = 0.2312
-fractal_octaves = 3
-fractal_lacunarity = 0.345
-fractal_gain = 2.83
-cellular_jitter = -1.124
-
-[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_nkjmm"]
-width = 64
-height = 64
-seamless = true
-seamless_blend_skirt = 0.901
-noise = SubResource("FastNoiseLite_w1ckx")
-
-[sub_resource type="Environment" id="Environment_qfgc8"]
-background_mode = 3
-background_energy_multiplier = 1.42
-reflected_light_source = 1
-tonemap_mode = 2
-tonemap_exposure = 0.23
-tonemap_white = 3.97
-glow_enabled = true
-glow_levels/1 = 8.16
-glow_levels/2 = 5.08
-glow_levels/3 = 8.43
-glow_levels/4 = 6.4
-glow_levels/5 = 0.22
-glow_levels/6 = 0.36
-glow_levels/7 = 1.23
-glow_normalized = true
-glow_intensity = 2.99
-glow_strength = 1.28
-glow_mix = 0.0
-glow_bloom = 0.12
-glow_blend_mode = 1
-glow_hdr_threshold = 0.79
-glow_hdr_scale = 0.63
-glow_hdr_luminance_cap = 73.73
-glow_map_strength = 0.74
-glow_map = SubResource("NoiseTexture2D_nkjmm")
+[ext_resource type="Texture2D" uid="uid://cv7ouy5kh041t" path="res://UI/health_back.png" id="10_02265"]
+[ext_resource type="Script" path="res://HitNumberManager.gd" id="11_iu0pk"]
+[ext_resource type="PackedScene" uid="uid://c3k65a5px1d18" path="res://UI/hit_number.tscn" id="12_ewb3a"]
+[ext_resource type="Script" path="res://DeathTransition.gd" id="13_f3cb0"]
+[ext_resource type="Script" path="res://Abilities/SkillsManager.gd" id="14_p5owg"]
+[ext_resource type="Script" path="res://Abilities/AbilityData.gd" id="16_xigl3"]
+[ext_resource type="Script" path="res://FadeIn.gd" id="16_xj1dl"]
+[ext_resource type="Script" path="res://SceneManager.gd" id="17_yma07"]
+[ext_resource type="Script" path="res://Maps/MobSpawner.gd" id="23_exqju"]
+[ext_resource type="PackedScene" uid="uid://bkdu7ke3vkapc" path="res://Mobs/Textures/Slime/gatherer_slime.tscn" id="24_71yga"]
+[ext_resource type="PackedScene" uid="uid://bjlnhgcn0p2f0" path="res://Mobs/Textures/Slime/spitter_slime.tscn" id="25_3wyne"]
+[ext_resource type="PackedScene" uid="uid://bui58sigv7u1" path="res://Mobs/Textures/Slime/solid_slime.tscn" id="26_6sh4w"]
+[ext_resource type="PackedScene" uid="uid://e431u513vnhr" path="res://Mobs/Textures/Slime/cmd_slime.tscn" id="27_hxr2g"]
+[ext_resource type="PackedScene" uid="uid://c1lil3exb2sw3" path="res://Mobs/Crystal/crystal_explode.tscn" id="28_qbifq"]
+[ext_resource type="PackedScene" uid="uid://dhgk51pkclb64" path="res://Mobs/Crystal/crystal_engineer.tscn" id="29_0j4as"]
+[ext_resource type="PackedScene" uid="uid://ht563teetiuq" path="res://Mobs/Crystal/crystal_knight.tscn" id="30_x87vw"]
+[ext_resource type="Script" path="res://BGMManager.gd" id="31_hkun4"]
+[ext_resource type="AudioStream" uid="uid://c567h2t6qjiev" path="res://Audio/Quirky Village [Central].wav" id="32_hmjui"]
+[ext_resource type="AudioStream" uid="uid://daspmidhopmkf" path="res://Audio/Forbidden Temple [B1].wav" id="33_4iyq1"]
+[ext_resource type="AudioStream" uid="uid://dbb11xt3chy3b" path="res://Audio/Medieval Market LOOP [A1].wav" id="34_78o37"]
+[ext_resource type="AudioStream" uid="uid://c7h32adshbry3" path="res://Audio/WAV_13_Hip-hoPack-Suva_loop_GamingLoops.com [A2].wav" id="34_uv8k1"]
+[ext_resource type="AudioStream" uid="uid://dxi3lqxmae13k" path="res://Audio/Level 4 (Full) [Loop] [A3].wav" id="36_1mfye"]
+[ext_resource type="AudioStream" uid="uid://cabxad6v8jw1d" path="res://Audio/Nihilore - The Age Of Wonder - 01 Saudade[A4].mp3" id="37_qrd7f"]
+[ext_resource type="AudioStream" uid="uid://b7b8a1augvvlo" path="res://Audio/Fight Complete Loop[D1].wav" id="38_rcbr1"]
+[ext_resource type="AudioStream" uid="uid://ckwwijscunfug" path="res://Audio/Queen Complete[D2].wav" id="39_jwlhh"]
+[ext_resource type="AudioStream" uid="uid://ccte5xm41qb2y" path="res://Audio/The Enemy Arrives[D3].wav" id="40_os740"]
+[ext_resource type="AudioStream" uid="uid://b6weepqp75g5o" path="res://Audio/WAV_07_Secret_Jungle-Damnum_loop_GamingLoops.com[REGINALD_NORMAL].wav" id="41_kfalm"]
+[ext_resource type="AudioStream" uid="uid://dsdecifddadg7" path="res://Audio/WAV_10_Drum_and_Race-Please_Dont_Let_Me_Go_loop_GamingLoops.com[HENDERSON].wav" id="42_x4dd5"]
+[ext_resource type="AudioStream" uid="uid://cdg71i6ptg13i" path="res://Audio/WAV_11_Drum_and_race-Primeval_Wind_loop_GamingLoops.com[REGINALD_BAD_END].wav" id="43_ec6kv"]
+[ext_resource type="AudioStream" uid="uid://2ri6w73olgmv" path="res://Audio/Church.wav" id="45_0frrd"]
+[ext_resource type="Script" path="res://DayNightManager.gd" id="45_ga08e"]
+[ext_resource type="AudioStream" uid="uid://ds13cp0uppnj6" path="res://Audio/Barren Settlement[NPCS DEAD].wav" id="46_t4hw1"]
 
 [sub_resource type="Curve" id="Curve_5fogj"]
 _data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(0.541578, 0.652632), 2.32322, 2.32322, 0, 0, Vector2(0.626866, 0.926316), 0.0, 0.0, 0, 0, Vector2(1, 1), 1.4, 0.0, 0, 0]
+point_count = 4
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_4fqsc"]
+resource_local_to_scene = true
+shader = ExtResource("8_ge6d8")
+shader_parameter/color = Color(0.572549, 0, 0, 1)
+shader_parameter/resolution = 1.6
+shader_parameter/size = 0.4
+shader_parameter/resolution_under = 0.0
+shader_parameter/division_under = -1.0
+shader_parameter/step_under = 0.02
+shader_parameter/step_sdf = 2.95
+shader_parameter/pixel_size = 25.0
+shader_parameter/backFill_brightness = 0.9
+shader_parameter/fV = 0.845
+shader_parameter/fVx = 1.0
+shader_parameter/under_mult = 1.0
+shader_parameter/big_wave_freq_range = Vector2(0.145, 0.2)
+shader_parameter/big_wave_amp_range = Vector2(0.155, 0.025)
+shader_parameter/main_wave_freq_range = Vector2(0.025, 0.15)
+shader_parameter/main_wave_amp_range = Vector2(0.02, 0.002)
+shader_parameter/under_region_origin = Vector2(0, 0)
+shader_parameter/under_region_size = Vector2(1, 1)
+shader_parameter/under_atlas_size = Vector2(1, 1)
+shader_parameter/over_region_origin = null
+shader_parameter/over_region_size = Vector2(1, 1)
+shader_parameter/over_atlas_size = Vector2(1, 1)
+shader_parameter/under = ExtResource("10_02265")
+shader_parameter/over = ExtResource("9_27xqt")
+
+[sub_resource type="Curve" id="Curve_rrtju"]
+_data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(1, 1), 2.67299, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_i14rg"]
+load_path = "res://.godot/imported/Skills.png-cee4d12548bdfb0d072a5d639d650fd0.ctex"
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_cgwjn"]
+atlas = SubResource("CompressedTexture2D_i14rg")
+region = Rect2(64, 64, 32, 32)
+
+[sub_resource type="Resource" id="Resource_s1w5c"]
+script = ExtResource("16_xigl3")
+keyBinds = Array[String](["attack"])
+abilityPath = "res://Abilities/rock_throw.tscn"
+animName = "UseAttack"
+animNodeType = 0
+oneShot = 1
+value = 0.0
+animOnly = false
+damage = -5.0
+mana = -5.0
+speed = 3.0
+useMouseAim = true
+toggle = false
+hold = false
+hold_index = 0
+hotkey_index = 3
+rotateToMouse = false
+displayName = "Rock Throw"
+description = ""
+icon = SubResource("AtlasTexture_cgwjn")
+form_type = 0
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_8o64d"]
+load_path = "res://.godot/imported/Skills.png-cee4d12548bdfb0d072a5d639d650fd0.ctex"
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_fh0sb"]
+atlas = SubResource("CompressedTexture2D_8o64d")
+region = Rect2(32, 64, 32, 32)
+
+[sub_resource type="Resource" id="Resource_afjdu"]
+script = ExtResource("16_xigl3")
+keyBinds = Array[String](["lr_attack"])
+abilityPath = "res://Abilities/rock_throw.tscn"
+animName = "UseLRAttack"
+animNodeType = 0
+oneShot = 1
+value = 0.0
+animOnly = false
+damage = -10.0
+mana = -10.0
+speed = 5.0
+useMouseAim = false
+toggle = false
+hold = false
+hold_index = 0
+hotkey_index = 4
+rotateToMouse = false
+displayName = "Boulder Throw"
+description = ""
+icon = SubResource("AtlasTexture_fh0sb")
+form_type = 0
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_r6718"]
+load_path = "res://.godot/imported/Skills.png-cee4d12548bdfb0d072a5d639d650fd0.ctex"
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_qrar5"]
+atlas = SubResource("CompressedTexture2D_r6718")
+region = Rect2(0, 64, 32, 32)
+
+[sub_resource type="Resource" id="Resource_fncvu"]
+script = ExtResource("16_xigl3")
+keyBinds = Array[String](["roll"])
+abilityPath = ""
+animName = "UseRoll"
+animNodeType = 0
+oneShot = 1
+value = 0.0
+animOnly = true
+damage = 0.0
+mana = -5.0
+speed = 0.0
+useMouseAim = false
+toggle = false
+hold = false
+hold_index = 0
+hotkey_index = 5
+rotateToMouse = false
+displayName = "Roll"
+description = ""
+icon = SubResource("AtlasTexture_qrar5")
+form_type = 0
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_xfn6q"]
+load_path = "res://.godot/imported/Skills.png-cee4d12548bdfb0d072a5d639d650fd0.ctex"
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_8y0su"]
+atlas = SubResource("CompressedTexture2D_xfn6q")
+region = Rect2(96, 64, 32, 32)
+
+[sub_resource type="Resource" id="Resource_obn5l"]
+script = ExtResource("16_xigl3")
+keyBinds = Array[String](["Slime_Transform"])
+abilityPath = ""
+animName = "Transform"
+animNodeType = 0
+oneShot = 1
+value = 0.0
+animOnly = true
+damage = 0.0
+mana = 0.0
+speed = 0.0
+useMouseAim = false
+toggle = false
+hold = false
+hold_index = 0
+hotkey_index = 6
+rotateToMouse = false
+displayName = "Slime Transform"
+description = ""
+icon = SubResource("AtlasTexture_8y0su")
+form_type = 0
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_5kbcy"]
+load_path = "res://.godot/imported/Skills.png-cee4d12548bdfb0d072a5d639d650fd0.ctex"
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_u6uak"]
+atlas = SubResource("CompressedTexture2D_5kbcy")
+region = Rect2(128, 64, 32, 32)
+
+[sub_resource type="Resource" id="Resource_kdign"]
+script = ExtResource("16_xigl3")
+keyBinds = Array[String](["roll"])
+abilityPath = ""
+animName = "UseRoll"
+animNodeType = 0
+oneShot = 1
+value = 0.0
+animOnly = true
+damage = 0.0
+mana = -5.0
+speed = 0.0
+useMouseAim = false
+toggle = false
+hold = false
+hold_index = 0
+hotkey_index = 2
+rotateToMouse = false
+displayName = "Slime Series: Dash"
+description = ""
+icon = SubResource("AtlasTexture_u6uak")
+form_type = 1
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_3kb53"]
+load_path = "res://.godot/imported/Skills.png-cee4d12548bdfb0d072a5d639d650fd0.ctex"
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_d1ges"]
+atlas = SubResource("CompressedTexture2D_3kb53")
+region = Rect2(128, 96, 32, 32)
+
+[sub_resource type="Resource" id="Resource_u3ndb"]
+script = ExtResource("16_xigl3")
+keyBinds = Array[String](["Aura"])
+abilityPath = "res://Character/Slime_Pool.tscn"
+animName = "Aura"
+animNodeType = 2
+oneShot = 0
+value = 0.0
+animOnly = false
+damage = -5.0
+mana = -0.5
+speed = 5.0
+useMouseAim = false
+toggle = true
+hold = false
+hold_index = 0
+hotkey_index = 3
+rotateToMouse = false
+displayName = "Slime Series: Trail"
+description = ""
+icon = SubResource("AtlasTexture_d1ges")
+form_type = 1
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_58rdt"]
+load_path = "res://.godot/imported/Skills.png-cee4d12548bdfb0d072a5d639d650fd0.ctex"
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_koum5"]
+atlas = SubResource("CompressedTexture2D_58rdt")
+region = Rect2(32, 96, 32, 32)
+
+[sub_resource type="Resource" id="Resource_e35di"]
+script = ExtResource("16_xigl3")
+keyBinds = Array[String](["attack"])
+abilityPath = "res://Abilities/slam_dust.tscn"
+animName = "FrontSlam"
+animNodeType = 0
+oneShot = 1
+value = 0.0
+animOnly = false
+damage = -5.0
+mana = -5.0
+speed = 0.0
+useMouseAim = false
+toggle = false
+hold = false
+hold_index = 0
+hotkey_index = 4
+rotateToMouse = true
+displayName = "Slime Series: Slam"
+description = ""
+icon = SubResource("AtlasTexture_koum5")
+form_type = 1
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_r7vay"]
+load_path = "res://.godot/imported/Skills.png-cee4d12548bdfb0d072a5d639d650fd0.ctex"
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_yrfeq"]
+atlas = SubResource("CompressedTexture2D_r7vay")
+region = Rect2(64, 96, 32, 32)
+
+[sub_resource type="Resource" id="Resource_863ko"]
+script = ExtResource("16_xigl3")
+keyBinds = Array[String](["move_horizontal", "attack"])
+abilityPath = "res://Abilities/slam_dust.tscn"
+animName = "Pierce"
+animNodeType = 0
+oneShot = 1
+value = 0.0
+animOnly = false
+damage = -15.0
+mana = -1.25
+speed = 0.0
+useMouseAim = false
+toggle = false
+hold = true
+hold_index = 1
+hotkey_index = 5
+rotateToMouse = true
+displayName = "Slime Series: Pierce"
+description = ""
+icon = SubResource("AtlasTexture_yrfeq")
+form_type = 1
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_5f6v3"]
+load_path = "res://.godot/imported/Skills.png-cee4d12548bdfb0d072a5d639d650fd0.ctex"
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_mxaal"]
+atlas = SubResource("CompressedTexture2D_5f6v3")
+region = Rect2(96, 96, 32, 32)
+
+[sub_resource type="Resource" id="Resource_vkq4h"]
+script = ExtResource("16_xigl3")
+keyBinds = Array[String](["move_vertical", "attack"])
+abilityPath = "res://Abilities/slime_spin.tscn"
+animName = "Sweep"
+animNodeType = 0
+oneShot = 1
+value = 0.0
+animOnly = false
+damage = -5.0
+mana = -15.0
+speed = 5.0
+useMouseAim = true
+toggle = false
+hold = false
+hold_index = 0
+hotkey_index = 6
+rotateToMouse = false
+displayName = "Slime Series: Spinner"
+description = ""
+icon = SubResource("AtlasTexture_mxaal")
+form_type = 1
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_41825"]
+load_path = "res://.godot/imported/Skills.png-cee4d12548bdfb0d072a5d639d650fd0.ctex"
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_sjcjp"]
+atlas = SubResource("CompressedTexture2D_41825")
+region = Rect2(0, 96, 32, 32)
+
+[sub_resource type="Resource" id="Resource_j72fp"]
+script = ExtResource("16_xigl3")
+keyBinds = Array[String](["lr_attack"])
+abilityPath = "res://Character/slime_particle.tscn"
+animName = "UseLRAttack"
+animNodeType = 0
+oneShot = 1
+value = 0.0
+animOnly = false
+damage = -3.0
+mana = -10.0
+speed = 60.0
+useMouseAim = true
+toggle = false
+hold = false
+hold_index = 0
+hotkey_index = 7
+rotateToMouse = false
+displayName = "Slime Series: Spit"
+description = ""
+icon = SubResource("AtlasTexture_sjcjp")
+form_type = 1
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_bj33l"]
+load_path = "res://.godot/imported/Skills.png-cee4d12548bdfb0d072a5d639d650fd0.ctex"
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_dwfld"]
+atlas = SubResource("CompressedTexture2D_bj33l")
+region = Rect2(96, 64, 32, 32)
+
+[sub_resource type="Resource" id="Resource_6lofm"]
+script = ExtResource("16_xigl3")
+keyBinds = Array[String](["Human_Transform"])
+abilityPath = ""
+animName = "TransformBack"
+animNodeType = 0
+oneShot = 1
+value = 0.0
+animOnly = true
+damage = 0.0
+mana = 0.0
+speed = 0.0
+useMouseAim = false
+toggle = false
+hold = false
+hold_index = 0
+hotkey_index = 8
+rotateToMouse = false
+displayName = "Carion Transform"
+description = ""
+icon = SubResource("AtlasTexture_dwfld")
+form_type = 1
+
+[sub_resource type="Curve" id="Curve_es0uh"]
+_data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(0.330247, 1), 0.0, 0.0, 0, 0, Vector2(1, 1), 0.0, 0.0, 0, 0]
+point_count = 3
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ctt1a"]
+size = Vector2(32, 32)
+
+[sub_resource type="Curve" id="Curve_ag5sl"]
+min_value = -80.0
+max_value = 0.0
+_data = [Vector2(0, -80), 0.0, 224.451, 0, 0, Vector2(0.746903, -40.8306), 19.0656, 19.0656, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 3
+
+[sub_resource type="Curve" id="Curve_e0kv2"]
+min_value = -80.0
+max_value = 0.0
+_data = [Vector2(1e-05, 0), 0.0, 0.0, 0, 0, Vector2(0.906195, -34.4192), -47.6639, -47.6639, 0, 0, Vector2(1, -80), -244.43, 112.0, 0, 0]
+point_count = 3
+
+[sub_resource type="Curve" id="Curve_c2m66"]
+_data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(0.462338, 1), 0.0, 0.0, 0, 0, Vector2(0.831169, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
 point_count = 4
 
 [node name="MAIN" type="Node2D" node_paths=PackedStringArray("camera")]
@@ -63,25 +443,24 @@ script = ExtResource("1_d2nxu")
 camera = NodePath("Camera2D")
 switch_speed = 5.0
 maps = Array[String]([""])
-active_map = "res://Maps/Central.tscn"
+start_map = "res://Maps/Central.tscn"
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
-environment = SubResource("Environment_qfgc8")
+environment = ExtResource("2_lxr3f")
 
 [node name="FogManager" type="Node2D" parent="."]
 script = ExtResource("3_car1c")
-mat = ExtResource("4_y6xfu")
+mats = Array[Material]([ExtResource("4_55jgb"), ExtResource("4_y6xfu"), ExtResource("6_d01ni")])
 duration = 1.0
 heightToZoom = {
-0: Vector2(4.5, 0.07),
-1: Vector2(4, 0.07),
-2: Vector2(3.5, 0.07),
-3: Vector2(3, 0.07)
+0: Vector2(1, 0.07),
+1: Vector2(0.875, 0.07),
+2: Vector2(0.75, 0.07),
+3: Vector2(0.5, 0.07)
 }
 curve = SubResource("Curve_5fogj")
 
 [node name="Camera2D" type="Camera2D" parent="." node_paths=PackedStringArray("playerTransformer", "follow_targets")]
-zoom = Vector2(3, 3)
 process_callback = 0
 position_smoothing_enabled = true
 rotation_smoothing_enabled = true
@@ -98,10 +477,101 @@ script = ExtResource("6_6oo4f")
 
 [node name="HUD" parent="." instance=ExtResource("6_ovusk")]
 
-[node name="PlayerTransformer" type="Node2D" parent="."]
+[node name="Health" parent="HUD/Node2D/V" index="0"]
+health_mat = SubResource("ShaderMaterial_4fqsc")
+
+[node name="H" parent="HUD/Node2D" index="1"]
+anchors_preset = 7
+offset_left = -134.5
+offset_top = -74.0
+offset_right = 134.5
+
+[node name="Blackout" parent="HUD/Node2D" index="3"]
+visible = true
+
+[node name="PlayerTransformer" type="Node2D" parent="." node_paths=PackedStringArray("mapSwitcher")]
 script = ExtResource("7_n5qm7")
+mapSwitcher = NodePath("..")
 forms = Array[PackedScene]([ExtResource("1_5cn6k"), ExtResource("8_x3a12")])
-saved_pos = Vector2(-430.407, 1110)
 
 [node name="EventsManager" type="Node2D" parent="."]
 script = ExtResource("10_1dmyj")
+
+[node name="HitNumberManager" type="Node2D" parent="."]
+z_index = 6
+script = ExtResource("11_iu0pk")
+hit_number_scene = ExtResource("12_ewb3a")
+
+[node name="DeathTransition" type="Node2D" parent="." node_paths=PackedStringArray("cam_zoom", "map_switcher", "player_trans")]
+script = ExtResource("13_f3cb0")
+zoom = 5.0
+cam_zoom = NodePath("../CameraZoom")
+map_switcher = NodePath("..")
+fade_curve = SubResource("Curve_rrtju")
+bed_coords = Vector2(-430.407, 1110)
+player_trans = NodePath("../PlayerTransformer")
+
+[node name="SkillsManager" type="Node2D" parent="." node_paths=PackedStringArray("playerTransformer", "eventsManager")]
+script = ExtResource("14_p5owg")
+playerTransformer = NodePath("../PlayerTransformer")
+eventsManager = NodePath("../EventsManager")
+skills = Array[Resource("res://Abilities/SkillData.gd")]([SubResource("Resource_s1w5c"), SubResource("Resource_afjdu"), SubResource("Resource_fncvu"), SubResource("Resource_obn5l"), SubResource("Resource_kdign"), SubResource("Resource_u3ndb"), SubResource("Resource_e35di"), SubResource("Resource_863ko"), SubResource("Resource_vkq4h"), SubResource("Resource_j72fp"), SubResource("Resource_6lofm")])
+roll_hit_times = 5.0
+slime_transform_kills_type = Vector2i(5, 0)
+slime_dash_hit_times = 5.0
+slam_kills_type = Vector2i(5, 1)
+pierce_slam_amount_used = 15.0
+spin_kills_type = Array[Vector2i]([Vector2i(25, 0), Vector2i(15, 1)])
+spit_kills_type = Array[Vector2i]([Vector2i(10, 0), Vector2i(10, 1)])
+
+[node name="Node2D2" type="Node2D" parent="."]
+
+[node name="Fade" type="Node2D" parent="." node_paths=PackedStringArray("main")]
+script = ExtResource("16_xj1dl")
+main = NodePath("..")
+fade_curve = SubResource("Curve_es0uh")
+duration = 1.0
+
+[node name="DirectionalLight2D" type="DirectionalLight2D" parent="."]
+color = Color(0.168627, 0.168627, 0.168627, 1)
+energy = 0.0
+blend_mode = 1
+
+[node name="SceneManager" type="Node2D" parent="." node_paths=PackedStringArray("mapSwitcher")]
+script = ExtResource("17_yma07")
+mapSwitcher = NodePath("..")
+
+[node name="MobSpawner" type="Node2D" parent="." node_paths=PackedStringArray("wall_cast")]
+script = ExtResource("23_exqju")
+mobs = Array[PackedScene]([ExtResource("24_71yga"), ExtResource("25_3wyne"), ExtResource("26_6sh4w"), ExtResource("27_hxr2g"), ExtResource("28_qbifq"), ExtResource("29_0j4as"), ExtResource("30_x87vw")])
+enable_spawn_mobs = true
+wall_cast = NodePath("WallCast")
+spawn_cooldown = 4.0
+max_spawns = 20
+max_loops = 30
+
+[node name="WallCast" type="ShapeCast2D" parent="MobSpawner"]
+shape = SubResource("RectangleShape2D_ctt1a")
+target_position = Vector2(0, 0)
+
+[node name="BGMManager" type="Node2D" parent="." node_paths=PackedStringArray("bgm_in", "bgm_out")]
+script = ExtResource("31_hkun4")
+bgm_in = NodePath("In")
+bgm_out = NodePath("Out")
+bgms = Array[AudioStream]([ExtResource("32_hmjui"), ExtResource("33_4iyq1"), ExtResource("34_78o37"), ExtResource("34_uv8k1"), ExtResource("36_1mfye"), ExtResource("37_qrd7f"), ExtResource("38_rcbr1"), ExtResource("39_jwlhh"), ExtResource("40_os740"), ExtResource("41_kfalm"), ExtResource("42_x4dd5"), ExtResource("43_ec6kv"), ExtResource("45_0frrd"), ExtResource("46_t4hw1")])
+curveIn = SubResource("Curve_ag5sl")
+curveOut = SubResource("Curve_e0kv2")
+
+[node name="In" type="AudioStreamPlayer" parent="BGMManager"]
+bus = &"Music"
+
+[node name="Out" type="AudioStreamPlayer" parent="BGMManager"]
+bus = &"Music"
+
+[node name="DayNightManager" type="Node2D" parent="."]
+script = ExtResource("45_ga08e")
+minutes_per_day = 5.0
+day_night_curve = SubResource("Curve_c2m66")
+
+[editable path="HUD"]
+[editable path="HUD/Node2D/V/Mana"]

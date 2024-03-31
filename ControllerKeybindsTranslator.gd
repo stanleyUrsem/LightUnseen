@@ -24,6 +24,7 @@ func isolate_mouse_button(keybind:String):
 	var direction = set_direction(keybind)
 	var mouse = direction.replace("Mouse", "M")
 	var button = mouse.replace("Button", "B")
+	button = button.replace(" ","")
 	return button
 	
 func set_direction(keybind:String):

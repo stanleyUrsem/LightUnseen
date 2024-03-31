@@ -1,0 +1,19 @@
+[gd_scene load_steps=4 format=3 uid="uid://dqp1k0hauyxbs"]
+
+[ext_resource type="Script" path="res://Abilities/DynamicAnimSprite.gd" id="1_0b37b"]
+[ext_resource type="PackedScene" uid="uid://c31mrj82fikt1" path="res://Abilities/dust_sprite.tscn" id="2_fov3p"]
+[ext_resource type="PackedScene" uid="uid://bo8dmt6gfbpic" path="res://Abilities/dust_collider.tscn" id="3_q7gkb"]
+
+[node name="Slam_dynamic_dust" type="Node2D" node_paths=PackedStringArray("col_parent", "fadeTimer")]
+z_index = 8
+script = ExtResource("1_0b37b")
+animSpriteTemplate = ExtResource("2_fov3p")
+colliderTemplate = ExtResource("3_q7gkb")
+animation_name = "dust"
+col_parent = NodePath(".")
+offset = 12.0
+fadeTimer = NodePath("Timer")
+detectCollisions = true
+
+[node name="Timer" type="Timer" parent="."]
+one_shot = true

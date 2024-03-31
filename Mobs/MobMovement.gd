@@ -4,8 +4,8 @@ class_name MobMovement
 var dashTween
 var dashVelocity
 var dashDuration
-
-func stopMovement():
+@export var stopMovement : bool
+func resetMovement():
 	velocity = Vector2.ZERO
 
 # Move to target
@@ -13,6 +13,8 @@ func moveToTarget(target: Node2D):
 	var parent = target.get_parent() as Node2D
 	var pos = parent.position
 	moveToPoint(pos)
+	
+
 	
 func moveToPoint(point, speed_multiplier = 1.0, normalize = true):
 	var delta = ((point) - global_position)
@@ -52,5 +54,10 @@ func evade():
 
 func _physics_process(delta):
 #	pass
-	move_and_slide()
+	if(stopMovement):
+		return
+	var collided = move_and_slide()
+	if(collided):
+		var hit = get_last_slide_collision().get_collider()
+		#print("Slided against: ", hit.name)
 

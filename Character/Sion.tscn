@@ -1,20 +1,24 @@
-[gd_scene load_steps=28 format=3 uid="uid://cy7fitk5e2igo"]
+[gd_scene load_steps=33 format=3 uid="uid://cy7fitk5e2igo"]
 
 [ext_resource type="Script" path="res://Character/SionMovement.gd" id="1_6msgt"]
 [ext_resource type="Material" uid="uid://ced4lpkaxd2tl" path="res://Character/eye_trackin_mat.tres" id="2_0sc1b"]
-[ext_resource type="Texture2D" uid="uid://drjxif1fbcwgl" path="res://Character/Textures/SionTD/sion_eyes.png" id="3_fy46l"]
+[ext_resource type="Texture2D" uid="uid://br7u3fpkb7c2f" path="res://Character/Textures/SionTD/eyes.png" id="3_atfj3"]
 [ext_resource type="Script" path="res://MouseToShader.gd" id="4_m734i"]
-[ext_resource type="Texture2D" uid="uid://drt0776viph56" path="res://Character/Textures/SionTD/sion_body.png" id="5_2ihxm"]
-[ext_resource type="Texture2D" uid="uid://c4f5b6qgb4gxb" path="res://Character/Textures/SionTD/sion_hood_inside.png" id="6_kkpto"]
+[ext_resource type="Texture2D" uid="uid://donk4eeujo6qo" path="res://Character/Textures/SionTD/sion.png" id="5_mwf2f"]
+[ext_resource type="AnimationLibrary" uid="uid://c1k2kc7247equ" path="res://Character/Sion_2_anim_lib.tres" id="6_o8mu2"]
 [ext_resource type="AnimationNodeBlendTree" uid="uid://cgvcqonlcymq2" path="res://Character/Textures/SionTD/topdownChar.tres" id="7_uuyot"]
-[ext_resource type="Script" path="res://Abilities/Chaos/Abilities.gd" id="8_q0dv7"]
-[ext_resource type="Texture2D" uid="uid://c6qmka5nfma7d" path="res://Character/Textures/SionTD/sion_hood_outside.png" id="8_u3pcf"]
-[ext_resource type="AnimationLibrary" uid="uid://djunng5ihvoqo" path="res://Character/Sion_anim_lib.tres" id="9_tbhmy"]
-[ext_resource type="Script" path="res://Abilities/AbilityData.gd" id="9_v7fjf"]
+[ext_resource type="Script" path="res://Abilities/Abilities.gd" id="8_q0dv7"]
 [ext_resource type="Script" path="res://Hittable.gd" id="10_tav8q"]
-[ext_resource type="Texture2D" uid="uid://b8rr4g55nk4t1" path="res://UI/Skills.png" id="12_ex3p6"]
 [ext_resource type="Script" path="res://Character/StatsHolder.gd" id="13_ip521"]
 [ext_resource type="Script" path="res://StatsResource.gd" id="15_h1vve"]
+[ext_resource type="Script" path="res://Character/Interact.gd" id="15_mg06p"]
+[ext_resource type="Script" path="res://PassivesManager.gd" id="16_dvdfg"]
+[ext_resource type="Texture2D" uid="uid://cgt4u6x0ednng" path="res://Envo/pickups.png" id="16_qym2e"]
+[ext_resource type="Script" path="res://Abilities/AbilityData.gd" id="17_5mfga"]
+[ext_resource type="Script" path="res://Abilities/PassiveData.gd" id="17_r5jsg"]
+[ext_resource type="PackedScene" uid="uid://d3own3do3t3k" path="res://Character/manaheal.tscn" id="18_4wnpx"]
+[ext_resource type="Script" path="res://Character/Consume.gd" id="18_il7wj"]
+[ext_resource type="Material" uid="uid://dlo3kh48c6xhw" path="res://Maps/Particles.tres" id="19_26564"]
 
 [sub_resource type="Curve" id="Curve_lstxf"]
 _data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(0.5, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
@@ -24,117 +28,121 @@ point_count = 3
 _data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(0.503311, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
 point_count = 3
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ygxu6"]
+
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_irf28"]
 size = Vector2(6, 18)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_8tnnf"]
-atlas = ExtResource("12_ex3p6")
-region = Rect2(64, 64, 32, 32)
-
-[sub_resource type="Resource" id="Resource_2n130"]
-script = ExtResource("9_v7fjf")
-keyBinds = Array[String](["attack"])
-abilityPath = "res://Abilities/rock_throw.tscn"
-animName = "UseAttack"
-animNodeType = 0
-oneShot = 1
-value = 0.0
-animOnly = false
-damage = 5.0
-speed = 3.0
-useMouseAim = true
-toggle = false
-hold = false
-hold_index = 0
-rotateToMouse = false
-displayName = ""
-description = ""
-icon = SubResource("AtlasTexture_8tnnf")
-form_type = 0
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_mfw2e"]
-atlas = ExtResource("12_ex3p6")
-region = Rect2(32, 64, 32, 32)
-
-[sub_resource type="Resource" id="Resource_7yir2"]
-script = ExtResource("9_v7fjf")
-keyBinds = Array[String](["lr_attack"])
-abilityPath = "res://Abilities/rock_throw.tscn"
-animName = "UseLRAttack"
-animNodeType = 0
-oneShot = 1
-value = 0.0
-animOnly = false
-damage = 10.0
-speed = 5.0
-useMouseAim = false
-toggle = false
-hold = false
-hold_index = 0
-rotateToMouse = false
-displayName = ""
-description = ""
-icon = SubResource("AtlasTexture_mfw2e")
-form_type = 0
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_ss36l"]
-atlas = ExtResource("12_ex3p6")
-region = Rect2(0, 64, 32, 32)
-
-[sub_resource type="Resource" id="Resource_of7x3"]
-script = ExtResource("9_v7fjf")
-keyBinds = Array[String](["roll"])
-abilityPath = ""
-animName = "UseRoll"
-animNodeType = 0
-oneShot = 1
-value = 0.0
-animOnly = true
-damage = 0.0
-speed = 0.0
-useMouseAim = false
-toggle = false
-hold = false
-hold_index = 0
-rotateToMouse = false
-displayName = "Roll"
-description = ""
-icon = SubResource("AtlasTexture_ss36l")
-form_type = 0
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_ljg4r"]
-atlas = ExtResource("12_ex3p6")
-region = Rect2(96, 64, 32, 32)
-
-[sub_resource type="Resource" id="Resource_1dcvl"]
-script = ExtResource("9_v7fjf")
-keyBinds = Array[String](["Slime_Transform"])
-abilityPath = ""
-animName = "Transform"
-animNodeType = 0
-oneShot = 1
-value = 0.0
-animOnly = true
-damage = 0.0
-speed = 0.0
-useMouseAim = false
-toggle = false
-hold = false
-hold_index = 0
-rotateToMouse = false
-displayName = "Slime Transform"
-description = ""
-icon = SubResource("AtlasTexture_ljg4r")
-form_type = 0
+[sub_resource type="Curve" id="Curve_mb0qj"]
+_data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(0.511628, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 3
 
 [sub_resource type="Resource" id="Resource_2frdm"]
 script = ExtResource("15_h1vve")
 health = 100.0
-mana = 1.0
+mana = 50.0
 defense = 1.0
 stamina = 1.0
 
-[node name="Sion" type="CharacterBody2D"]
+[sub_resource type="Resource" id="Resource_60owp"]
+script = ExtResource("17_r5jsg")
+has_condition = true
+delay = 2.0
+damage_increase = 0.0
+damage_increase_percentage = 0.0
+health_increase = 0.0
+health_increase_percentage = 0.0
+mana_increase = 0.25
+mana_increase_percentage = 1.0
+defense_increase = 0.0
+defense_increase_percentage = 0.0
+displayName = "Mana Heal"
+description = ""
+form_type = 0
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_bjtvb"]
+atlas = ExtResource("16_qym2e")
+region = Rect2(32, 0, 32, 32)
+
+[sub_resource type="Resource" id="Resource_cwwi8"]
+script = ExtResource("17_5mfga")
+keyBinds = Array[String](["Interact"])
+abilityPath = ""
+animName = ""
+animNodeType = 0
+oneShot = 0
+value = 0.0
+animOnly = false
+damage = 0.0
+mana = 0.0
+speed = 0.0
+useMouseAim = false
+toggle = false
+hold = false
+hold_index = 0
+hotkey_index = 2
+rotateToMouse = false
+displayName = "Interact"
+description = ""
+icon = SubResource("AtlasTexture_bjtvb")
+form_type = 0
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_a7o75"]
+atlas = ExtResource("16_qym2e")
+region = Rect2(64, 0, 32, 32)
+
+[sub_resource type="Resource" id="Resource_ugs33"]
+script = ExtResource("17_5mfga")
+keyBinds = Array[String](["Consume_1"])
+abilityPath = ""
+animName = ""
+animNodeType = 0
+oneShot = 0
+value = 0.0
+animOnly = false
+damage = 15.0
+mana = 4.0
+speed = 0.0
+useMouseAim = false
+toggle = false
+hold = false
+hold_index = 0
+hotkey_index = 0
+rotateToMouse = false
+displayName = "Consume_HP"
+description = ""
+icon = SubResource("AtlasTexture_a7o75")
+form_type = 4
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_lk1xm"]
+atlas = ExtResource("16_qym2e")
+region = Rect2(32, 32, 32, 32)
+
+[sub_resource type="Resource" id="Resource_nejrd"]
+script = ExtResource("17_5mfga")
+keyBinds = Array[String](["Consume_2"])
+abilityPath = ""
+animName = ""
+animNodeType = 0
+oneShot = 0
+value = 0.0
+animOnly = false
+damage = 20.0
+mana = 5.0
+speed = 0.0
+useMouseAim = false
+toggle = false
+hold = false
+hold_index = 0
+hotkey_index = 1
+rotateToMouse = false
+displayName = "Consume_MP"
+description = ""
+icon = SubResource("AtlasTexture_lk1xm")
+icon_mat = ExtResource("19_26564")
+form_type = 4
+
+[node name="Sion" type="CharacterBody2D" node_paths=PackedStringArray("statsHolder")]
 y_sort_enabled = true
 collision_layer = 16
 motion_mode = 1
@@ -142,56 +150,79 @@ script = ExtResource("1_6msgt")
 dodgeVelocity = 5.0
 dodgeDuration = 1.0
 stopMovement = true
+statsHolder = NodePath("Stats")
 rollCurve = SubResource("Curve_lstxf")
 dodgeCurve = SubResource("Curve_j4n5k")
-SPEED = 100.0
 
 [node name="Art" type="Node2D" parent="."]
+z_index = 2
 
-[node name="Eyes" type="Sprite2D" parent="Art" node_paths=PackedStringArray("user", "mat_nodes")]
-z_index = 6
-texture_filter = 1
+[node name="ShapeCast2D" type="ShapeCast2D" parent="Art"]
+position = Vector2(6, 6)
+shape = SubResource("RectangleShape2D_ygxu6")
+target_position = Vector2(0, 0)
+collision_mask = 40
+collide_with_areas = true
+
+[node name="Eyes" type="Node2D" parent="Art" node_paths=PackedStringArray("user", "mat_nodes")]
 material = ExtResource("2_0sc1b")
-texture = ExtResource("3_fy46l")
-hframes = 4
-vframes = 10
+position = Vector2(0, 1)
 script = ExtResource("4_m734i")
-user = NodePath("../..")
+user = NodePath(".")
 mat_nodes = [NodePath(".")]
+
+[node name="Eyes" type="Sprite2D" parent="Art/Eyes"]
+modulate = Color(1.2, 1.2, 1.2, 1)
+z_index = 3
+texture_filter = 1
+use_parent_material = true
+position = Vector2(-1, -2)
+scale = Vector2(0.5, 0.7)
+texture = ExtResource("3_atfj3")
+hframes = 4
+vframes = 3
+
+[node name="Eyes2" type="Sprite2D" parent="Art/Eyes"]
+modulate = Color(1.2, 1.2, 1.2, 1)
+z_index = 3
+texture_filter = 1
+use_parent_material = true
+position = Vector2(2, -2)
+scale = Vector2(0.5, 0.7)
+texture = ExtResource("3_atfj3")
+hframes = 4
+vframes = 3
 
 [node name="Body" type="Sprite2D" parent="Art"]
 z_index = 1
 texture_filter = 1
-texture = ExtResource("5_2ihxm")
-hframes = 4
-vframes = 10
-
-[node name="Hood_inside" type="Sprite2D" parent="Art"]
-texture_filter = 1
-texture = ExtResource("6_kkpto")
-hframes = 4
-vframes = 10
-
-[node name="Hood_outside" type="Sprite2D" parent="Art"]
-z_index = 2
-texture_filter = 1
-texture = ExtResource("8_u3pcf")
-hframes = 4
-vframes = 10
+texture = ExtResource("5_mwf2f")
+hframes = 5
+vframes = 11
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 libraries = {
-"": ExtResource("9_tbhmy")
+"": ExtResource("6_o8mu2")
 }
 
 [node name="AnimationTree" type="AnimationTree" parent="."]
 libraries = {
-"": ExtResource("9_tbhmy")
+"": ExtResource("6_o8mu2")
 }
 tree_root = ExtResource("7_uuyot")
 anim_player = NodePath("../AnimationPlayer")
-parameters/IdleToWalk/blend_amount = 0
+parameters/Death/blend_amount = 0
+parameters/Harvest/active = false
+parameters/Harvest/internal_active = false
+parameters/Harvest/request = 0
+parameters/IdleToWalk/blend_amount = 0.0
 parameters/LeftOrRight/blend_amount = 1.0
+parameters/Mine/active = false
+parameters/Mine/internal_active = false
+parameters/Mine/request = 0
+parameters/OneShot/active = false
+parameters/OneShot/internal_active = false
+parameters/OneShot/request = 0
 parameters/Transform/active = false
 parameters/Transform/internal_active = false
 parameters/Transform/request = 0
@@ -209,18 +240,23 @@ parameters/UseRoll/active = false
 parameters/UseRoll/internal_active = false
 parameters/UseRoll/request = 0
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+[node name="Hittable" type="CollisionShape2D" parent="."]
+visible = false
+z_index = 3
 position = Vector2(0, 5)
 shape = SubResource("RectangleShape2D_irf28")
 script = ExtResource("10_tav8q")
 type = 1
 
-[node name="Abilities" type="Node2D" parent="." node_paths=PackedStringArray("charMovement", "abilitySpawns")]
+[node name="Abilities" type="Node2D" parent="." node_paths=PackedStringArray("charMovement", "abilitySpawns", "interaction")]
 script = ExtResource("8_q0dv7")
 charMovement = NodePath("..")
-abilityData = Array[ExtResource("9_v7fjf")]([SubResource("Resource_2n130"), SubResource("Resource_7yir2"), SubResource("Resource_of7x3"), SubResource("Resource_1dcvl")])
 abilitySpawns = [NodePath("../AbilitySpawns/LeftArm"), NodePath("../AbilitySpawns/RightArm")]
 timer_duration = 2.0
+movement_duration = 0.5
+dist_multiplier = 2.0
+move_curve = SubResource("Curve_mb0qj")
+interaction = NodePath("../Interaction")
 
 [node name="AbilitySpawns" type="Node2D" parent="."]
 
@@ -230,8 +266,40 @@ position = Vector2(-4, 12)
 [node name="RightArm" type="Marker2D" parent="AbilitySpawns"]
 position = Vector2(3, 12)
 
-[node name="Stats" type="Node2D" parent="."]
+[node name="Stats" type="Node2D" parent="." node_paths=PackedStringArray("charMovement", "abilities", "passives", "hittable")]
 script = ExtResource("13_ip521")
 stats_resource = SubResource("Resource_2frdm")
+charMovement = NodePath("..")
+abilities = NodePath("../Abilities")
+passives = NodePath("../Passives")
+hittable = NodePath("../Hittable")
+hitPerSec = -5.0
+old_hp = -1.0
+old_mana = -1.0
 
-[node name="Passives" type="Node2D" parent="."]
+[node name="Passives" type="Node2D" parent="." node_paths=PackedStringArray("statsHolder", "movement", "mana_heal_fx")]
+script = ExtResource("16_dvdfg")
+statsHolder = NodePath("../Stats")
+movement = NodePath("..")
+mana_heal_fx = NodePath("../ManaHealFX")
+passive_data = Array[ExtResource("17_r5jsg")]([SubResource("Resource_60owp")])
+
+[node name="ManaHealFX" parent="." instance=ExtResource("18_4wnpx")]
+position = Vector2(0, 16)
+
+[node name="Interaction" type="Node2D" parent="." node_paths=PackedStringArray("cast", "animTree", "movement")]
+script = ExtResource("15_mg06p")
+cast = NodePath("../Art/ShapeCast2D")
+secondsPerResource = 0.75
+animTree = NodePath("../AnimationTree")
+movement = NodePath("..")
+data = SubResource("Resource_cwwi8")
+
+[node name="Consume" type="Node2D" parent="." node_paths=PackedStringArray("stats_holder")]
+script = ExtResource("18_il7wj")
+stats_holder = NodePath("../Stats")
+hp_data = SubResource("Resource_ugs33")
+mana_data = SubResource("Resource_nejrd")
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+bus = &"SFX"

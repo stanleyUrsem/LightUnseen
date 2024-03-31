@@ -1,0 +1,8 @@
+[gd_scene load_steps=2 format=3 uid="uid://bjlnhgcn0p2f0"]
+
+[ext_resource type="PackedScene" uid="uid://bkdu7ke3vkapc" path="res://Mobs/Textures/Slime/gatherer_slime.tscn" id="1_jpswg"]
+
+[node name="SpitterSlime" instance=ExtResource("1_jpswg")]
+
+[node name="AI" parent="." index="5"]
+disabled_states = Array[String](["Wander", "Pick Up", "Move to Food", "Search Food"])

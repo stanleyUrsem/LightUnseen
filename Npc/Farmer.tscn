@@ -1,0 +1,205 @@
+[gd_scene load_steps=19 format=3 uid="uid://cyykl3v265n8g"]
+
+[ext_resource type="PackedScene" uid="uid://gqgfhbwrfaqx" path="res://Npc/Miner.tscn" id="1_mdp1r"]
+[ext_resource type="Shader" path="res://swap_color.gdshader" id="2_cad4n"]
+[ext_resource type="Texture2D" uid="uid://c5jxxtp0an06n" path="res://Npc/npc_grad.png" id="3_fkigj"]
+[ext_resource type="Gradient" uid="uid://cujkk03pp7b0s" path="res://Npc/diff_npc.tres" id="4_hsr5u"]
+[ext_resource type="Texture2D" uid="uid://27wr4aku4pbh" path="res://Npc/npc_farmer.png" id="5_o4ctf"]
+[ext_resource type="Script" path="res://Mobs/SlimeStatsResource.gd" id="6_7acx8"]
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_d8l8k"]
+gradient = ExtResource("4_hsr5u")
+width = 18
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_620cu"]
+shader = ExtResource("2_cad4n")
+shader_parameter/alpha_override = 1.0
+shader_parameter/num_colors = 18
+shader_parameter/precision = 0.0
+shader_parameter/index = null
+shader_parameter/palette_in = ExtResource("3_fkigj")
+shader_parameter/palette_out = SubResource("GradientTexture1D_d8l8k")
+
+[sub_resource type="Animation" id="Animation_45vps"]
+resource_name = "Death"
+
+[sub_resource type="Animation" id="Animation_s53ag"]
+resource_name = "Idle"
+length = 0.8
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.2, 0.4, 0.6, 0.8),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
+"update": 1,
+"values": [0, 1, 2, 3, 4]
+}
+
+[sub_resource type="Animation" id="Animation_3hrp6"]
+resource_name = "LeftTurn"
+length = 0.1
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(-1, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_ffqn3"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Sprite2D:scale")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(-1, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_pt8ap"]
+resource_name = "RightTurn"
+length = 0.1
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(1, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_u213f"]
+resource_name = "Still"
+length = 0.1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+
+[sub_resource type="Animation" id="Animation_h18wu"]
+resource_name = "Walk"
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.4, 0.6, 0.8),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [5, 6, 7, 8, 9, 10]
+}
+
+[sub_resource type="Animation" id="Animation_rku8u"]
+resource_name = "attack"
+loop_mode = 1
+step = 0.05
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.85),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [10, 11, 12, 13, 14, 15, 16, 14, 15, 16]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_g23md"]
+_data = {
+"Death": SubResource("Animation_45vps"),
+"Idle": SubResource("Animation_s53ag"),
+"LeftTurn": SubResource("Animation_3hrp6"),
+"RESET": SubResource("Animation_ffqn3"),
+"RightTurn": SubResource("Animation_pt8ap"),
+"Still": SubResource("Animation_u213f"),
+"Walk": SubResource("Animation_h18wu"),
+"attack": SubResource("Animation_rku8u")
+}
+
+[sub_resource type="Resource" id="Resource_lba7f"]
+script = ExtResource("6_7acx8")
+inv_space = 15
+health = 15.0
+mana = 1.0
+defense = 1.0
+stamina = 300.0
+
+[node name="Farmer" instance=ExtResource("1_mdp1r")]
+SPEED = 30.0
+
+[node name="Sprite2D" parent="." index="0"]
+z_index = 2
+material = SubResource("ShaderMaterial_620cu")
+texture = ExtResource("5_o4ctf")
+hframes = 5
+
+[node name="AnimationPlayer" parent="." index="1"]
+libraries = {
+"": SubResource("AnimationLibrary_g23md")
+}
+
+[node name="AnimationTree" parent="." index="2"]
+libraries = {
+"": SubResource("AnimationLibrary_g23md")
+}
+parameters/StillToIdle/blend_amount = 1.0
+parameters/Walk/blend_amount = 0.0
+
+[node name="ShapeCast2D" parent="." index="4"]
+collision_mask = 32
+collide_with_areas = true
+
+[node name="Polygon2D" parent="ShapeCast2D" index="0"]
+visible = false
+
+[node name="AI" parent="." index="5"]
+stats_resource = SubResource("Resource_lba7f")
+
+[node name="WanderCast" parent="." index="8"]
+collide_with_areas = true

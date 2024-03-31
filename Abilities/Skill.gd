@@ -3,20 +3,28 @@ class_name Skill
 
 var skillData : SkillData
 var eventsManager : EventsManager
-var notifier : Notifier
 var obtained : bool
 var playerTransformer : PlayerTransformer
 var skillsManager : SkillsManager
-func _setup(p_skillData, p_eventsManager: EventsManager):
+
+var display_name : String :
+	get:
+		return skillData.displayName
+
+signal OnObtain(skill)	
+
+func _setup(p_skillData, p_eventsManager: EventsManager,p_skillsManager):
 	skillData = p_skillData
-	eventsManager = p_eventsManager 
-	_setup_condition()
-	
-func _setup_condition():
+	eventsManager = p_eventsManager
+	skillsManager = p_skillsManager
+	obtained = false
+	_setup_obtain_event()
+func _setup_obtain_event():
 	pass
-	
+func _disable_obtain_event():
+	pass
 func _on_obtained():
 	obtained = true
-	notifier.show_skill_obtained(skillData)
-	if(playerTransformer.current_form == skillData.form_type):
-		playerTransformer.active_form.get_node("Abilities").add_ability(skillData)
+	OnObtain.emit(self)
+
+

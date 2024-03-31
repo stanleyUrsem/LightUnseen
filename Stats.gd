@@ -15,7 +15,11 @@ func _init(stats :StatsResource):
 	mana = stats.mana
 	defense = stats.defense
 	stamina = stats.stamina
-	
+func reset():
+	mana = mana_max
+	health = health_max
+	defense = defense_max
+	stamina = stamina_max
 func _set_max():
 	mana_max = mana
 	health_max = health

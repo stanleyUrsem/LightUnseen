@@ -1,0 +1,110 @@
+[gd_scene load_steps=20 format=3 uid="uid://d081vn6m3tc28"]
+
+[ext_resource type="Shader" path="res://swap_color.gdshader" id="1_wphpt"]
+[ext_resource type="Gradient" uid="uid://cujkk03pp7b0s" path="res://Npc/diff_npc.tres" id="3_k3si4"]
+[ext_resource type="Gradient" uid="uid://b70n6phjjkc15" path="res://Npc/diff_npc2.tres" id="3_ms18x"]
+[ext_resource type="Gradient" uid="uid://b8jna0oh2ebps" path="res://Npc/diff_npc5.tres" id="3_op3rs"]
+[ext_resource type="Texture2D" uid="uid://c5jxxtp0an06n" path="res://Npc/npc_grad.png" id="3_x33xx"]
+[ext_resource type="Texture2D" uid="uid://c5rakthphg8f1" path="res://Npc/reginald.png" id="4_5lhbv"]
+[ext_resource type="Texture2D" uid="uid://bvb0dtyefcrr0" path="res://Npc/npc_miner.png" id="6_5bsbn"]
+[ext_resource type="Script" path="res://Npc/NPC_farm_miner.gd" id="7_grxcg"]
+[ext_resource type="Texture2D" uid="uid://27wr4aku4pbh" path="res://Npc/npc_farmer.png" id="8_jnphh"]
+[ext_resource type="Gradient" uid="uid://4703tambqvtr" path="res://Npc/diff_npc4.tres" id="9_gpw72"]
+[ext_resource type="Texture2D" uid="uid://cicuvoq76td0i" path="res://Npc/henderson.png" id="9_lgkiw"]
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_vk8kr"]
+gradient = ExtResource("3_op3rs")
+width = 18
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_8g5rb"]
+shader = ExtResource("1_wphpt")
+shader_parameter/alpha_override = 1.0
+shader_parameter/num_colors = 18
+shader_parameter/precision = 0.0
+shader_parameter/index = null
+shader_parameter/palette_in = ExtResource("3_x33xx")
+shader_parameter/palette_out = SubResource("GradientTexture1D_vk8kr")
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_p01rv"]
+gradient = ExtResource("3_ms18x")
+width = 18
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_hpv3a"]
+shader = ExtResource("1_wphpt")
+shader_parameter/alpha_override = 1.0
+shader_parameter/num_colors = 18
+shader_parameter/precision = 0.0
+shader_parameter/index = null
+shader_parameter/palette_in = ExtResource("3_x33xx")
+shader_parameter/palette_out = SubResource("GradientTexture1D_p01rv")
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_0o60y"]
+gradient = ExtResource("3_k3si4")
+width = 18
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_6v7d1"]
+shader = ExtResource("1_wphpt")
+shader_parameter/alpha_override = 1.0
+shader_parameter/num_colors = 18
+shader_parameter/precision = 0.0
+shader_parameter/index = null
+shader_parameter/palette_in = ExtResource("3_x33xx")
+shader_parameter/palette_out = SubResource("GradientTexture1D_0o60y")
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_b6tyo"]
+gradient = ExtResource("9_gpw72")
+width = 18
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_smwv1"]
+shader = ExtResource("1_wphpt")
+shader_parameter/alpha_override = 1.0
+shader_parameter/num_colors = 18
+shader_parameter/precision = 0.0
+shader_parameter/index = null
+shader_parameter/palette_in = ExtResource("3_x33xx")
+shader_parameter/palette_out = SubResource("GradientTexture1D_b6tyo")
+
+[node name="Node2D" type="Node2D"]
+
+[node name="Polygon2D" type="Polygon2D" parent="."]
+visible = false
+color = Color(0.0862745, 0.415686, 0.670588, 1)
+polygon = PackedVector2Array(186, 132, 499, 127, 488, 320, 130, 302)
+
+[node name="Reginald" type="Sprite2D" parent="."]
+material = SubResource("ShaderMaterial_8g5rb")
+position = Vector2(301, 204)
+texture = ExtResource("4_5lhbv")
+hframes = 5
+vframes = 5
+
+[node name="Miner" type="Sprite2D" parent="."]
+material = SubResource("ShaderMaterial_hpv3a")
+position = Vector2(245, 204)
+texture = ExtResource("6_5bsbn")
+hframes = 4
+vframes = 4
+script = ExtResource("7_grxcg")
+
+[node name="Farmer" type="Sprite2D" parent="."]
+material = SubResource("ShaderMaterial_6v7d1")
+position = Vector2(262, 204)
+texture = ExtResource("8_jnphh")
+hframes = 5
+vframes = 4
+
+[node name="NpcGrad" type="Sprite2D" parent="."]
+position = Vector2(201, 107)
+texture = ExtResource("3_x33xx")
+
+[node name="NpcGrad2" type="Sprite2D" parent="."]
+position = Vector2(291, 138)
+scale = Vector2(5.16667, 31)
+texture = ExtResource("3_x33xx")
+
+[node name="Henderson" type="Sprite2D" parent="."]
+material = SubResource("ShaderMaterial_smwv1")
+position = Vector2(281, 204)
+texture = ExtResource("9_lgkiw")
+hframes = 5
+vframes = 4

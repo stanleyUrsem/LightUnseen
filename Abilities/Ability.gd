@@ -20,7 +20,8 @@ func use(root: Node,useLocation,user, mouseHandler : MouseHandler, direction,prn
 	if(data.animOnly):
 		return
 	
-	var a = abilityAction.instantiate()
+	var a = abilityAction.instantiate() as AbilityAction
 	root.add_child(a)
-	a._setup(data,useLocation,user, mouseHandler, direction,prng)
+	a.setup_vars(data,mouseHandler)
+	a._setup(useLocation,user, direction,prng)
 		

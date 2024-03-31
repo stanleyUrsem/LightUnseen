@@ -1,0 +1,22 @@
+[gd_scene load_steps=2 format=3 uid="uid://cy1qtcopggf0r"]
+
+[ext_resource type="Script" path="res://testCircle.gd" id="1_eql66"]
+
+[node name="Node2D" type="Node2D" node_paths=PackedStringArray("other_node", "circle_node")]
+script = ExtResource("1_eql66")
+angle = 180.0
+radius = 10
+other_node = NodePath("Polygon2D")
+circle_node = NodePath("Polygon2D2")
+
+[node name="Polygon2D" type="Polygon2D" parent="."]
+position = Vector2(59.7583, 13.6121)
+color = Color(0.490196, 0, 0, 1)
+polygon = PackedVector2Array(-1, -1, 1, -1, 1, 1, -1, 1)
+
+[node name="Polygon2D2" type="Polygon2D" parent="."]
+color = Color(0, 1, 0.0156863, 1)
+polygon = PackedVector2Array(-1, -1, 1, -1, 1, 1, -1, 1)
+
+[node name="Camera2D" type="Camera2D" parent="."]
+zoom = Vector2(5, 5)

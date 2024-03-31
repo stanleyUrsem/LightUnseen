@@ -1,28 +1,38 @@
-[gd_scene load_steps=5 format=3 uid="uid://dla6we38n1hry"]
+[gd_scene load_steps=8 format=3 uid="uid://dla6we38n1hry"]
 
 [ext_resource type="Material" uid="uid://dlo3kh48c6xhw" path="res://Maps/Particles.tres" id="1_p6wmr"]
-[ext_resource type="Texture2D" uid="uid://bt5qxwtqwc7vo" path="res://Envo/Sprite-0006.png" id="2_rom7t"]
+[ext_resource type="PackedScene" uid="uid://dypygfriyagwn" path="res://Envo/Crystal_pickup.tscn" id="2_pbnbj"]
+[ext_resource type="Texture2D" uid="uid://bt5qxwtqwc7vo" path="res://Envo/envo_tiles.png" id="2_rom7t"]
+[ext_resource type="Curve" uid="uid://bvx07x6nvgshi" path="res://Maps/CrystalCurveY.tres" id="3_faj7h"]
 [ext_resource type="Script" path="res://Maps/CrystalPickup.gd" id="3_y8ni2"]
+[ext_resource type="Curve" uid="uid://6nvvy6sekoxl" path="res://Maps/CrystalCurveX.tres" id="4_sfplt"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_gsvis"]
 size = Vector2(16, 16)
 
 [node name="Crystal" type="StaticBody2D"]
-z_index = 2
+modulate = Color(1, 0.976471, 0.968627, 1)
+z_index = 1
 scale = Vector2(2, 2)
 collision_layer = 8
 collision_mask = 8
 script = ExtResource("3_y8ni2")
+droppable = ExtResource("2_pbnbj")
+x_size = 60.0
+path_curve_y = ExtResource("3_faj7h")
+path_curve_x = ExtResource("4_sfplt")
 metadata/resource_amount = 0
 
 [node name="TileSprite" type="Sprite2D" parent="."]
+modulate = Color(2, 2, 2, 1)
 texture_filter = 1
 material = ExtResource("1_p6wmr")
 texture = ExtResource("2_rom7t")
 hframes = 20
-vframes = 16
-frame = 255
+vframes = 20
+frame = 291
 region_rect = Rect2(128, 192, 64, 64)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+visible = false
 shape = SubResource("RectangleShape2D_gsvis")

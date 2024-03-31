@@ -1,12 +1,56 @@
-[gd_scene load_steps=8 format=3 uid="uid://c3by2vkm71518"]
+[gd_scene load_steps=25 format=3 uid="uid://c3by2vkm71518"]
 
 [ext_resource type="Theme" uid="uid://8oe8akinpd2h" path="res://UI/UI_default.tres" id="1_cm84j"]
 [ext_resource type="Script" path="res://UI/HealthManager.gd" id="2_dkh7l"]
+[ext_resource type="Script" path="res://UI/HealthUI.gd" id="2_pttqn"]
 [ext_resource type="PackedScene" uid="uid://do6bo3ah2bwc1" path="res://UI/health_bar.tscn" id="3_lewpx"]
+[ext_resource type="Material" uid="uid://dudlqxdmi4yry" path="res://UI/health_bar.tres" id="4_q8m6b"]
 [ext_resource type="Script" path="res://HotkeyManager.gd" id="5_67m5h"]
+[ext_resource type="PackedScene" uid="uid://b7qol8f5sdmwe" path="res://UI/mana_bar.tscn" id="5_d8fpb"]
 [ext_resource type="PackedScene" uid="uid://ciorncioitqgm" path="res://UI/Regular_Hotkey.tscn" id="5_pxbx0"]
 [ext_resource type="PackedScene" uid="uid://cphulh825kn6q" path="res://UI/Slime_Hotkey.tscn" id="6_wumhh"]
 [ext_resource type="PackedScene" uid="uid://tdx2srbane7" path="res://UI/Animated_Hotkey.tscn" id="7_nrh51"]
+[ext_resource type="Script" path="res://ConversationManager.gd" id="10_35ys7"]
+[ext_resource type="Shader" path="res://UI/BlackScreen.gdshader" id="10_cd3d5"]
+[ext_resource type="Texture2D" uid="uid://c6qmka5nfma7d" path="res://Character/Textures/SionTD/sion_hood_outside.png" id="11_m5ny4"]
+[ext_resource type="PackedScene" uid="uid://b8tkwbq0lfhxv" path="res://UI/ConsumableHotKey.tscn" id="11_prha8"]
+[ext_resource type="Texture2D" uid="uid://7t2bdlotsfxq" path="res://Abilities/dust.png" id="11_tkogb"]
+[ext_resource type="Texture2D" uid="uid://cjkulsiuu1qii" path="res://Npc/ui_bar.tres" id="12_jkmk0"]
+[ext_resource type="Script" path="res://Notifier.gd" id="15_y5wv3"]
+[ext_resource type="PackedScene" uid="uid://dkiansib7q7f4" path="res://UI/notification.tscn" id="16_0gykn"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_jv7tw"]
+atlas = ExtResource("11_tkogb")
+region = Rect2(64, 0, 16, 16)
+
+[sub_resource type="Gradient" id="Gradient_77is7"]
+offsets = PackedFloat32Array(0, 0.712042)
+colors = PackedColorArray(0.235294, 0.235294, 0.235294, 0, 0, 0, 0, 1)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_6ldmc"]
+gradient = SubResource("Gradient_77is7")
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_jfsdn"]
+shader = ExtResource("10_cd3d5")
+shader_parameter/size = 0.455
+shader_parameter/resolution = 1.08
+shader_parameter/t = 1.0
+shader_parameter/t_a_y = 0.5
+shader_parameter/rad = 0.295
+shader_parameter/_a = Vector2(-0.94, -0.775)
+shader_parameter/a_y_range = Vector2(-0.7, 0.335)
+shader_parameter/_b = Vector3(-0.215, -0.475, 0.475)
+shader_parameter/_w = 0.16
+shader_parameter/cell = Vector2(25, 25)
+shader_parameter/gradient = SubResource("GradientTexture1D_6ldmc")
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_q8ik3"]
+atlas = ExtResource("11_m5ny4")
+region = Rect2(128, 224, 32, 32)
+
+[sub_resource type="Curve" id="Curve_2ijx8"]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(0.750557, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 3
 
 [node name="HUD" type="CanvasLayer"]
 
@@ -21,46 +65,323 @@ size_flags_horizontal = 3
 size_flags_vertical = 3
 theme = ExtResource("1_cm84j")
 
-[node name="Health" type="FlowContainer" parent="Node2D"]
-self_modulate = Color(1, 1, 1, 0)
-texture_filter = 1
+[node name="V" type="VBoxContainer" parent="Node2D"]
 layout_mode = 1
 anchors_preset = 1
 anchor_left = 1.0
 anchor_right = 1.0
-offset_left = -212.0
-offset_bottom = 68.0
+offset_left = -32.0
+offset_bottom = 52.0
 grow_horizontal = 0
-pivot_offset = Vector2(120, 40)
+scale = Vector2(0.5, 0.5)
+pivot_offset = Vector2(212, 0)
+script = ExtResource("2_pttqn")
+
+[node name="Health" type="GridContainer" parent="Node2D/V"]
+self_modulate = Color(1, 1, 1, 0)
+texture_filter = 1
+layout_direction = 3
+layout_mode = 2
 theme = ExtResource("1_cm84j")
+columns = 6
 script = ExtResource("2_dkh7l")
 health_bar = ExtResource("3_lewpx")
+healthPerBar = 20.0
+health_mat = ExtResource("4_q8m6b")
 
-[node name="H" type="HBoxContainer" parent="Node2D"]
+[node name="Mana" parent="Node2D/V" instance=ExtResource("5_d8fpb")]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="H" type="PanelContainer" parent="Node2D"]
+self_modulate = Color(1, 1, 1, 0)
 layout_mode = 1
 anchors_preset = -1
+anchor_left = 0.5
 anchor_top = 1.0
-anchor_right = 1.0
+anchor_right = 0.5
 anchor_bottom = 1.0
+offset_left = -144.0
+offset_top = -64.0
+offset_right = 125.0
 grow_horizontal = 2
 grow_vertical = 0
+theme = ExtResource("1_cm84j")
 
-[node name="Control" type="Control" parent="Node2D/H"]
+[node name="HotkeyContainer" type="GridContainer" parent="Node2D/H" node_paths=PackedStringArray("manaManager")]
 layout_mode = 2
-size_flags_horizontal = 3
-size_flags_stretch_ratio = 0.8
-
-[node name="HotkeyContainer" type="GridContainer" parent="Node2D/H"]
-layout_mode = 2
-size_flags_horizontal = 3
-columns = 5
+size_flags_horizontal = 4
+size_flags_vertical = 8
+theme_override_constants/h_separation = 0
+theme_override_constants/v_separation = 0
+columns = 6
 script = ExtResource("5_67m5h")
-hotkey_size = 128
+hotkey_size = 32
+manaManager = NodePath("../../V/Mana/TextureProgressBar")
 regular_hotkey = ExtResource("5_pxbx0")
 slime_hotkey = ExtResource("6_wumhh")
 animated_slime_hotkey = ExtResource("7_nrh51")
+consumable_hotkey = ExtResource("11_prha8")
 
-[node name="Control2" type="Control" parent="Node2D/H"]
+[node name="Convo" type="PanelContainer" parent="Node2D" node_paths=PackedStringArray("convo", "options", "convo_trees", "next", "skip")]
+self_modulate = Color(1, 1, 1, 0)
+clip_contents = true
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.55
+anchor_bottom = 1.0
+offset_left = -147.0
+offset_right = 125.0
+grow_horizontal = 2
+theme = ExtResource("1_cm84j")
+script = ExtResource("10_35ys7")
+convo = NodePath("V/Panel/MarginContainer/V/H/Convo")
+txt_speed = 15.0
+options = [NodePath("V/Panel/MarginContainer/V/Options/Option 1"), NodePath("V/Panel/MarginContainer/V/Options/Option 2"), NodePath("V/Panel/MarginContainer/V/Options/Option 3")]
+convo_trees = [NodePath("V/Panel/MarginContainer/V/H/Convo"), NodePath("V/Panel/MarginContainer/V/H/Convo2"), NodePath("V/Panel/MarginContainer/V/H/Convo3"), NodePath("V/Panel/MarginContainer/V/H/Convo4"), NodePath("V/Panel/MarginContainer/V/H/Convo5"), NodePath("V/Panel/MarginContainer/V/H/Convo6"), NodePath("V/Panel/MarginContainer/V/H/Convo7")]
+next = NodePath("V/Panel/MarginContainer/V/SkipNNext/Next")
+skip = NodePath("V/Panel/MarginContainer/V/SkipNNext/Skip")
+offset_bot_range = Vector2(0, -137)
+
+[node name="V" type="VBoxContainer" parent="Node2D/Convo"]
+layout_mode = 2
+
+[node name="AspectRatioContainer" type="AspectRatioContainer" parent="Node2D/Convo/V"]
+layout_mode = 2
+size_flags_vertical = 3
+alignment_horizontal = 2
+
+[node name="NPC" type="TextureRect" parent="Node2D/Convo/V/AspectRatioContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+texture = SubResource("AtlasTexture_jv7tw")
+stretch_mode = 4
+
+[node name="Name" type="Button" parent="Node2D/Convo/V/AspectRatioContainer"]
+layout_mode = 2
+size_flags_vertical = 8
+size_flags_stretch_ratio = 0.0
+theme_type_variation = &"FlatButton"
+button_mask = 0
+text = "Name"
+
+[node name="Panel" type="NinePatchRect" parent="Node2D/Convo/V"]
+layout_mode = 2
+size_flags_vertical = 3
+texture = ExtResource("12_jkmk0")
+region_rect = Rect2(0, 0, 32, 32)
+patch_margin_left = 15
+patch_margin_top = 15
+patch_margin_right = 15
+patch_margin_bottom = 15
+
+[node name="MarginContainer" type="MarginContainer" parent="Node2D/Convo/V/Panel"]
+layout_mode = 1
+anchors_preset = -1
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 5.0
+offset_top = 5.0
+offset_right = -5.0
+offset_bottom = -5.0
+grow_horizontal = 2
+grow_vertical = 0
+
+[node name="V" type="VBoxContainer" parent="Node2D/Convo/V/Panel/MarginContainer"]
+layout_mode = 2
+
+[node name="H" type="HBoxContainer" parent="Node2D/Convo/V/Panel/MarginContainer/V"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="Convo" type="RichTextLabel" parent="Node2D/Convo/V/Panel/MarginContainer/V/H"]
+visible = false
 layout_mode = 2
 size_flags_horizontal = 3
-size_flags_stretch_ratio = 0.8
+size_flags_vertical = 3
+bbcode_enabled = true
+text = "a
+"
+fit_content = true
+scroll_active = false
+shortcut_keys_enabled = false
+
+[node name="Convo2" type="RichTextLabel" parent="Node2D/Convo/V/Panel/MarginContainer/V/H"]
+visible = false
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+bbcode_enabled = true
+text = "b"
+fit_content = true
+scroll_active = false
+shortcut_keys_enabled = false
+
+[node name="Convo3" type="RichTextLabel" parent="Node2D/Convo/V/Panel/MarginContainer/V/H"]
+visible = false
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+bbcode_enabled = true
+text = "c"
+fit_content = true
+scroll_active = false
+shortcut_keys_enabled = false
+
+[node name="Convo4" type="RichTextLabel" parent="Node2D/Convo/V/Panel/MarginContainer/V/H"]
+visible = false
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+bbcode_enabled = true
+text = "d"
+fit_content = true
+scroll_active = false
+shortcut_keys_enabled = false
+
+[node name="Convo5" type="RichTextLabel" parent="Node2D/Convo/V/Panel/MarginContainer/V/H"]
+visible = false
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+bbcode_enabled = true
+text = "e"
+fit_content = true
+scroll_active = false
+shortcut_keys_enabled = false
+
+[node name="Convo6" type="RichTextLabel" parent="Node2D/Convo/V/Panel/MarginContainer/V/H"]
+visible = false
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+bbcode_enabled = true
+text = "f"
+fit_content = true
+scroll_active = false
+shortcut_keys_enabled = false
+
+[node name="Convo7" type="RichTextLabel" parent="Node2D/Convo/V/Panel/MarginContainer/V/H"]
+visible = false
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+bbcode_enabled = true
+text = "g"
+fit_content = true
+scroll_active = false
+shortcut_keys_enabled = false
+
+[node name="Options" type="HBoxContainer" parent="Node2D/Convo/V/Panel/MarginContainer/V"]
+visible = false
+layout_mode = 2
+size_flags_vertical = 3
+size_flags_stretch_ratio = 0.5
+
+[node name="Option 1" type="Button" parent="Node2D/Convo/V/Panel/MarginContainer/V/Options"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="Option 2" type="Button" parent="Node2D/Convo/V/Panel/MarginContainer/V/Options"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="Option 3" type="Button" parent="Node2D/Convo/V/Panel/MarginContainer/V/Options"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="SkipNNext" type="HBoxContainer" parent="Node2D/Convo/V/Panel/MarginContainer/V"]
+layout_mode = 2
+size_flags_vertical = 3
+size_flags_stretch_ratio = 0.5
+
+[node name="Space" type="Control" parent="Node2D/Convo/V/Panel/MarginContainer/V/SkipNNext"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="Space2" type="Control" parent="Node2D/Convo/V/Panel/MarginContainer/V/SkipNNext"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="Space3" type="Control" parent="Node2D/Convo/V/Panel/MarginContainer/V/SkipNNext"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="Skip" type="Button" parent="Node2D/Convo/V/Panel/MarginContainer/V/SkipNNext"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Skip"
+
+[node name="Next" type="Button" parent="Node2D/Convo/V/Panel/MarginContainer/V/SkipNNext"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Next"
+
+[node name="Blackout" type="ColorRect" parent="Node2D"]
+visible = false
+material = SubResource("ShaderMaterial_jfsdn")
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="C" type="CenterContainer" parent="Node2D/Blackout"]
+modulate = Color(1, 1, 1, 0)
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Death Message" type="RichTextLabel" parent="Node2D/Blackout/C"]
+clip_contents = false
+layout_mode = 2
+bbcode_enabled = true
+text = "[font_size=60]...you have died[/font_size]"
+fit_content = true
+scroll_active = false
+autowrap_mode = 0
+
+[node name="TextureRect" type="TextureRect" parent="Node2D/Blackout/C"]
+z_index = 4
+custom_minimum_size = Vector2(256, 256)
+layout_mode = 2
+texture = SubResource("AtlasTexture_q8ik3")
+
+[node name="Continue" type="RichTextLabel" parent="Node2D/Blackout/C"]
+modulate = Color(1, 1, 1, 0)
+clip_contents = false
+layout_mode = 2
+bbcode_enabled = true
+text = "[pulse freq=1.0 color=#ffffff40 ease=-2.0][font_size=60]
+
+
+
+
+
+press anything to continue[/font_size][/pulse]"
+fit_content = true
+scroll_active = false
+autowrap_mode = 0
+
+[node name="Notifications" type="Control" parent="Node2D"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("15_y5wv3")
+notification = ExtResource("16_0gykn")
+gravity_up = 50.0
+fade_curve = SubResource("Curve_2ijx8")
+duration = 3.0
+
+[connection signal="resized" from="Node2D/V" to="Node2D/V" method="_on_resized"]
+
+[editable path="Node2D/V/Mana"]

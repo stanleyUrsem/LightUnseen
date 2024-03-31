@@ -57,8 +57,7 @@ func remove():
 	#user.get_parent().add_child(pool)
 	queue_free()
 
-func _OnHit(collision):
-	super(collision)
-	_ApplyDamage(collision)
+func _OnHit(collision,is_cast=false):
+	super(collision,is_cast)
 	var pos = collision.get_position()
 	remove()

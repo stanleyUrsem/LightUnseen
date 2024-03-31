@@ -215,12 +215,12 @@ nodes/Speed/node = SubResource("AnimationNodeTimeScale_28ifa")
 nodes/Speed/position = Vector2(-500, 300)
 node_connections = [&"Fly", 0, &"Animation 3", &"Fly", 1, &"Speed", &"Hit", 0, &"Fly", &"Hit", 1, &"Animation 2", &"Speed", 0, &"Animation", &"output", 0, &"Hit"]
 
-[node name="RockThrow" node_paths=PackedStringArray("animBody") instance=ExtResource("1_w4m65")]
+[node name="RockThrow" instance=ExtResource("1_w4m65")]
 z_index = 9
-animBody = NodePath(".")
 data = ExtResource("2_1vwn2")
 
 [node name="Sprite2D" parent="." index="0"]
+self_modulate = Color(2, 2, 2, 1)
 rotation = 3.14159
 texture = ExtResource("2_2877v")
 hframes = 5
@@ -233,6 +233,8 @@ libraries = {
 "": SubResource("AnimationLibrary_qkbq1")
 }
 tree_root = SubResource("AnimationNodeBlendTree_117b6")
+parameters/Fly/active = true
+parameters/Fly/internal_active = true
 parameters/Fly/request = 2
 
 [node name="AnimationPlayer" parent="." index="2"]

@@ -1,8 +1,9 @@
 shader_type canvas_item;
-
+render_mode blend_add;
 //#include "TileUV.gdshaderinc"
 
 uniform float resolution;
+uniform float alpha;
 uniform float background;
 uniform float time_speed;
 uniform vec2 offset;
@@ -14,7 +15,7 @@ varying vec2 globalVert;
 varying vec2 uv;
 varying vec2 uv2;
 varying float result;
-
+varying vec4 modulate;
 
 
 void vertex()
@@ -31,7 +32,7 @@ void vertex()
 	
 	uv2.y += time/14.0;
 	uv2.x += (sin(time/10.0)/9.0);
-
+	modulate = COLOR;
 }
 void fragment() {
 	//uv =vert/resolution;
@@ -47,8 +48,9 @@ void fragment() {
 	result = pow(result,15.0);
 	
 	vec4 clr = vec4(background * vert.y) * result;
-	clr.a = 1.0;
-	COLOR= abs(clr);
+	clr.a *= alpha;
+	//clr *= modulate;
+	COLOR= abs(clr) * modulate;
 //	COLOR = vec4(uv.x,uv.y,0.0,1.0);
 	//vec2 uv3 = get_tile_uvs(UV,vec2(320.0,256.0),vec2(16.0),vec2(0.0),vec2(0.0));
 	//COLOR = vec4(globalVert.x,globalVert.y, 0,1);

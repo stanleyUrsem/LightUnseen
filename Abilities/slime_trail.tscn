@@ -13,14 +13,17 @@ script = ExtResource("3_jpp81")
 keyBinds = Array[String]([])
 abilityPath = ""
 animName = ""
-useOneShot = false
+animNodeType = 0
 oneShot = 0
 value = 0.0
 animOnly = false
-damage = 5.0
+damage = -5.0
+mana = 0.0
 speed = 5.0
 useMouseAim = false
 toggle = false
+hold = false
+hold_index = 0
 rotateToMouse = false
 displayName = ""
 description = ""
@@ -83,10 +86,11 @@ metadata/_snap_enabled = true
 size = Vector2(30, 30)
 
 [node name="Area2D" type="Area2D" node_paths=PackedStringArray("pool_timer", "pool_particles", "colliderShape", "fadeTimer")]
+modulate = Color(1.2, 1.2, 1.2, 1)
 z_index = 3
 scale = Vector2(0.5, 0.45)
 collision_layer = 4
-collision_mask = 2
+collision_mask = 16
 script = ExtResource("1_06ib1")
 bubble_node = ExtResource("2_4d07k")
 bubbles_per_unit = 2.0
@@ -95,9 +99,12 @@ scaleRange = Vector2(0.5, 1)
 pool_timer = NodePath("Timer")
 pool_scale_curve = SubResource("Curve_yl5ff")
 pool_particles = [NodePath("CPUParticles2D4"), NodePath("CPUParticles2D3"), NodePath("CPUParticles2D"), NodePath("CPUParticles2D2")]
+auto_start = true
+auto_fade = true
 colliderShape = NodePath("Node2D")
-fadeTimer = NodePath("Timer")
+bubbleColor = Color(1, 1, 1, 1)
 data = SubResource("Resource_xvmtx")
+fadeTimer = NodePath("Timer")
 
 [node name="CPUParticles2D4" type="CPUParticles2D" parent="."]
 z_index = 3
@@ -146,6 +153,7 @@ gravity = Vector2(0, 0)
 scale_amount_curve = SubResource("Curve_wsvwl")
 
 [node name="Node2D" type="CollisionShape2D" parent="."]
+visible = false
 texture_filter = 3
 shape = SubResource("RectangleShape2D_bqff2")
 

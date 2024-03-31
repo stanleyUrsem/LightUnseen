@@ -1,0 +1,22 @@
+[gd_scene load_steps=6 format=3 uid="uid://giwwv1c0hjpa"]
+
+[ext_resource type="PackedScene" uid="uid://dukvne4q1byuu" path="res://Envo/pickup.tscn" id="1_fb216"]
+[ext_resource type="Script" path="res://Envo/stat_pickup.gd" id="2_swog5"]
+[ext_resource type="Material" uid="uid://dlo3kh48c6xhw" path="res://Maps/Particles.tres" id="2_ya0ai"]
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_dsk65"]
+load_path = "res://.godot/imported/pickups.png-6b565d101b5291e0acaa0b3dbda9ef23.ctex"
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_n5rgk"]
+atlas = SubResource("CompressedTexture2D_dsk65")
+region = Rect2(64, 32, 32, 32)
+
+[node name="Node2D" instance=ExtResource("1_fb216")]
+monitoring = false
+script = ExtResource("2_swog5")
+add_stat = 20.0
+type = 1
+
+[node name="Sprite2D" parent="." index="0"]
+material = ExtResource("2_ya0ai")
+texture = SubResource("AtlasTexture_n5rgk")

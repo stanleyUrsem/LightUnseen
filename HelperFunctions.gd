@@ -8,7 +8,13 @@ static func remap(value, inMinMax, outMinMax):
 	return lerp(outMinMax.x, outMinMax.y, rel)
 	
 static func to_degrees(radians) -> float:
-	return radians * 180.0 / PI;
+	return radians * 180.0 / PI
+	
+static func get_point_from_angle(angle,radius)-> Vector2:
+	var rad = angle / 180.0 * PI
+	var x = cos(rad) 
+	var y = sin(rad)
+	return Vector2(x,y) * radius
 	
 static func get_angle(point, center)-> float:
 	var delta = (point - center).normalized()

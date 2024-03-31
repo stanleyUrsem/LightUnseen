@@ -42,11 +42,12 @@ func setup_vars(p_search_state, p_min_dist, p_meta_pickup, p_lowInv):
 
 func _on_enter():
 	anims.attack()
-	ai.mobMovement.stopMovement()
+	ai.mobMovement.resetMovement()
 
 func pickUp():
 	if collision != null:
 		var resourceAmount = collision.get_meta(meta_pickup)
+		#print("%s %d" % [collision.name, resourceAmount])
 		if(resourceAmount == null):
 			return
 		if(resourceAmount > 0):
@@ -60,8 +61,14 @@ func pickUp():
 					foodPoint.z = 0
 					ai.currentState.allowExit = true,
 					10.0 * resourceAmount))
+		else:
+			search_state.foodCollision = null
+			search_state.foodPoint = Vector3.ZERO
 
 func set_inv_space(x):
+	if(ai == null):
+		pickupTween.kill()
+		return
 	if(x > lowInv):
 		ai.stats.inv_space = x
 	else:

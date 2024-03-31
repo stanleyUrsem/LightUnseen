@@ -1,0 +1,19 @@
+[gd_resource type="ShaderMaterial" load_steps=4 format=3 uid="uid://bknoqi2quvni3"]
+
+[ext_resource type="Shader" path="res://Maps/foggy.gdshader" id="1_h1mmj"]
+
+[sub_resource type="Gradient" id="Gradient_dj2a4"]
+interpolation_mode = 1
+offsets = PackedFloat32Array(0.237562, 0.24701, 0.501856, 0.762272, 0.765978)
+colors = PackedColorArray(0.25098, 0.160784, 0.25098, 1, 0.212775, 0.133537, 0.212785, 1, 0.133278, 0.0772523, 0.133297, 1, 0, 0, 0, 1, 0.0696519, 0.0327923, 0.0696678, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_lpnhk"]
+gradient = SubResource("Gradient_dj2a4")
+fill_to = Vector2(0, 1)
+
+[resource]
+shader = ExtResource("1_h1mmj")
+shader_parameter/height = 0
+shader_parameter/new_height = 3
+shader_parameter/transition = 0.0
+shader_parameter/gradient = SubResource("GradientTexture2D_lpnhk")

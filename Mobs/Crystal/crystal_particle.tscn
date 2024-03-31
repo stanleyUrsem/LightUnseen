@@ -1,0 +1,73 @@
+[gd_scene load_steps=6 format=3 uid="uid://cu410bqejxtbu"]
+
+[ext_resource type="PackedScene" uid="uid://c1lil3exb2sw3" path="res://Mobs/Crystal/crystal_explode.tscn" id="1_y2qkl"]
+
+[sub_resource type="Animation" id="Animation_m0mut"]
+resource_name = "Throw"
+length = 0.5
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.4),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
+"update": 1,
+"values": [42, 43, 44, 45, 46]
+}
+
+[sub_resource type="Animation" id="Animation_wxy6x"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [42]
+}
+
+[sub_resource type="Animation" id="Animation_0tebf"]
+resource_name = "Impact"
+length = 0.5
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.4),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
+"update": 1,
+"values": [47, 48, 49, 50, 67]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_ov38j"]
+_data = {
+"Impact": SubResource("Animation_0tebf"),
+"RESET": SubResource("Animation_wxy6x"),
+"Throw": SubResource("Animation_m0mut")
+}
+
+[node name="Crystal_Explode" instance=ExtResource("1_y2qkl")]
+
+[node name="Sprite2D" parent="." index="0"]
+frame = 42
+
+[node name="AnimationTree" parent="." index="1"]
+libraries = {
+"": SubResource("AnimationLibrary_ov38j")
+}
+
+[node name="AnimationPlayer" parent="." index="2"]
+libraries = {
+"": SubResource("AnimationLibrary_ov38j")
+}

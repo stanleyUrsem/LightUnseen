@@ -1,0 +1,18 @@
+[gd_resource type="ShaderMaterial" load_steps=5 format=3 uid="uid://cnbo7g8vbwquo"]
+
+[ext_resource type="Shader" path="res://swap_color.gdshader" id="1_sqvvb"]
+[ext_resource type="Texture2D" uid="uid://c5jxxtp0an06n" path="res://Npc/npc_grad.png" id="2_bx0uo"]
+[ext_resource type="Gradient" uid="uid://b8jna0oh2ebps" path="res://Npc/diff_npc5.tres" id="3_asycq"]
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_v5j11"]
+gradient = ExtResource("3_asycq")
+width = 18
+
+[resource]
+shader = ExtResource("1_sqvvb")
+shader_parameter/alpha_override = 1.0
+shader_parameter/num_colors = 18
+shader_parameter/precision = 0.0
+shader_parameter/index = null
+shader_parameter/palette_in = ExtResource("2_bx0uo")
+shader_parameter/palette_out = SubResource("GradientTexture1D_v5j11")

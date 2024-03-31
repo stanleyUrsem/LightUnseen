@@ -1,0 +1,197 @@
+[gd_scene load_steps=15 format=3 uid="uid://ji3djj68qjfv"]
+
+[ext_resource type="PackedScene" uid="uid://b5a5ldgbtqjvd" path="res://Mobs/Crystal/crystal_impact.tscn" id="1_ljwai"]
+[ext_resource type="Script" path="res://Mobs/Crystal/crystal_tower.gd" id="2_hs250"]
+[ext_resource type="PackedScene" uid="uid://cu410bqejxtbu" path="res://Mobs/Crystal/crystal_particle.tscn" id="3_q7m55"]
+
+[sub_resource type="Animation" id="Animation_mjdl0"]
+resource_name = "Throw"
+length = 0.6
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.4, 0.5),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [16, 17, 18, 17, 18, 17]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Sprite2D:rotation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.3, 0.4, 0.6),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
+"update": 1,
+"values": [0.0, 1.5708, 3.14159, 4.71239, 6.28319]
+}
+
+[sub_resource type="Animation" id="Animation_j2sat"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [16]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Sprite2D:rotation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
+
+[sub_resource type="Animation" id="Animation_y2hxr"]
+resource_name = "Impact"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Sprite2D:frame")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 1,
+"values": [30, 31, 32]
+}
+
+[sub_resource type="Animation" id="Animation_2jrro"]
+resource_name = "Shoot"
+length = 1.1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [32, 33, 34, 35, 36, 37, 38, 39, 41, 40]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Sprite2D:rotation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
+tracks/2/type = "method"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath(".")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0.8),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [],
+"method": &"create_particle"
+}]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_b52qa"]
+_data = {
+"Impact": SubResource("Animation_y2hxr"),
+"RESET": SubResource("Animation_j2sat"),
+"Shoot": SubResource("Animation_2jrro"),
+"Throw": SubResource("Animation_mjdl0")
+}
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_jbpkb"]
+animation = &"Impact"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_ndwg2"]
+animation = &"Shoot"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_7tvsh"]
+animation = &"Throw"
+
+[sub_resource type="AnimationNodeBlend2" id="AnimationNodeBlend2_ob6mx"]
+
+[sub_resource type="AnimationNodeOneShot" id="AnimationNodeOneShot_2wf0m"]
+
+[sub_resource type="AnimationNodeBlendTree" id="AnimationNodeBlendTree_0relo"]
+graph_offset = Vector2(-768.591, -202.099)
+nodes/Animation/node = SubResource("AnimationNodeAnimation_7tvsh")
+nodes/Animation/position = Vector2(-460, 0)
+"nodes/Animation 2/node" = SubResource("AnimationNodeAnimation_jbpkb")
+"nodes/Animation 2/position" = Vector2(-460, 120)
+"nodes/Animation 3/node" = SubResource("AnimationNodeAnimation_ndwg2")
+"nodes/Animation 3/position" = Vector2(-140, 280)
+nodes/Impact/node = SubResource("AnimationNodeBlend2_ob6mx")
+nodes/Impact/position = Vector2(-200, 20)
+nodes/Shoot/node = SubResource("AnimationNodeOneShot_2wf0m")
+nodes/Shoot/position = Vector2(200, 140)
+nodes/output/position = Vector2(440, 20)
+node_connections = [&"Impact", 0, &"Animation", &"Impact", 1, &"Animation 2", &"Shoot", 0, &"Impact", &"Shoot", 1, &"Animation 3", &"output", 0, &"Shoot"]
+
+[node name="Crystal_Tower" node_paths=PackedStringArray("spawn_loc") instance=ExtResource("1_ljwai")]
+script = ExtResource("2_hs250")
+duration_range = Vector2(2, 3)
+particle_temp = ExtResource("3_q7m55")
+spawn_loc = NodePath("Marker2D")
+
+[node name="Sprite2D" parent="." index="0"]
+frame = 16
+
+[node name="AnimationTree" parent="." index="1"]
+libraries = {
+"": SubResource("AnimationLibrary_b52qa")
+}
+tree_root = SubResource("AnimationNodeBlendTree_0relo")
+parameters/Impact/blend_amount = 1.0
+parameters/Shoot/active = false
+parameters/Shoot/internal_active = false
+parameters/Shoot/request = 0
+
+[node name="AnimationPlayer" parent="." index="2"]
+libraries = {
+"": SubResource("AnimationLibrary_b52qa")
+}
+
+[node name="Marker2D" type="Marker2D" parent="." index="4"]
+position = Vector2(2.23228, -3.9189)
+
+[node name="Timer" parent="." index="5"]
+wait_time = 10.0
+autostart = true

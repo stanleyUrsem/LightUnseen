@@ -1,0 +1,42 @@
+[gd_scene load_steps=9 format=3 uid="uid://c4gxn77kuaxo4"]
+
+[ext_resource type="PackedScene" uid="uid://dg0hecc6jw1b2" path="res://Npc/Npc_fam.tscn" id="1_nx0eu"]
+[ext_resource type="Shader" path="res://swap_color.gdshader" id="2_7e3ux"]
+[ext_resource type="Texture2D" uid="uid://c5jxxtp0an06n" path="res://Npc/npc_grad.png" id="3_v5j6y"]
+[ext_resource type="Gradient" uid="uid://gi7f45aifeum" path="res://Npc/Hugo.tres" id="4_h6y51"]
+[ext_resource type="AudioStream" uid="uid://dal2nhledk5vu" path="res://SFX/Voices/UI_Click_Tap_Hybrid_Muffled_mono.wav" id="5_1juj4"]
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_kin4g"]
+gradient = ExtResource("4_h6y51")
+width = 18
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_naeee"]
+shader = ExtResource("2_7e3ux")
+shader_parameter/alpha_override = 1.0
+shader_parameter/num_colors = 18
+shader_parameter/precision = 0.0
+shader_parameter/index = null
+shader_parameter/palette_in = ExtResource("3_v5j6y")
+shader_parameter/palette_out = SubResource("GradientTexture1D_kin4g")
+
+[sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_4f03e"]
+random_pitch = 1.5
+streams_count = 1
+stream_0/stream = ExtResource("5_1juj4")
+stream_0/weight = 1.0
+
+[node name="Hugo" instance=ExtResource("1_nx0eu")]
+scale = Vector2(0.93, 0.93)
+
+[node name="Art" parent="." index="0"]
+material = SubResource("ShaderMaterial_naeee")
+
+[node name="Eyes" parent="Art/Eyes" index="0"]
+frame = 8
+
+[node name="Eyes2" parent="Art/Eyes" index="1"]
+frame = 8
+
+[node name="Voice" parent="Control/PanelContainer" index="1"]
+stream = SubResource("AudioStreamRandomizer_4f03e")
+pitch_scale = 0.8

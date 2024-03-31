@@ -79,10 +79,22 @@ tracks/5/keys = {
 "update": 1,
 "values": [2]
 }
+tracks/6/type = "value"
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/path = NodePath("Sprite2D:modulate")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1.5, 1.5, 1.5, 1)]
+}
 
 [sub_resource type="Animation" id="Animation_drdbx"]
 resource_name = "end"
-length = 0.5
+length = 0.8
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
@@ -90,10 +102,10 @@ tracks/0/path = NodePath("Sprite2D:frame")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.9, 1, 1.1),
-"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1),
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.9, 1, 1.1),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
 "update": 1,
-"values": [9, 10, 11, 12, 13, 14, 6, 7, 8]
+"values": [9, 10, 11, 12, 13, 14, 15, 16, 6, 7, 8]
 }
 tracks/1/type = "method"
 tracks/1/imported = false
@@ -106,12 +118,23 @@ tracks/1/keys = {
 "transitions": PackedFloat32Array(),
 "values": []
 }
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Sprite2D:modulate")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0.7, 0.8),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 1), Color(1.50196, 1.50196, 1.50196, 0)]
+}
 
 [sub_resource type="Animation" id="Animation_4j7be"]
 resource_name = "loop"
 length = 0.4
 loop_mode = 1
-step = 0.01
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
@@ -131,8 +154,8 @@ tracks/1/path = NodePath(".")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
-"times": PackedFloat32Array(0, 0.01, 0.02, 0.03, 0.1, 0.11, 0.12, 0.13, 0.2, 0.21, 0.22, 0.23, 0.3, 0.31, 0.32, 0.33, 0.4),
-"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
+"times": PackedFloat32Array(0, 0.01, 0.02, 0.03, 0.3, 0.31, 0.32, 0.33, 0.4),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1),
 "values": [{
 "args": [0, Vector2(0, 1)],
 "method": &"create_slime_particle"
@@ -144,30 +167,6 @@ tracks/1/keys = {
 "method": &"create_slime_particle"
 }, {
 "args": [3, Vector2(-1, 0)],
-"method": &"create_slime_particle"
-}, {
-"args": [0, Vector2(1, 0)],
-"method": &"create_slime_particle"
-}, {
-"args": [1, Vector2(0, 1)],
-"method": &"create_slime_particle"
-}, {
-"args": [2, Vector2(-1, 0)],
-"method": &"create_slime_particle"
-}, {
-"args": [3, Vector2(0, -1)],
-"method": &"create_slime_particle"
-}, {
-"args": [0, Vector2(0.5, -0.5)],
-"method": &"create_slime_particle"
-}, {
-"args": [1, Vector2(0.5, 0.5)],
-"method": &"create_slime_particle"
-}, {
-"args": [2, Vector2(-0.5, 0.5)],
-"method": &"create_slime_particle"
-}, {
-"args": [3, Vector2(-0.5, -0.5)],
 "method": &"create_slime_particle"
 }, {
 "args": [0, Vector2(1, 0)],
@@ -234,6 +233,18 @@ tracks/5/keys = {
 "update": 1,
 "values": [Vector2(-8, 10), Vector2(-12, 0), Vector2(-6, 8), Vector2(-12, -1)]
 }
+tracks/6/type = "value"
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/path = NodePath("Sprite2D:modulate")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [Color(1.5, 1.5, 1.5, 1), Color(1.2, 1.2, 1.2, 1), Color(1.5, 1.5, 1.5, 1), Color(1.2, 1.2, 1.2, 1)]
+}
 
 [sub_resource type="Animation" id="Animation_jmk5w"]
 resource_name = "start"
@@ -261,6 +272,18 @@ tracks/1/keys = {
 "transitions": PackedFloat32Array(1),
 "update": 1,
 "values": [1]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Sprite2D:modulate")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_swa5h"]
@@ -302,14 +325,15 @@ nodes/Speed/node = SubResource("AnimationNodeTimeScale_ersrw")
 nodes/Speed/position = Vector2(-682.546, 243.191)
 node_connections = [&"End", 0, &"Loop", &"End", 1, &"Animation 3", &"Loop", 0, &"Animation", &"Loop", 1, &"Speed", &"Speed", 0, &"Animation 2", &"output", 0, &"End"]
 
-[node name="Slime_Spin" node_paths=PackedStringArray("spawn_points", "animBody") instance=ExtResource("1_xnl63")]
+[node name="Slime_Spin" node_paths=PackedStringArray("spawn_points") instance=ExtResource("1_xnl63")]
 script = ExtResource("2_4xdjg")
 spawn_points = [NodePath("LeftTop"), NodePath("RightTop"), NodePath("RightBot"), NodePath("LeftBot")]
 slime_particle = ExtResource("3_ts6nq")
-amount_loops = 6
-animBody = NodePath(".")
+amount_loops = 60.0
+per_loops = 12.0
 
 [node name="Sprite2D" parent="." index="0"]
+modulate = Color(1.5, 1.5, 1.5, 1)
 texture = ExtResource("3_3whlh")
 hframes = 5
 vframes = 4
@@ -334,6 +358,7 @@ parameters/Loop/request = 2
 libraries = {
 "": SubResource("AnimationLibrary_swa5h")
 }
+speed_scale = 2.0
 
 [node name="LeftTop" type="Marker2D" parent="." index="5"]
 position = Vector2(-8, -8)
