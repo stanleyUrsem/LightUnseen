@@ -1,4 +1,5 @@
 extends MovableAbilityaction
+@export var directions : Array[Vector2]
 @export var animTree : AnimationTree
 @export var animPlayer : AnimationPlayer
 @export var spawn_points : Array[Marker2D]
@@ -8,7 +9,7 @@ extends MovableAbilityaction
 
 var current_loops : float
 var saved_direction
-var reflected_direction
+var reflected_direction : Vector2
 var reflect_tween : Tween
 
 func _on_setup():
@@ -33,11 +34,12 @@ func _OnHit(collision,is_cast=false):
 	super(collision,is_cast)
 	if(collision is KinematicCollision2D):
 		#var reflect = collision.get_remainder().bounce(collision.get_normal())
-		var reflect = direction.bounce(collision.get_normal())
-		reflected_direction = reflect
+		var reflection = direction.bounce(collision.get_normal())
+		reflected_direction = reflection
 		reflect()
 
 func reflect():
+	print("Reflecting")
 	if(reflect_tween != null && reflect_tween.is_running()):
 		reflect_tween.kill()
 	var duration = prng.range_f(0.5,1.5)
@@ -45,21 +47,25 @@ func reflect():
 	#reflect_tween.tween_method(set_direction,Vector2.ZERO,reflected_direction,duration)
 	#reflect_tween.tween_method(set_direction,Vector2.ZERO,-reflected_direction,duration)
 	reflect_tween.tween_callback(func():
-		set_direction(reflected_direction))
+		set_move_direction(reflected_direction))
 	reflect_tween.tween_interval(duration)
 	reflect_tween.tween_callback(func():
-		set_direction(-reflected_direction)
+		set_move_direction(-reflected_direction)
 		isHit = false)
 
-func set_direction(dir):
+func set_move_direction(dir):
 	direction = dir
-
-func create_slime_particle(spawn_index: int,move_dir:Vector2):
+func create_slime_particles():
+	for i in spawn_points.size():
+		var point = spawn_points[i]
+		var dir = directions[i]
+		create_slime_particle(point,dir)
+func create_slime_particle(point,move_dir:Vector2):
 	if(fmod(current_loops,per_loops) != 0.0):
 		return
 	var spawn_node = get_tree().root.get_child(0)
 	var slime = slime_particle.instantiate() as MovableAbilityaction
 	spawn_node.add_child(slime)
-	slime._setup(spawn_points[spawn_index].global_position,
+	slime._setup(point.global_position,
 	user,move_dir,prng)
 	slime.damage = data.damage / spawn_points.size()

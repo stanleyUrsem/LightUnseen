@@ -96,7 +96,7 @@ _data = {
 }
 
 [node name="Node2D" type="Sprite2D" node_paths=PackedStringArray("anim")]
-z_index = 4
+z_index = 1
 texture_filter = 1
 texture = ExtResource("1_jpqt1")
 hframes = 16

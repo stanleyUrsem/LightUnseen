@@ -23,11 +23,11 @@ func check_use(delta):
 	
 func _use(delta):
 	holder.add_mana(data.mana_increase,true)
-	holder.add_mana(holder.stats.mana_max * data.mana_increase_percentage,true)
+	holder.add_mana(holder.stats.mana_max * (data.mana_increase_percentage/100.0),true)
 	
 	holder.stats.defense_max += data.defense_increase
 	holder.stats.defense_max += holder.stats.defense_max * data.defense_increase_percentage
 	
-	holder.add_health(data.health_increase)
-	holder.add_health(holder.stats.health_max * data.health_increase_percentage)
+	holder.add_health(data.health_increase,true)
+	holder.add_health(holder.stats.health_max * (data.health_increase_percentage/100.0),true)
 	

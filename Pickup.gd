@@ -6,7 +6,8 @@ extends Area2D
 
 func setup():
 	monitoring = true
-	animPlayer.play("Float")
+	if(animPlayer != null):
+		animPlayer.play("Float")
 
 func add_consumable(body):
 	var consume = body.get_node("Consume")

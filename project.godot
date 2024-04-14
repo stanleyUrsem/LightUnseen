@@ -13,6 +13,8 @@ config_version=5
 config/name="LightUnseen"
 run/main_scene="res://UI/menu.tscn"
 config/features=PackedStringArray("4.2", "Forward Plus")
+config/icon="res://icon.png"
+config/windows_native_icon="res://icon.ico"
 
 [audio]
 
@@ -159,6 +161,11 @@ Consume_2={
 , Object(InputEventJoypadButton,"resource_local_to_scene":false,"resource_name":"","device":-1,"button_index":14,"pressure":0.0,"pressed":false,"script":null)
 ]
 }
+pause={
+"deadzone": 0.5,
+"events": [Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":-1,"window_id":0,"alt_pressed":false,"shift_pressed":false,"ctrl_pressed":false,"meta_pressed":false,"pressed":false,"keycode":0,"physical_keycode":4194305,"key_label":0,"unicode":0,"echo":false,"script":null)
+]
+}
 
 [layer_names]
 
@@ -169,6 +176,8 @@ Consume_2={
 2d_physics/layer_5="Player"
 2d_physics/layer_6="Grass"
 2d_physics/layer_7="SolidAttack"
+2d_physics/layer_9="Grass_2"
+2d_physics/layer_10="MobObject"
 
 [rendering]
 

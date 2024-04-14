@@ -24,7 +24,9 @@ useMouseAim = false
 toggle = false
 hold = false
 hold_index = 0
+hotkey_index = 0
 rotateToMouse = false
+hasCooldown = false
 displayName = ""
 description = ""
 form_type = 0
@@ -86,7 +88,7 @@ metadata/_snap_enabled = true
 size = Vector2(30, 30)
 
 [node name="Area2D" type="Area2D" node_paths=PackedStringArray("pool_timer", "pool_particles", "colliderShape", "fadeTimer")]
-modulate = Color(1.2, 1.2, 1.2, 1)
+modulate = Color(1.2, 1.2, 1.2, 0.623529)
 z_index = 3
 scale = Vector2(0.5, 0.45)
 collision_layer = 4

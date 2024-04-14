@@ -1176,7 +1176,7 @@ tracks/37/keys = {
 tracks/38/type = "value"
 tracks/38/imported = false
 tracks/38/enabled = true
-tracks/38/path = NodePath("Kole/AnimationTree:parameters/OneShot/request")
+tracks/38/path = NodePath("Kole/AnimationTree:parameters/OnDeath/request")
 tracks/38/interp = 1
 tracks/38/loop_wrap = true
 tracks/38/keys = {
@@ -1188,7 +1188,7 @@ tracks/38/keys = {
 tracks/39/type = "value"
 tracks/39/imported = false
 tracks/39/enabled = true
-tracks/39/path = NodePath("Mischa/AnimationTree:parameters/OneShot/request")
+tracks/39/path = NodePath("Mischa/AnimationTree:parameters/OnDeath/request")
 tracks/39/interp = 1
 tracks/39/loop_wrap = true
 tracks/39/keys = {
@@ -1200,7 +1200,7 @@ tracks/39/keys = {
 tracks/40/type = "value"
 tracks/40/imported = false
 tracks/40/enabled = true
-tracks/40/path = NodePath("Hugo/AnimationTree:parameters/OneShot/request")
+tracks/40/path = NodePath("Hugo/AnimationTree:parameters/OnDeath/request")
 tracks/40/interp = 1
 tracks/40/loop_wrap = true
 tracks/40/keys = {
@@ -1343,6 +1343,20 @@ tracks/51/keys = {
 "transitions": PackedFloat32Array(1, 1),
 "update": 0,
 "values": [Vector2(261, -5063), Vector2(300, -4972)]
+}
+tracks/52/type = "method"
+tracks/52/imported = false
+tracks/52/enabled = true
+tracks/52/path = NodePath("../HeroicManager")
+tracks/52/interp = 1
+tracks/52/loop_wrap = true
+tracks/52/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [],
+"method": &"set_fam_killed"
+}]
 }
 
 [sub_resource type="Animation" id="Animation_5v4pi"]
@@ -1863,7 +1877,7 @@ tracks/8/path = NodePath("Attacks/Laser/AnimationPlayer")
 tracks/8/interp = 1
 tracks/8/loop_wrap = true
 tracks/8/keys = {
-"clips": PackedStringArray("dust"),
+"clips": PackedStringArray("dust_2"),
 "times": PackedFloat32Array(0.7)
 }
 tracks/9/type = "animation"
@@ -1873,7 +1887,7 @@ tracks/9/path = NodePath("Attacks/Laser2/AnimationPlayer")
 tracks/9/interp = 1
 tracks/9/loop_wrap = true
 tracks/9/keys = {
-"clips": PackedStringArray("dust"),
+"clips": PackedStringArray("dust_2"),
 "times": PackedFloat32Array(0.7)
 }
 tracks/10/type = "method"

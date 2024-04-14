@@ -1,0 +1,15 @@
+[gd_scene load_steps=4 format=3 uid="uid://dwpbx23ja7cud"]
+
+[ext_resource type="PackedScene" uid="uid://ciorncioitqgm" path="res://UI/Regular_Hotkey.tscn" id="1_qo7pg"]
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_ugrnp"]
+load_path = "res://.godot/imported/Skills.png-cee4d12548bdfb0d072a5d639d650fd0.ctex"
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ptf8l"]
+atlas = SubResource("CompressedTexture2D_ugrnp")
+region = Rect2(128, 128, 32, 32)
+
+[node name="Crystal" instance=ExtResource("1_qo7pg")]
+
+[node name="Background" parent="." index="0"]
+texture = SubResource("AtlasTexture_ptf8l")

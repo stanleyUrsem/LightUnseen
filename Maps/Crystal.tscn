@@ -1,8 +1,9 @@
-[gd_scene load_steps=8 format=3 uid="uid://dla6we38n1hry"]
+[gd_scene load_steps=9 format=3 uid="uid://dla6we38n1hry"]
 
 [ext_resource type="Material" uid="uid://dlo3kh48c6xhw" path="res://Maps/Particles.tres" id="1_p6wmr"]
 [ext_resource type="PackedScene" uid="uid://dypygfriyagwn" path="res://Envo/Crystal_pickup.tscn" id="2_pbnbj"]
 [ext_resource type="Texture2D" uid="uid://bt5qxwtqwc7vo" path="res://Envo/envo_tiles.png" id="2_rom7t"]
+[ext_resource type="PackedScene" uid="uid://giwwv1c0hjpa" path="res://Envo/mana_pickup.tscn" id="3_eyq57"]
 [ext_resource type="Curve" uid="uid://bvx07x6nvgshi" path="res://Maps/CrystalCurveY.tres" id="3_faj7h"]
 [ext_resource type="Script" path="res://Maps/CrystalPickup.gd" id="3_y8ni2"]
 [ext_resource type="Curve" uid="uid://6nvvy6sekoxl" path="res://Maps/CrystalCurveX.tres" id="4_sfplt"]
@@ -12,13 +13,16 @@ size = Vector2(16, 16)
 
 [node name="Crystal" type="StaticBody2D"]
 modulate = Color(1, 0.976471, 0.968627, 1)
-z_index = 1
+z_index = 7
 scale = Vector2(2, 2)
 collision_layer = 8
 collision_mask = 8
 script = ExtResource("3_y8ni2")
 droppable = ExtResource("2_pbnbj")
-x_size = 60.0
+droppable_special = ExtResource("3_eyq57")
+x_size = 20.0
+normal_chance = 90.0
+special_chance = 10.0
 path_curve_y = ExtResource("3_faj7h")
 path_curve_x = ExtResource("4_sfplt")
 metadata/resource_amount = 0

@@ -15,20 +15,43 @@ func _setup_vars(p_red_slime_needed,p_red_slime_type,p_transform_skill):
 	red_slime_type = p_red_slime_type
 	enough_slimes = false
 	transform_obtained = false
-
+func load_vars(loaded_data):
+	var key = "slam_kills"
+	if(loaded_data.has(key)):
+		red_slime_defeated = loaded_data[key]
+		if(red_slime_defeated >= red_slime_needed):
+			enough_slimes = true	
+			
+	var key2 = "carion_skills"
+	if(loaded_data.has(key2)):
+		var carion_skills = loaded_data[key2]
+		if(carion_skills.has(transform_skill.display_name)):
+			transform_obtained = true
+	
+	if(enough_slimes && transform_obtained):
+		_on_obtained()
+		_disable_obtain_event()
+	
 func _setup_obtain_event():
+	if(obtained):
+		return
 	eventsManager.OnEnemyKilled.connect(add_defeated)
 	eventsManager.OnSkillObtained.connect(_check_obtained)
 func _disable_obtain_event():
 	eventsManager.OnEnemyKilled.disconnect(add_defeated)
 	eventsManager.OnSkillObtained.disconnect(_check_obtained)
+func save_vars():
+	saveManager.add_data("slam_kills",red_slime_defeated)	
 func add_defeated(type):
 	if(obtained):
 		return
 	
 	
 	if(type == red_slime_type):
-		red_slime_defeated += 1
+		red_slime_defeated += 1.0
+		save_vars()
+		eventsManager.OnSkillProgress.emit(self,
+		float(red_slime_defeated)/float(red_slime_needed))
 	if(red_slime_defeated >= red_slime_needed):
 		enough_slimes = true
 		eventsManager.OnEnemyKilled.disconnect(add_defeated)

@@ -38,7 +38,7 @@ func set_number(t:float):
 	var text_size = size_curve.sample(t)
 	current_color = color
 	current_color.a = alpha
-	text_label.text = "[color=%s][font_size=%d]%d[/font_size][/color]" % [current_color.to_html(),
+	text_label.text = "[color=%s][font_size=%d]%.1f[/font_size][/color]" % [current_color.to_html(),
 	text_size,damage]
 	text_label.position.x = saved_pos.x + (pos_x_curve.sample(t)* offsetX)
 	text_label.position.y = saved_pos.y + (pos_y_curve.sample(t)* offsetY)

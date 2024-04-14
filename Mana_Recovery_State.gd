@@ -2,12 +2,12 @@ extends AIState
 
 class_name Mana_Recovery_State
 
-var mana_recovery
-var mana_low_amount
+var mana_recovery : float
+var mana_low_amount : float
 var recovering : bool
-var recover_delay
-var current_delay
-var delta
+var recover_delay : float
+var current_delay : float
+var delta : float
 
 func setup_vars(p_mana_low, p_mana_recovery):	
 	mana_low_amount = p_mana_low
@@ -23,8 +23,8 @@ func mana_low():
 	return ai.stats.mana <= mana_low_amount
 
 func recover_mana():
-	ai.idle()
-	delta = ai.delta
+	ai.slimeAnims._idle()
+	delta = ai.update_delta
 	current_delay -= delta
 	if(current_delay <= 0.0):
 		current_delay = recover_delay

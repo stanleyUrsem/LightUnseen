@@ -29,6 +29,6 @@ func alive():
 	AnimatorHelper._playanimTreeBlend2D(_animator,"Death",0.0)
 			
 func death():
-	AnimatorHelper._playanimTreeBlend2D(_animator,"Death",1.0)
+	AnimatorHelper._playanimTreeOneShotFire(_animator,"OnDeath")
 
 

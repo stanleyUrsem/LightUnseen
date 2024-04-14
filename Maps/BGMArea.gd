@@ -1,5 +1,7 @@
 extends Area2D
 
+class_name BGMArea
+
 @export var old_bgm : int
 @export var new_bgm : int
 

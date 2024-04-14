@@ -216,18 +216,18 @@ node_connections = [&"Fly", 0, &"Animation 3", &"Fly", 1, &"Speed", &"Hit", 0, &
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_gxnwj"]
 size = Vector2(7, 6)
 
-[node name="RockThrow" type="AnimatableBody2D" node_paths=PackedStringArray("animTree", "animPlayer", "animBody", "fadeTimer")]
+[node name="RockThrow" type="AnimatableBody2D" node_paths=PackedStringArray("animTree", "animPlayer", "animBody", "fadeTimer", "body")]
 z_index = 7
 z_as_relative = false
 collision_layer = 4
-collision_mask = 3
+collision_mask = 67
 sync_to_physics = false
 script = ExtResource("1_qd0dq")
-extra_dist = 5.0
 animTree = NodePath("AnimationTree")
 animPlayer = NodePath("AnimationPlayer")
 animBody = NodePath(".")
 fadeTimer = NodePath("Timer")
+body = NodePath(".")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 modulate = Color(1.2, 1.2, 1.2, 1)

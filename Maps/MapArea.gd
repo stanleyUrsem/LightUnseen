@@ -1,4 +1,6 @@
-extends "res://Maps/BGMArea.gd"
+extends BGMArea
+
+class_name MapArea
 
 @export_file() var old_map : String
 @export_file() var new_map : String

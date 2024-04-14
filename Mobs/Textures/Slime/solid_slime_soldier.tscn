@@ -1,20 +1,87 @@
-[gd_scene load_steps=5 format=3 uid="uid://dnmm4hogol4ge"]
+[gd_scene load_steps=9 format=3 uid="uid://dnmm4hogol4ge"]
 
 [ext_resource type="PackedScene" uid="uid://bui58sigv7u1" path="res://Mobs/Textures/Slime/solid_slime.tscn" id="1_5nmv4"]
 [ext_resource type="Script" path="res://SoldierSlimeAI.gd" id="2_aw2ks"]
 [ext_resource type="Script" path="res://SkillStats.gd" id="3_0ncfm"]
+[ext_resource type="Script" path="res://Mobs/SlimeStatsResource.gd" id="4_pdo8r"]
+[ext_resource type="Shader" path="res://UI/LiquidMeshBox.gdshader" id="5_lah2a"]
 
-[sub_resource type="Resource" id="Resource_xi77f"]
+[sub_resource type="Resource" id="Resource_k4nqd"]
 script = ExtResource("3_0ncfm")
-cooldown = 5.0
+cooldown = 3.0
 speed = 0.0
-damage = -10.0
+damage = -20.0
 mana_usage = 3.0
 health_usage = 0.0
 
+[sub_resource type="Resource" id="Resource_ef382"]
+script = ExtResource("4_pdo8r")
+inv_space = 1
+health = 75.0
+mana = 1.0
+defense = 1.0
+stamina = 3000.0
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_0bxec"]
+resource_local_to_scene = true
+shader = ExtResource("5_lah2a")
+shader_parameter/boxB = Vector2(0.67, 0.655)
+shader_parameter/resolution = Vector2(2, 1.5)
+shader_parameter/scale = Vector2(33, 10)
+shader_parameter/cell_size = 52.0
+shader_parameter/from_clr = Color(0.35, 1, 1, 1)
+shader_parameter/to_clr = Color(0.52549, 0.129412, 0, 1)
+shader_parameter/backFillColour = Color(0.62, 1, 1, 1)
+shader_parameter/frontFillInnerColour = Color(0.35, 1, 1, 1)
+shader_parameter/frontFillOuterColour = Color(0, 0.35, 1, 1)
+shader_parameter/ringColour = Color(0, 0.16, 0.13, 1)
+shader_parameter/fresnelColour = Color(0, 0.88, 1, 1)
+shader_parameter/innerRingGlowColour = Color(0, 0, 0, 1)
+shader_parameter/fillcolour = Color(1, 1, 1, 1)
+shader_parameter/ringWidth = 0.15
+shader_parameter/innerCircleRadiusOffset = 0.0
+shader_parameter/fill_value = 0.966
+shader_parameter/fill_value_x = 1.0
+shader_parameter/tolerance = 1.0
+shader_parameter/pos_range_x = Vector2(0, 10)
+shader_parameter/pos_range_y = Vector2(0, 10)
+
 [node name="SolidSlime_Soldier" instance=ExtResource("1_5nmv4")]
 
-[node name="AI" parent="." index="5"]
+[node name="Sprite2D" parent="Sprite2D/Eyes" index="0"]
+frame = 7
+
+[node name="Sprite2D2" parent="Sprite2D/Eyes" index="1"]
+frame = 7
+
+[node name="AI" parent="." index="6"]
 script = ExtResource("2_aw2ks")
-attackStats = SubResource("Resource_xi77f")
+attackStats = SubResource("Resource_k4nqd")
 attack_type = 0
+reset_pos_duration = 0.5
+stats_resource = SubResource("Resource_ef382")
+
+[node name="CPUParticles2D4" parent="Area2D" index="0"]
+scale = Vector2(1.25, 1.25)
+
+[node name="CPUParticles2D3" parent="Area2D" index="1"]
+scale = Vector2(1.25, 1.25)
+
+[node name="CPUParticles2D" parent="Area2D" index="2"]
+scale = Vector2(1.25, 1.25)
+
+[node name="CPUParticles2D2" parent="Area2D" index="3"]
+scale = Vector2(1.25, 1.25)
+
+[node name="Node2D" parent="Area2D" index="4"]
+visible = true
+scale = Vector2(1.25, 1.25)
+
+[node name="WanderCast" parent="." index="10"]
+visible = true
+
+[node name="TextureRect2" parent="Health" index="0"]
+material = SubResource("ShaderMaterial_0bxec")
+
+[editable path="Area2D"]
+[editable path="Health"]

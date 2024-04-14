@@ -1,5 +1,7 @@
 extends Node2D
 
+class_name BGMManager
+
 @export var bgm_in : AudioStreamPlayer
 @export var bgm_out : AudioStreamPlayer
 @export var volume_min : float
@@ -11,6 +13,9 @@ extends Node2D
 @export var alphaY : float
 @export var curveIn : Curve
 @export var curveOut : Curve
+@export var pitch_hp_curve : Curve
+@export var eventsManager : EventsManager
+@onready var saveManager : SaveManager = $"/root/MAIN/SaveManager"
 
 var tween : Tween
 var current_BGM : int
@@ -24,15 +29,30 @@ var exit_body
 var max_distance : float
 var current_distance : float
 var useY: bool
-
+var killed: bool
 func _ready():
+	if(saveManager.loaded_data.has("npc_amount_killed")):
+		killed = saveManager.loaded_data["npc_amount_killed"] > 0
+	if(!killed):
+		eventsManager.OnNpcKilled.connect(set_killed)
 	setup()
-
+func set_killed(x):
+	killed = true
+	eventsManager.OnNpcKilled.disconnect(set_killed)
 func setup():
-	current_BGM = 0
+	current_BGM = 14 if killed else 0
 	bgm_in.stream = bgms[current_BGM]
 	bgm_in.play()
-	
+func set_bgm_custom(stream : AudioStream):
+	bgm_in.stream = stream
+	bgm_in.volume_db = curveIn.sample(1.0)
+	bgm_out.volume_db = curveOut.sample(1.0)	
+	bgm_in.play()
+func set_bgm(index):
+	bgm_in.stream = bgms[index]
+	bgm_in.volume_db = curveIn.sample(1.0)
+	bgm_out.volume_db = curveOut.sample(1.0)	
+	bgm_in.play()
 
 func add_bgm_data(area,old,new):
 	area.body_entered.connect(save_position_on_enter.bind(old,new,
@@ -73,7 +93,9 @@ func start_elevation_change_on_exit(body):
 	change_elevation = false
 	return
 
-
+func set_pitch(x):
+	bgm_in.pitch_scale = pitch_hp_curve.sample(x)
+	bgm_out.pitch_scale = pitch_hp_curve.sample(x)
 func _process(delta):
 	if(!change_elevation):
 		return

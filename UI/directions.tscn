@@ -1,0 +1,85 @@
+[gd_scene load_steps=7 format=3 uid="uid://ck2vi0b3x3h1m"]
+
+[ext_resource type="Script" path="res://UI/directions.gd" id="1_chlsm"]
+[ext_resource type="Texture2D" uid="uid://bt5qxwtqwc7vo" path="res://Envo/envo_tiles.png" id="1_p8y8e"]
+[ext_resource type="Theme" uid="uid://8oe8akinpd2h" path="res://UI/UI_default.tres" id="2_1mkrv"]
+
+[sub_resource type="Curve" id="Curve_shjsl"]
+_data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(0.104326, 1), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="Curve" id="Curve_6pkr3"]
+max_value = 1.1
+_data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(0.0788804, 0.499024), 0.0, 0.0, 0, 0, Vector2(0.24173, 1.1), 0.0, 0.0, 0, 0, Vector2(0.323, 1), 0.0, 0.0, 0, 0]
+point_count = 4
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_7if3l"]
+radius = 64.0
+
+[node name="Directions" type="Area2D" node_paths=PackedStringArray("control")]
+collision_layer = 0
+collision_mask = 144
+script = ExtResource("1_chlsm")
+control = NodePath("Control")
+fade_curve = SubResource("Curve_shjsl")
+scale_curve = SubResource("Curve_6pkr3")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+scale = Vector2(2, 2)
+texture = ExtResource("1_p8y8e")
+hframes = 20
+vframes = 20
+frame = 368
+
+[node name="Sprite2D2" type="Sprite2D" parent="."]
+modulate = Color(1.5, 1.5, 1.5, 1)
+z_index = 2
+scale = Vector2(2, 2)
+texture = ExtResource("1_p8y8e")
+hframes = 20
+vframes = 20
+frame = 370
+
+[node name="Control" type="Control" parent="."]
+modulate = Color(1, 1, 1, 0)
+z_index = 13
+layout_mode = 3
+anchors_preset = 0
+offset_left = -101.0
+offset_top = -49.0
+offset_right = 99.0
+offset_bottom = -9.0
+pivot_offset = Vector2(100, 20)
+
+[node name="PanelContainer" type="PanelContainer" parent="Control"]
+self_modulate = Color(0.5, 0.5, 0.5, 1)
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -6.6175
+offset_top = -6.0
+offset_right = 6.6175
+offset_bottom = 6.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 3
+size_flags_vertical = 4
+theme = ExtResource("2_1mkrv")
+
+[node name="RichTextLabel" type="RichTextLabel" parent="Control/PanelContainer"]
+layout_mode = 2
+bbcode_enabled = true
+fit_content = true
+scroll_active = false
+autowrap_mode = 0
+shortcut_keys_enabled = false
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+visible = false
+shape = SubResource("CircleShape2D_7if3l")
+
+[connection signal="body_entered" from="." to="." method="on_body_enter"]
+[connection signal="body_exited" from="." to="." method="on_body_exit"]

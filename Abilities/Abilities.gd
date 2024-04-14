@@ -6,13 +6,17 @@ class_name AbilityManager
 @export var abilityData : Array[AbilityData]
 @export var abilitySpawns : Array[Marker2D]
 @export var mouseHandler : MouseHandler
+@export var left : Node2D
+@export var right : Node2D
 @export var timer_duration : float
 @export var movement_duration : float
 @export var dist_multiplier : float
 @export var move_curve : Curve
+@export var statsHolder : StatsHolder
 @export var mouse_direction : Vector2
 @export var interaction : Interact
 @onready var eventsManager : EventsManager = $"/root/MAIN/EventsManager"
+@onready var cameraEffects : CameraEffects = $"/root/MAIN/CameraEffects"
 var amount_abilities : int
 var abilities : Dictionary
 var current_combo : Array[String]
@@ -26,34 +30,39 @@ var animChar: AnimatableCharacter:
 	get: 
 		return charMovement.animChar
 var loaded : bool = false
+var enabled : bool
 
 func _ready():
 	prng = PRNG.new(93132)
-	hotkeyManager = get_node("/root/MAIN/HUD/Node2D/H/HotkeyContainer")
+	hotkeyManager = get_node("/root/MAIN/HUD/Node2D/H/V/HotkeyContainer")
 	setupAbilities()
 	mouseHandler = get_parent().get_parent().get_node("Camera2D")
 	current_hold = null
 	print(mouseHandler)
 	loaded = true
+	enabled = true
 
 func setupAbilities():
 	hotkeyManager.destroy_current_hotkeys()
 	for i in abilityData.size():
 		var a = Ability.new()
 		var data = abilityData[i]
-		a.setup(data)
+		a.setup(data,left,right)
 		abilities[data.hotkey_index] = a
 		hotkeyManager.create_hotkey(data)
 func add_data(data):
 	abilityData.append(data)
 func add_ability(data):
 	var a = Ability.new()
-	a.setup(data)
+	a.setup(data,left,right)
 	abilities[data.hotkey_index] = a
 	hotkeyManager.create_hotkey(data)
-	
+func set_enabled(enable:bool):	
+	enabled = enable
 func _physics_process(delta):
-	interaction.update_input()
+	if(!enabled):
+		return
+	interaction.update_input(delta)
 	useAbilities()
 	if(timer > 0):
 		timer -= (delta)
@@ -105,7 +114,7 @@ func rotate_sprite_to_mouse(path: String, offset_degrees: float):
 	sprite.rotation_degrees = get_angle(get_parent().global_position,
 	mouseHandler.mouseGlobalPos) + offset_degrees
 	if(charMovement.animChar.turnCurrent > 0):
-		sprite.rotation_degrees += 0.0
+		sprite.rotation_degrees += offset_degrees
 	
 func reset_rotation(path:String):
 	var sprite = get_parent().get_node(path)
@@ -167,12 +176,22 @@ func create_ability(data : AbilityData,activate = true):
 		data.AnimationNodeType.ADD:
 			AnimatorHelper._playanimTreeAdd2D(animChar._animator,
 			data.animName,blend_add_value)
+	if(data.animOnly):
+		eventsManager.OnSkillUsed.emit(data)
+		if(data.zoom > 0.0 || data.zoom < 0.0):
+			cameraEffects.zoom_in_out(data.zoom,data.zoom_duration)
+		if(data.shake_force > 0.0):
+			cameraEffects.shake(data.shake_force,data.shake_duration)
 	
+func enough_mana(data : AbilityData):
+	#print("\nMana: %d\nMana needed: %d"  % [statsHolder.stats.mana ,
+	 #data.mana])
+	return statsHolder.stats.mana > abs(data.mana)
 func useAbilities():
 	
 	if(current_hold != null):
 		var keybind = current_hold.keyBinds[current_hold.hold_index]
-		if(Input.is_action_just_released(keybind)):
+		if(Input.is_action_just_released(keybind) || !enough_mana(current_hold)):
 			create_ability(current_hold,false)
 			current_hold = null
 	
@@ -181,7 +200,7 @@ func useAbilities():
 		var data = ability.data
 		var combo_check = ability.isSetup && check_for_combo(data.keyBinds)
 		
-		if(combo_check):
+		if(combo_check && enough_mana(data)):
 			create_ability(data)
 			#if(data.useOneShot):
 			#else:
@@ -193,11 +212,24 @@ func useAbilities():
 func useAbility(index: int, locationIndex: int, direction: Vector2):
 	print("Using ability %d %s" % [index,abilities[index].data.displayName])
 	#if(abilityData[index].toggle):
+	var data = abilities[index].data as AbilityData
+	if(!enough_mana(data)):
+		if(data.toggle):
+			create_ability(data,false)
+		return
+		
+	eventsManager.OnSkillUsed.emit(data)
+	
+	if(data.zoom > 0.0 || data.zoom < 0.0):
+		cameraEffects.zoom_in_out(data.zoom,data.zoom_duration)
+	if(data.shake_force > 0.0):
+		cameraEffects.shake(data.shake_force,data.shake_duration)
+	
 	var location = abilitySpawns[locationIndex]
 	abilities[index].use(get_tree().root.get_child(0),
-	location.to_global(location.position),
-	get_parent(), mouseHandler, direction,prng)
-	eventsManager.OnSkillUsed.emit(abilities[index].data)
+	location.global_position,
+	get_parent(), mouseHandler, direction,prng
+	,abilitySpawns[0].get_parent().rotation_degrees)
 
 #func createAbilities(data, ability):
 #	if(data.useOneShot):

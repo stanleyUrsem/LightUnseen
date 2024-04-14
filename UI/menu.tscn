@@ -1,13 +1,13 @@
-[gd_scene load_steps=29 format=3 uid="uid://btqjkledff1qw"]
+[gd_scene load_steps=32 format=3 uid="uid://btqjkledff1qw"]
 
 [ext_resource type="Theme" uid="uid://8oe8akinpd2h" path="res://UI/UI_default.tres" id="1_ec8bo"]
 [ext_resource type="Texture2D" uid="uid://s6pwjakybwcv" path="res://UI/menu_back.png" id="2_tk5uo"]
 [ext_resource type="Texture2D" uid="uid://06jtoeq6psjt" path="res://UI/menu.png" id="3_5832q"]
 [ext_resource type="Script" path="res://UI/MoveWithMouse.gd" id="3_a2n3q"]
 [ext_resource type="Script" path="res://MouseToShader.gd" id="4_2l5lw"]
+[ext_resource type="PackedScene" uid="uid://j58ddsj4iv4y" path="res://UI/Options.tscn" id="5_fev42"]
 [ext_resource type="Script" path="res://UI/Quit.gd" id="5_gqjru"]
 [ext_resource type="Script" path="res://UI/AutoPlay.gd" id="6_y15v0"]
-[ext_resource type="Environment" uid="uid://dmbd6a6ueyg62" path="res://main.tres" id="7_fomd3"]
 [ext_resource type="Texture2D" uid="uid://d0fdpw52v7uf5" path="res://UI/icarus_wings.png" id="8_63gy2"]
 [ext_resource type="Shader" path="res://swap_color.gdshader" id="8_sexuj"]
 [ext_resource type="Texture2D" uid="uid://c5jxxtp0an06n" path="res://Npc/npc_grad.png" id="9_f0iox"]
@@ -283,6 +283,50 @@ _data = {
 "menu": SubResource("Animation_l3qvb")
 }
 
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_eci2p"]
+noise_type = 2
+frequency = 0.2312
+fractal_octaves = 3
+fractal_lacunarity = 0.345
+fractal_gain = 2.83
+cellular_jitter = -1.124
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_ei6kc"]
+width = 64
+height = 64
+seamless = true
+seamless_blend_skirt = 0.901
+noise = SubResource("FastNoiseLite_eci2p")
+
+[sub_resource type="Environment" id="Environment_udess"]
+background_mode = 3
+background_color = Color(1, 0, 1, 1)
+background_energy_multiplier = 1.42
+background_canvas_max_layer = 2
+reflected_light_source = 1
+tonemap_mode = 2
+tonemap_exposure = 0.25
+glow_enabled = true
+glow_levels/1 = 8.16
+glow_levels/2 = 5.08
+glow_levels/3 = 8.43
+glow_levels/4 = 6.4
+glow_levels/5 = 0.22
+glow_levels/6 = 0.36
+glow_levels/7 = 1.23
+glow_normalized = true
+glow_intensity = 1.15
+glow_strength = 0.67
+glow_mix = 0.0
+glow_bloom = 0.12
+glow_blend_mode = 1
+glow_hdr_threshold = 0.81
+glow_hdr_scale = 0.59
+glow_hdr_luminance_cap = 40.07
+glow_map_strength = 0.74
+glow_map = SubResource("NoiseTexture2D_ei6kc")
+adjustment_brightness = 0.57
+
 [sub_resource type="Gradient" id="Gradient_ealyn"]
 interpolation_mode = 1
 interpolation_color_space = 1
@@ -353,6 +397,10 @@ script = ExtResource("3_a2n3q")
 offset_x_range = Vector2(9, 17)
 offset_y_range = Vector2(17, 9)
 
+[node name="Options" parent="." instance=ExtResource("5_fev42")]
+visible = false
+layout_mode = 1
+
 [node name="CenterContainer" type="CenterContainer" parent="."]
 layout_mode = 1
 anchors_preset = -1
@@ -401,6 +449,39 @@ layout_mode = 2
 size_flags_horizontal = 4
 text = "Back"
 
+[node name="Erase Save File" type="VBoxContainer" parent="CenterContainer"]
+visible = false
+layout_mode = 2
+theme_override_constants/separation = 20
+
+[node name="PanelContainer" type="PanelContainer" parent="CenterContainer/Erase Save File"]
+layout_mode = 2
+size_flags_vertical = 4
+
+[node name="New_Game" type="RichTextLabel" parent="CenterContainer/Erase Save File/PanelContainer"]
+layout_mode = 2
+text = "Are you sure?"
+fit_content = true
+scroll_active = false
+autowrap_mode = 0
+
+[node name="VBoxContainer" type="HBoxContainer" parent="CenterContainer/Erase Save File"]
+layout_mode = 2
+
+[node name="Yes" type="Button" parent="CenterContainer/Erase Save File/VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+text = "Yes"
+
+[node name="Control" type="Control" parent="CenterContainer/Erase Save File/VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="No" type="Button" parent="CenterContainer/Erase Save File/VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+text = "No"
+
 [node name="Node2D" type="Node2D" parent="." node_paths=PackedStringArray("mat_nodes")]
 script = ExtResource("4_2l5lw")
 mat_nodes = [NodePath("../TextureRect/TextureRect2")]
@@ -413,16 +494,16 @@ script = ExtResource("6_y15v0")
 anim = "menu"
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
-environment = ExtResource("7_fomd3")
+environment = SubResource("Environment_udess")
 
 [node name="RichTextLabel" type="RichTextLabel" parent="."]
 clip_contents = false
 layout_mode = 1
-anchors_preset = 5
-anchor_left = 0.5
-anchor_right = 0.5
+anchors_preset = -1
+anchor_left = 0.51
+anchor_right = 0.51
 offset_left = 212.0
-offset_right = 428.0
+offset_right = 437.5
 offset_bottom = 64.0
 grow_horizontal = 2
 bbcode_enabled = true
@@ -463,6 +544,8 @@ texture = SubResource("AtlasTexture_40mc3")
 
 [node name="SaveManager" type="Node2D" parent="."]
 script = ExtResource("11_gi308")
+auto_save_cooldown = 120.0
+index = -1
 
 [node name="To_Prologue" type="Node2D" parent="." node_paths=PackedStringArray("protected_nodes")]
 script = ExtResource("12_nr8ri")
@@ -474,13 +557,16 @@ script = ExtResource("12_nr8ri")
 scene = ExtResource("14_cqdg4")
 protected_nodes = [NodePath("../SaveManager")]
 
-[node name="SaveFileCreator" type="Node2D" parent="." node_paths=PackedStringArray("save_file_parent", "start_menu", "saveManager", "animPlayer")]
+[node name="SaveFileCreator" type="Node2D" parent="." node_paths=PackedStringArray("save_file_parent", "start_menu", "options", "title", "saveManager", "animPlayer", "erase_save_file")]
 script = ExtResource("16_nj4jb")
 save_file_parent = NodePath("../CenterContainer/SaveFiles/Files")
 start_menu = NodePath("../CenterContainer/StartMenu")
+options = NodePath("../Options")
+title = NodePath("../RichTextLabel")
 saveManager = NodePath("../SaveManager")
 save_file_btn = ExtResource("17_ugl0r")
 animPlayer = NodePath("../AnimationPlayer")
+erase_save_file = NodePath("../CenterContainer/Erase Save File")
 
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("18_0bm8u")
@@ -488,6 +574,9 @@ autoplay = true
 bus = &"Music"
 
 [connection signal="pressed" from="CenterContainer/StartMenu/Start" to="SaveFileCreator" method="show_save_files"]
+[connection signal="pressed" from="CenterContainer/StartMenu/Options" to="SaveFileCreator" method="show_options"]
 [connection signal="pressed" from="CenterContainer/StartMenu/Quit" to="CenterContainer/StartMenu/Quit" method="_on_pressed"]
 [connection signal="pressed" from="CenterContainer/SaveFiles/New_Game" to="SaveFileCreator" method="create_empty_save"]
 [connection signal="pressed" from="CenterContainer/SaveFiles/Back" to="SaveFileCreator" method="hide_save_files"]
+[connection signal="pressed" from="CenterContainer/Erase Save File/VBoxContainer/Yes" to="SaveFileCreator" method="erase_save"]
+[connection signal="pressed" from="CenterContainer/Erase Save File/VBoxContainer/No" to="SaveFileCreator" method="hide_erase_save_file"]

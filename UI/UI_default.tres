@@ -1,11 +1,13 @@
-[gd_resource type="Theme" load_steps=23 format=3 uid="uid://8oe8akinpd2h"]
+[gd_resource type="Theme" load_steps=41 format=3 uid="uid://8oe8akinpd2h"]
 
 [ext_resource type="FontFile" uid="uid://df576ic5pl6gd" path="res://UI/BMmini.TTF" id="1_gq3kv"]
 [ext_resource type="Texture2D" uid="uid://cjkulsiuu1qii" path="res://Npc/ui_bar.tres" id="2_d5jcm"]
 [ext_resource type="Texture2D" uid="uid://cv7ouy5kh041t" path="res://UI/health_back.png" id="2_t8q35"]
 [ext_resource type="Texture2D" uid="uid://bxkpior6fg3cj" path="res://UI/health_fill.png" id="3_yqhuw"]
 [ext_resource type="Texture2D" uid="uid://coceon0g1vrld" path="res://UI/bars.png" id="4_lsru6"]
+[ext_resource type="Texture2D" uid="uid://ow6xoub73mek" path="res://UI/grabber.tres" id="4_svffp"]
 [ext_resource type="FontFile" uid="uid://ckco1qdndw8uv" path="res://UI/BMminiA8.ttf" id="6_ndeyl"]
+[ext_resource type="Texture2D" uid="uid://b5xrieew6lrk8" path="res://UI/Skills.png" id="6_oi524"]
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_wtlif"]
 texture = ExtResource("2_d5jcm")
@@ -48,11 +50,65 @@ texture_margin_top = 5.0
 texture_margin_right = 5.0
 texture_margin_bottom = 5.0
 
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_hq37p"]
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_hybjg"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_vsphu"]
+atlas = ExtResource("4_lsru6")
+region = Rect2(0, 0, 32, 32)
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_vf8ya"]
+texture = SubResource("AtlasTexture_vsphu")
+texture_margin_left = 4.0
+texture_margin_top = 3.0
+texture_margin_right = 4.0
+texture_margin_bottom = 3.0
+draw_center = false
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_uui0k"]
+bg_color = Color(0.321569, 0.321569, 0.321569, 1)
+border_width_left = 4
+border_width_top = 3
+border_width_right = 4
+border_width_bottom = 3
+border_color = Color(0.8, 0.8, 0.8, 0)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_2xy8l"]
+atlas = ExtResource("4_lsru6")
+region = Rect2(128, 0, 32, 32)
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_6lrpb"]
+texture = SubResource("AtlasTexture_2xy8l")
+texture_margin_left = 4.0
+texture_margin_top = 4.0
+texture_margin_right = 4.0
+texture_margin_bottom = 4.0
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_sp8fd"]
+atlas = ExtResource("4_lsru6")
+region = Rect2(0, 0, 32, 32)
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_mxnj2"]
+texture = SubResource("AtlasTexture_sp8fd")
+texture_margin_left = 4.0
+texture_margin_top = 4.0
+texture_margin_right = 4.0
+texture_margin_bottom = 4.0
+
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_xoyvu"]
 texture = ExtResource("2_t8q35")
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_2qsmp"]
 texture = ExtResource("3_yqhuw")
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_xmy0w"]
+texture = ExtResource("4_lsru6")
+texture_margin_left = 6.0
+texture_margin_top = 6.0
+texture_margin_right = 4.0
+texture_margin_bottom = 4.0
+region_rect = Rect2(128, 0, 32, 32)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_634rc"]
 atlas = ExtResource("4_lsru6")
@@ -81,6 +137,17 @@ texture_margin_top = 5.0
 texture_margin_right = 5.0
 texture_margin_bottom = 5.0
 
+[sub_resource type="AtlasTexture" id="AtlasTexture_qbbny"]
+atlas = ExtResource("6_oi524")
+region = Rect2(0, 0, 32, 32)
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_jcx8i"]
+texture = SubResource("AtlasTexture_qbbny")
+texture_margin_left = 5.0
+texture_margin_top = 5.0
+texture_margin_right = 5.0
+texture_margin_bottom = 5.0
+
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_hh3di"]
 texture = ExtResource("2_d5jcm")
 texture_margin_left = 5.0
@@ -88,6 +155,16 @@ texture_margin_top = 5.0
 texture_margin_right = 5.0
 texture_margin_bottom = 5.0
 region_rect = Rect2(2, 1, 28, 30)
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_3jo7j"]
+texture = ExtResource("4_lsru6")
+texture_margin_left = 4.0
+texture_margin_top = 4.0
+texture_margin_right = 4.0
+texture_margin_bottom = 4.0
+region_rect = Rect2(128, 0, 32, 32)
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_40xu3"]
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_ncd7k"]
 texture = ExtResource("2_d5jcm")
@@ -110,6 +187,13 @@ texture_margin_left = 5.0
 texture_margin_top = 5.0
 texture_margin_right = 5.0
 texture_margin_bottom = 5.0
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_y5p3s"]
+atlas = ExtResource("4_lsru6")
+region = Rect2(128, 0, 32, 32)
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_d78xl"]
+texture = SubResource("AtlasTexture_y5p3s")
 
 [resource]
 default_font = ExtResource("6_ndeyl")
@@ -140,15 +224,34 @@ Button/styles/focus = SubResource("StyleBoxTexture_wl3e4")
 Button/styles/hover = SubResource("StyleBoxTexture_hramt")
 Button/styles/normal = SubResource("StyleBoxTexture_3aq4l")
 Button/styles/pressed = SubResource("StyleBoxTexture_5cqm2")
+CheckBox/styles/disabled = SubResource("StyleBoxTexture_hq37p")
+CheckBox/styles/focus = SubResource("StyleBoxTexture_hybjg")
+FilledBar/base_type = &"ProgressBar"
+FilledBar/styles/background = SubResource("StyleBoxTexture_vf8ya")
+FilledBar/styles/fill = SubResource("StyleBoxFlat_uui0k")
+HSlider/icons/grabber = ExtResource("4_svffp")
+HSlider/icons/grabber_disabled = ExtResource("4_svffp")
+HSlider/icons/grabber_highlight = ExtResource("4_svffp")
+HSlider/styles/grabber_area = SubResource("StyleBoxTexture_6lrpb")
+HSlider/styles/grabber_area_highlight = SubResource("StyleBoxTexture_mxnj2")
 HealthBar/base_type = &"ProgressBar"
 HealthBar/styles/background = SubResource("StyleBoxTexture_xoyvu")
 HealthBar/styles/fill = SubResource("StyleBoxTexture_2qsmp")
+HealthBarMob/base_type = &"ProgressBar"
+HealthBarMob/styles/background = SubResource("StyleBoxTexture_xmy0w")
 ManaBar/base_type = &"ProgressBar"
 ManaBar/styles/background = SubResource("StyleBoxTexture_wbek6")
 ManaBar/styles/fill = SubResource("StyleBoxEmpty_0uslo")
 PanelContainer/styles/panel = SubResource("StyleBoxTexture_6veqh")
+PanelHotkey/base_type = &"PanelContainer"
+PanelHotkey/styles/panel = SubResource("StyleBoxTexture_jcx8i")
 PanelVariant/base_type = &"PanelContainer"
 PanelVariant/styles/panel = SubResource("StyleBoxTexture_hh3di")
+ProgressBar/colors/font_color = Color(0.95, 0.95, 0.95, 1)
+ProgressBar/colors/font_outline_color = Color(1, 1, 1, 1)
+ProgressBar/constants/outline_size = 0
+ProgressBar/styles/background = SubResource("StyleBoxTexture_3jo7j")
+ProgressBar/styles/fill = SubResource("StyleBoxEmpty_40xu3")
 RichTextLabel/colors/font_outline_color = Color(0, 0, 0, 1)
 RichTextLabel/constants/outline_size = 8
 RichTextLabel/constants/shadow_offset_x = 0
@@ -160,3 +263,4 @@ TextButton/styles/normal = SubResource("StyleBoxTexture_ncd7k")
 TextEdit/fonts/font = ExtResource("1_gq3kv")
 TextEdit/styles/focus = SubResource("StyleBoxTexture_0fcqx")
 TextEdit/styles/normal = SubResource("StyleBoxTexture_u3glf")
+VSlider/styles/grabber_area = SubResource("StyleBoxTexture_d78xl")

@@ -5,6 +5,7 @@ class_name TileManager
 @export var layer : int
 @export var respawn_curve : Curve
 @export var erase : bool
+@export var debug : bool
 var prng
 var tile
 var pos
@@ -25,6 +26,7 @@ func _ready():
 	_create_tiles()	
 
 func _create_tiles():
+	cleaning_up = false
 	var cells = tileMap.get_used_cells(layer)
 		
 	for i in cells.size():
@@ -42,6 +44,7 @@ func create_tile(tilePos,layer):
 	else:
 		print("Created tile is not interactable: ", created_tile.name)
 	created_sprite = created_tile.get_node("TileSprite") as Sprite2D
+
 	add_child.call_deferred(created_tile)
 	created_tile.global_position = pos 
 	if(erase):
@@ -98,6 +101,7 @@ func _erase_tile(tile,on_erased, duration):
 			return
 		if(collider != null):
 			collider.disabled = false
+			cleaning_up = false
 			created_tweens.erase(respawn_tween)
 		)
 

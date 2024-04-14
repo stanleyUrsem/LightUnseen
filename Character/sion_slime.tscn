@@ -1,12 +1,16 @@
-[gd_scene load_steps=16 format=3 uid="uid://c0doq5crsa0n3"]
+[gd_scene load_steps=25 format=3 uid="uid://c0doq5crsa0n3"]
 
 [ext_resource type="PackedScene" uid="uid://cy7fitk5e2igo" path="res://Character/Sion.tscn" id="1_fr2kf"]
-[ext_resource type="Texture2D" uid="uid://bjg43116ojkgo" path="res://Character/Textures/SionTD/sion_slime.png" id="2_e22qo"]
+[ext_resource type="Texture2D" uid="uid://b5gbmyv21p1qd" path="res://Character/Textures/SionTD/sion_slime.png" id="2_e22qo"]
 [ext_resource type="Script" path="res://Character/SionSlimeMovement.gd" id="2_g30vo"]
 [ext_resource type="AnimationLibrary" uid="uid://b3qldowl02rgl" path="res://Character/Sion_anim_slime_lib.tres" id="3_4nlxg"]
+[ext_resource type="Shader" path="res://Character/eye_tracking.gdshader" id="3_mx05b"]
+[ext_resource type="Script" path="res://Character/SionMobArtSetter.gd" id="4_e6g4t"]
 [ext_resource type="AnimationNodeBlendTree" uid="uid://dwagnu1kpo72l" path="res://Character/sion_slime_blend_tree.tres" id="4_k7aob"]
-[ext_resource type="Script" path="res://StatsResource.gd" id="8_s8d7s"]
 [ext_resource type="Script" path="res://Abilities/PassiveData.gd" id="9_tfgby"]
+[ext_resource type="Texture2D" uid="uid://cgt4u6x0ednng" path="res://Envo/pickups.png" id="9_ubjjt"]
+[ext_resource type="Script" path="res://Abilities/AbilityData.gd" id="10_fe2j1"]
+[ext_resource type="Material" uid="uid://dlo3kh48c6xhw" path="res://Maps/Particles.tres" id="11_85i55"]
 
 [sub_resource type="Curve" id="Curve_pta3y"]
 _data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(0.159696, 1), 0.0, 0.0, 0, 0, Vector2(0.882129, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
@@ -16,16 +20,26 @@ point_count = 4
 _data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(0.496689, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
 point_count = 3
 
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_ihyn4"]
+shader = ExtResource("3_mx05b")
+shader_parameter/offset_multiplier = null
+shader_parameter/mouse_dir = null
+shader_parameter/tolerance = 0.21
+shader_parameter/hsv_shift = Vector3(0, 0, 0)
+shader_parameter/from_clr = Color(0.164706, 0.396078, 1, 1)
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_c1r7f"]
+resource_local_to_scene = true
+shader = ExtResource("3_mx05b")
+shader_parameter/offset_multiplier = 4.0
+shader_parameter/mouse_dir = Vector2(0, 0)
+shader_parameter/tolerance = 0.23
+shader_parameter/hsv_shift = Vector3(1.16, -0.15, -0.055)
+shader_parameter/from_clr = Color(0, 1, 0, 1)
+
 [sub_resource type="Curve" id="Curve_d13gj"]
 _data = [Vector2(0, 2), 0.0, 0.0, 0, 0, Vector2(0.512141, 1), 0.0, 0.0, 0, 0]
 point_count = 2
-
-[sub_resource type="Resource" id="Resource_2j8ei"]
-script = ExtResource("8_s8d7s")
-health = 100.0
-mana = 50.0
-defense = 1.0
-stamina = 1.0
 
 [sub_resource type="Resource" id="Resource_yoa0q"]
 script = ExtResource("9_tfgby")
@@ -50,9 +64,9 @@ delay = 0.0
 damage_increase = 0.0
 damage_increase_percentage = 0.0
 health_increase = 0.0
-health_increase_percentage = 2.0
+health_increase_percentage = 20.0
 mana_increase = 0.0
-mana_increase_percentage = 3.0
+mana_increase_percentage = 30.0
 defense_increase = 0.0
 defense_increase_percentage = 0.0
 displayName = ""
@@ -71,6 +85,73 @@ offsets = PackedFloat32Array(0, 0.4, 0.7, 0.9)
 colors = PackedColorArray(0.184314, 0.301961, 0.796078, 1, 0.0117647, 0.32549, 1, 1, 0, 0.211765, 0.976471, 1, 0.0986076, 0.214593, 0.524302, 1)
 metadata/_snap_enabled = true
 
+[sub_resource type="AtlasTexture" id="AtlasTexture_a7o75"]
+atlas = ExtResource("9_ubjjt")
+region = Rect2(64, 0, 32, 32)
+
+[sub_resource type="Resource" id="Resource_d1bhp"]
+script = ExtResource("10_fe2j1")
+keyBinds = Array[String](["Consume_1"])
+abilityPath = ""
+animName = ""
+animNodeType = 0
+oneShot = 0
+value = 0.0
+animOnly = false
+damage = 30.0
+mana = 2.5
+speed = 0.0
+useMouseAim = false
+toggle = false
+hold = false
+dynamic_size = false
+hold_index = 0
+hotkey_index = 0
+rotateToMouse = false
+hasCooldown = true
+zoom = 0.0
+zoom_duration = 0.0
+shake_force = 0.0
+shake_duration = 0.0
+displayName = "Consume_HP"
+description = ""
+icon = SubResource("AtlasTexture_a7o75")
+form_type = 4
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_lk1xm"]
+atlas = ExtResource("9_ubjjt")
+region = Rect2(32, 32, 32, 32)
+
+[sub_resource type="Resource" id="Resource_oxvu7"]
+script = ExtResource("10_fe2j1")
+keyBinds = Array[String](["Consume_2"])
+abilityPath = ""
+animName = ""
+animNodeType = 0
+oneShot = 0
+value = 0.0
+animOnly = false
+damage = 20.0
+mana = 3.5
+speed = 0.0
+useMouseAim = false
+toggle = false
+hold = false
+dynamic_size = false
+hold_index = 0
+hotkey_index = 1
+rotateToMouse = false
+hasCooldown = true
+zoom = 0.0
+zoom_duration = 0.0
+shake_force = 0.0
+shake_duration = 0.0
+displayName = "Consume_MP"
+description = ""
+icon = SubResource("AtlasTexture_lk1xm")
+icon_mat = ExtResource("11_85i55")
+form_type = 4
+
 [node name="Sion" instance=ExtResource("1_fr2kf")]
 script = ExtResource("2_g30vo")
 brake_multiplier = 0.9
@@ -80,20 +161,33 @@ current_velocity = Vector2(0, 0)
 max_speed = 75.0
 transform_index = 1
 rollVelocity = 10.0
+stopMovement = true
 rollCurve = SubResource("Curve_pta3y")
 dodgeCurve = SubResource("Curve_w0yuc")
 SPEED = 5.0
 
-[node name="Art" parent="." index="0"]
-z_index = 9
+[node name="Art" parent="." index="0" node_paths=PackedStringArray("left_arm", "right_arm")]
+material = SubResource("ShaderMaterial_ihyn4")
+script = ExtResource("4_e6g4t")
+left_arm = NodePath("../Tentacles/Tentacle_1")
+right_arm = NodePath("../Tentacles/Tentacle_2")
+body_hsv_shift_in = Vector3(0, 0, 0)
+body_hsv_shift_out = Vector3(0.05, -0.035, -0.245)
 
 [node name="Eyes" parent="Art" index="1"]
 z_index = 2
-position = Vector2(0, 0)
+material = SubResource("ShaderMaterial_c1r7f")
+position = Vector2(1.23744, 2.2981)
+
+[node name="Eyes" parent="Art/Eyes" index="0"]
+frame = 4
+
+[node name="Eyes2" parent="Art/Eyes" index="1"]
+frame = 4
 
 [node name="Body" parent="Art" index="2"]
 texture = ExtResource("2_e22qo")
-vframes = 18
+vframes = 19
 
 [node name="Tentacles" type="Node2D" parent="." index="1"]
 z_index = 9
@@ -102,25 +196,27 @@ position = Vector2(0, 8)
 [node name="Tentacle_1" type="Sprite2D" parent="Tentacles" index="0"]
 z_index = 1
 texture_filter = 1
+material = SubResource("ShaderMaterial_ihyn4")
 position = Vector2(-3, 5)
 rotation = 3.14159
 scale = Vector2(1e-05, 1e-05)
 texture = ExtResource("2_e22qo")
 offset = Vector2(-1, -16)
 hframes = 5
-vframes = 18
+vframes = 19
 frame = 29
 
 [node name="Tentacle_2" type="Sprite2D" parent="Tentacles" index="1"]
 modulate = Color(0.92549, 0.92549, 0.92549, 1)
 texture_filter = 1
+material = SubResource("ShaderMaterial_ihyn4")
 position = Vector2(0, 9)
 rotation = 3.14159
 scale = Vector2(1e-05, 1e-05)
 texture = ExtResource("2_e22qo")
 offset = Vector2(0.986289, -15.9977)
 hframes = 5
-vframes = 18
+vframes = 19
 frame = 29
 
 [node name="AnimationPlayer" parent="." index="2"]
@@ -137,7 +233,6 @@ parameters/Aura/add_amount = 0.0
 parameters/FrontSlam/active = false
 parameters/FrontSlam/internal_active = false
 parameters/FrontSlam/request = 0
-parameters/IdleToWalk/blend_amount = 0.0
 parameters/Pierce/active = false
 parameters/Pierce/internal_active = false
 parameters/Pierce/request = 0
@@ -158,9 +253,6 @@ move_curve = SubResource("Curve_d13gj")
 [node name="Bottom" type="Marker2D" parent="AbilitySpawns" index="2"]
 position = Vector2(0, 12)
 
-[node name="Stats" parent="." index="7"]
-stats_resource = SubResource("Resource_2j8ei")
-
 [node name="Passives" parent="." index="8"]
 passive_data = Array[ExtResource("9_tfgby")]([SubResource("Resource_yoa0q"), SubResource("Resource_ep423")])
 
@@ -168,3 +260,10 @@ passive_data = Array[ExtResource("9_tfgby")]([SubResource("Resource_yoa0q"), Sub
 radial_accel_curve = SubResource("Curve_qydg4")
 color = Color(2, 2, 2, 1)
 color_initial_ramp = SubResource("Gradient_xp44r")
+
+[node name="Interaction" parent="." index="10"]
+interaction_allowed = false
+
+[node name="Consume" parent="." index="11"]
+hp_data = SubResource("Resource_d1bhp")
+mana_data = SubResource("Resource_oxvu7")

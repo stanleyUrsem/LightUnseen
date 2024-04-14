@@ -1,0 +1,338 @@
+[gd_scene load_steps=19 format=3 uid="uid://djfmcltuobs0v"]
+
+[ext_resource type="Shader" path="res://swap_color.gdshader" id="1_abf6x"]
+[ext_resource type="Script" path="res://Npc/SkillArea.gd" id="1_g1b2g"]
+[ext_resource type="Texture2D" uid="uid://cicuvoq76td0i" path="res://Npc/henderson.png" id="2_qbnep"]
+[ext_resource type="AudioStream" uid="uid://cffnmq50je8oe" path="res://SFX/ice_blast_projectile_spell_04.wav" id="4_o4smr"]
+[ext_resource type="AudioStream" uid="uid://3ej01jenyqo6" path="res://SFX/ice_spell_forming_shards_03.wav" id="5_ctxfw"]
+[ext_resource type="AudioStream" uid="uid://bxmymyrmagsxs" path="res://SFX/casting_charge_whoosh_buildup2.wav" id="5_x5s8e"]
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_b08v5"]
+load_path = "res://.godot/imported/npc_grad.png-df171e15f076bafecc55b51988282185.ctex"
+
+[sub_resource type="Gradient" id="Gradient_xfvws"]
+interpolation_mode = 1
+interpolation_color_space = 1
+offsets = PackedFloat32Array(0, 0.0555556, 0.111111, 0.166667, 0.222222, 0.277778, 0.333333, 0.388889, 0.444444, 0.5, 0.555556, 0.611111, 0.666667, 0.722222, 0.777778, 0.833333, 0.888889, 0.944444, 1)
+colors = PackedColorArray(0, 0, 0, 0, 0, 0.584314, 0.960784, 1, 0.081805, 0.400143, 0.706695, 1, 0.278431, 0.752941, 1, 1, 0.629674, 0.793039, 1, 1, 0, 0.584314, 0.960784, 1, 0.278431, 0.752941, 1, 1, 0.119477, 0.0866286, 0.0330694, 1, 0.272695, 0.186873, 0.18688, 1, 0.258188, 0.15285, 0.0407986, 1, 0.355633, 0.258167, 0.395349, 1, 0.142125, 0.0988079, 0.165966, 1, 0.353161, 0.171503, 0.00656696, 1, 0.406043, 0.308456, 0.202982, 1, 0.474674, 0.407843, 0.183326, 1, 0.0705882, 0.0470588, 0.0431373, 1, 0.0705882, 0.0470588, 0.0352941, 1, 0.101961, 0.0784314, 0.0666667, 1, 0.101961, 0.0784314, 0.0666667, 1)
+metadata/_snap_count = 18
+metadata/_snap_enabled = true
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_pmqku"]
+gradient = SubResource("Gradient_xfvws")
+width = 18
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_qfdk7"]
+shader = ExtResource("1_abf6x")
+shader_parameter/alpha_override = 1.0
+shader_parameter/num_colors = 18
+shader_parameter/precision = 0.0
+shader_parameter/index = null
+shader_parameter/palette_in = SubResource("CompressedTexture2D_b08v5")
+shader_parameter/palette_out = SubResource("GradientTexture1D_pmqku")
+
+[sub_resource type="Animation" id="Animation_jwfpx"]
+resource_name = "Attack"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 1,
+"values": [37, 36, 35, 34]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("ShapeCast2D:collision_mask")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [16]
+}
+tracks/2/type = "audio"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("AudioStreamPlayer2D")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"clips": [{
+"end_offset": 0.0,
+"start_offset": 0.0,
+"stream": ExtResource("4_o4smr")
+}],
+"times": PackedFloat32Array(0)
+}
+tracks/2/use_blend = true
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("AudioStreamPlayer2D:volume_db")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0.1),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
+
+[sub_resource type="Animation" id="Animation_yr28v"]
+resource_name = "Begin"
+length = 0.7
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [63, 50, 49, 48, 47, 46, 45]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("ShapeCast2D:collision_mask")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+tracks/2/type = "audio"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("AudioStreamPlayer2D")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"clips": [{
+"end_offset": 0.0,
+"start_offset": 0.0,
+"stream": ExtResource("5_x5s8e")
+}],
+"times": PackedFloat32Array(0.2)
+}
+tracks/2/use_blend = true
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("AudioStreamPlayer2D:volume_db")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [-5.0]
+}
+
+[sub_resource type="Animation" id="Animation_n4wo6"]
+resource_name = "End"
+length = 0.7
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [45, 46, 47, 48, 49, 50, 63]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("ShapeCast2D:collision_mask")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+tracks/2/type = "method"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath(".")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0.7),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [],
+"method": &"queue_free"
+}]
+}
+
+[sub_resource type="Animation" id="Animation_v2iax"]
+resource_name = "Prepping"
+length = 0.3
+step = 0.05
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.025, 0.05, 0.1, 0.15, 0.2, 0.25),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [44, 43, 42, 41, 40, 39, 38]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("ShapeCast2D:collision_mask")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+tracks/2/type = "audio"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("AudioStreamPlayer2D")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"clips": [{
+"end_offset": 0.0,
+"start_offset": 0.5804,
+"stream": ExtResource("5_ctxfw")
+}],
+"times": PackedFloat32Array(0)
+}
+tracks/2/use_blend = true
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("AudioStreamPlayer2D:volume_db")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0.3),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
+
+[sub_resource type="Animation" id="Animation_ha7i2"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [50]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("ShapeCast2D:collision_mask")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("AudioStreamPlayer2D:volume_db")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_p8yhm"]
+_data = {
+"Attack": SubResource("Animation_jwfpx"),
+"Begin": SubResource("Animation_yr28v"),
+"End": SubResource("Animation_n4wo6"),
+"Prepping": SubResource("Animation_v2iax"),
+"RESET": SubResource("Animation_ha7i2")
+}
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_r0ydo"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_4l4pl"]
+
+[node name="Spike" type="Area2D" node_paths=PackedStringArray("anim_player", "fadeTimer", "shapeCast")]
+collision_layer = 4
+collision_mask = 16
+script = ExtResource("1_g1b2g")
+anim_player = NodePath("AnimationPlayer")
+begin = "Begin"
+entered = "Prepping"
+end = "End"
+fadeTimer = NodePath("Timer")
+detectCollisions = true
+piercing = true
+shapeCast = NodePath("ShapeCast2D")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+material = SubResource("ShaderMaterial_qfdk7")
+texture = ExtResource("2_qbnep")
+hframes = 8
+vframes = 8
+frame = 50
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_p8yhm")
+}
+next/Attack = &"Begin"
+next/Prepping = &"Attack"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+visible = false
+position = Vector2(0, 12)
+shape = SubResource("CircleShape2D_r0ydo")
+
+[node name="Timer" type="Timer" parent="."]
+
+[node name="ShapeCast2D" type="ShapeCast2D" parent="."]
+visible = false
+position = Vector2(0, 6)
+shape = SubResource("RectangleShape2D_4l4pl")
+target_position = Vector2(0, 0)
+collision_mask = 0
+
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
+max_distance = 600.0
+bus = &"SFX"
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]

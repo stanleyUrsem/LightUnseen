@@ -1,19 +1,24 @@
-[gd_scene load_steps=33 format=3 uid="uid://cy7fitk5e2igo"]
+[gd_scene load_steps=42 format=3 uid="uid://cy7fitk5e2igo"]
 
 [ext_resource type="Script" path="res://Character/SionMovement.gd" id="1_6msgt"]
-[ext_resource type="Material" uid="uid://ced4lpkaxd2tl" path="res://Character/eye_trackin_mat.tres" id="2_0sc1b"]
+[ext_resource type="Shader" path="res://swap_color.gdshader" id="2_3op8r"]
 [ext_resource type="Texture2D" uid="uid://br7u3fpkb7c2f" path="res://Character/Textures/SionTD/eyes.png" id="3_atfj3"]
+[ext_resource type="Texture2D" uid="uid://c5jxxtp0an06n" path="res://Npc/npc_grad.png" id="3_hann1"]
+[ext_resource type="Gradient" uid="uid://bvp80mb08dqts" path="res://Npc/diff_npc3.tres" id="4_m7jpf"]
 [ext_resource type="Script" path="res://MouseToShader.gd" id="4_m734i"]
 [ext_resource type="Texture2D" uid="uid://donk4eeujo6qo" path="res://Character/Textures/SionTD/sion.png" id="5_mwf2f"]
+[ext_resource type="Script" path="res://Character/SionArtSetter.gd" id="5_rce5w"]
+[ext_resource type="Shader" path="res://Character/eye_tracking.gdshader" id="6_3qogg"]
+[ext_resource type="Gradient" uid="uid://cl6uxyhdwivk6" path="res://Npc/base_npc.tres" id="6_duucu"]
 [ext_resource type="AnimationLibrary" uid="uid://c1k2kc7247equ" path="res://Character/Sion_2_anim_lib.tres" id="6_o8mu2"]
 [ext_resource type="AnimationNodeBlendTree" uid="uid://cgvcqonlcymq2" path="res://Character/Textures/SionTD/topdownChar.tres" id="7_uuyot"]
 [ext_resource type="Script" path="res://Abilities/Abilities.gd" id="8_q0dv7"]
 [ext_resource type="Script" path="res://Hittable.gd" id="10_tav8q"]
 [ext_resource type="Script" path="res://Character/StatsHolder.gd" id="13_ip521"]
-[ext_resource type="Script" path="res://StatsResource.gd" id="15_h1vve"]
 [ext_resource type="Script" path="res://Character/Interact.gd" id="15_mg06p"]
 [ext_resource type="Script" path="res://PassivesManager.gd" id="16_dvdfg"]
 [ext_resource type="Texture2D" uid="uid://cgt4u6x0ednng" path="res://Envo/pickups.png" id="16_qym2e"]
+[ext_resource type="Resource" uid="uid://dye5bo1dbh5fe" path="res://Character/Sion_stats.tres" id="16_rno2g"]
 [ext_resource type="Script" path="res://Abilities/AbilityData.gd" id="17_5mfga"]
 [ext_resource type="Script" path="res://Abilities/PassiveData.gd" id="17_r5jsg"]
 [ext_resource type="PackedScene" uid="uid://d3own3do3t3k" path="res://Character/manaheal.tscn" id="18_4wnpx"]
@@ -28,21 +33,36 @@ point_count = 3
 _data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(0.503311, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
 point_count = 3
 
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_sc26l"]
+gradient = ExtResource("6_duucu")
+width = 18
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_o21r3"]
+shader = ExtResource("2_3op8r")
+shader_parameter/alpha_override = 1.0
+shader_parameter/num_colors = 18
+shader_parameter/precision = 0.0
+shader_parameter/index = null
+shader_parameter/palette_in = ExtResource("3_hann1")
+shader_parameter/palette_out = SubResource("GradientTexture1D_sc26l")
+
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ygxu6"]
 
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_wabse"]
+resource_local_to_scene = true
+shader = ExtResource("6_3qogg")
+shader_parameter/offset_multiplier = 4.0
+shader_parameter/mouse_dir = Vector2(0, 0)
+shader_parameter/tolerance = 0.23
+shader_parameter/hsv_shift = Vector3(0, 0, 0)
+shader_parameter/from_clr = Color(0, 1, 0, 1)
+
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_irf28"]
-size = Vector2(6, 18)
+size = Vector2(9, 20)
 
 [sub_resource type="Curve" id="Curve_mb0qj"]
 _data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(0.511628, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
 point_count = 3
-
-[sub_resource type="Resource" id="Resource_2frdm"]
-script = ExtResource("15_h1vve")
-health = 100.0
-mana = 50.0
-defense = 1.0
-stamina = 1.0
 
 [sub_resource type="Resource" id="Resource_60owp"]
 script = ExtResource("17_r5jsg")
@@ -79,9 +99,15 @@ speed = 0.0
 useMouseAim = false
 toggle = false
 hold = false
+dynamic_size = false
 hold_index = 0
 hotkey_index = 2
 rotateToMouse = false
+hasCooldown = false
+zoom = 0.0
+zoom_duration = 0.0
+shake_force = 0.0
+shake_duration = 0.0
 displayName = "Interact"
 description = ""
 icon = SubResource("AtlasTexture_bjtvb")
@@ -100,15 +126,21 @@ animNodeType = 0
 oneShot = 0
 value = 0.0
 animOnly = false
-damage = 15.0
+damage = 30.0
 mana = 4.0
 speed = 0.0
 useMouseAim = false
 toggle = false
 hold = false
+dynamic_size = false
 hold_index = 0
 hotkey_index = 0
 rotateToMouse = false
+hasCooldown = true
+zoom = 0.0
+zoom_duration = 0.0
+shake_force = 0.0
+shake_duration = 0.0
 displayName = "Consume_HP"
 description = ""
 icon = SubResource("AtlasTexture_a7o75")
@@ -133,29 +165,56 @@ speed = 0.0
 useMouseAim = false
 toggle = false
 hold = false
+dynamic_size = false
 hold_index = 0
 hotkey_index = 1
 rotateToMouse = false
+hasCooldown = true
+zoom = 0.0
+zoom_duration = 0.0
+shake_force = 0.0
+shake_duration = 0.0
 displayName = "Consume_MP"
 description = ""
 icon = SubResource("AtlasTexture_lk1xm")
 icon_mat = ExtResource("19_26564")
 form_type = 4
 
+[sub_resource type="Gradient" id="Gradient_2fben"]
+offsets = PackedFloat32Array(0, 0.0285987, 1)
+colors = PackedColorArray(0.2484, 0.2484, 0.2484, 0.619608, 0.303233, 0.303233, 0.303233, 0.776471, 0, 0, 0, 0)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_yij2q"]
+gradient = SubResource("Gradient_2fben")
+width = 256
+height = 256
+fill = 1
+fill_from = Vector2(0.5, 0.5)
+fill_to = Vector2(0.4, 0.1)
+metadata/_snap_enabled = true
+
 [node name="Sion" type="CharacterBody2D" node_paths=PackedStringArray("statsHolder")]
 y_sort_enabled = true
-collision_layer = 16
+collision_layer = 528
+collision_mask = 65
 motion_mode = 1
 script = ExtResource("1_6msgt")
 dodgeVelocity = 5.0
 dodgeDuration = 1.0
-stopMovement = true
 statsHolder = NodePath("Stats")
 rollCurve = SubResource("Curve_lstxf")
 dodgeCurve = SubResource("Curve_j4n5k")
+SPEED = 100.0
 
-[node name="Art" type="Node2D" parent="."]
+[node name="Art" type="Node2D" parent="." node_paths=PackedStringArray("body", "eyes")]
 z_index = 2
+material = SubResource("ShaderMaterial_o21r3")
+script = ExtResource("5_rce5w")
+body = NodePath(".")
+eyes = NodePath("Eyes")
+gradient_in = ExtResource("6_duucu")
+gradient_out = ExtResource("4_m7jpf")
+hsv_shift_out = Vector3(0.61, 0.01, -0.18)
 
 [node name="ShapeCast2D" type="ShapeCast2D" parent="Art"]
 position = Vector2(6, 6)
@@ -165,7 +224,7 @@ collision_mask = 40
 collide_with_areas = true
 
 [node name="Eyes" type="Node2D" parent="Art" node_paths=PackedStringArray("user", "mat_nodes")]
-material = ExtResource("2_0sc1b")
+material = SubResource("ShaderMaterial_wabse")
 position = Vector2(0, 1)
 script = ExtResource("4_m734i")
 user = NodePath(".")
@@ -196,6 +255,7 @@ vframes = 3
 [node name="Body" type="Sprite2D" parent="Art"]
 z_index = 1
 texture_filter = 1
+use_parent_material = true
 texture = ExtResource("5_mwf2f")
 hframes = 5
 vframes = 11
@@ -211,7 +271,10 @@ libraries = {
 }
 tree_root = ExtResource("7_uuyot")
 anim_player = NodePath("../AnimationPlayer")
-parameters/Death/blend_amount = 0
+parameters/CrystalTransform/active = false
+parameters/CrystalTransform/internal_active = false
+parameters/CrystalTransform/request = 0
+parameters/Death/blend_amount = 0.0
 parameters/Harvest/active = false
 parameters/Harvest/internal_active = false
 parameters/Harvest/request = 0
@@ -220,9 +283,9 @@ parameters/LeftOrRight/blend_amount = 1.0
 parameters/Mine/active = false
 parameters/Mine/internal_active = false
 parameters/Mine/request = 0
-parameters/OneShot/active = false
-parameters/OneShot/internal_active = false
-parameters/OneShot/request = 0
+parameters/OnDeath/active = false
+parameters/OnDeath/internal_active = false
+parameters/OnDeath/request = 0
 parameters/Transform/active = false
 parameters/Transform/internal_active = false
 parameters/Transform/request = 0
@@ -248,14 +311,17 @@ shape = SubResource("RectangleShape2D_irf28")
 script = ExtResource("10_tav8q")
 type = 1
 
-[node name="Abilities" type="Node2D" parent="." node_paths=PackedStringArray("charMovement", "abilitySpawns", "interaction")]
+[node name="Abilities" type="Node2D" parent="." node_paths=PackedStringArray("charMovement", "abilitySpawns", "left", "right", "statsHolder", "interaction")]
 script = ExtResource("8_q0dv7")
 charMovement = NodePath("..")
 abilitySpawns = [NodePath("../AbilitySpawns/LeftArm"), NodePath("../AbilitySpawns/RightArm")]
+left = NodePath("../AbilitySpawns/LeftArm")
+right = NodePath("../AbilitySpawns/RightArm")
 timer_duration = 2.0
 movement_duration = 0.5
 dist_multiplier = 2.0
 move_curve = SubResource("Curve_mb0qj")
+statsHolder = NodePath("../Stats")
 interaction = NodePath("../Interaction")
 
 [node name="AbilitySpawns" type="Node2D" parent="."]
@@ -263,12 +329,24 @@ interaction = NodePath("../Interaction")
 [node name="LeftArm" type="Marker2D" parent="AbilitySpawns"]
 position = Vector2(-4, 12)
 
+[node name="Polygon2D" type="Polygon2D" parent="AbilitySpawns/LeftArm"]
+visible = false
+z_index = 99
+color = Color(1, 0, 0, 1)
+polygon = PackedVector2Array(-1, -1, 1, -1, 1, 1, -1, 1)
+
 [node name="RightArm" type="Marker2D" parent="AbilitySpawns"]
 position = Vector2(3, 12)
 
+[node name="Polygon2D" type="Polygon2D" parent="AbilitySpawns/RightArm"]
+visible = false
+z_index = 99
+color = Color(0, 0, 1, 1)
+polygon = PackedVector2Array(-1, -1, 1, -1, 1, 1, -1, 1)
+
 [node name="Stats" type="Node2D" parent="." node_paths=PackedStringArray("charMovement", "abilities", "passives", "hittable")]
 script = ExtResource("13_ip521")
-stats_resource = SubResource("Resource_2frdm")
+stats_resource = ExtResource("16_rno2g")
 charMovement = NodePath("..")
 abilities = NodePath("../Abilities")
 passives = NodePath("../Passives")
@@ -294,6 +372,7 @@ secondsPerResource = 0.75
 animTree = NodePath("../AnimationTree")
 movement = NodePath("..")
 data = SubResource("Resource_cwwi8")
+interaction_allowed = true
 
 [node name="Consume" type="Node2D" parent="." node_paths=PackedStringArray("stats_holder")]
 script = ExtResource("18_il7wj")
@@ -302,4 +381,13 @@ hp_data = SubResource("Resource_ugs33")
 mana_data = SubResource("Resource_nejrd")
 
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+volume_db = 5.0
 bus = &"SFX"
+
+[node name="AudioListener2D" type="AudioListener2D" parent="."]
+current = true
+
+[node name="PointLight2D" type="PointLight2D" parent="."]
+energy = 12.0
+range_item_cull_mask = 2
+texture = SubResource("GradientTexture2D_yij2q")

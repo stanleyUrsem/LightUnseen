@@ -9,7 +9,7 @@ signal on_health_changed(value)
 signal on_health_added(value)
 var is_setup: bool
 var health_bars : Array[TextureProgressBar]
-var currentHp : float = 0
+#var currentHp : float = 0
 var bars_to_update : Dictionary
 var tween : Tween
 func setup(stats : Stats):
@@ -26,20 +26,25 @@ func setup(stats : Stats):
 	#
 	#var amount = stats.health_max / healthPerBar
 	add_health(stats.health_max)
+	update_health(stats.health)
 	
 func add_health(value : float):
 	
+	var amount = ceil(value / healthPerBar)
+	
+	#var diff = amount - health_bars.size()
+	#if(diff < 0): 
+		#var to_erase = []
 	for i in health_bars.size():
 		var bar = health_bars[-i-1]
 		bar.queue_free()
-		
+
 	health_bars.clear()
-	currentHp = value
-	var amount = ceil(value / healthPerBar) 
+	#currentHp = value
 	for i in range(amount):
 		var bar = health_bar.instantiate()
 		add_child(bar)
-		bar.material = health_mat.duplicate(true)
+		bar.get_child(0).material = health_mat.duplicate(true)
 		bar.max_value = healthPerBar
 		bar.value = 0.0
 		bar.tooltip_text = "Health: %d" % (healthPerBar * health_bars.size())
@@ -61,15 +66,15 @@ func update_health(value):
 	#55 hp left
 	#55 / 20 = 2.75
 	#from 5 hp bars to 2.75 
-	var hp = currentHp + value
+	var hp = value
 	var amount_bars : float = hp / healthPerBar
 	var amount_bars_floored = floor(amount_bars)
 	var hp_empty = false
 	
 	for i in health_bars.size():
 		#reverse loop
-		var bar = health_bars[-i-1]
-		#var bar = health_bars[i]
+		#var bar = health_bars[-i-1]
+		var bar = health_bars[i]
 		#20 hp
 		#hp -= healthPerBar
 		#
@@ -107,9 +112,9 @@ func update_health(value):
 			#
 			#
 		#amount_bars -= i
-	currentHp  += value
-	for bar in health_bars:
-		bar.tooltip_text = "Health: %d" % currentHp
+	#currentHp  += value
+	#for bar in health_bars:
+		#bar.tooltip_text = "Health: %d" % currentHp
 	animate_healthbars()
 
 

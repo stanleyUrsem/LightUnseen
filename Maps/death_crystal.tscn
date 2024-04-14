@@ -1,0 +1,7 @@
+[gd_scene load_steps=3 format=3 uid="uid://634lv25axep1"]
+
+[ext_resource type="PackedScene" uid="uid://dla6we38n1hry" path="res://Maps/Crystal.tscn" id="1_px4x5"]
+[ext_resource type="Script" path="res://Maps/Death_Crystal.gd" id="2_5ixso"]
+
+[node name="Crystal" instance=ExtResource("1_px4x5")]
+script = ExtResource("2_5ixso")

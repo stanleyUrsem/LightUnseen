@@ -8,6 +8,8 @@ class_name SceneManager
 var played_scenes : Array[String]
 var current_scene : CutsceneDirector
 
+signal OnScenePlayed(scene)
+
 func _ready():
 	mapSwitcher.OnMapLoaded.connect(setup)
 
@@ -16,11 +18,12 @@ func setup():
 		if(!played_scenes.has(scene)):
 			played_scenes.append(scene)
 	
-func add_played_scene(scene : String):
+func add_played_scene(scene : String, auto_save_after : bool):
 	if(played_scenes.has(scene)):
 		return
 	played_scenes.append(scene)
-	saveManager.add_data("played_scenes",played_scenes)
+	saveManager.add_data("played_scenes",played_scenes,auto_save_after)
+	OnScenePlayed.emit(scene)
 func get_scene_index(scene : String):
 	return int(scene.split("_")[1])
 func scene_available(scene:String):
@@ -37,13 +40,16 @@ func scene_available(scene:String):
 		
 func already_played_scene(scene:String):
 	return played_scenes.has(scene)
-func new_scene(scene : CutsceneDirector):
+func new_scene(scene : CutsceneDirector, special : bool = false):
 	if(already_played_scene(scene.name)):
 		scene.get_parent().queue_free()
 		current_scene = null
 		return
-	if(!scene_available(scene.name) || current_scene == scene):
+	if(!special && (!scene_available(scene.name) || current_scene == scene)):
 		return
+	if(special && current_scene == scene):
+		return
+		
 	if(current_scene != null):
 		current_scene.get_parent().queue_free()
 	scene.get_parent().visible = true

@@ -1,4 +1,4 @@
-[gd_scene load_steps=89 format=3 uid="uid://cnqpiju56w2xv"]
+[gd_scene load_steps=120 format=3 uid="uid://cnqpiju56w2xv"]
 
 [ext_resource type="PackedScene" uid="uid://cy7fitk5e2igo" path="res://Character/Sion.tscn" id="1_5cn6k"]
 [ext_resource type="Script" path="res://Maps/MapSwitcher.gd" id="1_d2nxu"]
@@ -10,26 +10,32 @@
 [ext_resource type="Script" path="res://CameraZoom.gd" id="6_6oo4f"]
 [ext_resource type="Material" uid="uid://bgm3w77m13kfi" path="res://Maps/b_1.tres" id="6_d01ni"]
 [ext_resource type="PackedScene" uid="uid://c3by2vkm71518" path="res://UI/HUD.tscn" id="6_ovusk"]
+[ext_resource type="Material" uid="uid://cjng4p5aotpwd" path="res://Maps/a_2.tres" id="7_2w6u5"]
 [ext_resource type="Script" path="res://Character/PlayerTransformer.gd" id="7_n5qm7"]
-[ext_resource type="Shader" path="res://UI/health_bar.gdshader" id="8_ge6d8"]
 [ext_resource type="PackedScene" uid="uid://c0doq5crsa0n3" path="res://Character/sion_slime.tscn" id="8_x3a12"]
-[ext_resource type="Texture2D" uid="uid://bxkpior6fg3cj" path="res://UI/health_fill.png" id="9_27xqt"]
+[ext_resource type="Material" uid="uid://dcyt01yeo0yov" path="res://Maps/a_4.tres" id="8_xkusp"]
+[ext_resource type="Material" uid="uid://kwmwquj7wgbs" path="res://Maps/d_1.tres" id="9_gratj"]
 [ext_resource type="Script" path="res://EventsManager.gd" id="10_1dmyj"]
-[ext_resource type="Texture2D" uid="uid://cv7ouy5kh041t" path="res://UI/health_back.png" id="10_02265"]
+[ext_resource type="Material" uid="uid://cgj2bqnsr6af5" path="res://Maps/d_2.tres" id="10_klpl8"]
+[ext_resource type="Material" uid="uid://48343molqm72" path="res://Maps/d_3.tres" id="11_4ldor"]
 [ext_resource type="Script" path="res://HitNumberManager.gd" id="11_iu0pk"]
 [ext_resource type="PackedScene" uid="uid://c3k65a5px1d18" path="res://UI/hit_number.tscn" id="12_ewb3a"]
 [ext_resource type="Script" path="res://DeathTransition.gd" id="13_f3cb0"]
 [ext_resource type="Script" path="res://Abilities/SkillsManager.gd" id="14_p5owg"]
+[ext_resource type="Shader" path="res://UI/LiquidMesh.gdshader" id="15_yusxx"]
 [ext_resource type="Script" path="res://Abilities/AbilityData.gd" id="16_xigl3"]
 [ext_resource type="Script" path="res://FadeIn.gd" id="16_xj1dl"]
+[ext_resource type="Shader" path="res://UI/LiquidMeshBox.gdshader" id="17_bsq10"]
+[ext_resource type="PackedScene" uid="uid://dwpbx23ja7cud" path="res://UI/crystal_hotkey.tscn" id="17_tygwl"]
 [ext_resource type="Script" path="res://SceneManager.gd" id="17_yma07"]
+[ext_resource type="PackedScene" uid="uid://dkgiixxrbmqpo" path="res://Character/sion_crystal.tscn" id="20_t1y5x"]
 [ext_resource type="Script" path="res://Maps/MobSpawner.gd" id="23_exqju"]
 [ext_resource type="PackedScene" uid="uid://bkdu7ke3vkapc" path="res://Mobs/Textures/Slime/gatherer_slime.tscn" id="24_71yga"]
 [ext_resource type="PackedScene" uid="uid://bjlnhgcn0p2f0" path="res://Mobs/Textures/Slime/spitter_slime.tscn" id="25_3wyne"]
 [ext_resource type="PackedScene" uid="uid://bui58sigv7u1" path="res://Mobs/Textures/Slime/solid_slime.tscn" id="26_6sh4w"]
 [ext_resource type="PackedScene" uid="uid://e431u513vnhr" path="res://Mobs/Textures/Slime/cmd_slime.tscn" id="27_hxr2g"]
-[ext_resource type="PackedScene" uid="uid://c1lil3exb2sw3" path="res://Mobs/Crystal/crystal_explode.tscn" id="28_qbifq"]
 [ext_resource type="PackedScene" uid="uid://dhgk51pkclb64" path="res://Mobs/Crystal/crystal_engineer.tscn" id="29_0j4as"]
+[ext_resource type="PackedScene" uid="uid://yhgqa3kcnhsc" path="res://Mobs/Crystal/crystal_grenadier.tscn" id="29_4krdf"]
 [ext_resource type="PackedScene" uid="uid://ht563teetiuq" path="res://Mobs/Crystal/crystal_knight.tscn" id="30_x87vw"]
 [ext_resource type="Script" path="res://BGMManager.gd" id="31_hkun4"]
 [ext_resource type="AudioStream" uid="uid://c567h2t6qjiev" path="res://Audio/Quirky Village [Central].wav" id="32_hmjui"]
@@ -47,38 +53,66 @@
 [ext_resource type="AudioStream" uid="uid://2ri6w73olgmv" path="res://Audio/Church.wav" id="45_0frrd"]
 [ext_resource type="Script" path="res://DayNightManager.gd" id="45_ga08e"]
 [ext_resource type="AudioStream" uid="uid://ds13cp0uppnj6" path="res://Audio/Barren Settlement[NPCS DEAD].wav" id="46_t4hw1"]
+[ext_resource type="AudioStream" uid="uid://ctjovoc6a0j0l" path="res://Audio/Quirky Village [Central_R].wav" id="53_nb0fy"]
+[ext_resource type="Script" path="res://CameraEffects.gd" id="55_eo6jx"]
 
 [sub_resource type="Curve" id="Curve_5fogj"]
 _data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(0.541578, 0.652632), 2.32322, 2.32322, 0, 0, Vector2(0.626866, 0.926316), 0.0, 0.0, 0, 0, Vector2(1, 1), 1.4, 0.0, 0, 0]
 point_count = 4
 
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_4fqsc"]
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_1dp2c"]
 resource_local_to_scene = true
-shader = ExtResource("8_ge6d8")
-shader_parameter/color = Color(0.572549, 0, 0, 1)
-shader_parameter/resolution = 1.6
-shader_parameter/size = 0.4
-shader_parameter/resolution_under = 0.0
-shader_parameter/division_under = -1.0
-shader_parameter/step_under = 0.02
-shader_parameter/step_sdf = 2.95
-shader_parameter/pixel_size = 25.0
-shader_parameter/backFill_brightness = 0.9
-shader_parameter/fV = 0.845
-shader_parameter/fVx = 1.0
-shader_parameter/under_mult = 1.0
-shader_parameter/big_wave_freq_range = Vector2(0.145, 0.2)
-shader_parameter/big_wave_amp_range = Vector2(0.155, 0.025)
-shader_parameter/main_wave_freq_range = Vector2(0.025, 0.15)
-shader_parameter/main_wave_amp_range = Vector2(0.02, 0.002)
-shader_parameter/under_region_origin = Vector2(0, 0)
-shader_parameter/under_region_size = Vector2(1, 1)
-shader_parameter/under_atlas_size = Vector2(1, 1)
-shader_parameter/over_region_origin = null
-shader_parameter/over_region_size = Vector2(1, 1)
-shader_parameter/over_atlas_size = Vector2(1, 1)
-shader_parameter/under = ExtResource("10_02265")
-shader_parameter/over = ExtResource("9_27xqt")
+shader = ExtResource("15_yusxx")
+shader_parameter/resolution = Vector2(1, 1)
+shader_parameter/offset = Vector2(0, 0.46)
+shader_parameter/e = Vector2(0.3, -0.21)
+shader_parameter/f = Vector2(2, -4)
+shader_parameter/g = Vector2(0, 1)
+shader_parameter/h = 0.62
+shader_parameter/i = -1.435
+shader_parameter/j = -0.05
+shader_parameter/cell_size = 26.0
+shader_parameter/from = Color(0.352941, 0.560784, 0.521569, 1)
+shader_parameter/to = Color(0.372549, 0.509804, 0.894118, 1)
+shader_parameter/backFillColour = Color(0.62, 1, 1, 1)
+shader_parameter/frontFillInnerColour = Color(0.35, 1, 1, 1)
+shader_parameter/frontFillOuterColour = Color(0, 0.35, 1, 1)
+shader_parameter/ringColour = Color(0, 0.16, 0.13, 1)
+shader_parameter/fresnelColour = Color(0, 0.88, 1, 1)
+shader_parameter/innerRingGlowColour = Color(0, 0, 0, 1)
+shader_parameter/fillcolour = Color(1, 1, 1, 1)
+shader_parameter/ringWidth = 0.07
+shader_parameter/innerCircleRadiusOffset = 0.0
+shader_parameter/fill_value = 0.402
+shader_parameter/fill_value_x = 1.0
+shader_parameter/tolerance = 0.952
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_lnxfk"]
+shader = ExtResource("17_bsq10")
+shader_parameter/boxB = Vector2(0.67, 0.27)
+shader_parameter/resolution = Vector2(2, 1.5)
+shader_parameter/scale = Vector2(212, 15)
+shader_parameter/cell_size = 26.0
+shader_parameter/from_clr = Color(0.215686, 0.490196, 0.443137, 1)
+shader_parameter/to_clr = Color(0.0823529, 0.309804, 0.721569, 1)
+shader_parameter/backFillColour = Color(0.62, 1, 1, 1)
+shader_parameter/frontFillInnerColour = Color(0.35, 1, 1, 1)
+shader_parameter/frontFillOuterColour = Color(0, 0.35, 1, 1)
+shader_parameter/ringColour = Color(0, 0.16, 0.13, 1)
+shader_parameter/fresnelColour = Color(0, 0.88, 1, 1)
+shader_parameter/innerRingGlowColour = Color(0, 0, 0, 1)
+shader_parameter/fillcolour = Color(1, 1, 1, 1)
+shader_parameter/ringWidth = 0.15
+shader_parameter/innerCircleRadiusOffset = 0.0
+shader_parameter/fill_value = 1.085
+shader_parameter/fill_value_x = 1.0
+shader_parameter/tolerance = 1.0
+shader_parameter/pos_range_x = Vector2(0, 10)
+shader_parameter/pos_range_y = Vector2(0, 10)
+
+[sub_resource type="Curve" id="Curve_5hsl1"]
+_data = [Vector2(0, 0.0125209), 0.0, 0.0, 0, 0, Vector2(0.43346, 1), 0.0, 0.0, 0, 0]
+point_count = 2
 
 [sub_resource type="Curve" id="Curve_rrtju"]
 _data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(1, 1), 2.67299, 0.0, 0, 0]
@@ -89,7 +123,7 @@ load_path = "res://.godot/imported/Skills.png-cee4d12548bdfb0d072a5d639d650fd0.c
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_cgwjn"]
 atlas = SubResource("CompressedTexture2D_i14rg")
-region = Rect2(64, 64, 32, 32)
+region = Rect2(0, 64, 32, 32)
 
 [sub_resource type="Resource" id="Resource_s1w5c"]
 script = ExtResource("16_xigl3")
@@ -101,14 +135,20 @@ oneShot = 1
 value = 0.0
 animOnly = false
 damage = -5.0
-mana = -5.0
+mana = -2.5
 speed = 3.0
 useMouseAim = true
 toggle = false
 hold = false
+dynamic_size = false
 hold_index = 0
 hotkey_index = 3
 rotateToMouse = false
+hasCooldown = false
+zoom = 0.01
+zoom_duration = 0.1
+shake_force = 0.0
+shake_duration = 0.0
 displayName = "Rock Throw"
 description = ""
 icon = SubResource("AtlasTexture_cgwjn")
@@ -119,7 +159,7 @@ load_path = "res://.godot/imported/Skills.png-cee4d12548bdfb0d072a5d639d650fd0.c
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_fh0sb"]
 atlas = SubResource("CompressedTexture2D_8o64d")
-region = Rect2(32, 64, 32, 32)
+region = Rect2(160, 32, 32, 32)
 
 [sub_resource type="Resource" id="Resource_afjdu"]
 script = ExtResource("16_xigl3")
@@ -131,14 +171,20 @@ oneShot = 1
 value = 0.0
 animOnly = false
 damage = -10.0
-mana = -10.0
+mana = -5.0
 speed = 5.0
 useMouseAim = false
 toggle = false
 hold = false
+dynamic_size = false
 hold_index = 0
 hotkey_index = 4
 rotateToMouse = false
+hasCooldown = false
+zoom = -0.1
+zoom_duration = 0.1
+shake_force = 0.0
+shake_duration = 0.0
 displayName = "Boulder Throw"
 description = ""
 icon = SubResource("AtlasTexture_fh0sb")
@@ -149,7 +195,7 @@ load_path = "res://.godot/imported/Skills.png-cee4d12548bdfb0d072a5d639d650fd0.c
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_qrar5"]
 atlas = SubResource("CompressedTexture2D_r6718")
-region = Rect2(0, 64, 32, 32)
+region = Rect2(128, 32, 32, 32)
 
 [sub_resource type="Resource" id="Resource_fncvu"]
 script = ExtResource("16_xigl3")
@@ -161,14 +207,20 @@ oneShot = 1
 value = 0.0
 animOnly = true
 damage = 0.0
-mana = -5.0
+mana = -2.5
 speed = 0.0
 useMouseAim = false
 toggle = false
 hold = false
+dynamic_size = false
 hold_index = 0
 hotkey_index = 5
 rotateToMouse = false
+hasCooldown = false
+zoom = 0.0
+zoom_duration = 0.0
+shake_force = 0.0
+shake_duration = 0.0
 displayName = "Roll"
 description = ""
 icon = SubResource("AtlasTexture_qrar5")
@@ -179,7 +231,7 @@ load_path = "res://.godot/imported/Skills.png-cee4d12548bdfb0d072a5d639d650fd0.c
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_8y0su"]
 atlas = SubResource("CompressedTexture2D_xfn6q")
-region = Rect2(96, 64, 32, 32)
+region = Rect2(32, 64, 32, 32)
 
 [sub_resource type="Resource" id="Resource_obn5l"]
 script = ExtResource("16_xigl3")
@@ -196,9 +248,15 @@ speed = 0.0
 useMouseAim = false
 toggle = false
 hold = false
+dynamic_size = false
 hold_index = 0
 hotkey_index = 6
 rotateToMouse = false
+hasCooldown = false
+zoom = 1.0
+zoom_duration = 1.0
+shake_force = 0.0
+shake_duration = 0.0
 displayName = "Slime Transform"
 description = ""
 icon = SubResource("AtlasTexture_8y0su")
@@ -209,7 +267,7 @@ load_path = "res://.godot/imported/Skills.png-cee4d12548bdfb0d072a5d639d650fd0.c
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_u6uak"]
 atlas = SubResource("CompressedTexture2D_5kbcy")
-region = Rect2(128, 64, 32, 32)
+region = Rect2(64, 64, 32, 32)
 
 [sub_resource type="Resource" id="Resource_kdign"]
 script = ExtResource("16_xigl3")
@@ -226,9 +284,15 @@ speed = 0.0
 useMouseAim = false
 toggle = false
 hold = false
+dynamic_size = false
 hold_index = 0
 hotkey_index = 2
 rotateToMouse = false
+hasCooldown = false
+zoom = 0.0
+zoom_duration = 0.0
+shake_force = 0.0
+shake_duration = 0.0
 displayName = "Slime Series: Dash"
 description = ""
 icon = SubResource("AtlasTexture_u6uak")
@@ -239,7 +303,7 @@ load_path = "res://.godot/imported/Skills.png-cee4d12548bdfb0d072a5d639d650fd0.c
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_d1ges"]
 atlas = SubResource("CompressedTexture2D_3kb53")
-region = Rect2(128, 96, 32, 32)
+region = Rect2(32, 96, 32, 32)
 
 [sub_resource type="Resource" id="Resource_u3ndb"]
 script = ExtResource("16_xigl3")
@@ -250,15 +314,21 @@ animNodeType = 2
 oneShot = 0
 value = 0.0
 animOnly = false
-damage = -5.0
-mana = -0.5
+damage = -3.0
+mana = -1.5
 speed = 5.0
 useMouseAim = false
 toggle = true
 hold = false
+dynamic_size = false
 hold_index = 0
 hotkey_index = 3
 rotateToMouse = false
+hasCooldown = false
+zoom = 0.0
+zoom_duration = 0.0
+shake_force = 0.0
+shake_duration = 0.0
 displayName = "Slime Series: Trail"
 description = ""
 icon = SubResource("AtlasTexture_d1ges")
@@ -269,7 +339,7 @@ load_path = "res://.godot/imported/Skills.png-cee4d12548bdfb0d072a5d639d650fd0.c
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_koum5"]
 atlas = SubResource("CompressedTexture2D_58rdt")
-region = Rect2(32, 96, 32, 32)
+region = Rect2(128, 64, 32, 32)
 
 [sub_resource type="Resource" id="Resource_e35di"]
 script = ExtResource("16_xigl3")
@@ -286,9 +356,15 @@ speed = 0.0
 useMouseAim = false
 toggle = false
 hold = false
+dynamic_size = true
 hold_index = 0
 hotkey_index = 4
 rotateToMouse = true
+hasCooldown = false
+zoom = 0.1
+zoom_duration = 0.2
+shake_force = 5.0
+shake_duration = 0.1
 displayName = "Slime Series: Slam"
 description = ""
 icon = SubResource("AtlasTexture_koum5")
@@ -299,7 +375,7 @@ load_path = "res://.godot/imported/Skills.png-cee4d12548bdfb0d072a5d639d650fd0.c
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_yrfeq"]
 atlas = SubResource("CompressedTexture2D_r7vay")
-region = Rect2(64, 96, 32, 32)
+region = Rect2(160, 64, 32, 32)
 
 [sub_resource type="Resource" id="Resource_863ko"]
 script = ExtResource("16_xigl3")
@@ -310,15 +386,21 @@ animNodeType = 0
 oneShot = 1
 value = 0.0
 animOnly = false
-damage = -15.0
-mana = -1.25
+damage = -2.5
+mana = -1.0
 speed = 0.0
 useMouseAim = false
 toggle = false
 hold = true
+dynamic_size = true
 hold_index = 1
 hotkey_index = 5
 rotateToMouse = true
+hasCooldown = false
+zoom = 0.01
+zoom_duration = 0.1
+shake_force = 2.5
+shake_duration = 0.1
 displayName = "Slime Series: Pierce"
 description = ""
 icon = SubResource("AtlasTexture_yrfeq")
@@ -329,7 +411,7 @@ load_path = "res://.godot/imported/Skills.png-cee4d12548bdfb0d072a5d639d650fd0.c
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_mxaal"]
 atlas = SubResource("CompressedTexture2D_5f6v3")
-region = Rect2(96, 96, 32, 32)
+region = Rect2(0, 96, 32, 32)
 
 [sub_resource type="Resource" id="Resource_vkq4h"]
 script = ExtResource("16_xigl3")
@@ -340,15 +422,21 @@ animNodeType = 0
 oneShot = 1
 value = 0.0
 animOnly = false
-damage = -5.0
+damage = -10.0
 mana = -15.0
 speed = 5.0
 useMouseAim = true
 toggle = false
 hold = false
+dynamic_size = false
 hold_index = 0
 hotkey_index = 6
 rotateToMouse = false
+hasCooldown = false
+zoom = 0.25
+zoom_duration = 0.1
+shake_force = 0.0
+shake_duration = 0.0
 displayName = "Slime Series: Spinner"
 description = ""
 icon = SubResource("AtlasTexture_mxaal")
@@ -359,7 +447,7 @@ load_path = "res://.godot/imported/Skills.png-cee4d12548bdfb0d072a5d639d650fd0.c
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_sjcjp"]
 atlas = SubResource("CompressedTexture2D_41825")
-region = Rect2(0, 96, 32, 32)
+region = Rect2(96, 64, 32, 32)
 
 [sub_resource type="Resource" id="Resource_j72fp"]
 script = ExtResource("16_xigl3")
@@ -370,15 +458,21 @@ animNodeType = 0
 oneShot = 1
 value = 0.0
 animOnly = false
-damage = -3.0
-mana = -10.0
+damage = -15.0
+mana = -5.0
 speed = 60.0
 useMouseAim = true
 toggle = false
 hold = false
+dynamic_size = false
 hold_index = 0
 hotkey_index = 7
 rotateToMouse = false
+hasCooldown = false
+zoom = 0.1
+zoom_duration = 0.1
+shake_force = 0.0
+shake_duration = 0.0
 displayName = "Slime Series: Spit"
 description = ""
 icon = SubResource("AtlasTexture_sjcjp")
@@ -389,7 +483,7 @@ load_path = "res://.godot/imported/Skills.png-cee4d12548bdfb0d072a5d639d650fd0.c
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_dwfld"]
 atlas = SubResource("CompressedTexture2D_bj33l")
-region = Rect2(96, 64, 32, 32)
+region = Rect2(96, 96, 32, 32)
 
 [sub_resource type="Resource" id="Resource_6lofm"]
 script = ExtResource("16_xigl3")
@@ -406,13 +500,235 @@ speed = 0.0
 useMouseAim = false
 toggle = false
 hold = false
+dynamic_size = false
 hold_index = 0
 hotkey_index = 8
 rotateToMouse = false
+hasCooldown = false
+zoom = 1.0
+zoom_duration = 1.0
+shake_force = 0.0
+shake_duration = 0.0
 displayName = "Carion Transform"
 description = ""
 icon = SubResource("AtlasTexture_dwfld")
 form_type = 1
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_2kwel"]
+load_path = "res://.godot/imported/Skills.png-cee4d12548bdfb0d072a5d639d650fd0.ctex"
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_mji8g"]
+atlas = SubResource("CompressedTexture2D_2kwel")
+region = Rect2(160, 96, 32, 32)
+
+[sub_resource type="Resource" id="Resource_5hoxe"]
+script = ExtResource("16_xigl3")
+keyBinds = Array[String](["Human_Transform"])
+abilityPath = ""
+animName = "CrystalTransform"
+animNodeType = 0
+oneShot = 1
+value = 0.0
+animOnly = true
+damage = 0.0
+mana = 0.0
+speed = 0.0
+useMouseAim = false
+toggle = false
+hold = false
+dynamic_size = false
+hold_index = 0
+hotkey_index = 9
+rotateToMouse = false
+hasCooldown = false
+zoom = 1.0
+zoom_duration = 1.0
+shake_force = 5.0
+shake_duration = 1.0
+displayName = "Crystal Transform"
+description = ""
+icon = SubResource("AtlasTexture_mji8g")
+form_type = 0
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_kimwg"]
+load_path = "res://.godot/imported/Skills.png-cee4d12548bdfb0d072a5d639d650fd0.ctex"
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_oipnh"]
+atlas = SubResource("CompressedTexture2D_kimwg")
+region = Rect2(128, 96, 32, 32)
+
+[sub_resource type="Resource" id="Resource_imvh0"]
+script = ExtResource("16_xigl3")
+keyBinds = Array[String](["Human_Transform"])
+abilityPath = ""
+animName = "CarionTransform"
+animNodeType = 0
+oneShot = 1
+value = 0.0
+animOnly = true
+damage = 0.0
+mana = 0.0
+speed = 0.0
+useMouseAim = false
+toggle = false
+hold = false
+dynamic_size = false
+hold_index = 0
+hotkey_index = 6
+rotateToMouse = false
+hasCooldown = false
+zoom = 1.0
+zoom_duration = 1.0
+shake_force = 5.0
+shake_duration = 1.0
+displayName = "Carion Transform Crystal"
+description = ""
+icon = SubResource("AtlasTexture_oipnh")
+form_type = 2
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_kjpub"]
+load_path = "res://.godot/imported/Skills.png-cee4d12548bdfb0d072a5d639d650fd0.ctex"
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_tm2b4"]
+atlas = SubResource("CompressedTexture2D_kjpub")
+region = Rect2(64, 128, 32, 32)
+
+[sub_resource type="Resource" id="Resource_vjv03"]
+script = ExtResource("16_xigl3")
+keyBinds = Array[String](["roll"])
+abilityPath = ""
+animName = "UseRoll"
+animNodeType = 0
+oneShot = 1
+value = 0.0
+animOnly = true
+damage = 0.0
+mana = -5.0
+speed = 0.0
+useMouseAim = false
+toggle = false
+hold = false
+dynamic_size = false
+hold_index = 0
+hotkey_index = 2
+rotateToMouse = false
+hasCooldown = false
+zoom = 0.0
+zoom_duration = 0.0
+shake_force = 0.0
+shake_duration = 0.0
+displayName = "Crystal Teleport"
+description = ""
+icon = SubResource("AtlasTexture_tm2b4")
+form_type = 2
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_4kx2k"]
+load_path = "res://.godot/imported/Skills.png-cee4d12548bdfb0d072a5d639d650fd0.ctex"
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_5cynh"]
+atlas = SubResource("CompressedTexture2D_4kx2k")
+region = Rect2(0, 128, 32, 32)
+
+[sub_resource type="Resource" id="Resource_h2fkq"]
+script = ExtResource("16_xigl3")
+keyBinds = Array[String](["attack"])
+abilityPath = "res://Abilities/Minefield.tscn"
+animName = "CreateMine"
+animNodeType = 0
+oneShot = 1
+value = 0.0
+animOnly = false
+damage = -15.0
+mana = -35.0
+speed = 2.0
+useMouseAim = false
+toggle = false
+hold = false
+dynamic_size = true
+hold_index = 0
+hotkey_index = 3
+rotateToMouse = true
+hasCooldown = false
+zoom = 0.0
+zoom_duration = 0.0
+shake_force = 0.0
+shake_duration = 0.0
+displayName = "Mine Field"
+description = ""
+icon = SubResource("AtlasTexture_5cynh")
+form_type = 2
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_rr6yq"]
+load_path = "res://.godot/imported/Skills.png-cee4d12548bdfb0d072a5d639d650fd0.ctex"
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_dflee"]
+atlas = SubResource("CompressedTexture2D_rr6yq")
+region = Rect2(96, 128, 32, 32)
+
+[sub_resource type="Resource" id="Resource_37iud"]
+script = ExtResource("16_xigl3")
+keyBinds = Array[String](["lr_attack"])
+abilityPath = "res://Abilities/bow_shot.tscn"
+animName = "CreateBow"
+animNodeType = 0
+oneShot = 1
+value = 0.0
+animOnly = false
+damage = -10.0
+mana = -5.0
+speed = 8.0
+useMouseAim = true
+toggle = false
+hold = false
+dynamic_size = false
+hold_index = 0
+hotkey_index = 4
+rotateToMouse = true
+hasCooldown = false
+zoom = 0.0
+zoom_duration = 0.0
+shake_force = 0.0
+shake_duration = 0.0
+displayName = "Crystal Bow"
+description = ""
+icon = SubResource("AtlasTexture_dflee")
+form_type = 2
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_iefb2"]
+load_path = "res://.godot/imported/Skills.png-cee4d12548bdfb0d072a5d639d650fd0.ctex"
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_b5fmb"]
+atlas = SubResource("CompressedTexture2D_iefb2")
+region = Rect2(32, 128, 32, 32)
+
+[sub_resource type="Resource" id="Resource_ittws"]
+script = ExtResource("16_xigl3")
+keyBinds = Array[String](["Aura"])
+abilityPath = ""
+animName = "CreateShield"
+animNodeType = 0
+oneShot = 1
+value = 0.0
+animOnly = true
+damage = 0.0
+mana = 0.0
+speed = 0.0
+useMouseAim = false
+toggle = false
+hold = true
+dynamic_size = false
+hold_index = 0
+hotkey_index = 5
+rotateToMouse = false
+hasCooldown = false
+zoom = 0.0
+zoom_duration = 0.0
+shake_force = 0.0
+shake_duration = 0.0
+displayName = "Crystal Shield"
+description = ""
+icon = SubResource("AtlasTexture_b5fmb")
+form_type = 2
 
 [sub_resource type="Curve" id="Curve_es0uh"]
 _data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(0.330247, 1), 0.0, 0.0, 0, 0, Vector2(1, 1), 0.0, 0.0, 0, 0]
@@ -433,9 +749,20 @@ max_value = 0.0
 _data = [Vector2(1e-05, 0), 0.0, 0.0, 0, 0, Vector2(0.906195, -34.4192), -47.6639, -47.6639, 0, 0, Vector2(1, -80), -244.43, 112.0, 0, 0]
 point_count = 3
 
+[sub_resource type="Curve" id="Curve_edile"]
+_data = [Vector2(0, 0.01), 0.0, 0.0, 0, 0, Vector2(0.246212, 0.745298), 0.0, 0.0, 0, 0, Vector2(1, 1), 0.0, 0.0, 0, 0]
+point_count = 3
+
 [sub_resource type="Curve" id="Curve_c2m66"]
-_data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(0.462338, 1), 0.0, 0.0, 0, 0, Vector2(0.831169, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+_data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(0.253906, 1), 0.0, 0.0, 0, 0, Vector2(0.871094, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
 point_count = 4
+
+[sub_resource type="Curve" id="Curve_iatmx"]
+_data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(0.504687, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 3
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_gk7h4"]
+frequency = 0.0473
 
 [node name="MAIN" type="Node2D" node_paths=PackedStringArray("camera")]
 y_sort_enabled = true
@@ -448,51 +775,74 @@ start_map = "res://Maps/Central.tscn"
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = ExtResource("2_lxr3f")
 
+[node name="CameraZoom" type="Node2D" parent="."]
+script = ExtResource("6_6oo4f")
+
 [node name="FogManager" type="Node2D" parent="."]
 script = ExtResource("3_car1c")
-mats = Array[Material]([ExtResource("4_55jgb"), ExtResource("4_y6xfu"), ExtResource("6_d01ni")])
+mats = Array[Material]([ExtResource("4_55jgb"), ExtResource("4_y6xfu"), ExtResource("6_d01ni"), ExtResource("7_2w6u5"), ExtResource("8_xkusp"), ExtResource("9_gratj"), ExtResource("10_klpl8"), ExtResource("11_4ldor")])
 duration = 1.0
 heightToZoom = {
-0: Vector2(1, 0.07),
-1: Vector2(0.875, 0.07),
-2: Vector2(0.75, 0.07),
-3: Vector2(0.5, 0.07)
+0: Vector2(1, 0.1),
+1: Vector2(0.9, 0.25),
+2: Vector2(0.8, 0.5),
+3: Vector2(0.75, 0.75)
 }
 curve = SubResource("Curve_5fogj")
 
 [node name="Camera2D" type="Camera2D" parent="." node_paths=PackedStringArray("playerTransformer", "follow_targets")]
+zoom = Vector2(0.5, 0.5)
 process_callback = 0
 position_smoothing_enabled = true
 rotation_smoothing_enabled = true
 drag_horizontal_enabled = true
 drag_vertical_enabled = true
+drag_left_margin = 0.1
+drag_top_margin = 0.1
+drag_right_margin = 0.1
+drag_bottom_margin = 0.1
 editor_draw_limits = true
 editor_draw_drag_margin = true
 script = ExtResource("2_40pnx")
 playerTransformer = NodePath("../PlayerTransformer")
 follow_targets = [null]
 
-[node name="CameraZoom" type="Node2D" parent="."]
-script = ExtResource("6_6oo4f")
-
 [node name="HUD" parent="." instance=ExtResource("6_ovusk")]
 
+[node name="V" parent="HUD/Node2D" index="0"]
+anchors_preset = 11
+anchor_bottom = 1.0
+offset_left = -212.0
+offset_bottom = 0.0
+grow_vertical = 2
+
 [node name="Health" parent="HUD/Node2D/V" index="0"]
-health_mat = SubResource("ShaderMaterial_4fqsc")
+health_mat = SubResource("ShaderMaterial_1dp2c")
+
+[node name="Mana" parent="HUD/Node2D/V" index="1"]
+custom_minimum_size = Vector2(0, 15)
+size_flags_vertical = 2
+
+[node name="TextureRect2" parent="HUD/Node2D/V/Mana" index="0"]
+material = SubResource("ShaderMaterial_lnxfk")
 
 [node name="H" parent="HUD/Node2D" index="1"]
 anchors_preset = 7
 offset_left = -134.5
-offset_top = -74.0
-offset_right = 134.5
+offset_top = -100.0
+offset_right = 71.5
 
-[node name="Blackout" parent="HUD/Node2D" index="3"]
-visible = true
+[node name="HotkeyContainer" parent="HUD/Node2D/H/V" index="1"]
+crystal_hotkey = ExtResource("17_tygwl")
+
+[node name="Notifications" parent="HUD/Node2D" index="4"]
+letter_curve = SubResource("Curve_5hsl1")
+duration = 5.0
 
 [node name="PlayerTransformer" type="Node2D" parent="." node_paths=PackedStringArray("mapSwitcher")]
 script = ExtResource("7_n5qm7")
 mapSwitcher = NodePath("..")
-forms = Array[PackedScene]([ExtResource("1_5cn6k"), ExtResource("8_x3a12")])
+forms = Array[PackedScene]([ExtResource("1_5cn6k"), ExtResource("8_x3a12"), ExtResource("20_t1y5x")])
 
 [node name="EventsManager" type="Node2D" parent="."]
 script = ExtResource("10_1dmyj")
@@ -502,27 +852,35 @@ z_index = 6
 script = ExtResource("11_iu0pk")
 hit_number_scene = ExtResource("12_ewb3a")
 
-[node name="DeathTransition" type="Node2D" parent="." node_paths=PackedStringArray("cam_zoom", "map_switcher", "player_trans")]
+[node name="DeathTransition" type="Node2D" parent="." node_paths=PackedStringArray("cam_zoom", "map_switcher", "fogManager", "player_trans", "bgmManager", "mobSpawner")]
 script = ExtResource("13_f3cb0")
 zoom = 5.0
 cam_zoom = NodePath("../CameraZoom")
 map_switcher = NodePath("..")
+fogManager = NodePath("../FogManager")
 fade_curve = SubResource("Curve_rrtju")
 bed_coords = Vector2(-430.407, 1110)
 player_trans = NodePath("../PlayerTransformer")
+bgmManager = NodePath("../BGMManager")
+mobSpawner = NodePath("../MobSpawner")
 
 [node name="SkillsManager" type="Node2D" parent="." node_paths=PackedStringArray("playerTransformer", "eventsManager")]
 script = ExtResource("14_p5owg")
 playerTransformer = NodePath("../PlayerTransformer")
 eventsManager = NodePath("../EventsManager")
-skills = Array[Resource("res://Abilities/SkillData.gd")]([SubResource("Resource_s1w5c"), SubResource("Resource_afjdu"), SubResource("Resource_fncvu"), SubResource("Resource_obn5l"), SubResource("Resource_kdign"), SubResource("Resource_u3ndb"), SubResource("Resource_e35di"), SubResource("Resource_863ko"), SubResource("Resource_vkq4h"), SubResource("Resource_j72fp"), SubResource("Resource_6lofm")])
+skills = Array[Resource("res://Abilities/SkillData.gd")]([SubResource("Resource_s1w5c"), SubResource("Resource_afjdu"), SubResource("Resource_fncvu"), SubResource("Resource_obn5l"), SubResource("Resource_kdign"), SubResource("Resource_u3ndb"), SubResource("Resource_e35di"), SubResource("Resource_863ko"), SubResource("Resource_vkq4h"), SubResource("Resource_j72fp"), SubResource("Resource_6lofm"), SubResource("Resource_5hoxe"), SubResource("Resource_imvh0"), SubResource("Resource_vjv03"), SubResource("Resource_h2fkq"), SubResource("Resource_37iud"), SubResource("Resource_ittws")])
 roll_hit_times = 5.0
-slime_transform_kills_type = Vector2i(5, 0)
+slime_transform_kills_type = Vector2i(5, 1)
 slime_dash_hit_times = 5.0
-slam_kills_type = Vector2i(5, 1)
+slam_kills_type = Vector2i(5, 2)
 pierce_slam_amount_used = 15.0
-spin_kills_type = Array[Vector2i]([Vector2i(25, 0), Vector2i(15, 1)])
-spit_kills_type = Array[Vector2i]([Vector2i(10, 0), Vector2i(10, 1)])
+spin_kills_type = Array[Vector2i]([Vector2i(1, 1), Vector2i(1, 2), Vector2i(2, 3)])
+spit_kills_type = Array[Vector2i]([Vector2i(10, 1)])
+teleport_hit_times = 1.0
+bow_kills_type = Array[Vector2i]([Vector2i(4, 5)])
+shield_kills_type = Array[Vector2i]([Vector2i(2, 6)])
+minefield_kills_type = Array[Vector2i]([Vector2i(5, 4)])
+crystal_transform_kills_type = Array[Vector2i]([Vector2i(5, 4)])
 
 [node name="Node2D2" type="Node2D" parent="."]
 
@@ -533,34 +891,34 @@ fade_curve = SubResource("Curve_es0uh")
 duration = 1.0
 
 [node name="DirectionalLight2D" type="DirectionalLight2D" parent="."]
-color = Color(0.168627, 0.168627, 0.168627, 1)
-energy = 0.0
-blend_mode = 1
+energy = 0.25
 
 [node name="SceneManager" type="Node2D" parent="." node_paths=PackedStringArray("mapSwitcher")]
 script = ExtResource("17_yma07")
 mapSwitcher = NodePath("..")
 
-[node name="MobSpawner" type="Node2D" parent="." node_paths=PackedStringArray("wall_cast")]
-script = ExtResource("23_exqju")
-mobs = Array[PackedScene]([ExtResource("24_71yga"), ExtResource("25_3wyne"), ExtResource("26_6sh4w"), ExtResource("27_hxr2g"), ExtResource("28_qbifq"), ExtResource("29_0j4as"), ExtResource("30_x87vw")])
-enable_spawn_mobs = true
-wall_cast = NodePath("WallCast")
-spawn_cooldown = 4.0
-max_spawns = 20
-max_loops = 30
-
-[node name="WallCast" type="ShapeCast2D" parent="MobSpawner"]
+[node name="WallCast" type="ShapeCast2D" parent="."]
 shape = SubResource("RectangleShape2D_ctt1a")
 target_position = Vector2(0, 0)
 
-[node name="BGMManager" type="Node2D" parent="." node_paths=PackedStringArray("bgm_in", "bgm_out")]
+[node name="MobSpawner" type="Node2D" parent="." node_paths=PackedStringArray("wall_cast")]
+script = ExtResource("23_exqju")
+mobs = Array[PackedScene]([ExtResource("24_71yga"), ExtResource("25_3wyne"), ExtResource("26_6sh4w"), ExtResource("27_hxr2g"), ExtResource("29_4krdf"), ExtResource("29_0j4as"), ExtResource("30_x87vw")])
+enable_spawn_mobs = true
+wall_cast = NodePath("../WallCast")
+spawn_cooldown = 15.0
+max_spawns = 10
+max_loops = 300
+
+[node name="BGMManager" type="Node2D" parent="." node_paths=PackedStringArray("bgm_in", "bgm_out", "eventsManager")]
 script = ExtResource("31_hkun4")
 bgm_in = NodePath("In")
 bgm_out = NodePath("Out")
-bgms = Array[AudioStream]([ExtResource("32_hmjui"), ExtResource("33_4iyq1"), ExtResource("34_78o37"), ExtResource("34_uv8k1"), ExtResource("36_1mfye"), ExtResource("37_qrd7f"), ExtResource("38_rcbr1"), ExtResource("39_jwlhh"), ExtResource("40_os740"), ExtResource("41_kfalm"), ExtResource("42_x4dd5"), ExtResource("43_ec6kv"), ExtResource("45_0frrd"), ExtResource("46_t4hw1")])
+bgms = Array[AudioStream]([ExtResource("32_hmjui"), ExtResource("33_4iyq1"), ExtResource("34_78o37"), ExtResource("34_uv8k1"), ExtResource("36_1mfye"), ExtResource("37_qrd7f"), ExtResource("38_rcbr1"), ExtResource("39_jwlhh"), ExtResource("40_os740"), ExtResource("41_kfalm"), ExtResource("42_x4dd5"), ExtResource("43_ec6kv"), ExtResource("45_0frrd"), ExtResource("46_t4hw1"), ExtResource("53_nb0fy")])
 curveIn = SubResource("Curve_ag5sl")
 curveOut = SubResource("Curve_e0kv2")
+pitch_hp_curve = SubResource("Curve_edile")
+eventsManager = NodePath("../EventsManager")
 
 [node name="In" type="AudioStreamPlayer" parent="BGMManager"]
 bus = &"Music"
@@ -568,10 +926,20 @@ bus = &"Music"
 [node name="Out" type="AudioStreamPlayer" parent="BGMManager"]
 bus = &"Music"
 
-[node name="DayNightManager" type="Node2D" parent="."]
+[node name="DayNightManager" type="Node2D" parent="." node_paths=PackedStringArray("world_envo")]
 script = ExtResource("45_ga08e")
-minutes_per_day = 5.0
+minutes_per_day = 2.5
+world_envo = NodePath("../WorldEnvironment")
+bcs = Vector3(1.25, 1.01, 0.75)
+alpha_night = 0.5
 day_night_curve = SubResource("Curve_c2m66")
+
+[node name="CameraEffects" type="Node2D" parent="." node_paths=PackedStringArray("camera2d")]
+script = ExtResource("55_eo6jx")
+camera2d = NodePath("../Camera2D")
+zoom_curve = SubResource("Curve_iatmx")
+noise = SubResource("FastNoiseLite_gk7h4")
 
 [editable path="HUD"]
 [editable path="HUD/Node2D/V/Mana"]
+[editable path="HUD/Node2D/Options"]

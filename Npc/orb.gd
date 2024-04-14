@@ -4,8 +4,9 @@ extends SkillAction
 @export var spawn_point_root : Node2D
 @export var scale_increase_range : Vector2
 @export var damage_time : float
+@export var animTree : AnimationTree
 
-var current_scale
+var current_scale : float
 var current_damage_time : float
 var active_body 
 var created_pools : Array
@@ -44,7 +45,8 @@ func increase_scale():
 		create_pool()
 		current_index += 1
 		if(current_index > spawn_points.size() - 1):
-			_fadeout()
+			AnimatorHelper._playanimTreeBlend2D(animTree,"Throw",1.0)
+			#_fadeout()
 			return
 		 
 	current_pool.scale = Vector2.ONE * current_scale
@@ -57,7 +59,7 @@ func on_pool_enter(body):
 	current_damage_time = damage_time
 	active_body = body
 	_ApplyDamage(body,true)
-func on_pool_exit():
+func on_pool_exit(x):
 	active_body = null
 		
 func _physics_process(delta):

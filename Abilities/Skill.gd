@@ -6,17 +6,21 @@ var eventsManager : EventsManager
 var obtained : bool
 var playerTransformer : PlayerTransformer
 var skillsManager : SkillsManager
-
+var saveManager : SaveManager
 var display_name : String :
 	get:
 		return skillData.displayName
 
 signal OnObtain(skill)	
-
-func _setup(p_skillData, p_eventsManager: EventsManager,p_skillsManager):
+func load_vars(loaded_data):
+	pass
+func save_vars():
+	pass
+func _setup(p_skillData, p_eventsManager: EventsManager,p_skillsManager,p_saveManager):
 	skillData = p_skillData
 	eventsManager = p_eventsManager
 	skillsManager = p_skillsManager
+	saveManager = p_saveManager
 	obtained = false
 	_setup_obtain_event()
 func _setup_obtain_event():

@@ -5,9 +5,11 @@ extends TileManager
 @export var offset_radius : float
 @export var amount : int
 @export var safe_loops : int
+@export_file() var tile_path : String
 var current_index
 func _preload_scene():
-	tile = preload("res://Maps/grass.tscn")
+	tile = load(tile_path)
+	#tile = preload("res://Maps/grass2.tscn")
 func _create_tiles():
 	for i in amount:
 		current_index = i
@@ -29,13 +31,13 @@ func check_other_layers(tilePos,layer)-> bool:
 func _create_tile(tilePos,layer):
 	if(check_other_layers(tilePos,layer)):
 		return
-		
+	var layer_modulate = tileMap.get_layer_modulate(layer)	
 	if(current_index == 0):
 		super(tilePos,layer)
 		created_tile.setup(prng.range_f(-99,99),prng.range_i_mn(4,7))
 		var resource_amount = prng.range_i_mn(2,5)
 		created_tile.set_meta("resource_amount", resource_amount)
-
+		created_tile.modulate = layer_modulate
 		created_tile.OnPickUp.connect(_erase_tile)
 		return
 		
@@ -63,6 +65,7 @@ func _create_tile(tilePos,layer):
 		created_tile.scale = Vector2(1.0,1.0) * prng.range_f(scale_range.x,scale_range.y)
 		var resource_amount = prng.range_i_mn(2,5)
 		created_tile.set_meta("resource_amount", resource_amount)
-
+		created_tile.modulate = layer_modulate
 		created_tile.OnPickUp.connect(_erase_tile)
-		
+		if(debug):
+			print("Creating tile at: %v" % created_tile.global_position)

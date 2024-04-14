@@ -1,16 +1,33 @@
-[gd_scene load_steps=44 format=3 uid="uid://dhgk51pkclb64"]
+[gd_scene load_steps=56 format=3 uid="uid://dhgk51pkclb64"]
 
 [ext_resource type="PackedScene" uid="uid://ht563teetiuq" path="res://Mobs/Crystal/crystal_knight.tscn" id="1_71rrt"]
 [ext_resource type="Texture2D" uid="uid://bvufnuon1sns8" path="res://Mobs/Textures/crystal_golem2.png" id="2_ma8wb"]
 [ext_resource type="Script" path="res://Mobs/Crystal/CrystalEngineerAI.gd" id="3_rmpfy"]
+[ext_resource type="AudioStream" uid="uid://dalavcncrgs28" path="res://SFX/whoosh_object_pass_small_left_01.wav" id="4_11l7o"]
 [ext_resource type="Script" path="res://SkillStats.gd" id="4_dm1or"]
 [ext_resource type="Script" path="res://AnimationTransition.gd" id="5_50tck"]
+[ext_resource type="AudioStream" uid="uid://bn1orku8ayoky" path="res://SFX/ice_spell_freeze_frost_05.wav" id="5_urb81"]
+[ext_resource type="AudioStream" uid="uid://yhaygs3kosvx" path="res://SFX/whoosh_object_pass_small_right_01.wav" id="5_w16w3"]
+[ext_resource type="AudioStream" uid="uid://dc8ef0cnsnwxx" path="res://SFX/time_warp_reverse_spell_cast_06.wav" id="6_8ur66"]
+[ext_resource type="AudioStream" uid="uid://csq5nqk842dqd" path="res://SFX/casting_charge_matter_grow_03.wav" id="6_822ut"]
 [ext_resource type="Script" path="res://StatsResource.gd" id="6_alkul"]
+[ext_resource type="Shader" path="res://UI/LiquidMeshBox.gdshader" id="7_rcvuj"]
+
+[sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_qldso"]
+random_pitch = 1.5
+streams_count = 1
+stream_0/stream = ExtResource("4_11l7o")
+stream_0/weight = 1.0
+
+[sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_4ywcv"]
+random_pitch = 1.5
+streams_count = 1
+stream_0/stream = ExtResource("5_w16w3")
+stream_0/weight = 1.0
 
 [sub_resource type="Animation" id="Animation_h73gt"]
 resource_name = "Attack"
 length = 1.2
-step = 0.01
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
@@ -118,9 +135,37 @@ tracks/7/keys = {
 "update": 1,
 "values": [-1.0]
 }
+tracks/8/type = "audio"
+tracks/8/imported = false
+tracks/8/enabled = true
+tracks/8/path = NodePath("AudioStreamPlayer2D")
+tracks/8/interp = 1
+tracks/8/loop_wrap = true
+tracks/8/keys = {
+"clips": [{
+"end_offset": 0.0,
+"start_offset": 0.0,
+"stream": SubResource("AudioStreamRandomizer_qldso")
+}, {
+"end_offset": 0.0,
+"start_offset": 0.0,
+"stream": SubResource("AudioStreamRandomizer_qldso")
+}, {
+"end_offset": 0.0,
+"start_offset": 0.0,
+"stream": SubResource("AudioStreamRandomizer_4ywcv")
+}, {
+"end_offset": 0.0,
+"start_offset": 0.0,
+"stream": SubResource("AudioStreamRandomizer_4ywcv")
+}],
+"times": PackedFloat32Array(0.4, 0.6, 0.8, 0.9)
+}
+tracks/8/use_blend = true
 
 [sub_resource type="Animation" id="Animation_01wae"]
 resource_name = "Attack_Cooldown"
+length = 5.0
 loop_mode = 1
 tracks/0/type = "method"
 tracks/0/imported = false
@@ -129,9 +174,12 @@ tracks/0/path = NodePath("AI")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(),
-"transitions": PackedFloat32Array(),
-"values": []
+"times": PackedFloat32Array(0.1),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [],
+"method": &"attack_done"
+}]
 }
 tracks/1/type = "value"
 tracks/1/imported = false
@@ -140,7 +188,7 @@ tracks/1/path = NodePath("AnimationTree:parameters/Attack_Ready/request")
 tracks/1/interp = 1
 tracks/1/loop_wrap = false
 tracks/1/keys = {
-"times": PackedFloat32Array(1),
+"times": PackedFloat32Array(5),
 "transitions": PackedFloat32Array(1),
 "update": 1,
 "values": [1]
@@ -152,16 +200,15 @@ tracks/2/path = NodePath("AnimationTree:parameters/Cooldown/add_amount")
 tracks/2/interp = 1
 tracks/2/loop_wrap = false
 tracks/2/keys = {
-"times": PackedFloat32Array(1),
+"times": PackedFloat32Array(5),
 "transitions": PackedFloat32Array(1),
 "update": 1,
 "values": [0.0]
 }
 
-[sub_resource type="Animation" id="Animation_tndu6"]
+[sub_resource type="Animation" id="Animation_l33jy"]
 resource_name = "Attack_Recover"
 length = 1.2
-step = 0.01
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
@@ -229,25 +276,67 @@ tracks/5/path = NodePath("AI")
 tracks/5/interp = 1
 tracks/5/loop_wrap = true
 tracks/5/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
+"times": PackedFloat32Array(0.1, 1.1),
+"transitions": PackedFloat32Array(1, 1),
 "values": [{
 "args": [],
 "method": &"turrets_recovered"
+}, {
+"args": [],
+"method": &"attack_done"
 }]
 }
 tracks/6/type = "value"
 tracks/6/imported = false
 tracks/6/enabled = true
-tracks/6/path = NodePath("AnimationTree:parameters/Walk/blend_amount")
+tracks/6/path = NodePath("AnimationTree:parameters/Cooldown/add_amount")
 tracks/6/interp = 1
 tracks/6/loop_wrap = true
 tracks/6/keys = {
-"times": PackedFloat32Array(0),
+"times": PackedFloat32Array(1.2),
 "transitions": PackedFloat32Array(1),
 "update": 1,
-"values": [0.0]
+"values": [1.0]
 }
+tracks/7/type = "value"
+tracks/7/imported = false
+tracks/7/enabled = true
+tracks/7/path = NodePath("AnimationTree:parameters/Walk/blend_amount")
+tracks/7/interp = 1
+tracks/7/loop_wrap = true
+tracks/7/keys = {
+"times": PackedFloat32Array(1.2),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [-1.0]
+}
+tracks/8/type = "audio"
+tracks/8/imported = false
+tracks/8/enabled = true
+tracks/8/path = NodePath("AudioStreamPlayer2D")
+tracks/8/interp = 1
+tracks/8/loop_wrap = true
+tracks/8/keys = {
+"clips": [{
+"end_offset": 0.0,
+"start_offset": 0.0,
+"stream": SubResource("AudioStreamRandomizer_qldso")
+}, {
+"end_offset": 0.0,
+"start_offset": 0.0,
+"stream": SubResource("AudioStreamRandomizer_qldso")
+}, {
+"end_offset": 0.0,
+"start_offset": 0.0,
+"stream": SubResource("AudioStreamRandomizer_4ywcv")
+}, {
+"end_offset": 0.0,
+"start_offset": 0.0,
+"stream": SubResource("AudioStreamRandomizer_4ywcv")
+}],
+"times": PackedFloat32Array(0.4, 0.6, 0.8, 0.9)
+}
+tracks/8/use_blend = true
 
 [sub_resource type="Animation" id="Animation_ar4f3"]
 resource_name = "Death"
@@ -302,6 +391,41 @@ tracks/2/keys = {
 "args": [],
 "method": &"remove"
 }]
+}
+tracks/3/type = "audio"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("AudioStreamPlayer2D")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"clips": [{
+"end_offset": 0.0,
+"start_offset": 0.0,
+"stream": ExtResource("5_urb81")
+}, {
+"end_offset": 0.0,
+"start_offset": 0.0,
+"stream": ExtResource("6_822ut")
+}],
+"times": PackedFloat32Array(0, 1.35)
+}
+tracks/3/use_blend = true
+
+[sub_resource type="Animation" id="Animation_68ydu"]
+resource_name = "DeathFull"
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [55]
 }
 
 [sub_resource type="Animation" id="Animation_1t254"]
@@ -535,6 +659,21 @@ tracks/2/keys = {
 "update": 1,
 "values": [1.0]
 }
+tracks/3/type = "audio"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("AudioStreamPlayer2D")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"clips": [{
+"end_offset": 0.0,
+"start_offset": 0.065,
+"stream": ExtResource("6_8ur66")
+}],
+"times": PackedFloat32Array(0)
+}
+tracks/3/use_blend = true
 
 [sub_resource type="Animation" id="Animation_i5d6o"]
 resource_name = "Still"
@@ -605,8 +744,9 @@ tracks/0/keys = {
 _data = {
 "Attack": SubResource("Animation_h73gt"),
 "Attack_Cooldown": SubResource("Animation_01wae"),
-"Attack_Recover": SubResource("Animation_tndu6"),
+"Attack_Recover": SubResource("Animation_l33jy"),
 "Death": SubResource("Animation_ar4f3"),
+"DeathFull": SubResource("Animation_68ydu"),
 "Idle": SubResource("Animation_1t254"),
 "Idle_2": SubResource("Animation_jy6t1"),
 "RESET": SubResource("Animation_smqcd"),
@@ -617,8 +757,12 @@ _data = {
 "Walk": SubResource("Animation_thi5r")
 }
 
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_x1pao"]
+animation = &"Death"
+
 [sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_g3qu4"]
 animation = &"Attack_Recover"
+play_mode = 1
 
 [sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_0di4g"]
 animation = &"Idle"
@@ -630,7 +774,7 @@ animation = &"Walk"
 animation = &"Idle_2"
 
 [sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_vhq0x"]
-animation = &"Death"
+animation = &"DeathFull"
 
 [sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_fxxgb"]
 animation = &"Rise"
@@ -654,6 +798,8 @@ animation = &"Attack"
 
 [sub_resource type="AnimationNodeBlend2" id="AnimationNodeBlend2_8vlhw"]
 
+[sub_resource type="AnimationNodeOneShot" id="AnimationNodeOneShot_nda7o"]
+
 [sub_resource type="AnimationNodeOneShot" id="AnimationNodeOneShot_y33hi"]
 
 [sub_resource type="AnimationNodeBlend2" id="AnimationNodeBlend2_mavcv"]
@@ -669,11 +815,13 @@ animation = &"TurnRight"
 [sub_resource type="AnimationNodeBlend3" id="AnimationNodeBlend3_gyoby"]
 
 [sub_resource type="AnimationNodeBlendTree" id="AnimationNodeBlendTree_fj3hn"]
-graph_offset = Vector2(-618.283, -45.9814)
+graph_offset = Vector2(-674.052, -184.785)
 nodes/Animation/node = SubResource("AnimationNodeAnimation_tovdw")
 nodes/Animation/position = Vector2(-800, 300)
+"nodes/Animation 10/node" = SubResource("AnimationNodeAnimation_x1pao")
+"nodes/Animation 10/position" = Vector2(1022.09, 512.887)
 "nodes/Animation 2/node" = SubResource("AnimationNodeAnimation_g3qu4")
-"nodes/Animation 2/position" = Vector2(-800, 420)
+"nodes/Animation 2/position" = Vector2(-798.493, 442.606)
 "nodes/Animation 3/node" = SubResource("AnimationNodeAnimation_0di4g")
 "nodes/Animation 3/position" = Vector2(-1580, 220)
 "nodes/Animation 4/node" = SubResource("AnimationNodeAnimation_12ibj")
@@ -681,7 +829,7 @@ nodes/Animation/position = Vector2(-800, 300)
 "nodes/Animation 5/node" = SubResource("AnimationNodeAnimation_r8m0u")
 "nodes/Animation 5/position" = Vector2(-1580, 100)
 "nodes/Animation 6/node" = SubResource("AnimationNodeAnimation_vhq0x")
-"nodes/Animation 6/position" = Vector2(1260, 360)
+"nodes/Animation 6/position" = Vector2(1355.95, 555.195)
 "nodes/Animation 7/node" = SubResource("AnimationNodeAnimation_fxxgb")
 "nodes/Animation 7/position" = Vector2(-1180, -140)
 "nodes/Animation 8/node" = SubResource("AnimationNodeAnimation_jqigs")
@@ -695,9 +843,11 @@ nodes/Attack_Ready/position = Vector2(-20, 100)
 nodes/Cooldown/node = SubResource("AnimationNodeAdd2_ve15d")
 nodes/Cooldown/position = Vector2(240, 260)
 nodes/Death/node = SubResource("AnimationNodeBlend2_wn5km")
-nodes/Death/position = Vector2(1460, 180)
+nodes/Death/position = Vector2(1549.68, 309.532)
 nodes/LeftOrRight/node = SubResource("AnimationNodeBlend2_8vlhw")
 nodes/LeftOrRight/position = Vector2(760, 380)
+nodes/OnDeath/node = SubResource("AnimationNodeOneShot_nda7o")
+nodes/OnDeath/position = Vector2(1225.26, 271.901)
 nodes/Spawn/node = SubResource("AnimationNodeOneShot_y33hi")
 nodes/Spawn/position = Vector2(-480, -120)
 nodes/Spawned/node = SubResource("AnimationNodeBlend2_mavcv")
@@ -711,13 +861,13 @@ nodes/TurnRight/position = Vector2(560, 500)
 nodes/Walk/node = SubResource("AnimationNodeBlend3_gyoby")
 nodes/Walk/position = Vector2(-1168.42, 107.625)
 nodes/output/position = Vector2(1720, 180)
-node_connections = [&"Attack", 0, &"Spawn", &"Attack", 1, &"Animation", &"Attack_Ready", 0, &"Attack", &"Attack_Ready", 1, &"Animation 2", &"Cooldown", 0, &"Attack_Ready", &"Cooldown", 1, &"Animation 9", &"Death", 0, &"Turn", &"Death", 1, &"Animation 6", &"LeftOrRight", 0, &"TurnLeft", &"LeftOrRight", 1, &"TurnRight", &"Spawn", 0, &"Spawned", &"Spawn", 1, &"Animation 7", &"Spawned", 0, &"Animation 8", &"Spawned", 1, &"Walk", &"Turn", 0, &"Cooldown", &"Turn", 1, &"LeftOrRight", &"Walk", 0, &"Animation 5", &"Walk", 1, &"Animation 3", &"Walk", 2, &"Animation 4", &"output", 0, &"Death"]
+node_connections = [&"Attack", 0, &"Spawn", &"Attack", 1, &"Animation", &"Attack_Ready", 0, &"Attack", &"Attack_Ready", 1, &"Animation 2", &"Cooldown", 0, &"Attack_Ready", &"Cooldown", 1, &"Animation 9", &"Death", 0, &"OnDeath", &"Death", 1, &"Animation 6", &"LeftOrRight", 0, &"TurnLeft", &"LeftOrRight", 1, &"TurnRight", &"OnDeath", 0, &"Turn", &"OnDeath", 1, &"Animation 10", &"Spawn", 0, &"Spawned", &"Spawn", 1, &"Animation 7", &"Spawned", 0, &"Animation 8", &"Spawned", 1, &"Walk", &"Turn", 0, &"Cooldown", &"Turn", 1, &"LeftOrRight", &"Walk", 0, &"Animation 5", &"Walk", 1, &"Animation 3", &"Walk", 2, &"Animation 4", &"output", 0, &"Death"]
 
 [sub_resource type="Resource" id="Resource_h1fmh"]
 script = ExtResource("4_dm1or")
 cooldown = 20.0
 speed = 5.0
-damage = 5.0
+damage = -15.0
 mana_usage = 0.0
 health_usage = 0.0
 
@@ -730,10 +880,34 @@ blend_add_value = 0.0
 
 [sub_resource type="Resource" id="Resource_86its"]
 script = ExtResource("6_alkul")
-health = 40.0
+health = 80.0
 mana = 1.0
 defense = 1.0
 stamina = 300.0
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_l05cs"]
+resource_local_to_scene = true
+shader = ExtResource("7_rcvuj")
+shader_parameter/boxB = Vector2(0.67, 0.655)
+shader_parameter/resolution = Vector2(2, 1.5)
+shader_parameter/scale = Vector2(33, 10)
+shader_parameter/cell_size = 52.0
+shader_parameter/from_clr = Color(0.35, 1, 1, 1)
+shader_parameter/to_clr = Color(0.52549, 0.129412, 0, 1)
+shader_parameter/backFillColour = Color(0.62, 1, 1, 1)
+shader_parameter/frontFillInnerColour = Color(0.35, 1, 1, 1)
+shader_parameter/frontFillOuterColour = Color(0, 0.35, 1, 1)
+shader_parameter/ringColour = Color(0, 0.16, 0.13, 1)
+shader_parameter/fresnelColour = Color(0, 0.88, 1, 1)
+shader_parameter/innerRingGlowColour = Color(0, 0, 0, 1)
+shader_parameter/fillcolour = Color(1, 1, 1, 1)
+shader_parameter/ringWidth = 0.15
+shader_parameter/innerCircleRadiusOffset = 0.0
+shader_parameter/fill_value = 0.966
+shader_parameter/fill_value_x = 1.0
+shader_parameter/tolerance = 1.0
+shader_parameter/pos_range_x = Vector2(0, 10)
+shader_parameter/pos_range_y = Vector2(0, 10)
 
 [node name="crystal_engineer" instance=ExtResource("1_71rrt")]
 
@@ -768,4 +942,11 @@ turret_path = "res://Mobs/Crystal/crystal_tower.tscn"
 turret_type = 1
 turret_transition = SubResource("Resource_ew56q")
 stats_resource = SubResource("Resource_86its")
-disabled_states = Array[String](["Wander"])
+
+[node name="AudioStreamPlayer2D" parent="." index="11"]
+max_distance = 600.0
+
+[node name="TextureRect2" parent="Health" index="0"]
+material = SubResource("ShaderMaterial_l05cs")
+
+[editable path="Health"]

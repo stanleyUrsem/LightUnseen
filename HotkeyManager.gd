@@ -5,6 +5,7 @@ class_name HotkeyManager
 @export var manaManager : ManaManager
 @export var regular_hotkey : PackedScene
 @export var slime_hotkey : PackedScene
+@export var crystal_hotkey : PackedScene
 @export var animated_slime_hotkey : PackedScene
 @export var consumable_hotkey : PackedScene
 
@@ -44,7 +45,7 @@ func get_hotkey_scene(form_type : AbilityData.form_enum, toggle):
 			else:
 				return slime_hotkey
 		AbilityData.form_enum.CrystalGolem:
-			pass
+			return crystal_hotkey 
 		AbilityData.form_enum.Consumable:
 			return consumable_hotkey 
 			
@@ -59,11 +60,11 @@ func destroy_current_hotkeys():
 func create_hotkey(data : AbilityData):
 	var hotkey = get_hotkey_scene(data.form_type,data.toggle).instantiate()
 	var icon : TextureRect = hotkey.get_node("Background/Icon")
-	var keybind : RichTextLabel = hotkey.get_node("Background/H/V/Keybind")
+	var keybind : RichTextLabel = hotkey.get_node("Background/Keybind")
 	var anim: AnimationPlayer = hotkey.get_node_or_null("AnimationPlayer")
 	hotkey.custom_minimum_size = Vector2(hotkey_size,hotkey_size)
 	hotkey.setup(data.keyBinds,keybind,anim,data.toggle,
-	data.mana,self,data.hotkey_index)
+	data.mana,self,data.hotkey_index,data.icon_mat,data.hasCooldown)
 	hotkey.tooltip_text = data.displayName
 	var atlas :AtlasTexture= AtlasTexture.new()
 	atlas.atlas = data.icon.atlas
@@ -126,9 +127,9 @@ func get_keybind_text(index,keybinds) -> String:
 
 func set_keybind(keybind_label:RichTextLabel,keybinds:Array[String]):
 	if(controller_activated):
-		keybind_label.text = get_keybind_text(1,keybinds)
+		keybind_label.text ="[center]%s" % get_keybind_text(1,keybinds)
 	else:
-		keybind_label.text = get_keybind_text(0,keybinds)
+		keybind_label.text = "[center]%s" % get_keybind_text(0,keybinds)
 		
 
 

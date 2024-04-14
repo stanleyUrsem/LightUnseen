@@ -93,7 +93,7 @@ material = SubResource("ShaderMaterial_hat5p")
 position = Vector2(0, 16)
 scale = Vector2(1e-05, 1e-05)
 collision_layer = 4
-collision_mask = 6
+collision_mask = 20
 
 [node name="Node2D2" type="Node2D" parent="."]
 

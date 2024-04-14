@@ -7,7 +7,8 @@ extends Node2D
 var dayNightManager
 func _ready():
 	dayNightManager = get_node("/root/MAIN/DayNightManager")
-	enabled = false
+	enabled = dayNightManager.enabled 
+	#enabled = false
 	
 func set_day():
 	modulate = day

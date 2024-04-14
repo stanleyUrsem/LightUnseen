@@ -1,5 +1,4 @@
 extends MovableAbilityaction
-@export var extra_dist : float
 @onready var collider = $"CollisionShape2D"
 
 @export var animTree : AnimationTree

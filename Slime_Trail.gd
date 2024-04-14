@@ -20,6 +20,7 @@ func _ready():
 	if(auto_start):
 		var p_prng = PRNG.new(9091023)
 		_setup(Vector2.ZERO,get_parent(),Vector2.ZERO,p_prng)
+		_setup_vars(data.speed,data.damage)
 func _fade():
 	if(auto_fade):
 		super()

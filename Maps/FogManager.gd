@@ -1,5 +1,7 @@
 extends Node2D
 
+class_name FogManager
+
 @export var mats : Array[Material]
 @export var duration: float
 @onready var cameraZoom : CameraZoom = $/root/MAIN/CameraZoom
@@ -8,6 +10,8 @@ extends Node2D
 @export var alpha : float
 @export var curve : Curve
 
+var alphaX : float
+var alphaY : float
 var tween : Tween
 var currentHeight : int
 var saved_position : Vector2
@@ -19,15 +23,14 @@ var change_elevation : bool
 var exit_body
 var max_distance : float
 var current_distance : float
+var use_y : bool
 func _ready():
 	setup()
 
 func setup():
 	currentHeight = 0
-	for mat in mats:
-		mat.set_shader_parameter("height", currentHeight)
-		mat.set_shader_parameter("new_height", currentHeight)
-		mat.set_shader_parameter("transition", 0.0)
+	new_height = 0
+	set_fog_manually(0.0)
 
 func add_fog_data(area,old,new):
 	area.body_entered.connect(save_position_on_enter.bind(old,new,
@@ -45,6 +48,8 @@ func save_position_on_enter(body, old_height,p_new_height,col_node):
 	exit_position = area.global_position
 	#entry_position = area.to_global(col_node.shape.size)
 	entry_position = area.get_child(1).global_position
+	var x_dist = abs(exit_position.x - entry_position.x)
+	use_y = abs(exit_position.y - entry_position.y) > x_dist
 	currentHeight = old_height
 	new_height = p_new_height
 	for mat in mats:
@@ -71,8 +76,14 @@ func _process(delta):
 	body_position = exit_body.global_position 
 	current_distance = (body_position.y -  (entry_position).y)
 
-	alpha = remap(body_position.y,exit_position.y,entry_position.y,0.0,1.0)
+	#alpha = remap(body_position.y,exit_position.y,entry_position.y,0.0,1.0)
+	#alpha = clamp(alpha,0.0,1.0)
+	
+	alphaY = remap(body_position.y,exit_position.y,entry_position.y,0.0,1.0)
+	alphaX = remap(body_position.x,exit_position.x,entry_position.x,0.0,1.0)
+	alpha = alphaY if use_y else alphaX
 	alpha = clamp(alpha,0.0,1.0)
+	
 	for mat in mats:
 		mat.set_shader_parameter("transition",curve.sample(alpha))
 	var zoom = lerp(heightToZoom[currentHeight].x,heightToZoom[new_height].x,alpha)
@@ -89,6 +100,8 @@ func set_shader_value(value: float):
 		
 func set_fog_manually(alpha):
 	for mat in mats:
+		mat.set_shader_parameter("height", currentHeight)
+		mat.set_shader_parameter("new_height", new_height)
 		mat.set_shader_parameter("transition",curve.sample(alpha))
 	var zoom = lerp(heightToZoom[currentHeight].x,heightToZoom[new_height].x,alpha)
 	var bloom = lerp(heightToZoom[currentHeight].y,heightToZoom[new_height].y,alpha)

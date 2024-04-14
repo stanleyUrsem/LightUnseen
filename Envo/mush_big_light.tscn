@@ -154,7 +154,6 @@ scale = Vector2(1.5, 1)
 texture = SubResource("GradientTexture2D_0ngto")
 
 [node name="PointLight2D" type="PointLight2D" parent="Node2D"]
-visible = false
 color = Color(0.25098, 0.2, 0.568627, 1)
 energy = 20.0
 texture = SubResource("GradientTexture2D_5i3di")

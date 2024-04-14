@@ -1,0 +1,16 @@
+[gd_scene load_steps=3 format=3 uid="uid://c354br5mie837"]
+
+[ext_resource type="Script" path="res://DynamicAbilityAction.gd" id="2_bauob"]
+[ext_resource type="PackedScene" uid="uid://dl6eusg54j3s6" path="res://Abilities/mine_field_ground.tscn" id="3_sowli"]
+
+[node name="MineField" type="Node2D" node_paths=PackedStringArray("fadeTimer")]
+z_index = 8
+script = ExtResource("2_bauob")
+animSpriteTemplate = ExtResource("3_sowli")
+offset = Vector2(24, 0)
+fadeTimer = NodePath("Timer")
+
+[node name="Timer" type="Timer" parent="."]
+wait_time = 6.0
+one_shot = true
+autostart = true

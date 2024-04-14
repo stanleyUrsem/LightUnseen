@@ -1,4 +1,4 @@
-[gd_scene load_steps=34 format=3 uid="uid://gqgfhbwrfaqx"]
+[gd_scene load_steps=43 format=3 uid="uid://gqgfhbwrfaqx"]
 
 [ext_resource type="PackedScene" uid="uid://bkdu7ke3vkapc" path="res://Mobs/Textures/Slime/gatherer_slime.tscn" id="1_6nj71"]
 [ext_resource type="Shader" path="res://swap_color.gdshader" id="2_wqkb4"]
@@ -7,6 +7,7 @@
 [ext_resource type="Texture2D" uid="uid://bvb0dtyefcrr0" path="res://Npc/npc_miner.png" id="5_0od2r"]
 [ext_resource type="Script" path="res://Npc/NPC_farm_miner.gd" id="6_8m52q"]
 [ext_resource type="Script" path="res://Mobs/SlimeStatsResource.gd" id="7_pogaf"]
+[ext_resource type="Shader" path="res://UI/LiquidMeshBox.gdshader" id="8_ci4ve"]
 
 [sub_resource type="GradientTexture1D" id="GradientTexture1D_ljtad"]
 gradient = ExtResource("4_qv42c")
@@ -21,8 +22,158 @@ shader_parameter/index = null
 shader_parameter/palette_in = ExtResource("3_ghoai")
 shader_parameter/palette_out = SubResource("GradientTexture1D_ljtad")
 
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_bcaca"]
+load_path = "res://.godot/imported/npc_grad.png-df171e15f076bafecc55b51988282185.ctex"
+
+[sub_resource type="Gradient" id="Gradient_6e6ho"]
+interpolation_mode = 1
+interpolation_color_space = 1
+offsets = PackedFloat32Array(0, 0.722222, 0.777778)
+colors = PackedColorArray(0, 0, 0, 0, 0.803922, 0.556863, 0.12549, 1, 0.529412, 0.403922, 0, 1)
+metadata/_snap_count = 18
+metadata/_snap_enabled = true
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_nn0jv"]
+gradient = SubResource("Gradient_6e6ho")
+width = 18
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_3k1qg"]
+shader = ExtResource("2_wqkb4")
+shader_parameter/alpha_override = 1.0
+shader_parameter/num_colors = 18
+shader_parameter/precision = 0.0
+shader_parameter/index = null
+shader_parameter/palette_in = SubResource("CompressedTexture2D_bcaca")
+shader_parameter/palette_out = SubResource("GradientTexture1D_nn0jv")
+
 [sub_resource type="Animation" id="Animation_mnsay"]
 resource_name = "Death"
+length = 0.5
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.4),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
+"update": 1,
+"values": [22, 23, 24, 25, 26]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Sprite2D/Eyes:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.4),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
+"update": 1,
+"values": [Vector2(0, -3), Vector2(-3, 0), Vector2(-4, 2), Vector2(-5, 1), Vector2(-9, 12)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Sprite2D/Eyes:rotation")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [0.0, -1.5708]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Sprite2D/Eyes:modulate")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0, 0.4),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 1), Color(0.211765, 0.211765, 0.211765, 1)]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("AnimationTree:parameters/Death/blend_amount")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0.5),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [1.0]
+}
+tracks/5/type = "method"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("AI")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0.5),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [],
+"method": &"remove"
+}]
+}
+
+[sub_resource type="Animation" id="Animation_1nqo0"]
+resource_name = "DeathFull"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [26]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Sprite2D/Eyes:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [Vector2(-9, 12)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Sprite2D/Eyes:rotation")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [-1.5708]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Sprite2D/Eyes:modulate")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [Color(0.211765, 0.211765, 0.211765, 1)]
+}
 
 [sub_resource type="Animation" id="Animation_ed7y0"]
 resource_name = "Idle"
@@ -39,6 +190,18 @@ tracks/0/keys = {
 "transitions": PackedFloat32Array(1, 1, 1, 1, 1),
 "update": 1,
 "values": [0, 1, 2, 3, 4]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Sprite2D/Eyes:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.3, 0.5),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 1,
+"values": [Vector2(0, -3), Vector2(0, -4), Vector2(0, -2), Vector2(0, -2)]
 }
 
 [sub_resource type="Animation" id="Animation_ij77c"]
@@ -82,7 +245,79 @@ tracks/1/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 0,
-"values": [Vector2(-1, 1)]
+"values": [Vector2(1, 1)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Sprite2D/Eyes:position")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0.001),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [Vector2(0, -3)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Sprite2D/Eyes/Sprite2D2:position")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0.001),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [Vector2(3, -1)]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("Sprite2D/Eyes/Sprite2D:position")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0.001),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [Vector2(0, -1)]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("Sprite2D/Eyes:rotation")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
+tracks/6/type = "value"
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/path = NodePath("Sprite2D/Eyes:modulate")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+tracks/7/type = "value"
+tracks/7/imported = false
+tracks/7/enabled = true
+tracks/7/path = NodePath("AnimationTree:parameters/Death/blend_amount")
+tracks/7/interp = 1
+tracks/7/loop_wrap = true
+tracks/7/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
 }
 
 [sub_resource type="Animation" id="Animation_r3k4w"]
@@ -117,6 +352,18 @@ tracks/0/keys = {
 "update": 1,
 "values": [0]
 }
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Sprite2D/Eyes:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0, -3)]
+}
 
 [sub_resource type="Animation" id="Animation_sgpl6"]
 resource_name = "Walk"
@@ -133,6 +380,18 @@ tracks/0/keys = {
 "transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1),
 "update": 1,
 "values": [5, 6, 7, 8, 9, 10]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Sprite2D/Eyes:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.4, 0.5),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1),
+"update": 0,
+"values": [Vector2(1, -3), Vector2(1, -2), Vector2(1, -1), Vector2(1, 0), Vector2(1, -1), Vector2(1, -2)]
 }
 
 [sub_resource type="Animation" id="Animation_bcbra"]
@@ -151,10 +410,23 @@ tracks/0/keys = {
 "update": 1,
 "values": [10, 11, 12, 13, 14, 11, 13, 11, 12, 10]
 }
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Sprite2D/Eyes:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.3, 0.4, 0.45, 0.6, 0.65, 0.85),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1),
+"update": 0,
+"values": [Vector2(1, -2), Vector2(1, -4), Vector2(1, -5), Vector2(1, -6), Vector2(1, -4), Vector2(1, -5), Vector2(1, -4), Vector2(1, -2)]
+}
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_64fuy"]
 _data = {
 "Death": SubResource("Animation_mnsay"),
+"DeathFull": SubResource("Animation_1nqo0"),
 "Idle": SubResource("Animation_ed7y0"),
 "LeftTurn": SubResource("Animation_ij77c"),
 "RESET": SubResource("Animation_kwo3q"),
@@ -177,6 +449,9 @@ animation = &"Walk"
 animation = &"Still"
 
 [sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_vhq0x"]
+animation = &"DeathFull"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_umlw7"]
 animation = &"Death"
 
 [sub_resource type="AnimationNodeBlend2" id="AnimationNodeBlend2_rta5d"]
@@ -184,6 +459,8 @@ animation = &"Death"
 [sub_resource type="AnimationNodeBlend2" id="AnimationNodeBlend2_wn5km"]
 
 [sub_resource type="AnimationNodeBlend2" id="AnimationNodeBlend2_8vlhw"]
+
+[sub_resource type="AnimationNodeOneShot" id="AnimationNodeOneShot_owm47"]
 
 [sub_resource type="AnimationNodeBlend2" id="AnimationNodeBlend2_dsw0q"]
 
@@ -198,7 +475,9 @@ animation = &"RightTurn"
 [sub_resource type="AnimationNodeBlend2" id="AnimationNodeBlend2_8u42j"]
 
 [sub_resource type="AnimationNodeBlendTree" id="AnimationNodeBlendTree_lkv0y"]
-graph_offset = Vector2(130.333, 176.532)
+graph_offset = Vector2(-154.052, 60.436)
+nodes/Animation/node = SubResource("AnimationNodeAnimation_umlw7")
+nodes/Animation/position = Vector2(380, 540)
 "nodes/Animation 2/node" = SubResource("AnimationNodeAnimation_lpuw8")
 "nodes/Animation 2/position" = Vector2(-180, 140)
 "nodes/Animation 3/node" = SubResource("AnimationNodeAnimation_0di4g")
@@ -208,13 +487,15 @@ graph_offset = Vector2(130.333, 176.532)
 "nodes/Animation 5/node" = SubResource("AnimationNodeAnimation_ch3cj")
 "nodes/Animation 5/position" = Vector2(-740, -200)
 "nodes/Animation 6/node" = SubResource("AnimationNodeAnimation_vhq0x")
-"nodes/Animation 6/position" = Vector2(480, 420)
+"nodes/Animation 6/position" = Vector2(620, 500)
 nodes/Attack/node = SubResource("AnimationNodeBlend2_rta5d")
 nodes/Attack/position = Vector2(101.47, 2.06712)
 nodes/Death/node = SubResource("AnimationNodeBlend2_wn5km")
-nodes/Death/position = Vector2(680, 240)
+nodes/Death/position = Vector2(800, 300)
 nodes/LeftOrRight/node = SubResource("AnimationNodeBlend2_8vlhw")
 nodes/LeftOrRight/position = Vector2(0, 360)
+nodes/OnDeath/node = SubResource("AnimationNodeOneShot_owm47")
+nodes/OnDeath/position = Vector2(520, 200)
 nodes/StillToIdle/node = SubResource("AnimationNodeBlend2_dsw0q")
 nodes/StillToIdle/position = Vector2(-560, -200)
 nodes/Turn/node = SubResource("AnimationNodeAdd2_7pr04")
@@ -225,8 +506,8 @@ nodes/TurnRight/node = SubResource("AnimationNodeAnimation_iri7w")
 nodes/TurnRight/position = Vector2(-220, 560)
 nodes/Walk/node = SubResource("AnimationNodeBlend2_8u42j")
 nodes/Walk/position = Vector2(-260, -160)
-nodes/output/position = Vector2(940, 240)
-node_connections = [&"Attack", 0, &"Walk", &"Attack", 1, &"Animation 2", &"Death", 0, &"Turn", &"Death", 1, &"Animation 6", &"LeftOrRight", 0, &"TurnLeft", &"LeftOrRight", 1, &"TurnRight", &"StillToIdle", 0, &"Animation 5", &"StillToIdle", 1, &"Animation 3", &"Turn", 0, &"Attack", &"Turn", 1, &"LeftOrRight", &"Walk", 0, &"StillToIdle", &"Walk", 1, &"Animation 4", &"output", 0, &"Death"]
+nodes/output/position = Vector2(1100, 220)
+node_connections = [&"Attack", 0, &"Walk", &"Attack", 1, &"Animation 2", &"Death", 0, &"OnDeath", &"Death", 1, &"Animation 6", &"LeftOrRight", 0, &"TurnLeft", &"LeftOrRight", 1, &"TurnRight", &"OnDeath", 0, &"Turn", &"OnDeath", 1, &"Animation", &"StillToIdle", 0, &"Animation 5", &"StillToIdle", 1, &"Animation 3", &"Turn", 0, &"Attack", &"Turn", 1, &"LeftOrRight", &"Walk", 0, &"StillToIdle", &"Walk", 1, &"Animation 4", &"output", 0, &"Death"]
 
 [sub_resource type="Resource" id="Resource_swxci"]
 script = ExtResource("7_pogaf")
@@ -236,16 +517,51 @@ mana = 1.0
 defense = 1.0
 stamina = 450.0
 
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_4yx6v"]
+resource_local_to_scene = true
+shader = ExtResource("8_ci4ve")
+shader_parameter/boxB = Vector2(0.67, 0.655)
+shader_parameter/resolution = Vector2(2, 1.5)
+shader_parameter/scale = Vector2(33, 10)
+shader_parameter/cell_size = 52.0
+shader_parameter/from_clr = Color(0.35, 1, 1, 1)
+shader_parameter/to_clr = Color(0.52549, 0.129412, 0, 1)
+shader_parameter/backFillColour = Color(0.62, 1, 1, 1)
+shader_parameter/frontFillInnerColour = Color(0.35, 1, 1, 1)
+shader_parameter/frontFillOuterColour = Color(0, 0.35, 1, 1)
+shader_parameter/ringColour = Color(0, 0.16, 0.13, 1)
+shader_parameter/fresnelColour = Color(0, 0.88, 1, 1)
+shader_parameter/innerRingGlowColour = Color(0, 0, 0, 1)
+shader_parameter/fillcolour = Color(1, 1, 1, 1)
+shader_parameter/ringWidth = 0.15
+shader_parameter/innerCircleRadiusOffset = 0.0
+shader_parameter/fill_value = 0.966
+shader_parameter/fill_value_x = 1.0
+shader_parameter/tolerance = 1.0
+shader_parameter/pos_range_x = Vector2(0, 10)
+shader_parameter/pos_range_y = Vector2(0, 10)
+
 [node name="Miner" instance=ExtResource("1_6nj71")]
-z_index = 0
 SPEED = 25.0
 
 [node name="Sprite2D" parent="." index="0"]
 z_index = 3
 material = SubResource("ShaderMaterial_j8edm")
+scale = Vector2(1, 1)
 texture = ExtResource("5_0od2r")
-hframes = 4
-vframes = 4
+vframes = 5
+
+[node name="Eyes" parent="Sprite2D" index="0"]
+material = SubResource("ShaderMaterial_3k1qg")
+position = Vector2(1, -1.37893)
+
+[node name="Sprite2D" parent="Sprite2D/Eyes" index="0"]
+position = Vector2(0, -1)
+frame = 3
+
+[node name="Sprite2D2" parent="Sprite2D/Eyes" index="1"]
+position = Vector2(3, -1)
+frame = 3
 
 [node name="AnimationPlayer" parent="." index="1"]
 libraries = {
@@ -261,10 +577,14 @@ tree_root = SubResource("AnimationNodeBlendTree_lkv0y")
 [node name="Polygon2D" parent="ShapeCast2D" index="0"]
 visible = false
 
-[node name="AI" parent="." index="5" node_paths=PackedStringArray("animTree")]
+[node name="AI" parent="." index="6"]
 script = ExtResource("6_8m52q")
-animTree = NodePath("../AnimationTree")
 stats_resource = SubResource("Resource_swxci")
 
-[node name="Polygon2D" parent="WanderCast" index="0"]
-visible = false
+[node name="WanderCast" parent="." index="9"]
+visible = true
+
+[node name="TextureRect2" parent="Health" index="0"]
+material = SubResource("ShaderMaterial_4yx6v")
+
+[editable path="Health"]

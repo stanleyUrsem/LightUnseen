@@ -1,4 +1,4 @@
-extends AttackState
+extends AutoAttackState
 
 class_name NPCAttackState
 

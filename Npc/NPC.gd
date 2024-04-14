@@ -1,7 +1,6 @@
 extends AI
 
 class_name NPC
-@export var animTree : AnimationTree
 
 @export var mobMovement : MobMovement
 @export var wanderCast : ShapeCast2D
@@ -30,13 +29,11 @@ var slimeAnims : SlimeAnimations
 var staminaRecovered : float
 var currentDist
 
-var emptyPoly
 var npc_type
 var wanderPoly
-var tilePoly
 var wanderCalled
 var player
-var playerTransformer
+var playerTransformer : PlayerTransformer
 var saved_pos
 var food_point: Vector2:
 	get:
@@ -53,56 +50,47 @@ func _setup():
 	idle_state = Idle_State.new("Idle",rootState,self,slimeAnims,5)
 	idle_state.setup_vars(staminaRecoveryDuration,
 	staminaRecoveryMinimum,staminaRecovery)
-	
+	states.append(idle_state)
 	wandering_state = WanderState.new("Wander",rootState,self,slimeAnims,5)
 	wandering_state.setup_vars(sightCast,wanderCast,
 	staminaUsagePerUnit,wanderRange,prng,true)
-
+	states.append(wandering_state)
 	#pause ai when talked to
 	#stop movement
 	#unless in battle (henderson,reginald only)
 
-	emptyPoly = preload("res://test_poly.tscn")
-	tilePoly = create_empty("Tile", Vector2.ZERO,Color.DARK_VIOLET)
 
 	stats = SlimeStats.new(stats_resource)
 	stats._set_max()
+	setup_health()
 	savedPoint = mobMovement.global_position
 
-func _physics_process(delta):
-	super(delta)
+#func _physics_process(delta):
+	#super(delta)
 func _OnPlayerFound(p_player):
 	player = p_player
 		
-func _OnHit(healthChange,user):
-	
-	if(stats.health <= 0.0):
-		return
-	
-	var currentStat = stats.health
-	#Check if the player hit the slime
-	if(user is CollisionObject2D && user.collision_layer == 16):
-		_OnPlayerFound(user)
-	if(currentStat + healthChange < 0):
-		slimeAnims.death()
-		stats.health = 0
-		return
-	stats.health += healthChange
-	print("Health: ", stats.health)
+#func _OnHit(healthChange,user):
+	#
+	#if(stats.health <= 0.0):
+		#return
+	#
+	#var currentStat = stats.health
+	##Check if the player hit the slime
+	#if(user is CollisionObject2D && user.collision_layer == 16):
+		#_OnPlayerFound(user)
+	#if(currentStat + healthChange < 0):
+		#slimeAnims.death()
+		#stats.health = 0
+		#return
+	#stats.health += healthChange
+	#print("Health: ", stats.health)
 
 func on_death():
-	eventsManager.OnNpcDeath.emit(npc_type)
-	get_parent().queue_free()
+	eventsManager.OnNpcKilled.emit(npc_type)
+	slimeAnims.death()
+	#get_parent().queue_free()
 
-func create_empty(nm,pos, clr):
-	var empty = emptyPoly.instantiate()
-	empty.name = nm
-	var root = get_node("/root")
-	root.add_child.call_deferred(empty)
-	empty.position = pos
-	var child = empty.get_child(0)
-	child.modulate = clr
-	return empty
 
 func _use_root():
 	slimeAnims._still()

@@ -1,8 +1,150 @@
-[gd_scene load_steps=2 format=3 uid="uid://bjlnhgcn0p2f0"]
+[gd_scene load_steps=27 format=3 uid="uid://bjlnhgcn0p2f0"]
 
 [ext_resource type="PackedScene" uid="uid://bkdu7ke3vkapc" path="res://Mobs/Textures/Slime/gatherer_slime.tscn" id="1_jpswg"]
+[ext_resource type="Script" path="res://Mobs/Textures/Slime/SpitterSlimeAI.gd" id="2_uhefl"]
+[ext_resource type="Script" path="res://AnimationTransition.gd" id="3_0siw3"]
+[ext_resource type="Shader" path="res://UI/LiquidMeshBox.gdshader" id="4_j2gde"]
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_lpuw8"]
+animation = &"Attack"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_0di4g"]
+animation = &"Idle"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_12ibj"]
+animation = &"Walk"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_ch3cj"]
+animation = &"Still"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_vhq0x"]
+animation = &"Death"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_km6va"]
+animation = &"Attack_Begin"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_p4duv"]
+animation = &"Death"
+
+[sub_resource type="AnimationNodeBlend2" id="AnimationNodeBlend2_hklcl"]
+
+[sub_resource type="AnimationNodeOneShot" id="AnimationNodeOneShot_e034a"]
+
+[sub_resource type="AnimationNodeBlend2" id="AnimationNodeBlend2_wn5km"]
+
+[sub_resource type="AnimationNodeBlend2" id="AnimationNodeBlend2_8vlhw"]
+
+[sub_resource type="AnimationNodeOneShot" id="AnimationNodeOneShot_8qo73"]
+
+[sub_resource type="AnimationNodeBlend2" id="AnimationNodeBlend2_dsw0q"]
+
+[sub_resource type="AnimationNodeTimeSeek" id="AnimationNodeTimeSeek_i2rwo"]
+
+[sub_resource type="AnimationNodeAdd2" id="AnimationNodeAdd2_7pr04"]
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_yx7t5"]
+animation = &"LeftTurn"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_iri7w"]
+animation = &"RightTurn"
+
+[sub_resource type="AnimationNodeBlend2" id="AnimationNodeBlend2_8u42j"]
+
+[sub_resource type="AnimationNodeBlendTree" id="AnimationNodeBlendTree_sdu5o"]
+graph_offset = Vector2(-616.726, -6.82471)
+nodes/Animation/node = SubResource("AnimationNodeAnimation_p4duv")
+nodes/Animation/position = Vector2(240, 580)
+"nodes/Animation 2/node" = SubResource("AnimationNodeAnimation_lpuw8")
+"nodes/Animation 2/position" = Vector2(-460, 320)
+"nodes/Animation 3/node" = SubResource("AnimationNodeAnimation_0di4g")
+"nodes/Animation 3/position" = Vector2(-720, -60)
+"nodes/Animation 4/node" = SubResource("AnimationNodeAnimation_12ibj")
+"nodes/Animation 4/position" = Vector2(-520, 60)
+"nodes/Animation 5/node" = SubResource("AnimationNodeAnimation_ch3cj")
+"nodes/Animation 5/position" = Vector2(-740, -200)
+"nodes/Animation 6/node" = SubResource("AnimationNodeAnimation_vhq0x")
+"nodes/Animation 6/position" = Vector2(560, 540)
+"nodes/Animation 7/node" = SubResource("AnimationNodeAnimation_km6va")
+"nodes/Animation 7/position" = Vector2(-600, 200)
+nodes/Attack/node = SubResource("AnimationNodeBlend2_hklcl")
+nodes/Attack/position = Vector2(20, 80)
+nodes/Attack_Loop/node = SubResource("AnimationNodeOneShot_e034a")
+nodes/Attack_Loop/position = Vector2(-300, 200)
+nodes/Death/node = SubResource("AnimationNodeBlend2_wn5km")
+nodes/Death/position = Vector2(860, 240)
+nodes/LeftOrRight/node = SubResource("AnimationNodeBlend2_8vlhw")
+nodes/LeftOrRight/position = Vector2(0, 360)
+nodes/OnDeath/node = SubResource("AnimationNodeOneShot_8qo73")
+nodes/OnDeath/position = Vector2(480, 300)
+nodes/StillToIdle/node = SubResource("AnimationNodeBlend2_dsw0q")
+nodes/StillToIdle/position = Vector2(-560, -200)
+nodes/TimeSeek/node = SubResource("AnimationNodeTimeSeek_i2rwo")
+nodes/TimeSeek/position = Vector2(760, 460)
+nodes/Turn/node = SubResource("AnimationNodeAdd2_7pr04")
+nodes/Turn/position = Vector2(251.665, 358.052)
+nodes/TurnLeft/node = SubResource("AnimationNodeAnimation_yx7t5")
+nodes/TurnLeft/position = Vector2(-220, 440)
+nodes/TurnRight/node = SubResource("AnimationNodeAnimation_iri7w")
+nodes/TurnRight/position = Vector2(-220, 560)
+nodes/Walk/node = SubResource("AnimationNodeBlend2_8u42j")
+nodes/Walk/position = Vector2(-260, -160)
+nodes/output/position = Vector2(1140, 240)
+node_connections = [&"Attack", 0, &"Walk", &"Attack", 1, &"Attack_Loop", &"Attack_Loop", 0, &"Animation 7", &"Attack_Loop", 1, &"Animation 2", &"Death", 0, &"OnDeath", &"Death", 1, &"TimeSeek", &"LeftOrRight", 0, &"TurnLeft", &"LeftOrRight", 1, &"TurnRight", &"OnDeath", 0, &"Turn", &"OnDeath", 1, &"Animation", &"StillToIdle", 0, &"Animation 5", &"StillToIdle", 1, &"Animation 3", &"TimeSeek", 0, &"Animation 6", &"Turn", 0, &"Attack", &"Turn", 1, &"LeftOrRight", &"Walk", 0, &"StillToIdle", &"Walk", 1, &"Animation 4", &"output", 0, &"Death"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_1i6co"]
+radius = 150.0
+
+[sub_resource type="Resource" id="Resource_jiegb"]
+script = ExtResource("3_0siw3")
+animName = "Attack"
+animType = 1
+one_shot = 0
+blend_add_value = 1.0
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_jfywh"]
+resource_local_to_scene = true
+shader = ExtResource("4_j2gde")
+shader_parameter/boxB = Vector2(0.67, 0.655)
+shader_parameter/resolution = Vector2(2, 1.5)
+shader_parameter/scale = Vector2(33, 10)
+shader_parameter/cell_size = 52.0
+shader_parameter/from_clr = Color(0.35, 1, 1, 1)
+shader_parameter/to_clr = Color(0.52549, 0.129412, 0, 1)
+shader_parameter/backFillColour = Color(0.62, 1, 1, 1)
+shader_parameter/frontFillInnerColour = Color(0.35, 1, 1, 1)
+shader_parameter/frontFillOuterColour = Color(0, 0.35, 1, 1)
+shader_parameter/ringColour = Color(0, 0.16, 0.13, 1)
+shader_parameter/fresnelColour = Color(0, 0.88, 1, 1)
+shader_parameter/innerRingGlowColour = Color(0, 0, 0, 1)
+shader_parameter/fillcolour = Color(1, 1, 1, 1)
+shader_parameter/ringWidth = 0.15
+shader_parameter/innerCircleRadiusOffset = 0.0
+shader_parameter/fill_value = 0.966
+shader_parameter/fill_value_x = 1.0
+shader_parameter/tolerance = 1.0
+shader_parameter/pos_range_x = Vector2(0, 10)
+shader_parameter/pos_range_y = Vector2(0, 10)
 
 [node name="SpitterSlime" instance=ExtResource("1_jpswg")]
 
-[node name="AI" parent="." index="5"]
-disabled_states = Array[String](["Wander", "Pick Up", "Move to Food", "Search Food"])
+[node name="AnimationTree" parent="." index="2"]
+tree_root = SubResource("AnimationNodeBlendTree_sdu5o")
+parameters/Attack/blend_amount = 0
+
+[node name="ShapeCast2D" parent="." index="5"]
+shape = SubResource("CircleShape2D_1i6co")
+
+[node name="Polygon2D" parent="ShapeCast2D" index="0"]
+visible = false
+polygon = PackedVector2Array(-74, -146, -1, -165, 76, -146, 149, -15, 106, 91, 1, 135, -106, 90, -150, -14)
+
+[node name="AI" parent="." index="6"]
+script = ExtResource("2_uhefl")
+attackTransition = SubResource("Resource_jiegb")
+maxPlayerDist = 400.0
+disabled_states = Array[String](["Search Food", "Move to Food", "Pick Up"])
+
+[node name="TextureRect2" parent="Health" index="0"]
+material = SubResource("ShaderMaterial_jfywh")
+
+[editable path="Health"]

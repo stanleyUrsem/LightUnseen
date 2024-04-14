@@ -1,0 +1,43 @@
+[gd_scene load_steps=5 format=3 uid="uid://duabnhqomkryd"]
+
+[ext_resource type="PackedScene" uid="uid://b7qol8f5sdmwe" path="res://UI/mana_bar.tscn" id="1_wygvm"]
+[ext_resource type="Shader" path="res://UI/LiquidMeshBox.gdshader" id="2_egnfr"]
+[ext_resource type="Script" path="res://UI/SkillProgressBar.gd" id="3_5xyy0"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_cxmpq"]
+shader = ExtResource("2_egnfr")
+shader_parameter/boxB = Vector2(0.67, 0.27)
+shader_parameter/resolution = Vector2(2, 1.5)
+shader_parameter/scale = Vector2(175, 3.075)
+shader_parameter/cell_size = 26.0
+shader_parameter/from_clr = Color(0.34902, 0.717647, 0.737255, 1)
+shader_parameter/to_clr = Color(0.321569, 0.282353, 0.0627451, 1)
+shader_parameter/backFillColour = Color(0.62, 1, 1, 1)
+shader_parameter/frontFillInnerColour = Color(0.35, 1, 1, 1)
+shader_parameter/frontFillOuterColour = Color(0, 0.35, 1, 1)
+shader_parameter/ringColour = Color(0, 0.16, 0.13, 1)
+shader_parameter/fresnelColour = Color(0, 0.88, 1, 1)
+shader_parameter/innerRingGlowColour = Color(0, 0, 0, 1)
+shader_parameter/fillcolour = Color(1, 1, 1, 1)
+shader_parameter/ringWidth = 0.15
+shader_parameter/innerCircleRadiusOffset = 0.0
+shader_parameter/fill_value = 0.595
+shader_parameter/fill_value_x = 1.0
+shader_parameter/tolerance = 1.0
+shader_parameter/pos_range_x = Vector2(0, 5)
+shader_parameter/pos_range_y = Vector2(0, 5)
+
+[node name="SkillProgressBar" instance=ExtResource("1_wygvm")]
+custom_minimum_size = Vector2(176, 6)
+offset_bottom = -14.0
+size_flags_horizontal = 4
+size_flags_vertical = 4
+
+[node name="TextureRect2" parent="." index="0"]
+material = SubResource("ShaderMaterial_cxmpq")
+
+[node name="TextureProgressBar" parent="." index="1" node_paths=PackedStringArray("root")]
+theme_type_variation = &""
+value = 0.0
+script = ExtResource("3_5xyy0")
+root = NodePath("..")

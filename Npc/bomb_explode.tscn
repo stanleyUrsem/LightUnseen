@@ -1,8 +1,10 @@
-[gd_scene load_steps=12 format=3 uid="uid://tfpppsjts21y"]
+[gd_scene load_steps=17 format=3 uid="uid://tfpppsjts21y"]
 
 [ext_resource type="Script" path="res://Npc/LifetimeSkill.gd" id="1_dnuc0"]
 [ext_resource type="Shader" path="res://swap_color.gdshader" id="1_qm7ov"]
 [ext_resource type="Texture2D" uid="uid://c5rakthphg8f1" path="res://Npc/reginald.png" id="2_7weon"]
+[ext_resource type="AudioStream" uid="uid://c54h1f28kgomd" path="res://SFX/EXPLOSION_Subtle_Noise_with_Slight_Kickback_stereo.wav" id="4_c7pyk"]
+[ext_resource type="Script" path="res://CameraEffectsData.gd" id="5_svajn"]
 
 [sub_resource type="CompressedTexture2D" id="CompressedTexture2D_fwwa0"]
 load_path = "res://.godot/imported/npc_grad.png-df171e15f076bafecc55b51988282185.ctex"
@@ -43,25 +45,13 @@ tracks/0/keys = {
 "update": 1,
 "values": [66, 67, 68, 69, 70, 71, 72, 73]
 }
-tracks/1/type = "value"
+tracks/1/type = "method"
 tracks/1/imported = false
 tracks/1/enabled = true
-tracks/1/path = NodePath("Sprite2D:scale")
+tracks/1/path = NodePath(".")
 tracks/1/interp = 1
-tracks/1/loop_wrap = false
+tracks/1/loop_wrap = true
 tracks/1/keys = {
-"times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.35),
-"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
-"update": 0,
-"values": [Vector2(1, 1), Vector2(3, 3), Vector2(0.1, 0.1), Vector2(0.1, 0.1), Vector2(5, 5)]
-}
-tracks/2/type = "method"
-tracks/2/imported = false
-tracks/2/enabled = true
-tracks/2/path = NodePath(".")
-tracks/2/interp = 1
-tracks/2/loop_wrap = true
-tracks/2/keys = {
 "times": PackedFloat32Array(0.75),
 "transitions": PackedFloat32Array(1),
 "values": [{
@@ -69,17 +59,61 @@ tracks/2/keys = {
 "method": &"_fadeout"
 }]
 }
-tracks/3/type = "value"
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath(".:scale")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.5, 0.65),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1),
+"update": 0,
+"values": [Vector2(1, 1), Vector2(4, 4), Vector2(0.1, 0.1), Vector2(5, 5), Vector2(5, 5), Vector2(0.1, 0.1)]
+}
+tracks/3/type = "audio"
 tracks/3/imported = false
 tracks/3/enabled = true
-tracks/3/path = NodePath("CollisionShape2D:shape:radius")
+tracks/3/path = NodePath("AudioStreamPlayer2D")
 tracks/3/interp = 1
 tracks/3/loop_wrap = true
 tracks/3/keys = {
-"times": PackedFloat32Array(0, 0.35, 0.65),
-"transitions": PackedFloat32Array(1, 1, 1),
+"clips": [{
+"end_offset": 0.0,
+"start_offset": 0.0,
+"stream": ExtResource("4_c7pyk")
+}],
+"times": PackedFloat32Array(0)
+}
+tracks/3/use_blend = true
+tracks/4/type = "method"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("CameraFX")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [],
+"method": &"use"
+}]
+}
+
+[sub_resource type="Animation" id="Animation_lhevj"]
+resource_name = "Fly"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
 "update": 1,
-"values": [1.0, 70.0071, 1.0]
+"values": [66]
 }
 
 [sub_resource type="Animation" id="Animation_6tyb3"]
@@ -96,47 +130,33 @@ tracks/0/keys = {
 "update": 1,
 "values": [66]
 }
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("Sprite2D:scale")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Vector2(1, 1)]
-}
-tracks/2/type = "value"
-tracks/2/imported = false
-tracks/2/enabled = true
-tracks/2/path = NodePath("CollisionShape2D:shape:radius")
-tracks/2/interp = 1
-tracks/2/loop_wrap = true
-tracks/2/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [70.0071]
-}
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_suilm"]
 _data = {
 "Explode": SubResource("Animation_8q7oq"),
+"Fly": SubResource("Animation_lhevj"),
 "RESET": SubResource("Animation_6tyb3")
 }
 
-[sub_resource type="CircleShape2D" id="CircleShape2D_scoaf"]
-radius = 70.0071
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_q2t3w"]
+size = Vector2(5, 12)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_rhamk"]
+size = Vector2(5, 13)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_8u5j0"]
+size = Vector2(27.5, 5)
 
 [node name="Bomb_explode" type="AnimatableBody2D" node_paths=PackedStringArray("animPlayer", "animBody", "fadeTimer", "body")]
+scale = Vector2(2, 2)
 collision_layer = 4
 collision_mask = 16
+sync_to_physics = false
 script = ExtResource("1_dnuc0")
 life_time = 1.0
 animPlayer = NodePath("AnimationPlayer")
 on_expire_anim = "Explode"
+on_play_anim = "Fly"
 animBody = NodePath(".")
 fadeTimer = NodePath("Timer")
 body = NodePath(".")
@@ -145,8 +165,8 @@ body = NodePath(".")
 z_index = 2
 material = SubResource("ShaderMaterial_6vvt7")
 texture = ExtResource("2_7weon")
-hframes = 10
-vframes = 9
+hframes = 11
+vframes = 10
 frame = 66
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
@@ -157,4 +177,25 @@ libraries = {
 [node name="Timer" type="Timer" parent="."]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-shape = SubResource("CircleShape2D_scoaf")
+position = Vector2(-0.5, -9)
+shape = SubResource("RectangleShape2D_q2t3w")
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="."]
+position = Vector2(-0.5, 8.5)
+shape = SubResource("RectangleShape2D_rhamk")
+
+[node name="CollisionShape2D3" type="CollisionShape2D" parent="."]
+position = Vector2(0, -1)
+shape = SubResource("RectangleShape2D_8u5j0")
+
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
+pitch_scale = 0.8
+max_distance = 600.0
+bus = &"SFX"
+
+[node name="CameraFX" type="Node2D" parent="."]
+script = ExtResource("5_svajn")
+zoom_in_out = -0.25
+zoom_duration = 0.1
+shake_force = 500.0
+shake_duration = 0.5

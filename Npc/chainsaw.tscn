@@ -1,21 +1,188 @@
-[gd_scene load_steps=4 format=3 uid="uid://gvcqp7ly1grr"]
+[gd_scene load_steps=9 format=3 uid="uid://gvcqp7ly1grr"]
 
 [ext_resource type="Script" path="res://Npc/DynamicAnimSpriteWithEnd.gd" id="1_cai8x"]
 [ext_resource type="PackedScene" uid="uid://0gm4x5jo4ix5" path="res://Npc/chainsaw_sprite.tscn" id="2_jqpjt"]
 [ext_resource type="Texture2D" uid="uid://c5rakthphg8f1" path="res://Npc/reginald.png" id="2_mst1g"]
+[ext_resource type="AudioStream" uid="uid://b0mps40jh0fuy" path="res://SFX/hum_motor_elec_neon_loop_02.wav" id="4_tui5o"]
 
-[node name="chainsaw" type="StaticBody2D" node_paths=PackedStringArray("rotationHolders", "col_parent", "fadeTimer", "body")]
-collision_layer = 64
-collision_mask = 16
+[sub_resource type="Animation" id="Animation_1w7ar"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:detectCollisions")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("0:scale")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(1, 1)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("90:scale")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(1, 1)]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("180:scale")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(1, 1)]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("270:scale")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(1, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_ke6id"]
+resource_name = "rotate"
+length = 10.0
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 10),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [0.0, 6.28319]
+}
+
+[sub_resource type="Animation" id="Animation_xms32"]
+resource_name = "begin"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:detectCollisions")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [false, true]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("0:scale")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.25),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(0, 0), Vector2(1, 1)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("90:scale")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(0, 0), Vector2(1, 1)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("180:scale")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0, 0.75),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(0, 0), Vector2(1, 1)]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("270:scale")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(0, 0), Vector2(1, 1)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_1lapr"]
+_data = {
+"RESET": SubResource("Animation_1w7ar"),
+"begin": SubResource("Animation_xms32"),
+"rotate": SubResource("Animation_ke6id")
+}
+
+[node name="chainsaw" type="StaticBody2D" node_paths=PackedStringArray("rotationHolders", "col_parent", "anim_player", "fadeTimer")]
+scale = Vector2(2, 2)
+collision_layer = 4
+collision_mask = 0
 script = ExtResource("1_cai8x")
 end_frame = "chain_saw_end"
 rotationHolders = [NodePath("0"), NodePath("90"), NodePath("180"), NodePath("270")]
+refresh_collision_cooldown = 0.5
 animSpriteTemplate = ExtResource("2_jqpjt")
-animation_name = "chain_saw"
 col_parent = NodePath(".")
-offset = Vector2(0, 1)
+begin_anim = "rotate"
+anim_player = NodePath("AnimationPlayer")
+offset = Vector2(0, -64)
 fadeTimer = NodePath("Timer")
-body = NodePath(".")
+detectCollisions = true
+piercing = true
 
 [node name="0" type="Node2D" parent="."]
 
@@ -29,9 +196,24 @@ rotation = -3.14159
 rotation = -1.5708
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
+z_index = 3
 texture = ExtResource("2_mst1g")
-hframes = 10
-vframes = 9
+hframes = 11
+vframes = 10
 frame = 23
 
 [node name="Timer" type="Timer" parent="."]
+wait_time = 7.0
+
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("4_tui5o")
+volume_db = 8.0
+autoplay = true
+max_distance = 600.0
+bus = &"SFX"
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_1lapr")
+}
+next/begin = &"rotate"

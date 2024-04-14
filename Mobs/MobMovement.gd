@@ -5,6 +5,17 @@ var dashTween
 var dashVelocity
 var dashDuration
 @export var stopMovement : bool
+@export var wallCast : ShapeCast2D
+var last_pos : Vector2
+var prng : PRNG
+var amount_called : int
+
+func _ready():
+	super()
+	prng = PRNG.new(123091823)
+	last_pos = global_position
+
+
 func resetMovement():
 	velocity = Vector2.ZERO
 
@@ -24,6 +35,7 @@ func moveToPoint(point, speed_multiplier = 1.0, normalize = true):
 	else:
 		velocity = delta * speed_multiplier
 	_turn(velocity.x)
+
 # Move to random points in area
 func moveRandom(rot, length):
 	var pos = Vector2(cos(rot),sin(rot)) * length
@@ -57,7 +69,7 @@ func _physics_process(delta):
 	if(stopMovement):
 		return
 	var collided = move_and_slide()
-	if(collided):
-		var hit = get_last_slide_collision().get_collider()
+	#if(collided):
+		#var hit = get_last_slide_collision().get_collider()
 		#print("Slided against: ", hit.name)
 

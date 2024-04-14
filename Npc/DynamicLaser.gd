@@ -32,10 +32,8 @@ func disable_colliders():
 func _on_setup():
 	current_index = 0
 	
-func setup_vars(p_leftBot, p_rightTop, p_damage):
-	damage = p_damage
-	leftBot = p_leftBot
-	rightTop = p_rightTop
+func setup_vars(leftBot, rightTop, p_damage, p_rotation_degrees):
+	super(leftBot,rightTop,p_damage,p_rotation_degrees)
 	animPlayer.play("Charge_Volley_1")
 	#for i in rotationHolders.size():
 		#current_index = i

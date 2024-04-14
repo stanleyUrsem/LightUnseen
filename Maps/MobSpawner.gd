@@ -16,10 +16,12 @@ var prng : PRNG
 var cameraFollow : CameraFollow
 var active_map : MapData
 var spawned_mobs : Array
+var other_spawned_mobs : Array
 var spawn_points : Array[Vector2]
 var current_cooldown : float
 var created : int
 var spawn_rate
+var max_active_mobs : int
 func _ready():
 	if(!enable_spawn_mobs):
 		return
@@ -33,8 +35,12 @@ func _ready():
 func clear_mobs():
 	active_map = null
 	for mob in spawned_mobs:
-		mob.queue_free()
-		
+		if(mob != null):
+			mob.queue_free()
+	for mob in other_spawned_mobs:
+		if(mob != null):
+			mob.queue_free()
+	other_spawned_mobs.clear()	
 	spawned_mobs.clear()
 	
 #func create_spawnpoints(tileMap,layer):
@@ -86,9 +92,8 @@ func _physics_process(delta):
 	
 	if(current_cooldown <= 0):
 		
-		current_cooldown = spawn_cooldown / spawn_rate
-		var spawn_amount = round(pow(spawn_rate,2.0))
-		print("Spawning: ", spawn_amount)
+		current_cooldown = max(spawn_cooldown / spawn_rate,15.0)
+		var spawn_amount = prng.range_i_mn(1,3)
 		for i in range(spawn_amount):
 			spawn_mobs(active_map)
 
@@ -96,39 +101,44 @@ func set_active_map(mapData):
 	created = 0
 	active_map = mapData
 	spawn_rate = mapData.mob_spawn_rate
-	
+	max_active_mobs = round(max_spawns * (1.0 + (spawn_rate/10.0)))
+	current_cooldown = 0
 func spawn_mobs(mapData : MapData):
 	if(mapData.mob_spawn_rate <= 0):
 		return
 	
-	if(round(max_spawns * spawn_rate) > spawned_mobs.size()):
+	if(spawned_mobs.size() >= max_active_mobs):
 		return
 	
 	var tileMap = mapData.tileMap
 	var layer = mapData.mob_layer
 	var mobs_type_chance = mapData.mob_type_chance
 	var spawn_rate = mapData.mob_spawn_rate
-	var pos = Vector2.ZERO
+	var pos = tileMap.get_child( prng.range_i_mn(0,tileMap.get_child_count()-1)).global_position
 	#while(created < amount):
+	var weighted_types : Array[WeightedTuple] = []
+	for type_chance in mobs_type_chance:
+		weighted_types.append(WeightedTuple.new(type_chance.y,type_chance.x))
+	var mob_type = prng.weighted_range(weighted_types)
+	var mob = mobs[mob_type].instantiate()
+	
 	#var current_loops = 0
 	#while(wall_cast.is_colliding() && current_loops < max_loops):
 		#if(current_loops > max_loops-2):
 			#print("WAHTS HAPPENINE")
 		#current_loops += 1
-	var cell = prng.random_element(tileMap.get_used_cells(layer))
-	pos = tileMap.to_global(tileMap.map_to_local(cell))
-	wall_cast.global_position = pos
+		#var cell = prng.random_element(tileMap.get_used_cells(layer))
+		#pos = tileMap.to_global(tileMap.map_to_local(cell))
+		##HelperFunctions.cell_to_global(tileMap,cell,mob)
+		#wall_cast.global_position = mob.global_position
 		
-	var weighted_types : Array[WeightedTuple] = []
-	for type_chance in mobs_type_chance:
-		weighted_types.append(WeightedTuple.new(type_chance.y,type_chance.x))
-	var mob_type = prng.weighted_range(weighted_types)
 	
-	var mob = mobs[mob_type].instantiate()
 	mob.name = "%s %d" % [mob.name,created]
-	mob.position = pos
-	print("%s Spawned at: %v" % [mob.name,pos])
-	tileMap.add_sibling(mob)
+	mob.global_position = pos
+	print("%s Spawned at: %v" % [mob.name,mob.global_position])
+	mob.rotation_degrees *= -1.0
+	#tileMap.add_sibling(mob)
+	add_child.call_deferred(mob)
 	var ai = mob.get_node("AI")
 	ai.mob_type = mob_type
 	ai.mob_spawner = self

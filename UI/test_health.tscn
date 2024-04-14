@@ -1,0 +1,8 @@
+[gd_scene load_steps=3 format=3 uid="uid://bi47ktbaoub8l"]
+
+[ext_resource type="Material" uid="uid://d10kgfowulda4" path="res://UI/health_bar_2.tres" id="1_iug1k"]
+[ext_resource type="Texture2D" uid="uid://bxkpior6fg3cj" path="res://UI/health_fill.png" id="2_ipqjm"]
+
+[node name="Node2D" type="Sprite2D"]
+material = ExtResource("1_iug1k")
+texture = ExtResource("2_ipqjm")

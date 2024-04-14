@@ -24,7 +24,8 @@ var current_distance : float
 var useY: bool
 var old_map
 var new_map
-
+var current_map
+var saveManager
 @export var alpha : float
 @export var alphaX : float
 @export var alphaY : float
@@ -38,6 +39,8 @@ var new_map
 		#var loaded_map = load(map)
 		#print("loading.. : ", map.trim_suffix())
 		#loaded_maps[map.get_name(map.get_name_count()-1)] = loaded_map
+
+##DEATH CAUSES LAG :(
 signal OnMapLoaded
 func reset_to_central():
 	if(current_created_maps.has(start_map)):
@@ -60,12 +63,17 @@ func _ready():
 	current_created_maps[start_map] = created_map
 	add_child(created_map)
 	#move_player(created_map.base_spawn_point)
+	current_map = created_map
 	load_other_maps(created_map)
 	load_maps(created_map)
+	if(!created_map.npcs_created):
+		created_map.create_npcs()
 	#connect_areas(created_map)
 	OnMapLoaded.emit()
 	var scene_1 = get_node("/root/MAIN/Central/Scene_1/Scene_1")
 	scene_1.play_scene()
+	saveManager = get_node("/root/MAIN/SaveManager")
+	saveManager.auto_save = true
 
 
 func connect_areas(map_data :MapData):
@@ -99,8 +107,10 @@ func switch_map(map_data):
 		return
 	#player.stopMovement = true
 	is_switching = true
-	load_other_maps(map_data)
-	load_maps(map_data)
+	if(map_data != current_map):
+		load_other_maps(map_data)
+		load_maps(map_data)
+	current_map = map_data
 	switching_done.call_deferred()
 	#if(switch_tween != null && switch_tween.is_running()):
 		#switch_tween.kill()
@@ -119,7 +129,11 @@ func switching_done():
 	is_switching = false
 
 func load_maps(map_data):
-	
+	if(map_data != current_created_maps[start_map]):
+		if(!map_data.npcs_created):
+			map_data.create_npcs()
+		map_data.recreate_map()
+	#map_data.visible = true
 	#for map in current_created_maps:
 		#if(!map_data.other_maps.has(map)):
 			#map.queue_free()
@@ -132,11 +146,13 @@ func load_maps(map_data):
 		if(!map_data.other_maps.has(key)):
 			print("Erasing map: %s" % value)
 			value.clean_up_map()
-			
-			to_erase.append(key)
-	
-	for key in to_erase:
-		current_created_maps.erase(key)
+			if(value.get_parent() == self):
+				remove_child.call_deferred(value)
+			#value.visible = false
+			#to_erase.append(key)
+	#
+	#for key in to_erase:
+		#current_created_maps.erase(key)
 	
 	for map in map_data.other_maps:
 		if(!current_created_maps.has(map)):
@@ -144,6 +160,12 @@ func load_maps(map_data):
 			var created_map = loaded_maps[map].instantiate()
 			add_child.call_deferred(created_map)
 			current_created_maps[map] = created_map
+		else:
+			var current_map = current_created_maps[map]
+			if(current_map.get_parent() != self):
+				add_child.call_deferred(current_map)
+			#current_created_maps[map].visible = true
+			#map.recreate_map()
 			#connect_areas(created_map)
 	
 	

@@ -1,0 +1,71 @@
+[gd_scene load_steps=12 format=3 uid="uid://cjk7n87j4x6wj"]
+
+[ext_resource type="Script" path="res://testSpawnWithRotations.gd" id="1_rrmdy"]
+[ext_resource type="Script" path="res://Maps/CrystalPickup.gd" id="2_u2smy"]
+[ext_resource type="TileSet" uid="uid://5d8p6vofvrki" path="res://Maps/Town/towntiles.tres" id="2_vbixy"]
+[ext_resource type="PackedScene" uid="uid://dypygfriyagwn" path="res://Envo/Crystal_pickup.tscn" id="3_nw7mr"]
+[ext_resource type="Curve" uid="uid://bvx07x6nvgshi" path="res://Maps/CrystalCurveY.tres" id="4_ag27n"]
+[ext_resource type="Curve" uid="uid://6nvvy6sekoxl" path="res://Maps/CrystalCurveX.tres" id="5_vkpve"]
+[ext_resource type="Material" uid="uid://dlo3kh48c6xhw" path="res://Maps/Particles.tres" id="6_6hape"]
+[ext_resource type="Texture2D" uid="uid://bt5qxwtqwc7vo" path="res://Envo/envo_tiles.png" id="7_uh2g7"]
+[ext_resource type="Script" path="res://RandomCirclePoint.gd" id="9_pq4ko"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_gsvis"]
+size = Vector2(16, 16)
+
+[sub_resource type="PackedScene" id="PackedScene_b03fj"]
+_bundled = {
+"conn_count": 0,
+"conns": PackedInt32Array(),
+"editable_instances": [],
+"names": PackedStringArray("Crystal", "StaticBody2D", "modulate", "z_index", "scale", "collision_layer", "collision_mask", "script", "droppable", "x_size", "path_curve_y", "path_curve_x", "metadata/resource_amount", "TileSprite", "Sprite2D", "modulate", "texture_filter", "material", "texture", "hframes", "vframes", "frame", "region_rect", "CollisionShape2D", "CollisionShape2D", "visible", "shape"),
+"node_count": 3,
+"node_paths": [NodePath("."), NodePath(".")],
+"nodes": PackedInt32Array(-1, -1, 1, 0, -1, 11, 2, 0, 3, 1, 4, 2, 5, 3, 6, 4, 7, 5, 8, 6, 9, 7, 10, 8, 11, 9, 12, 10, 0, 1073741824, 0, 14, 13, -1, 8, 15, 11, 16, 12, 17, 13, 18, 14, 19, 15, 20, 16, 21, 17, 22, 18, 0, 1073741825, 0, 24, 23, -1, 2, 25, 19, 26, 20, 0),
+"variants": [Color(1, 0.976471, 0.968627, 1), 1, Vector2(2, 2), 8, 8, ExtResource("2_u2smy"), ExtResource("3_nw7mr"), 60.0, ExtResource("4_ag27n"), ExtResource("5_vkpve"), 0, Color(2, 2, 2, 1), 1, ExtResource("6_6hape"), ExtResource("7_uh2g7"), 20, 20, 291, Rect2(128, 192, 64, 64), false, SubResource("RectangleShape2D_gsvis")],
+"version": 3
+}
+
+[node name="Node2D" type="Node2D"]
+
+[node name="Root" type="Node2D" parent="." node_paths=PackedStringArray("tileMap")]
+position = Vector2(-950, -781)
+rotation = -1.5708
+scale = Vector2(1, -1)
+script = ExtResource("1_rrmdy")
+template = SubResource("PackedScene_b03fj")
+tileMap = NodePath("TileMap")
+
+[node name="TileMap" type="TileMap" parent="Root"]
+scale = Vector2(2, 2)
+tile_set = ExtResource("2_vbixy")
+format = 2
+layer_0/tile_data = PackedInt32Array(-393236, 65536, 16, 131064, 720896, 14, -196611, 720896, 14, 65545, 720896, 14, -393203, 720896, 14)
+
+[node name="Marker2D" type="Marker2D" parent="Root"]
+position = Vector2(-622, -207)
+
+[node name="Marker2D2" type="Marker2D" parent="Root"]
+position = Vector2(-240, 55)
+
+[node name="Marker2D3" type="Marker2D" parent="Root"]
+position = Vector2(-75, -110)
+
+[node name="Marker2D4" type="Marker2D" parent="Root"]
+position = Vector2(308, 49)
+
+[node name="Marker2D5" type="Marker2D" parent="Root"]
+position = Vector2(437, -171)
+
+[node name="Camera2D" type="Camera2D" parent="Root"]
+position = Vector2(50.0013, 338)
+
+[node name="Node2D" type="Node2D" parent="." node_paths=PackedStringArray("polygon")]
+position = Vector2(-1262, -816)
+script = ExtResource("9_pq4ko")
+polygon = NodePath("Polygon2D")
+check_cooldown = 1.0
+radius = 50.0
+
+[node name="Polygon2D" type="Polygon2D" parent="Node2D"]
+polygon = PackedVector2Array(-26, -21, -18, -21, -18, -15, -26, -15)

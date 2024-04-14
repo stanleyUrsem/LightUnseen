@@ -1,6 +1,8 @@
-extends AspectRatioContainer
+extends Control
 
 @export var icon : TextureRect
+@export var cooldown_icon : TextureRect
+@export var cooldown_regions : Array[Rect2]
 @export var available   : Color
 @export var unavailable : Color
 var keyBinds : Array[String]
@@ -29,12 +31,17 @@ func set_keybind():
 	hotKeyManager.set_keybind(keybind_label,keyBinds)
 
 func show_cooldown(x):
-	icon.self_modulate = lerp(unavailable,available,x)
+	var region_index = lerp(0,cooldown_regions.size() - 1,x)
+	cooldown_icon.texture.region = cooldown_regions[region_index]
+	#icon.self_modulate = lerp(unavailable,available,x)
 func toggle_availability(p_mana):
 	if(has_cooldown):
 		return
 	var is_available = p_mana > mana
-	icon.self_modulate = available if is_available else unavailable
+	var region_index = cooldown_regions.size() - 1 if is_available else 0
+	
+	cooldown_icon.texture.region = cooldown_regions[region_index]
+	#icon.self_modulate = available if is_available else unavailable
 	
 func animate_toggle(x):
 	hotKeyManager.on_toggle_pressed(x,anim)

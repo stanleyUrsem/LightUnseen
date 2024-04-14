@@ -2,7 +2,7 @@ extends AnimatableCharacter
 
 class_name CrystalAnims
 
-func idle():
+func _idle():
 	AnimatorHelper._playanimTreeBlend2D(_animator,"Walk",0)
 	AnimatorHelper._playanimTreeBlend2D(_animator,"Death", 0)
 	
@@ -11,7 +11,7 @@ func still():
 	AnimatorHelper._playanimTreeBlend2D(_animator,"Death", 0)
 	
 	
-func walk():
+func _walk():
 	AnimatorHelper._playanimTreeBlend2D(_animator,"Spawned", 1)
 	AnimatorHelper._playanimTreeBlend2D(_animator,"Walk",1)
 	AnimatorHelper._playanimTreeBlend2D(_animator,"Death", 0)

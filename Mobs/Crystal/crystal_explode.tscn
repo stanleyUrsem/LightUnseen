@@ -1,11 +1,13 @@
-[gd_scene load_steps=6 format=3 uid="uid://c1lil3exb2sw3"]
+[gd_scene load_steps=11 format=3 uid="uid://c1lil3exb2sw3"]
 
 [ext_resource type="PackedScene" uid="uid://b5a5ldgbtqjvd" path="res://Mobs/Crystal/crystal_impact.tscn" id="1_0p8tx"]
+[ext_resource type="AudioStream" uid="uid://ctrekkktmyj12" path="res://SFX/explosion_small_short_01.wav" id="2_cvhro"]
+[ext_resource type="Script" path="res://Mobs/Crystal/ProximityMovableSkill.gd" id="2_f2c0c"]
 
-[sub_resource type="Animation" id="Animation_gq0og"]
-resource_name = "Throw"
-length = 0.75
-loop_mode = 1
+[sub_resource type="Animation" id="Animation_q8h82"]
+resource_name = "Impact"
+length = 1.7
+step = 0.025
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
@@ -13,22 +15,77 @@ tracks/0/path = NodePath("Sprite2D:frame")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7),
-"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1),
+"times": PackedFloat32Array(0, 0.05, 0.1, 0.15, 0.2, 0.25, 0.35, 0.375, 0.4, 0.425, 0.45, 0.475, 0.5, 0.525, 0.55, 0.575),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
 "update": 1,
-"values": [19, 20, 21, 22, 23, 20, 19, 22]
+"values": [55, 56, 57, 58, 59, 60, 61, 62, 63, 64, 65, 66, 67, 68, 69, 71]
 }
-tracks/1/type = "value"
+tracks/1/type = "audio"
 tracks/1/imported = false
 tracks/1/enabled = true
-tracks/1/path = NodePath("Sprite2D:rotation")
+tracks/1/path = NodePath("AudioStreamPlayer2D")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
-"times": PackedFloat32Array(0, 0.6, 0.7),
-"transitions": PackedFloat32Array(1, 1, 1),
-"update": 1,
-"values": [0.0, 1.5708, 0.0]
+"clips": [{
+"end_offset": 0.0,
+"start_offset": 0.0,
+"stream": ExtResource("2_cvhro")
+}],
+"times": PackedFloat32Array(0.35)
+}
+tracks/1/use_blend = true
+tracks/2/type = "method"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath(".")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(1.175),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [],
+"method": &"_fade"
+}]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Sprite2D:scale")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0, 0.275, 0.35, 0.4, 0.475, 0.55),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1),
+"update": 0,
+"values": [Vector2(1, 1), Vector2(1, 1), Vector2(3, 3), Vector2(4.5, 4.5), Vector2(4.5, 4.5), Vector2(1, 1)]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("CollisionShape2D:scale")
+tracks/4/interp = 1
+tracks/4/loop_wrap = false
+tracks/4/keys = {
+"times": PackedFloat32Array(0, 0.275, 0.35, 0.4),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [Vector2(1, 1), Vector2(1, 1), Vector2(3, 3), Vector2(4.5, 4.5)]
+}
+tracks/5/type = "method"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("CameraFX")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0.3),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [],
+"method": &"use"
+}]
 }
 
 [sub_resource type="Animation" id="Animation_31saf"]
@@ -43,7 +100,7 @@ tracks/0/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 1,
-"values": [19]
+"values": [23]
 }
 tracks/1/type = "value"
 tracks/1/imported = false
@@ -57,11 +114,47 @@ tracks/1/keys = {
 "update": 0,
 "values": [0.0]
 }
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Sprite2D:scale")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(1, 1)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("CollisionShape2D:scale")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(1, 1)]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath(".:modulate")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1.5, 1.5, 1.5, 1)]
+}
 
-[sub_resource type="Animation" id="Animation_q8h82"]
-resource_name = "Impact"
-length = 1.7
-step = 0.05
+[sub_resource type="Animation" id="Animation_gq0og"]
+resource_name = "Throw"
+length = 0.9
+loop_mode = 1
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
@@ -69,10 +162,34 @@ tracks/0/path = NodePath("Sprite2D:frame")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.8, 0.85, 0.9, 0.95, 1.05, 1.15, 1.25, 1.35, 1.45, 1.55, 1.65),
-"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1),
 "update": 1,
-"values": [51, 52, 53, 54, 55, 56, 57, 58, 59, 60, 61, 62, 63, 64, 65, 66, 67]
+"values": [23, 24, 25, 26, 27, 23, 26, 23, 24]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Sprite2D:rotation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.6, 0.7),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 1,
+"values": [0.0, 1.5708, 1.5708]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath(".:modulate")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.2, 0.3, 0.4, 0.5),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
+"update": 1,
+"values": [Color(1.5, 1.5, 1.5, 1), Color(2, 2, 2, 1), Color(1.5, 1.5, 1.5, 1), Color(2, 2, 2, 1), Color(1.5, 1.5, 1.5, 1)]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_3kexm"]
@@ -82,13 +199,24 @@ _data = {
 "Throw": SubResource("Animation_gq0og")
 }
 
-[node name="Crystal_Explode" instance=ExtResource("1_0p8tx")]
+[sub_resource type="CircleShape2D" id="CircleShape2D_snj08"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_c5hwe"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_lddhh"]
+radius = 49.7298
+
+[node name="Crystal_Explode" node_paths=PackedStringArray("proximity_area", "shapeCast") instance=ExtResource("1_0p8tx")]
+modulate = Color(1.5, 1.5, 1.5, 1)
+z_index = 8
+script = ExtResource("2_f2c0c")
+proximity_area = NodePath("ProximityCheck")
+shapeCast = NodePath("CollisionShape2D/ShapeCast2D")
 
 [node name="Sprite2D" parent="." index="0"]
-frame = 19
+frame = 23
 
 [node name="AnimationTree" parent="." index="1"]
-active = false
 libraries = {
 "": SubResource("AnimationLibrary_3kexm")
 }
@@ -97,3 +225,29 @@ libraries = {
 libraries = {
 "": SubResource("AnimationLibrary_3kexm")
 }
+
+[node name="CollisionShape2D" parent="." index="3"]
+visible = true
+shape = SubResource("CircleShape2D_snj08")
+
+[node name="ShapeCast2D" type="ShapeCast2D" parent="CollisionShape2D" index="0"]
+shape = SubResource("CircleShape2D_c5hwe")
+target_position = Vector2(0, 0)
+collision_mask = 16
+
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="." index="5"]
+bus = &"SFX"
+
+[node name="ProximityCheck" type="Area2D" parent="." index="6"]
+collision_mask = 16
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="ProximityCheck" index="0"]
+position = Vector2(-8.47631, 0.8909)
+shape = SubResource("CircleShape2D_lddhh")
+debug_color = Color(0.960784, 0, 0, 0.419608)
+
+[node name="CameraFX" parent="." index="7"]
+zoom_in_out = 0.0
+zoom_duration = 0.0
+
+[connection signal="body_entered" from="ProximityCheck" to="." method="on_body_enter"]

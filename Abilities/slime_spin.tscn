@@ -2,7 +2,7 @@
 
 [ext_resource type="PackedScene" uid="uid://cpbwya8pbxv60" path="res://Abilities/rock_throw.tscn" id="1_xnl63"]
 [ext_resource type="Script" path="res://SlimeSpinAction.gd" id="2_4xdjg"]
-[ext_resource type="Texture2D" uid="uid://bjg43116ojkgo" path="res://Character/Textures/SionTD/sion_slime.png" id="3_3whlh"]
+[ext_resource type="Texture2D" uid="uid://b5gbmyv21p1qd" path="res://Character/Textures/SionTD/sion_slime.png" id="3_3whlh"]
 [ext_resource type="PackedScene" uid="uid://cb1hxs17blbw1" path="res://Abilities/slime_particle.tscn" id="3_ts6nq"]
 
 [sub_resource type="Animation" id="Animation_g8wnr"]
@@ -154,32 +154,14 @@ tracks/1/path = NodePath(".")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
-"times": PackedFloat32Array(0, 0.01, 0.02, 0.03, 0.3, 0.31, 0.32, 0.33, 0.4),
-"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1),
+"times": PackedFloat32Array(0, 0.3, 0.4),
+"transitions": PackedFloat32Array(1, 1, 1),
 "values": [{
-"args": [0, Vector2(0, 1)],
-"method": &"create_slime_particle"
+"args": [],
+"method": &"create_slime_particles"
 }, {
-"args": [1, Vector2(1, 0)],
-"method": &"create_slime_particle"
-}, {
-"args": [2, Vector2(0, -1)],
-"method": &"create_slime_particle"
-}, {
-"args": [3, Vector2(-1, 0)],
-"method": &"create_slime_particle"
-}, {
-"args": [0, Vector2(1, 0)],
-"method": &"create_slime_particle"
-}, {
-"args": [1, Vector2(0, 1)],
-"method": &"create_slime_particle"
-}, {
-"args": [2, Vector2(-1, 0)],
-"method": &"create_slime_particle"
-}, {
-"args": [3, Vector2(0, -1)],
-"method": &"create_slime_particle"
+"args": [],
+"method": &"create_slime_particles"
 }, {
 "args": [],
 "method": &"add_loop"
@@ -310,7 +292,6 @@ animation = &"start"
 [sub_resource type="AnimationNodeTimeScale" id="AnimationNodeTimeScale_ersrw"]
 
 [sub_resource type="AnimationNodeBlendTree" id="AnimationNodeBlendTree_5cs3f"]
-graph_offset = Vector2(-832.319, -210.082)
 nodes/Animation/node = SubResource("AnimationNodeAnimation_cjo0p")
 nodes/Animation/position = Vector2(-940, -20)
 "nodes/Animation 2/node" = SubResource("AnimationNodeAnimation_lkrgn")
@@ -327,6 +308,7 @@ node_connections = [&"End", 0, &"Loop", &"End", 1, &"Animation 3", &"Loop", 0, &
 
 [node name="Slime_Spin" node_paths=PackedStringArray("spawn_points") instance=ExtResource("1_xnl63")]
 script = ExtResource("2_4xdjg")
+directions = Array[Vector2]([Vector2(-1, 0), Vector2(1, 0), Vector2(0, -1), Vector2(0, 1)])
 spawn_points = [NodePath("LeftTop"), NodePath("RightTop"), NodePath("RightBot"), NodePath("LeftBot")]
 slime_particle = ExtResource("3_ts6nq")
 amount_loops = 60.0

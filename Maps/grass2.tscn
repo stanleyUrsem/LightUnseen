@@ -1,0 +1,9 @@
+[gd_scene load_steps=2 format=3 uid="uid://bcr7ehaaiayh4"]
+
+[ext_resource type="PackedScene" uid="uid://dh31b844c1gis" path="res://Maps/grass.tscn" id="1_jwojm"]
+
+[node name="Grass" instance=ExtResource("1_jwojm")]
+collision_layer = 256
+
+[node name="TileSprite" parent="." index="0"]
+modulate = Color(1, 1, 1, 1)

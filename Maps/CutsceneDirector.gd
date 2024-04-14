@@ -1,6 +1,8 @@
 extends Node
 
 class_name CutsceneDirector
+@export var special_scene : bool
+@export var auto_save_after : bool
 @export var auto_play : bool
 @export var cutscenes : Array[Cutscene]
 @export var text_animations : Array[bool]
@@ -20,11 +22,13 @@ var paused : bool
 var skipped : bool
 var dayNightManager
 var camZoom
+var doorManager
 func _ready():
 	skip_count = 0
 	playerTransformer  = get_node_or_null("/root/MAIN/PlayerTransformer")
 	camZoom  = get_node_or_null("/root/MAIN/CameraZoom")
 	sceneManager  = get_node_or_null("/root/MAIN/SceneManager")
+	doorManager = get_node("/root/MAIN/Central/Doors")
 	paused = false
 	skipped = false
 	dayNightManager = get_node_or_null("/root/MAIN/DayNightManager")
@@ -39,6 +43,11 @@ func _ready():
 			skip_anim()
 		)	
 	setup()
+func set_player_invincibility(enable : bool):
+	var player_stats = playerTransformer.active_form.get_node("Stats")
+	player_stats.set_invincibility(enable)
+func exit_house():
+	doorManager.on_exit_house(playerTransformer.active_form,2)
 func set_zoom(zoom : float):
 	camZoom.zoom_over_time(0.5,zoom)
 func set_day():
@@ -68,6 +77,10 @@ func setup():
 	#"OneShot %d" % current_index)
 func togglePlayerMovement(toggle:bool):
 	playerTransformer.active_form.stopMovement = !toggle
+func set_ability_enabled(enabled:bool):
+	var player = playerTransformer.active_form
+	var abilities = player.get_node("Abilities")
+	abilities.set_enabled(enabled)
 func unparent_player():
 	if(playerTransformer.active_form == null):
 		return
@@ -91,10 +104,10 @@ func resume(x=null):
 	transition()
 func play_scene_on_trigger(body,scene):
 	if(sceneManager!= null):	
-		sceneManager.new_scene(scene)
+		sceneManager.new_scene(scene,special_scene)
 func play_scene():
 	if(sceneManager!= null):	
-		sceneManager.new_scene(self)
+		sceneManager.new_scene(self,special_scene)
 func _physics_process(delta):
 	var is_visible = get_parent().visible
 	if(Input.is_action_just_pressed("talk") && is_visible):
@@ -186,7 +199,7 @@ func transition():
 	if(current_index >= animations.size() ):
 		print("Animation fully done")
 		if(sceneManager!= null):
-			sceneManager.add_played_scene(self.name)
+			sceneManager.add_played_scene(self.name,auto_save_after)
 		if(area_auto_play != null):
 			area_auto_play.body_entered.disconnect(play_scene_on_trigger)
 			if(!manual_destroy):

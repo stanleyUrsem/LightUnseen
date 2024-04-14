@@ -1,0 +1,30 @@
+[gd_resource type="ShaderMaterial" load_steps=2 format=3 uid="uid://d10kgfowulda4"]
+
+[ext_resource type="Shader" path="res://UI/LiquidMesh.gdshader" id="1_cocag"]
+
+[resource]
+resource_local_to_scene = true
+shader = ExtResource("1_cocag")
+shader_parameter/resolution = Vector2(1, 1)
+shader_parameter/offset = Vector2(0, 0.46)
+shader_parameter/e = Vector2(0.3, -0.21)
+shader_parameter/f = Vector2(2, -4)
+shader_parameter/g = Vector2(0, 1)
+shader_parameter/h = 0.62
+shader_parameter/i = -1.435
+shader_parameter/j = -0.05
+shader_parameter/cell_size = 26.0
+shader_parameter/from = Color(0.352941, 0.560784, 0.521569, 1)
+shader_parameter/to = Color(0.372549, 0.509804, 0.894118, 1)
+shader_parameter/backFillColour = Color(0.62, 1, 1, 1)
+shader_parameter/frontFillInnerColour = Color(0.35, 1, 1, 1)
+shader_parameter/frontFillOuterColour = Color(0, 0.35, 1, 1)
+shader_parameter/ringColour = Color(0, 0.16, 0.13, 1)
+shader_parameter/fresnelColour = Color(0, 0.88, 1, 1)
+shader_parameter/innerRingGlowColour = Color(0, 0, 0, 1)
+shader_parameter/fillcolour = Color(1, 1, 1, 1)
+shader_parameter/ringWidth = 0.07
+shader_parameter/innerCircleRadiusOffset = 0.0
+shader_parameter/fill_value = 0.402
+shader_parameter/fill_value_x = 1.0
+shader_parameter/tolerance = 0.952

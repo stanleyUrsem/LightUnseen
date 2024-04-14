@@ -17,7 +17,8 @@ func player_near_or_hit():
 	if(playerCast.is_colliding()):
 		var count = playerCast.get_collision_count()
 		for i in range(count):
-			ai.player = playerCast.get_collider(i)
+			if(playerCast.get_collider(i).get_collision_layer_value(5)):
+				ai.player = playerCast.get_collider(i)
 	
 func rise():
 	if(risen):

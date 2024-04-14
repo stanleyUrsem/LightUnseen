@@ -1,4 +1,4 @@
-[gd_scene load_steps=6 format=3 uid="uid://ciorncioitqgm"]
+[gd_scene load_steps=8 format=3 uid="uid://ciorncioitqgm"]
 
 [ext_resource type="Script" path="res://UI/HotkeyData.gd" id="1_bscai"]
 [ext_resource type="Texture2D" uid="uid://b5xrieew6lrk8" path="res://UI/Skills.png" id="1_mc777"]
@@ -12,24 +12,69 @@ region = Rect2(0, 0, 32, 32)
 atlas = ExtResource("1_mc777")
 region = Rect2(128, 64, 32, 32)
 
-[node name="Regular" type="AspectRatioContainer" node_paths=PackedStringArray("icon")]
-offset_right = 64.0
-offset_bottom = 64.0
-size_flags_horizontal = 2
-size_flags_vertical = 2
-size_flags_stretch_ratio = 0.25
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_axbvt"]
+load_path = "res://.godot/imported/Skills.png-cee4d12548bdfb0d072a5d639d650fd0.ctex"
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ok25l"]
+resource_local_to_scene = true
+atlas = SubResource("CompressedTexture2D_axbvt")
+region = Rect2(192, 160, 0, 32)
+
+[node name="Regular" type="Control" node_paths=PackedStringArray("icon", "cooldown_icon")]
+custom_minimum_size = Vector2(40, 40)
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_right = -600.0
+offset_bottom = -320.0
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(0.5, 0.5)
+size_flags_horizontal = 3
+size_flags_vertical = 3
 theme = ExtResource("2_inc16")
 script = ExtResource("1_bscai")
 icon = NodePath("Background/Icon")
+cooldown_icon = NodePath("Background/Cooldown")
+cooldown_regions = Array[Rect2]([Rect2(160, 128, 32, 32), Rect2(0, 160, 32, 32), Rect2(32, 160, 32, 32), Rect2(64, 160, 32, 32), Rect2(96, 160, 32, 32), Rect2(128, 160, 32, 32), Rect2(160, 160, 32, 32), Rect2(192, 160, 0, 32)])
 available = Color(1.2, 1.2, 1.2, 1)
 unavailable = Color(0.282353, 0.282353, 0.282353, 1)
 
-[node name="Background" type="TextureRect" parent="."]
+[node name="Background" type="NinePatchRect" parent="."]
 self_modulate = Color(0.75, 0.75, 0.75, 1)
-layout_mode = 2
+custom_minimum_size = Vector2(32, 32)
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
 texture = SubResource("AtlasTexture_o5thb")
+patch_margin_left = 5
+patch_margin_top = 5
+patch_margin_right = 5
+patch_margin_bottom = 5
 
 [node name="Icon" type="TextureRect" parent="Background"]
+self_modulate = Color(1.2, 1.2, 1.2, 1)
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.02
+anchor_right = 0.979
+anchor_bottom = 0.978
+offset_left = -0.8
+offset_top = -10.0
+offset_right = 0.84
+offset_bottom = -4.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_vertical = 3
+texture = SubResource("AtlasTexture_m4pac")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="Cooldown" type="TextureRect" parent="Background"]
 self_modulate = Color(1.2, 1.2, 1.2, 1)
 layout_mode = 1
 anchors_preset = 15
@@ -37,50 +82,30 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-texture = SubResource("AtlasTexture_m4pac")
-stretch_mode = 4
-
-[node name="H" type="HBoxContainer" parent="Background"]
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-
-[node name="Control" type="Control" parent="Background/H"]
-layout_mode = 2
-size_flags_horizontal = 3
-size_flags_stretch_ratio = 0.11
-
-[node name="V" type="VBoxContainer" parent="Background/H"]
-layout_mode = 2
-size_flags_horizontal = 3
-
-[node name="Control" type="Control" parent="Background/H/V"]
-layout_mode = 2
 size_flags_vertical = 3
-size_flags_stretch_ratio = 0.15
+texture = SubResource("AtlasTexture_ok25l")
+expand_mode = 1
+stretch_mode = 5
 
-[node name="Keybind" type="RichTextLabel" parent="Background/H/V"]
+[node name="Keybind" type="RichTextLabel" parent="Background"]
 self_modulate = Color(0.75, 0.75, 0.75, 1)
 clip_contents = false
-layout_mode = 2
-size_flags_horizontal = 3
-size_flags_vertical = 4
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.029
+anchor_top = 1.0
+anchor_right = 0.974
+anchor_bottom = 1.0
+offset_left = -1.16
+offset_top = -8.0
+offset_right = 1.04
+offset_bottom = -2.0
+grow_vertical = 0
+size_flags_vertical = 6
 theme = ExtResource("2_inc16")
 theme_override_constants/outline_size = 0
 theme_override_font_sizes/normal_font_size = 8
 bbcode_enabled = true
-text = "L-STICK UP+ [color=#87D638]A[/color]"
+text = "[center]Z"
 fit_content = true
 scroll_active = false
-
-[node name="Control2" type="Control" parent="Background/H/V"]
-layout_mode = 2
-size_flags_vertical = 3
-
-[node name="Control2" type="Control" parent="Background/H"]
-layout_mode = 2
-size_flags_horizontal = 3
-size_flags_stretch_ratio = 0.05

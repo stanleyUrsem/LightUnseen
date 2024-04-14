@@ -144,7 +144,7 @@ offsets = PackedFloat32Array(0, 0.724696, 1)
 colors = PackedColorArray(0.1675, 0.242875, 0.67, 1, 0.0825, 0.119625, 0.33, 1, 0.0823529, 0.121569, 0.329412, 0)
 
 [node name="Slime_Pool" type="Area2D" node_paths=PackedStringArray("pool_timer", "pool_sprites", "outer_pool", "colliderShape", "outerCollider", "fadeTimer")]
-z_index = 5
+modulate = Color(1, 1, 1, 0.698039)
 texture_repeat = 2
 material = SubResource("ShaderMaterial_hat5p")
 collision_layer = 4
@@ -153,7 +153,7 @@ script = ExtResource("1_6uldn")
 bubble_node = ExtResource("2_82mhg")
 bubbles_per_unit = 1.0
 bubbles_radius = 0.2
-scaleRange = Vector2(0.75, 1.25)
+scaleRange = Vector2(1.5, 2.5)
 textureScale = Vector2(32, 18)
 pool_timer = NodePath("Timer")
 pool_scale_curve = SubResource("Curve_uk0ss")
@@ -207,12 +207,14 @@ use_parent_material = true
 texture = SubResource("GradientTexture2D_nyo0x")
 
 [node name="Node2D" type="CollisionShape2D" parent="."]
+visible = false
 texture_filter = 3
 position = Vector2(16.7052, -12.4021)
 scale = Vector2(0.4, 0.35)
 shape = SubResource("CircleShape2D_2jk1e")
 
 [node name="Node2D4" type="CollisionShape2D" parent="."]
+visible = false
 texture_filter = 3
 scale = Vector2(1, 0.5)
 shape = SubResource("CircleShape2D_2jk1e")

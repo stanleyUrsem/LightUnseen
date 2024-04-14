@@ -1,4 +1,4 @@
-[gd_scene load_steps=44 format=3 uid="uid://dwbbb0sqn2kn6"]
+[gd_scene load_steps=45 format=3 uid="uid://dwbbb0sqn2kn6"]
 
 [ext_resource type="PackedScene" uid="uid://dg0hecc6jw1b2" path="res://Npc/Npc_fam.tscn" id="1_aor44"]
 [ext_resource type="Shader" path="res://swap_color.gdshader" id="2_xkjr6"]
@@ -12,7 +12,7 @@ load_path = "res://.godot/imported/npc_grad.png-df171e15f076bafecc55b51988282185
 interpolation_mode = 1
 interpolation_color_space = 1
 offsets = PackedFloat32Array(0, 0.0555556, 0.111111, 0.166667, 0.222222, 0.277778, 0.333333, 0.388889, 0.444444, 0.5, 0.555556, 0.611111, 0.666667, 0.722222, 0.777778, 0.833333, 0.888889, 0.944444, 1)
-colors = PackedColorArray(0, 0, 0, 0, 0.188235, 0.188235, 0.188235, 1, 0.231373, 0.231373, 0.231373, 1, 0.25098, 0.25098, 0.25098, 1, 0.258824, 0.258824, 0.258824, 1, 0.301961, 0.301961, 0.301961, 1, 0.341176, 0.341176, 0.341176, 1, 0.119477, 0.0866286, 0.0330694, 1, 0.272695, 0.186873, 0.18688, 1, 0.258188, 0.15285, 0.0407986, 1, 0.355633, 0.258167, 0.395349, 1, 0.142125, 0.0988079, 0.165966, 1, 0.353161, 0.171503, 0.00656696, 1, 0.406043, 0.308456, 0.202982, 1, 0.474674, 0.407843, 0.183326, 1, 0.0705882, 0.0470588, 0.0431373, 1, 0.0705882, 0.0470588, 0.0352941, 1, 0.101961, 0.0784314, 0.0666667, 1, 0.101961, 0.0784314, 0.0666667, 1)
+colors = PackedColorArray(0, 0, 0, 0, 0.188235, 0.188235, 0.188235, 1, 0.231373, 0.231373, 0.231373, 1, 0.25098, 0.25098, 0.25098, 1, 0.258824, 0.258824, 0.258824, 1, 0.301961, 0.301961, 0.301961, 1, 0.341176, 0.341176, 0.341176, 1, 0.119477, 0.0866286, 0.0330694, 1, 0.186873, 0.272695, 0.26792, 1, 0.0407986, 0.258188, 0.231263, 1, 0.258167, 0.395349, 0.392694, 1, 0.0988079, 0.165966, 0.15823, 1, 0.00656698, 0.353161, 0.339296, 1, 0.406043, 0.308456, 0.202982, 1, 0.474674, 0.407843, 0.183326, 1, 0.0705882, 0.0470588, 0.0431373, 1, 0.0705882, 0.0470588, 0.0352941, 1, 0.101961, 0.0784314, 0.0666667, 1, 0.101961, 0.0784314, 0.0666667, 1)
 metadata/_snap_count = 18
 metadata/_snap_enabled = true
 
@@ -31,6 +31,60 @@ shader_parameter/palette_out = SubResource("GradientTexture1D_v57fs")
 
 [sub_resource type="Animation" id="Animation_6xxrh"]
 resource_name = "Attack"
+length = 0.6
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Art/Body:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.4, 0.5),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [9, 10, 11, 12, 13, 14]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Art/Eyes:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.2, 0.3),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector2(2.1725, -0.00659657), Vector2(2.25593, -1.17458), Vector2(2.33936, -0.507161)]
+}
+
+[sub_resource type="Animation" id="Animation_ultfb"]
+resource_name = "Attack_2"
+length = 0.7
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Art/Body:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.4, 0.6),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
+"update": 1,
+"values": [16, 17, 18, 19, 18]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Art/Eyes:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.4),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 1,
+"values": [Vector2(1.00452, -1.842), Vector2(1.08795, -2.92656), Vector2(1.29652, -0.799157)]
+}
 
 [sub_resource type="Animation" id="Animation_madf7"]
 resource_name = "Death"
@@ -165,6 +219,7 @@ tracks/1/keys = {
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_a02rs"]
 _data = {
 "Attack": SubResource("Animation_6xxrh"),
+"Attack_2": SubResource("Animation_ultfb"),
 "Death": SubResource("Animation_madf7"),
 "Idle": SubResource("Animation_h7vom"),
 "RESET": SubResource("Animation_i17al"),
@@ -315,13 +370,16 @@ frame = 4
 [node name="Body" parent="Art" index="1"]
 texture = ExtResource("2_y0ckw")
 hframes = 8
-vframes = 7
+vframes = 8
 
 [node name="AnimationTree" parent="." index="1"]
 libraries = {
 "": SubResource("AnimationLibrary_a02rs")
 }
 tree_root = SubResource("AnimationNodeBlendTree_4a6cp")
+parameters/OneShot/active = false
+parameters/OneShot/internal_active = false
+parameters/OneShot/request = 0
 
 [node name="Voice" parent="Control/PanelContainer" index="1"]
 stream = SubResource("AudioStreamRandomizer_mdc3v")

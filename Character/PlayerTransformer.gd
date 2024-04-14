@@ -43,7 +43,7 @@ func _set_form(index):
 		saved_pos = active_form.global_position
 		var holder = active_form.get_node("Stats")
 		mana_on_transform = holder.stats.mana
-		hp_on_transform = holder.stats.hp
+		hp_on_transform = holder.stats.health
 		active_form.queue_free()
 	
 	active_form = forms[current_form].instantiate()

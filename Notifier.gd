@@ -4,6 +4,7 @@ class_name Notifier
 @export var notification : PackedScene
 @export var gravity_up : float
 @export var fade_curve : Curve
+@export var letter_curve : Curve
 @export var duration : float
 
 func show_skill_obtained(data):
@@ -12,17 +13,19 @@ func show_skill_obtained(data):
 	#var label = note.get_node("RichTextLabel")
 	
 	note.setup_text("Ability obtained: %s" % data.displayName)
-	
+	note.setup_icon(data.icon)
 	var pos_y = note.position.y
-	
+	var text = "Ability obtained: %s" % data.displayName as String
 	var notify_tween = get_tree().create_tween()
 	notify_tween.tween_method(func(x):
+		var amount_letters = lerp(0,text.length(),letter_curve.sample(x))
+		note.setup_text(text.left(amount_letters))
 		note.modulate.a = fade_curve.sample(x)
 		note.position.y = lerp(pos_y,gravity_up,x),
-		0.0,1.0,duration
+		0.0,1.5,duration
 		)
 	notify_tween.tween_callback(func(): 
-		queue_free()
+		note.queue_free()
 		)
 	
 	

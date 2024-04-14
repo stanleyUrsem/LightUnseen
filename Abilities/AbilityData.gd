@@ -20,10 +20,17 @@ enum AnimationNodeType {ONESHOT,BLEND,ADD}
 @export var useMouseAim : bool
 @export var toggle : bool
 @export var hold : bool
+@export var dynamic_size : bool
 @export var hold_index : int
 @export var hotkey_index : int
 
 @export var rotateToMouse : bool
+@export var hasCooldown : bool
+@export_group("Cam Effects")
+@export var zoom : float
+@export var zoom_duration : float
+@export var shake_force : float
+@export var shake_duration : float
 #< == > 
 #<= >=
 #enum Conditionals {LOWER_THAN, EQUAL, BIGGER_THAN, LOWER_THAN_EQUAL, BIGGER_THAN_EQUAL}

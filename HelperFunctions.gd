@@ -6,7 +6,17 @@ static func inverse_lerp(from, to, value):
 static func remap(value, inMinMax, outMinMax):
 	var rel = HelperFunctions.inverse_lerp(inMinMax.x, inMinMax.y, value)
 	return lerp(outMinMax.x, outMinMax.y, rel)
-	
+
+static func cell_to_global(tileMap,cell,created_cell):
+	var pos = tileMap.to_global(tileMap.map_to_local(cell))
+	var normal_scale = created_cell.scale
+	created_cell.global_transform = tileMap.global_transform
+	created_cell.global_position -= pos
+	created_cell.global_position = created_cell.global_position.rotated(created_cell.rotation)
+	created_cell.global_position *= sign(created_cell.scale)
+	created_cell.scale = normal_scale
+	#created_cell.rotation_degrees = 0
+
 static func to_degrees(radians) -> float:
 	return radians * 180.0 / PI
 	

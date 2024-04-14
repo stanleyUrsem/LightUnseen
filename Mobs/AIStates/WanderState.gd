@@ -7,10 +7,10 @@ var wanderRange
 var prng
 
 var isWandering
-var currentDist
+var currentDist : float
 var wanderPoint
 var wanderDist
-var maxDist
+var maxDist : float
 var use_saved_pos
 func _pre_setup():
 	setup(func():
@@ -50,16 +50,21 @@ func wander_to(target,speed_multiplier = 1.0, stamina_multiplier = 1.0):
 		sightCast.rotation_degrees = get_angle(wanderPoint, ai.mobMovement.global_position)
 		wanderCast.global_position = wanderPoint
 		maxDist = pos.distance_to(wanderPoint)
+		currentDist = maxDist
 		isWandering = !wanderCast.is_colliding()
+		if(ai.debug):
+			ai.debug_wander_point(wanderPoint)
 		if(isWandering):
 			ai.mobMovement.moveToPoint(wanderPoint,speed_multiplier)
 			anims._walk()
-	isWandering = !wanderCast.is_colliding() 
+	isWandering = !wanderCast.is_colliding() && !ai.mobMovement.is_on_wall()
 	
 	currentDist = pos.distance_to(wanderPoint)
-	if(currentDist < 1.0  && isWandering):
+	var passed_point = currentDist > maxDist
+	if((currentDist < 5.0 || passed_point)  && isWandering):
 		isWandering = false
-		ai.stats.stamina -= (wanderDist * staminaUsagePerUnit * stamina_multiplier);
+		ai.stats.stamina -= (maxDist * staminaUsagePerUnit * stamina_multiplier)
+		called_amount += 1
 		ai.mobMovement.resetMovement()
 	return isWandering
 
@@ -76,6 +81,8 @@ func wander(speed_multiplier = 1.0, stamina_multiplier = 1.0,use_saved_pos = fal
 		maxDist = pos.distance_to(wanderPoint)
 		currentDist = maxDist
 		isWandering = !wanderCast.is_colliding()
+		if(ai.debug):
+			ai.debug_wander_point(wanderPoint)
 		if(isWandering):
 			ai.mobMovement.moveToPoint(wanderPoint,speed_multiplier)
 			anims._walk()

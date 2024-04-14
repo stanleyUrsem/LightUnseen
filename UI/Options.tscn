@@ -1,0 +1,308 @@
+[gd_scene load_steps=5 format=3 uid="uid://j58ddsj4iv4y"]
+
+[ext_resource type="Theme" uid="uid://8oe8akinpd2h" path="res://UI/UI_default.tres" id="1_itb4n"]
+[ext_resource type="Script" path="res://UI/SettingsManager.gd" id="2_wut66"]
+[ext_resource type="AudioBusLayout" uid="uid://bahougp4wswi6" path="res://Audio.tres" id="3_4qjvv"]
+[ext_resource type="Environment" uid="uid://dmbd6a6ueyg62" path="res://main.tres" id="4_jrr7q"]
+
+[node name="Options" type="Control" node_paths=PackedStringArray("return_button", "main_volume", "music_volume", "sfx_volume", "brightness", "contrast", "saturation", "bloom", "fullscreen")]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("1_itb4n")
+theme_type_variation = &"FilledBar"
+script = ExtResource("2_wut66")
+return_button = NodePath("VBoxContainer/Return")
+audio = ExtResource("3_4qjvv")
+main_volume = NodePath("VBoxContainer/Volume/Value")
+main_volume_range = Vector2(-72, 0)
+music_volume = NodePath("VBoxContainer/Music Volume/Value")
+music_volume_range = Vector2(-72, -10)
+sfx_volume = NodePath("VBoxContainer/SFX Volume/Value")
+sfx_volume_range = Vector2(-72, -10)
+envo = ExtResource("4_jrr7q")
+brightness = NodePath("VBoxContainer/Brightness/Value")
+contrast = NodePath("VBoxContainer/Contrast/Value")
+saturation = NodePath("VBoxContainer/Saturation/Value")
+bloom = NodePath("VBoxContainer/Bloom/CheckBox")
+fullscreen = NodePath("VBoxContainer/Fullscreen/CheckBox2")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/separation = 10
+
+[node name="Control" type="Control" parent="VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="Header" type="RichTextLabel" parent="VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 0
+bbcode_enabled = true
+text = "[center]Sound
+"
+fit_content = true
+scroll_active = false
+autowrap_mode = 0
+
+[node name="Volume" type="HBoxContainer" parent="VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 2
+
+[node name="Control" type="Control" parent="VBoxContainer/Volume"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="Label" type="RichTextLabel" parent="VBoxContainer/Volume"]
+layout_mode = 2
+size_flags_vertical = 0
+text = "Main Volume
+"
+fit_content = true
+scroll_active = false
+autowrap_mode = 0
+
+[node name="Value" type="HSlider" parent="VBoxContainer/Volume"]
+layout_mode = 2
+size_flags_horizontal = 3
+mouse_filter = 1
+theme_type_variation = &"FilledBar"
+rounded = true
+
+[node name="Control2" type="Control" parent="VBoxContainer/Volume"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="Music Volume" type="HBoxContainer" parent="VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 2
+
+[node name="Control" type="Control" parent="VBoxContainer/Music Volume"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="Label" type="RichTextLabel" parent="VBoxContainer/Music Volume"]
+layout_mode = 2
+size_flags_vertical = 0
+text = "Music
+"
+fit_content = true
+scroll_active = false
+autowrap_mode = 0
+
+[node name="Value" type="HSlider" parent="VBoxContainer/Music Volume"]
+layout_mode = 2
+size_flags_horizontal = 3
+mouse_filter = 1
+theme_type_variation = &"FilledBar"
+rounded = true
+
+[node name="Control2" type="Control" parent="VBoxContainer/Music Volume"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="SFX Volume" type="HBoxContainer" parent="VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 2
+
+[node name="Control" type="Control" parent="VBoxContainer/SFX Volume"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="Label" type="RichTextLabel" parent="VBoxContainer/SFX Volume"]
+layout_mode = 2
+size_flags_vertical = 0
+text = "SFX
+"
+fit_content = true
+scroll_active = false
+autowrap_mode = 0
+
+[node name="Value" type="HSlider" parent="VBoxContainer/SFX Volume"]
+layout_mode = 2
+size_flags_horizontal = 3
+mouse_filter = 1
+theme_type_variation = &"FilledBar"
+rounded = true
+
+[node name="Control2" type="Control" parent="VBoxContainer/SFX Volume"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="Header2" type="RichTextLabel" parent="VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 0
+bbcode_enabled = true
+text = "[center]Graphics
+"
+fit_content = true
+scroll_active = false
+autowrap_mode = 0
+
+[node name="Brightness" type="HBoxContainer" parent="VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 2
+
+[node name="Control" type="Control" parent="VBoxContainer/Brightness"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="Label" type="RichTextLabel" parent="VBoxContainer/Brightness"]
+layout_mode = 2
+size_flags_vertical = 0
+text = "Brightness
+"
+fit_content = true
+scroll_active = false
+autowrap_mode = 0
+
+[node name="Value" type="HSlider" parent="VBoxContainer/Brightness"]
+custom_minimum_size = Vector2(0, 12)
+layout_mode = 2
+size_flags_horizontal = 3
+mouse_filter = 1
+theme_type_variation = &"FilledBar"
+max_value = 1.5
+step = 0.01
+
+[node name="Control2" type="Control" parent="VBoxContainer/Brightness"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="Contrast" type="HBoxContainer" parent="VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 2
+
+[node name="Control" type="Control" parent="VBoxContainer/Contrast"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="Label" type="RichTextLabel" parent="VBoxContainer/Contrast"]
+layout_mode = 2
+size_flags_vertical = 0
+text = "Contrast"
+fit_content = true
+scroll_active = false
+autowrap_mode = 0
+
+[node name="Value" type="HSlider" parent="VBoxContainer/Contrast"]
+custom_minimum_size = Vector2(0, 12)
+layout_mode = 2
+size_flags_horizontal = 3
+mouse_filter = 1
+theme_type_variation = &"FilledBar"
+max_value = 1.5
+step = 0.01
+
+[node name="Control2" type="Control" parent="VBoxContainer/Contrast"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="Saturation" type="HBoxContainer" parent="VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 2
+
+[node name="Control" type="Control" parent="VBoxContainer/Saturation"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="Label" type="RichTextLabel" parent="VBoxContainer/Saturation"]
+layout_mode = 2
+size_flags_vertical = 0
+text = "Saturation"
+fit_content = true
+scroll_active = false
+autowrap_mode = 0
+
+[node name="Value" type="HSlider" parent="VBoxContainer/Saturation"]
+custom_minimum_size = Vector2(0, 12)
+layout_mode = 2
+size_flags_horizontal = 3
+mouse_filter = 1
+theme_type_variation = &"FilledBar"
+max_value = 1.5
+step = 0.01
+
+[node name="Control2" type="Control" parent="VBoxContainer/Saturation"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="Bloom" type="HBoxContainer" parent="VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 2
+
+[node name="Control" type="Control" parent="VBoxContainer/Bloom"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="Label" type="RichTextLabel" parent="VBoxContainer/Bloom"]
+layout_mode = 2
+size_flags_vertical = 0
+text = "Bloom
+"
+fit_content = true
+scroll_active = false
+autowrap_mode = 0
+
+[node name="CheckBox" type="CheckBox" parent="VBoxContainer/Bloom"]
+layout_mode = 2
+
+[node name="Control2" type="Control" parent="VBoxContainer/Bloom"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="Header3" type="RichTextLabel" parent="VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 0
+bbcode_enabled = true
+text = "[center]Display
+"
+fit_content = true
+scroll_active = false
+autowrap_mode = 0
+
+[node name="Fullscreen" type="HBoxContainer" parent="VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 2
+
+[node name="Control" type="Control" parent="VBoxContainer/Fullscreen"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="Label" type="RichTextLabel" parent="VBoxContainer/Fullscreen"]
+layout_mode = 2
+size_flags_vertical = 0
+text = "Fullscreen
+"
+fit_content = true
+scroll_active = false
+autowrap_mode = 0
+
+[node name="CheckBox2" type="CheckBox" parent="VBoxContainer/Fullscreen"]
+layout_mode = 2
+
+[node name="Control2" type="Control" parent="VBoxContainer/Fullscreen"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="Control2" type="Control" parent="VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+size_flags_stretch_ratio = 20.0
+
+[node name="Return" type="Button" parent="VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+text = "Back"
+
+[node name="Control3" type="Control" parent="VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3

@@ -1,194 +1,20 @@
-[gd_scene load_steps=21 format=3 uid="uid://x20t0tp84x4q"]
+[gd_scene load_steps=3 format=3 uid="uid://x20t0tp84x4q"]
 
-[ext_resource type="Texture2D" uid="uid://7t2bdlotsfxq" path="res://Abilities/dust.png" id="3_6ig0t"]
+[ext_resource type="PackedScene" uid="uid://c31mrj82fikt1" path="res://Abilities/dust_sprite.tscn" id="2_buffn"]
 [ext_resource type="Script" path="res://Abilities/DynamicAnimSprite.gd" id="3_842qh"]
-[ext_resource type="Script" path="res://testCasting.gd" id="4_evnlt"]
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_jpkjc"]
-atlas = ExtResource("3_6ig0t")
-region = Rect2(48, 0, 16, 16)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_bqewq"]
-atlas = ExtResource("3_6ig0t")
-region = Rect2(64, 0, 16, 16)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_otnky"]
-atlas = ExtResource("3_6ig0t")
-region = Rect2(0, 16, 16, 16)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_nxp5q"]
-atlas = ExtResource("3_6ig0t")
-region = Rect2(16, 16, 16, 16)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_l7i3h"]
-atlas = ExtResource("3_6ig0t")
-region = Rect2(32, 16, 16, 16)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_iekf5"]
-atlas = ExtResource("3_6ig0t")
-region = Rect2(32, 48, 16, 16)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_dvgrn"]
-atlas = ExtResource("3_6ig0t")
-region = Rect2(48, 16, 16, 16)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_hrsw1"]
-atlas = ExtResource("3_6ig0t")
-region = Rect2(64, 16, 16, 16)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_08fik"]
-atlas = ExtResource("3_6ig0t")
-region = Rect2(0, 32, 16, 16)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_kcr6x"]
-atlas = ExtResource("3_6ig0t")
-region = Rect2(16, 32, 16, 16)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_p6tow"]
-atlas = ExtResource("3_6ig0t")
-region = Rect2(32, 32, 16, 16)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_mi0au"]
-atlas = ExtResource("3_6ig0t")
-region = Rect2(48, 32, 16, 16)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_rfque"]
-atlas = ExtResource("3_6ig0t")
-region = Rect2(16, 48, 16, 16)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_cngeb"]
-atlas = ExtResource("3_6ig0t")
-region = Rect2(0, 48, 16, 16)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_8bcm3"]
-atlas = ExtResource("3_6ig0t")
-region = Rect2(64, 32, 16, 16)
-
-[sub_resource type="SpriteFrames" id="SpriteFrames_bs7pi"]
-animations = [{
-"frames": [{
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_jpkjc")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_bqewq")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_otnky")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_nxp5q")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_l7i3h")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_iekf5")
-}],
-"loop": false,
-"name": &"dust",
-"speed": 10.0
-}, {
-"frames": [{
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_dvgrn")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_hrsw1")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_08fik")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_kcr6x")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_p6tow")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_mi0au")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_rfque")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_cngeb")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_8bcm3")
-}, {
-"duration": 1.0,
-"texture": null
-}],
-"loop": false,
-"name": &"swing",
-"speed": 10.0
-}]
-
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_tw25c"]
-size = Vector2(1, 1)
-
-[node name="Slam_dust" type="Node2D" node_paths=PackedStringArray("animSpriteTemplate", "sprites", "fadeTimer", "shapeCast")]
+[node name="Slam_dust" type="StaticBody2D" node_paths=PackedStringArray("col_parent", "fadeTimer", "body")]
 z_index = 8
+collision_layer = 4
+collision_mask = 80
 script = ExtResource("3_842qh")
-animSpriteTemplate = NodePath("AnimatedSprite2D")
-sprites = [NodePath("AnimatedSprite2D"), NodePath("AnimatedSprite2D2"), NodePath("AnimatedSprite2D3"), NodePath("AnimatedSprite2D4")]
-offset = 12.0
+animSpriteTemplate = ExtResource("2_buffn")
+animation_name = "swing"
+col_parent = NodePath(".")
+interval = 0.02
+offset = Vector2(13, 0)
 fadeTimer = NodePath("Timer")
-detectCollisions = true
-shapeCast = NodePath("ShapeCast2D")
-
-[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
-texture_filter = 1
-use_parent_material = true
-position = Vector2(0, -7)
-sprite_frames = SubResource("SpriteFrames_bs7pi")
-animation = &"swing"
-centered = false
-offset = Vector2(-1, 0)
-
-[node name="AnimatedSprite2D2" type="AnimatedSprite2D" parent="."]
-texture_filter = 1
-use_parent_material = true
-position = Vector2(13, -7)
-sprite_frames = SubResource("SpriteFrames_bs7pi")
-animation = &"swing"
-centered = false
-offset = Vector2(-1, 0)
-
-[node name="AnimatedSprite2D3" type="AnimatedSprite2D" parent="."]
-texture_filter = 1
-use_parent_material = true
-position = Vector2(26, -7)
-sprite_frames = SubResource("SpriteFrames_bs7pi")
-animation = &"swing"
-centered = false
-offset = Vector2(-1, 0)
-
-[node name="AnimatedSprite2D4" type="AnimatedSprite2D" parent="."]
-texture_filter = 1
-use_parent_material = true
-position = Vector2(39, -7)
-sprite_frames = SubResource("SpriteFrames_bs7pi")
-animation = &"swing"
-centered = false
-offset = Vector2(-1, 0)
+body = NodePath(".")
 
 [node name="Timer" type="Timer" parent="."]
 one_shot = true
-
-[node name="ShapeCast2D" type="ShapeCast2D" parent="."]
-self_modulate = Color(1, 1, 1, 0)
-z_index = -1
-position = Vector2(27, 0)
-scale = Vector2(55, 20)
-shape = SubResource("RectangleShape2D_tw25c")
-target_position = Vector2(0, 0)
-collision_mask = 16
-script = ExtResource("4_evnlt")
-
-[node name="Polygon2D" type="Polygon2D" parent="ShapeCast2D"]
-visible = false
-self_modulate = Color(1, 1, 1, 0.207843)
-color = Color(1, 0, 0, 1)
-polygon = PackedVector2Array(0.5, -0.5, 0.5, 0.5, -0.5, 0.5, -0.5, -0.5)

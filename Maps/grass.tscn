@@ -1,8 +1,9 @@
-[gd_scene load_steps=8 format=3 uid="uid://dh31b844c1gis"]
+[gd_scene load_steps=9 format=3 uid="uid://dh31b844c1gis"]
 
 [ext_resource type="Script" path="res://Maps/Grass.gd" id="1_2rejq"]
 [ext_resource type="Material" uid="uid://c76forv1im2u0" path="res://Maps/Town/windy.tres" id="2_2k1l8"]
 [ext_resource type="PackedScene" uid="uid://68yr4k66ilke" path="res://Envo/grass_pickup.tscn" id="2_3so0h"]
+[ext_resource type="PackedScene" uid="uid://clfqq0yuw5w3w" path="res://Envo/health_pickup.tscn" id="3_fqaqf"]
 [ext_resource type="Curve" uid="uid://cpsky3utqtqjt" path="res://Maps/GrassCurveY.tres" id="3_ga466"]
 [ext_resource type="Texture2D" uid="uid://cwavka8ctuhe0" path="res://Envo/grass.png" id="3_ohkpd"]
 [ext_resource type="Curve" uid="uid://b6gs0eclchfs7" path="res://Maps/GrassCurveX.tres" id="4_3mcc1"]
@@ -19,13 +20,15 @@ input_pickable = false
 monitorable = false
 script = ExtResource("1_2rejq")
 droppable = ExtResource("2_3so0h")
-x_size = 60.0
+droppable_special = ExtResource("3_fqaqf")
+x_size = 20.0
+normal_chance = 90.0
+special_chance = 10.0
 path_curve_y = ExtResource("3_ga466")
 path_curve_x = ExtResource("4_3mcc1")
 metadata/resource_amount = 0
 
 [node name="TileSprite" type="Sprite2D" parent="."]
-modulate = Color(1.2, 1.2, 1.2, 1)
 texture_filter = 5
 material = ExtResource("2_2k1l8")
 texture = ExtResource("3_ohkpd")

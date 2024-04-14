@@ -44,12 +44,13 @@ func searchForPlayer():
 		var valid_col = sightCast.get_collider(i) as CollisionObject2D
 		
 		#Other slimes found the player
-		if(valid_col.is_in_group("MobSpawner")):
+		if(valid_col.get_parent().name == "MobSpawner"):
 			var mobAi = valid_col.get_node("AI") as SlimeAI
-			ai.player = mobAi.player
+			if(mobAi.player != null):
+				ai.player = mobAi.player
 			called_amount += 1
 			return
-		else:
+		if(valid_col.get_collision_layer_value(5)):
 			#The player is found already
 			pos = valid_col.global_position
 			ai.player = valid_col

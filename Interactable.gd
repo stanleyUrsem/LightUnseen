@@ -3,7 +3,10 @@ extends Node2D
 class_name Interactable
 
 @export var droppable : PackedScene
+@export var droppable_special : PackedScene
 @export var x_size : float
+@export var normal_chance : float
+@export var special_chance : float
 @export var path_curve_y : Curve
 @export var path_curve_x : Curve
 var drops : Array[Node2D]
@@ -15,8 +18,14 @@ func setup_vars(p_prng):
 
 func drop_item(on_drop : Callable):
 	var amount = get_meta("resource_amount")
+	var weightedTuples : Array[WeightedTuple]
+	weightedTuples.append(WeightedTuple.new(normal_chance,droppable))
+	weightedTuples.append(WeightedTuple.new(special_chance,droppable_special))
+	
+	var drop_item = prng.weighted_range(weightedTuples)
+	
 	for i in range(amount):
-		var drop = droppable.instantiate()
+		var drop = drop_item.instantiate()
 		drop.scale = Vector2.ONE * 0.5
 		drops.append(drop)
 		add_child(drop)
@@ -33,6 +42,8 @@ func drop_item(on_drop : Callable):
 	drop_tween.set_parallel(false)
 	drop_tween.tween_callback(func():
 		for drop in drops:
+			if(drop == null):
+				continue
 			drop.setup()
 			drop.reparent(get_parent())
 			drop.scale = Vector2.ONE

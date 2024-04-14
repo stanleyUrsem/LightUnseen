@@ -1,0 +1,14 @@
+[gd_scene load_steps=4 format=3 uid="uid://djvhnyswc776l"]
+
+[ext_resource type="PackedScene" uid="uid://dh31b844c1gis" path="res://Maps/grass.tscn" id="1_xldvs"]
+[ext_resource type="PackedScene" uid="uid://clfqq0yuw5w3w" path="res://Envo/health_pickup.tscn" id="2_o6led"]
+[ext_resource type="Texture2D" uid="uid://cnj7y3d6l70to" path="res://Envo/light.tres" id="3_pf84c"]
+
+[node name="Grass_Special" instance=ExtResource("1_xldvs")]
+modulate = Color(1, 0.219608, 0, 1)
+droppable = ExtResource("2_o6led")
+
+[node name="PointLight2D" type="PointLight2D" parent="." index="2"]
+color = Color(1, 1, 0, 1)
+energy = 16.0
+texture = ExtResource("3_pf84c")

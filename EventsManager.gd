@@ -13,11 +13,15 @@ signal OnPickUpStone
 signal OnEnemyKilled(type)
 signal OnHitBy(type,amount_damage)
 signal OnDeath
+signal OnFamilyKilled
 signal OnExplored(area)
 signal OnNpcDeath(type)
+signal OnNpcKilled(type)
 signal OnPriestDeath
 signal OnSkillUsed(skill)
+signal OnSkillProgress(skill,progress)
 signal OnSkillObtained(skill)
 signal OnNpcTalkToggle(player)
 signal OnToolsPickUp()
 signal OnNewGame()
+signal OnHendersonDeath

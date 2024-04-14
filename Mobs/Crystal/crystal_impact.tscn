@@ -1,8 +1,9 @@
-[gd_scene load_steps=13 format=3 uid="uid://b5a5ldgbtqjvd"]
+[gd_scene load_steps=14 format=3 uid="uid://b5a5ldgbtqjvd"]
 
 [ext_resource type="Script" path="res://Mobs/Crystal/AnimatableMovableSkill.gd" id="1_3tc5a"]
 [ext_resource type="Texture2D" uid="uid://bl06ut30dpicd" path="res://Envo/rockthrow.png" id="1_172tn"]
 [ext_resource type="Material" uid="uid://dlo3kh48c6xhw" path="res://Maps/Particles.tres" id="2_hyqih"]
+[ext_resource type="Script" path="res://CameraEffectsData.gd" id="4_4la5q"]
 
 [sub_resource type="Animation" id="Animation_6x2nq"]
 resource_name = "Impact"
@@ -14,10 +15,38 @@ tracks/0/path = NodePath("Sprite2D:frame")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6),
-"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1),
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.4, 0.5),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1),
 "update": 1,
-"values": [24, 25, 26, 27, 28, 29, 67]
+"values": [28, 29, 30, 31, 32, 33]
+}
+tracks/1/type = "method"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0.6),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [],
+"method": &"_fade"
+}]
+}
+tracks/2/type = "method"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("CameraFX")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [],
+"method": &"use"
+}]
 }
 
 [sub_resource type="Animation" id="Animation_u1a1r"]
@@ -32,7 +61,7 @@ tracks/0/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 1,
-"values": [11]
+"values": [15]
 }
 tracks/1/type = "value"
 tracks/1/imported = false
@@ -61,7 +90,7 @@ tracks/0/keys = {
 "times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.4),
 "transitions": PackedFloat32Array(1, 1, 1, 1, 1),
 "update": 1,
-"values": [11, 12, 13, 14, 15]
+"values": [15, 16, 17, 18, 19]
 }
 tracks/1/type = "value"
 tracks/1/imported = false
@@ -91,40 +120,43 @@ animation = &"Throw"
 
 [sub_resource type="AnimationNodeBlend2" id="AnimationNodeBlend2_ob6mx"]
 
-[sub_resource type="AnimationNodeBlendTree" id="AnimationNodeBlendTree_ptift"]
-graph_offset = Vector2(-701.156, -123.02)
+[sub_resource type="AnimationNodeBlendTree" id="AnimationNodeBlendTree_30or8"]
+graph_offset = Vector2(0, -87)
 nodes/Animation/node = SubResource("AnimationNodeAnimation_7tvsh")
 nodes/Animation/position = Vector2(-500, 0)
 "nodes/Animation 2/node" = SubResource("AnimationNodeAnimation_jbpkb")
 "nodes/Animation 2/position" = Vector2(-460, 120)
-nodes/Impact/node = SubResource("AnimationNodeBlend2_ob6mx")
-nodes/Impact/position = Vector2(-200, 20)
-node_connections = [&"Impact", 0, &"Animation", &"Impact", 1, &"Animation 2", &"output", 0, &"Impact"]
+nodes/Throw/node = SubResource("AnimationNodeBlend2_ob6mx")
+nodes/Throw/position = Vector2(-200, 20)
+node_connections = [&"Throw", 0, &"Animation", &"Throw", 1, &"Animation 2", &"output", 0, &"Throw"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_yyqrl"]
 
-[node name="Crystal_Impact" type="AnimatableBody2D" node_paths=PackedStringArray("animTree", "animBody", "fadeTimer")]
+[node name="Crystal_Impact" type="AnimatableBody2D" node_paths=PackedStringArray("animTree", "animBody", "fadeTimer", "body")]
+z_index = 7
 collision_layer = 4
 collision_mask = 16
+sync_to_physics = false
 script = ExtResource("1_3tc5a")
 animTree = NodePath("AnimationTree")
 animBody = NodePath(".")
 fadeTimer = NodePath("Timer")
+body = NodePath(".")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 material = ExtResource("2_hyqih")
 texture = ExtResource("1_172tn")
 hframes = 9
 vframes = 8
-frame = 11
+frame = 15
 
 [node name="AnimationTree" type="AnimationTree" parent="."]
 libraries = {
 "": SubResource("AnimationLibrary_1c32t")
 }
-tree_root = SubResource("AnimationNodeBlendTree_ptift")
+tree_root = SubResource("AnimationNodeBlendTree_30or8")
 anim_player = NodePath("../AnimationPlayer")
-parameters/Impact/blend_amount = 0.0
+parameters/Throw/blend_amount = 0.0
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 libraries = {
@@ -136,3 +168,8 @@ visible = false
 shape = SubResource("RectangleShape2D_yyqrl")
 
 [node name="Timer" type="Timer" parent="."]
+
+[node name="CameraFX" type="Node2D" parent="."]
+script = ExtResource("4_4la5q")
+shake_force = 20.0
+shake_duration = 0.1

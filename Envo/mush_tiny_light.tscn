@@ -15,3 +15,6 @@ texture = SubResource("AtlasTexture_7tidt")
 [node name="Node2D" parent="." index="1"]
 position = Vector2(-0.743256, 2.89869)
 scale = Vector2(0.5, 0.5)
+
+[node name="PointLight2D" parent="Node2D" index="5"]
+texture_scale = 5.0

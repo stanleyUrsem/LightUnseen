@@ -67,7 +67,7 @@ func on_exit_house(body, door_index):
 	
 	#zoomTween.tween_method(cam_zoom,currentZoom,camZoom.default_zoom,0.5)
 	zoomTween.tween_callback(func():
-		if(body.follow_target == null):
+		if( body != null && body.follow_target == null):
 			body.stopMovement = false
 		isMoving = false
 		)

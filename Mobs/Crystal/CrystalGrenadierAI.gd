@@ -8,21 +8,32 @@ extends CrystalGolemAI
 @export var bomb_transition : AnimationTransition
 @export var death_explosion_cast : ShapeCast2D
 @export var death_explosion_damage : float
-var attack_bomb_state : AttackState
+var attack_bomb_state : AutoAttackState
 var hitNumberManager
 func _setup():
 	super()
 	hitNumberManager = get_node("/root/MAIN/HitNumberManager")
-	attack_bomb_state = AttackState.new("Bomb",rise_state,self,crystal_anims)
+	attack_bomb_state = AutoAttackState.new("Bomb",rise_state,self,crystal_anims)
 	attack_bomb_state.setup_vars(bomb_stats,bomb_path,leftBot,rightTop,
 	att_root,bomb_type,bomb_transition)
+	states.append(attack_bomb_state)
+	disable_states()
+	#ai_enabled = true
 func bombs_recovered():
-	attack_bomb_state.current_cooldown = 0
+	attack_bomb_state.reset()
+func attack_done():
+	print("Done")
+	attack_bomb_state.allowExit = true
+	set_state(idle_state)
+	print(currentState.name)
 func throw_bombs():
 	var offset =  prng.random_unit_circle(false) * offset_radius
 	leftBot.global_position += offset
 	attack_bomb_state.create_hit()
-
+func on_death():
+	if(player!= null):
+		get_parent().global_position = player.global_position
+	super()
 func explode():
 	if(death_explosion_cast.is_colliding()):
 		for i in death_explosion_cast.get_collision_count():

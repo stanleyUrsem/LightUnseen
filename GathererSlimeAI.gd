@@ -7,8 +7,8 @@ extends SlimeAI
 var search_food_state : SearchState
 var pickup_state : PickUpState
 var move_to_food_state : MoveToPointState
-var flee_state :FleeState
-var escape_state :EscapeState
+#var flee_state :FleeState
+#var escape_state :EscapeState
 var searchCalled
 var escape_point
 var foodCollision
@@ -38,22 +38,24 @@ func _setup():
 	attackState.setup_vars(attackStats,skillHitPath,
 	leftBottomMarker,rightTopMarker,attackArtRoot,
 	attack_type,attackTransition)
-	attackState.allowExit = true
-
+	attackState.allowExit = false
+	states.append(attackState)
+	
 	search_food_state = SearchState.new("Search Food", rootState,self,slimeAnims)
 	search_food_state.setup_vars(sightCast,wandering_state,lowInv)
-	
+	states.append(search_food_state)
 	move_to_food_state = MoveToPointState.new("Move to Food", search_food_state,self,slimeAnims)
 	move_to_food_state.setup_vars(search_food_state)
-	
+	states.append(move_to_food_state)
 	pickup_state = PickUpState.new("Pick Up", move_to_food_state,self,slimeAnims)
 	pickup_state.setup_vars(search_food_state,food_min_dist,"resource_amount",lowInv)
-	
-	flee_state = FleeState.new("Flee", rootState,self,slimeAnims)
-	
-	escape_state = EscapeState.new("Escape", flee_state,self,slimeAnims)
-	escape_state.setup_vars(food_min_dist,flee_state)
+	states.append(pickup_state)
+	#flee_state = FleeState.new("Flee", rootState,self,slimeAnims)
+	#
+	#escape_state = EscapeState.new("Escape", flee_state,self,slimeAnims)
+	#escape_state.setup_vars(food_min_dist,flee_state)
 	disable_states()
+	currentState = rootState
 	ai_enabled = true
 
 func attack_forward(dir):
@@ -76,10 +78,26 @@ func reset_rotation():
 	if(attackArtRoot != null):
 		attackArtRoot.rotation_degrees = 0
 	hitMarkerRoot.rotation_degrees = 0
-	
+func aim_to_player():
+	if(player != null):
+		#attackArtRoot.global_position = player.global_position
+		var offset = prng.random_unit_circle(true) * 2.0
+		leftBottomMarker.global_position = player.global_position + offset
+		rightTopMarker.position = Vector2.ZERO
+	else:
+		#attackArtRoot.position = prng.random_unit_circle(false) * 50.0
+		leftBottomMarker.position = prng.random_unit_circle(false) * 50.0	
+		rightTopMarker.position = Vector2.ZERO
+				
 func create_hit():
 	#print("Create hit %d" % attackArtRoot.rotation_degrees)
+	aim_to_player()
 	attackState.create_hit()
+func attack_done():
+	attackState.reset()
+	attackState.allowExit = true
+func _use_root():
+	mobMovement.resetMovement()
 func _physics_process(delta):
 	super(delta)
 	

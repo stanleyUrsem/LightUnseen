@@ -10,7 +10,7 @@ void fragment()
 {
 	float t = step(1.0,COLOR.a);
 	COLOR += (texture(gradient,(UV))*t) * multiplier;
-	COLOR.a = (texture(gradient,(UV))*t).a * alpha * t;
+	//COLOR.a *= (texture(gradient,(UV))*t).a * alpha * t;
 	//COLOR.a = alpha *t;
 	//COLOR = vec4(UV.x,UV.y,0,1);
 	// Place fragment code here.

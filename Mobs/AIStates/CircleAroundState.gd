@@ -26,7 +26,11 @@ func _pre_setup():
 			return false
 		distPlayer = movement.global_position.distance_to(player.global_position)
 		return distPlayer <= minDist,
-		func(): circle_around_point(player.global_position),3)
+		func():
+			if(player == null):
+				return 
+			circle_around_point(player.global_position)
+			,3)
 func setup_vars(p_radius,p_angle_range, p_wanderCast, p_prng,
  p_staminaUsage,p_minDist):
 	radius = p_radius

@@ -22,8 +22,10 @@ var talkable_npcs : Array[ConversationHolder]
 var lastPos
 var diff
 var diff_length
+
 func _ready():
 	art_node = get_node("Art")
+	
 	#stopMovement = false
 	animChar = SionTDAnimations.new()
 	animChar._setup(get_node("AnimationTree"))
@@ -55,6 +57,8 @@ func _physics_process(delta):
 	#_transform()
 	#move_and_slide()
 #	_attacks()
+
+
 func enable_follow(target,offset):
 	lastPos = global_position
 	follow_target = target

@@ -83,12 +83,14 @@ hframes = 5
 vframes = 11
 
 [node name="AnimationTree" type="AnimationTree" parent="."]
-deterministic = false
 libraries = {
 "": ExtResource("10_ttskh")
 }
 tree_root = ExtResource("7_go07s")
 anim_player = NodePath("../AnimationPlayer")
+parameters/CrystalTransform/active = false
+parameters/CrystalTransform/internal_active = false
+parameters/CrystalTransform/request = 0
 parameters/Death/blend_amount = 0.0
 parameters/Harvest/active = false
 parameters/Harvest/internal_active = false
@@ -98,9 +100,9 @@ parameters/LeftOrRight/blend_amount = 1.0
 parameters/Mine/active = false
 parameters/Mine/internal_active = false
 parameters/Mine/request = 0
-parameters/OneShot/active = false
-parameters/OneShot/internal_active = false
-parameters/OneShot/request = 0
+parameters/OnDeath/active = false
+parameters/OnDeath/internal_active = false
+parameters/OnDeath/request = 0
 parameters/Transform/active = false
 parameters/Transform/internal_active = false
 parameters/Transform/request = 0

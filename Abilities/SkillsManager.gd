@@ -17,13 +17,19 @@ class_name SkillsManager
 @export var pierce_slam_amount_used : float
 @export var spin_kills_type : Array[Vector2i]
 @export var spit_kills_type : Array[Vector2i]
+@export var teleport_hit_times : float
+@export var bow_kills_type : Array[Vector2i]
+@export var shield_kills_type : Array[Vector2i]
+@export var minefield_kills_type : Array[Vector2i]
+@export var crystal_transform_kills_type : Array[Vector2i]
 
 var notifier : Notifier
 var carion_skills : Array[Skill]
 var carion_skill_names : Array[String]
 var slime_skills : Array[Skill]
 var slime_skill_names : Array[String]
-
+var crystal_skills : Array[Skill]
+var crystal_skill_names : Array[String]
 var created_skills : Array[Skill]
 #Skills have conditions to make them available
 #Each skill needs to have a script
@@ -42,6 +48,13 @@ var pierce : pierce_sk
 var spin : mobs_defeated_sk
 var spit : mobs_defeated_sk 
 
+var bow : mobs_defeated_sk
+var teleport : slime_dash_sk
+var shield : mobs_defeated_sk
+var minefield : mobs_defeated_sk
+var carion_transform_crystal : carion_transform_sk 
+var crystal_transform : mobs_defeated_sk
+
 var abilityNode
 
 func _ready():
@@ -56,6 +69,7 @@ func setup():
 func load_skills():
 	var loaded_carion_skills = saveManager.loaded_data["carion_skills"]
 	var loaded_slime_skills = saveManager.loaded_data["slime_skills"]
+	var loaded_crystal_skills = saveManager.loaded_data["crystal_skills"]
 	
 	for skill_name in loaded_carion_skills:
 		var skill = name_to_skill(skill_name)
@@ -71,8 +85,19 @@ func load_skills():
 			skill.obtained = true
 			skill._disable_obtain_event()
 			slime_skills.append(skill)
+	for skill_name in loaded_crystal_skills:
+		var skill = name_to_skill(skill_name)
+		crystal_skill_names.append(skill_name)
+		if(skill != null && !crystal_skills.has(skill)):
+			skill.obtained = true
+			skill._disable_obtain_event()
+			crystal_skills.append(skill)
 	#_add_abilities(playerTransformer.active_form)
-		
+	for skill in created_skills:
+		load_obtain_vars(skill)
+func load_obtain_vars(skill : Skill):
+	if(!skill.obtained):
+		skill.load_vars(saveManager.loaded_data)	
 func name_to_skill(p_name):
 	for skill in created_skills:
 		var data = skill.skillData
@@ -81,8 +106,8 @@ func name_to_skill(p_name):
 	return null
 
 func setup_skill(skill : Skill,index):
-	skill._setup(skills[index],eventsManager,self)
 	skill.OnObtain.connect(add_ability)
+	skill._setup(skills[index],eventsManager,self,saveManager)
 	created_skills.append(skill)
 
 func setup_skills():
@@ -98,6 +123,14 @@ func setup_skills():
 	spin = mobs_defeated_sk.new()
 	spit = mobs_defeated_sk.new()
 	
+	bow = mobs_defeated_sk.new()
+	teleport = slime_dash_sk.new()
+	shield = mobs_defeated_sk.new()
+	minefield = mobs_defeated_sk.new()
+	carion_transform_crystal = carion_transform_sk.new()
+	crystal_transform = mobs_defeated_sk.new()
+	
+	
 	boulder_throw._setup_vars(rock_throw)
 	roll._setup_vars(roll_hit_times)
 	slime_transform._setup_vars(slime_transform_kills_type.x,slime_transform_kills_type.y)
@@ -109,17 +142,30 @@ func setup_skills():
 	spin._setup_vars(spin_kills_type)
 	spit._setup_vars(spit_kills_type)
 	
+	bow._setup_vars(bow_kills_type)
+	teleport._setup_vars(teleport_hit_times,2,playerTransformer)
+	shield._setup_vars(shield_kills_type)
+	minefield._setup_vars(minefield_kills_type)
+	crystal_transform._setup_vars(crystal_transform_kills_type)	
+	carion_transform_crystal._setup_vars(crystal_transform)
+	
 	setup_skill(rock_throw,0)
 	setup_skill(boulder_throw,1)
 	setup_skill(roll,2)
 	setup_skill(slime_transform,3)
-	setup_skill(carion_transform,4)
-	setup_skill(slime_dash,5)
-	setup_skill(slime_trail,6)
-	setup_skill(slam,7)
-	setup_skill(pierce,8)
-	setup_skill(spin,9)
-	setup_skill(spit,10)
+	setup_skill(slime_dash,4)
+	setup_skill(slime_trail,5)
+	setup_skill(slam,6)
+	setup_skill(pierce,7)
+	setup_skill(spin,8)
+	setup_skill(spit,9)
+	setup_skill(carion_transform,10)
+	setup_skill(crystal_transform,11)
+	setup_skill(carion_transform_crystal,12)
+	setup_skill(teleport,13)
+	setup_skill(minefield,14)
+	setup_skill(bow,15)
+	setup_skill(shield,16)
 	
 
 
@@ -139,10 +185,12 @@ func add_ability(skill : Skill):
 			slime_skills.append(skill)
 			slime_skill_names.append(data.displayName)
 		2:
-			pass
+			crystal_skills.append(skill)
+			crystal_skill_names.append(data.displayName)
 			
 	saveManager.add_data("carion_skills",carion_skill_names)	
 	saveManager.add_data("slime_skills",slime_skill_names)	
+	saveManager.add_data("crystal_skills",crystal_skill_names)	
 	if(playerTransformer.current_form == data.form_type):
 		abilityNode.add_ability(data)	
 		
@@ -156,7 +204,7 @@ func _add_abilities(active_form):
 		1:
 			skills = slime_skills
 		2:
-			pass
+			skills = crystal_skills
 	for skill in skills:
 		if(abilityNode.loaded):
 			abilityNode.add_ability(skill.skillData)

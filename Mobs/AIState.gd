@@ -16,8 +16,8 @@ var parentState
 var allowExit
 var loop
 var called
-var called_amount
-var ai
+var called_amount : int
+var ai : AI
 var anims
 
 func _init(p_stateName, p_parentState, p_AI, p_anims, p_max_times = -1):
@@ -47,6 +47,7 @@ func _pre_setup():
 func remove_self():
 	if(parentState != null):
 		parentState.states.erase(self)
+	states.clear()
 func add_state(state: AIState):
 	states.append(state)
 	

@@ -1,0 +1,135 @@
+[gd_scene load_steps=14 format=3 uid="uid://dfe2rnsksiu8s"]
+
+[ext_resource type="PackedScene" uid="uid://cpbwya8pbxv60" path="res://Abilities/rock_throw.tscn" id="1_pxshi"]
+[ext_resource type="Script" path="res://Abilities/Bow_Shot.gd" id="2_vos65"]
+[ext_resource type="Material" uid="uid://dlo3kh48c6xhw" path="res://Maps/Particles.tres" id="3_75b21"]
+
+[sub_resource type="Animation" id="Animation_cmeu3"]
+resource_name = "Hit"
+length = 0.5
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.4),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
+"update": 1,
+"values": [51, 52, 53, 54, 71]
+}
+tracks/1/type = "method"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0.5),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [],
+"method": &"_fade"
+}]
+}
+
+[sub_resource type="Animation" id="Animation_8bv4e"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [46]
+}
+
+[sub_resource type="Animation" id="Animation_xd4tb"]
+resource_name = "Shoot"
+length = 0.5
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.4),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
+"update": 1,
+"values": [46, 47, 48, 49, 50]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_wel0p"]
+_data = {
+"Hit": SubResource("Animation_cmeu3"),
+"RESET": SubResource("Animation_8bv4e"),
+"Shoot": SubResource("Animation_xd4tb")
+}
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_l2mpi"]
+animation = &"Hit"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_emdp4"]
+animation = &"Shoot"
+
+[sub_resource type="AnimationNodeBlend2" id="AnimationNodeBlend2_tfenn"]
+
+[sub_resource type="AnimationNodeBlendTree" id="AnimationNodeBlendTree_ydg7k"]
+graph_offset = Vector2(-773.754, 43.9287)
+"nodes/Animation 2/node" = SubResource("AnimationNodeAnimation_l2mpi")
+"nodes/Animation 2/position" = Vector2(-320, 400)
+"nodes/Animation 3/node" = SubResource("AnimationNodeAnimation_emdp4")
+"nodes/Animation 3/position" = Vector2(-380, 140)
+nodes/Hit/node = SubResource("AnimationNodeBlend2_tfenn")
+nodes/Hit/position = Vector2(-91.3582, 200.648)
+node_connections = [&"Hit", 0, &"Animation 3", &"Hit", 1, &"Animation 2", &"output", 0, &"Hit"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_s14bp"]
+size = Vector2(12, 5)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_nwujs"]
+size = Vector2(20, 5)
+
+[node name="BowShot" node_paths=PackedStringArray("shapeCast") instance=ExtResource("1_pxshi")]
+modulate = Color(1.5, 1.5, 1.5, 1)
+collision_layer = 1024
+collision_mask = 65
+script = ExtResource("2_vos65")
+detectCollisions = true
+piercing = true
+shapeCast = NodePath("ShapeCast2D")
+
+[node name="Sprite2D" parent="." index="0"]
+modulate = Color(0.89, 0.93, 1.09, 1)
+material = ExtResource("3_75b21")
+scale = Vector2(2, 1)
+frame = 46
+
+[node name="AnimationTree" parent="." index="1"]
+libraries = {
+"": SubResource("AnimationLibrary_wel0p")
+}
+tree_root = SubResource("AnimationNodeBlendTree_ydg7k")
+parameters/Hit/blend_amount = 0
+
+[node name="AnimationPlayer" parent="." index="2"]
+libraries = {
+"": SubResource("AnimationLibrary_wel0p")
+}
+
+[node name="CollisionShape2D" parent="." index="3"]
+position = Vector2(6, -0.5)
+shape = SubResource("RectangleShape2D_s14bp")
+
+[node name="ShapeCast2D" type="ShapeCast2D" parent="." index="5"]
+position = Vector2(4, -1)
+shape = SubResource("RectangleShape2D_nwujs")
+target_position = Vector2(0, 0)
+collision_mask = 2

@@ -45,7 +45,8 @@ func reset_idle_state():
 	staminaRecovered = 0
 	isRecovering = false
 	#ai.staminaTimer.stop()
-	tween.kill()
+	if(tween != null):
+		tween.kill()
 	
 func recover_stamina():
 	if(ai == null):

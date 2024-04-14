@@ -24,6 +24,8 @@ func empty_text():
 	panel.modulate.a = 0.0
 func animate_text():
 	super()
+	if(panel == null):
+		panel = label.get_parent()
 	panel.modulate.a = 1.0
 	
 func set_anim_prefix(prefix : String):

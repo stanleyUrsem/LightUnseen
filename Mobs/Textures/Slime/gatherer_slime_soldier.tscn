@@ -1,15 +1,17 @@
-[gd_scene load_steps=7 format=3 uid="uid://lk7v88jvcnnq"]
+[gd_scene load_steps=11 format=3 uid="uid://lk7v88jvcnnq"]
 
 [ext_resource type="PackedScene" uid="uid://bkdu7ke3vkapc" path="res://Mobs/Textures/Slime/gatherer_slime.tscn" id="1_x2mdc"]
 [ext_resource type="Script" path="res://SoldierSlimeAI.gd" id="2_8imii"]
 [ext_resource type="Script" path="res://AnimationTransition.gd" id="3_7y6q0"]
 [ext_resource type="Script" path="res://SkillStats.gd" id="3_pw6iy"]
+[ext_resource type="Script" path="res://Mobs/SlimeStatsResource.gd" id="5_wbkwo"]
+[ext_resource type="Shader" path="res://UI/LiquidMeshBox.gdshader" id="6_ukd8m"]
 
-[sub_resource type="Resource" id="Resource_dc2xy"]
+[sub_resource type="Resource" id="Resource_iggxw"]
 script = ExtResource("3_pw6iy")
-cooldown = 3.0
-speed = 5.0
-damage = -5.0
+cooldown = 2.0
+speed = 7.5
+damage = -10.0
 mana_usage = 2.0
 health_usage = 0.0
 
@@ -20,11 +22,57 @@ animType = 1
 one_shot = 0
 blend_add_value = 1.0
 
+[sub_resource type="Resource" id="Resource_otx5o"]
+script = ExtResource("5_wbkwo")
+inv_space = 15
+health = 37.5
+mana = 5.0
+defense = 6.0
+stamina = 3000.0
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_k5k1t"]
+resource_local_to_scene = true
+shader = ExtResource("6_ukd8m")
+shader_parameter/boxB = Vector2(0.67, 0.655)
+shader_parameter/resolution = Vector2(2, 1.5)
+shader_parameter/scale = Vector2(33, 10)
+shader_parameter/cell_size = 52.0
+shader_parameter/from_clr = Color(0.35, 1, 1, 1)
+shader_parameter/to_clr = Color(0.52549, 0.129412, 0, 1)
+shader_parameter/backFillColour = Color(0.62, 1, 1, 1)
+shader_parameter/frontFillInnerColour = Color(0.35, 1, 1, 1)
+shader_parameter/frontFillOuterColour = Color(0, 0.35, 1, 1)
+shader_parameter/ringColour = Color(0, 0.16, 0.13, 1)
+shader_parameter/fresnelColour = Color(0, 0.88, 1, 1)
+shader_parameter/innerRingGlowColour = Color(0, 0, 0, 1)
+shader_parameter/fillcolour = Color(1, 1, 1, 1)
+shader_parameter/ringWidth = 0.15
+shader_parameter/innerCircleRadiusOffset = 0.0
+shader_parameter/fill_value = 0.966
+shader_parameter/fill_value_x = 1.0
+shader_parameter/tolerance = 1.0
+shader_parameter/pos_range_x = Vector2(0, 10)
+shader_parameter/pos_range_y = Vector2(0, 10)
+
 [node name="GathererSlime_Soldier" instance=ExtResource("1_x2mdc")]
 
-[node name="AI" parent="." index="5"]
+[node name="Sprite2D" parent="Sprite2D/Eyes" index="0"]
+frame = 8
+
+[node name="Sprite2D2" parent="Sprite2D/Eyes" index="1"]
+frame = 8
+
+[node name="AI" parent="." index="6"]
 script = ExtResource("2_8imii")
-attackStats = SubResource("Resource_dc2xy")
-skillHitPath = "res://Character/mob_slime_particle.tscn"
-attack_type = 1
+attackStats = SubResource("Resource_iggxw")
 attackTransition = SubResource("Resource_iqlci")
+reset_pos_duration = 0.5
+stats_resource = SubResource("Resource_otx5o")
+
+[node name="WanderCast" parent="." index="9"]
+visible = true
+
+[node name="TextureRect2" parent="Health" index="0"]
+material = SubResource("ShaderMaterial_k5k1t")
+
+[editable path="Health"]

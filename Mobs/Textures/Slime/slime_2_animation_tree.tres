@@ -1,8 +1,5 @@
 [gd_resource type="AnimationNodeBlendTree" load_steps=19 format=3 uid="uid://6rtjgc3741ie"]
 
-[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_lpuw8"]
-animation = &"Attack_Loop"
-
 [sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_0di4g"]
 animation = &"Idle"
 
@@ -18,22 +15,25 @@ animation = &"Attack_Use"
 [sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_kg40d"]
 animation = &"Death"
 
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_p3cxb"]
+animation = &"Death"
+
 [sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_1owoc"]
 animation = &"Attack_Begin"
 
-[sub_resource type="AnimationNodeAdd2" id="AnimationNodeAdd2_e057w"]
-
 [sub_resource type="AnimationNodeOneShot" id="AnimationNodeOneShot_oq2eb"]
 
-[sub_resource type="AnimationNodeOneShot" id="AnimationNodeOneShot_856kf"]
+[sub_resource type="AnimationNodeBlend2" id="AnimationNodeBlend2_gm7ct"]
 
 [sub_resource type="AnimationNodeBlend2" id="AnimationNodeBlend2_6uwgv"]
 
 [sub_resource type="AnimationNodeBlend2" id="AnimationNodeBlend2_8vlhw"]
 
+[sub_resource type="AnimationNodeOneShot" id="AnimationNodeOneShot_ch5gb"]
+
 [sub_resource type="AnimationNodeBlend2" id="AnimationNodeBlend2_dsw0q"]
 
-[sub_resource type="AnimationNodeTimeScale" id="AnimationNodeTimeScale_4lprp"]
+[sub_resource type="AnimationNodeTimeSeek" id="AnimationNodeTimeSeek_m8k11"]
 
 [sub_resource type="AnimationNodeAdd2" id="AnimationNodeAdd2_7pr04"]
 
@@ -46,11 +46,9 @@ animation = &"RightTurn"
 [sub_resource type="AnimationNodeBlend2" id="AnimationNodeBlend2_8u42j"]
 
 [resource]
-graph_offset = Vector2(75.2336, 43.2391)
+graph_offset = Vector2(-854.245, -296.76)
 nodes/Animation/node = SubResource("AnimationNodeAnimation_1owoc")
 nodes/Animation/position = Vector2(-900, 0)
-"nodes/Animation 2/node" = SubResource("AnimationNodeAnimation_lpuw8")
-"nodes/Animation 2/position" = Vector2(-900, 140)
 "nodes/Animation 3/node" = SubResource("AnimationNodeAnimation_0di4g")
 "nodes/Animation 3/position" = Vector2(-1200, -380)
 "nodes/Animation 4/node" = SubResource("AnimationNodeAnimation_12ibj")
@@ -58,23 +56,25 @@ nodes/Animation/position = Vector2(-900, 0)
 "nodes/Animation 5/node" = SubResource("AnimationNodeAnimation_ch3cj")
 "nodes/Animation 5/position" = Vector2(-1220, -520)
 "nodes/Animation 6/node" = SubResource("AnimationNodeAnimation_fgo7s")
-"nodes/Animation 6/position" = Vector2(-440, 240)
+"nodes/Animation 6/position" = Vector2(-920, 300)
 "nodes/Animation 7/node" = SubResource("AnimationNodeAnimation_kg40d")
-"nodes/Animation 7/position" = Vector2(640, 380)
-nodes/Attack/node = SubResource("AnimationNodeAdd2_e057w")
-nodes/Attack/position = Vector2(-380, -120)
+"nodes/Animation 7/position" = Vector2(880, 460)
+"nodes/Animation 8/node" = SubResource("AnimationNodeAnimation_p3cxb")
+"nodes/Animation 8/position" = Vector2(580, 400)
 nodes/Attack_Loop/node = SubResource("AnimationNodeOneShot_oq2eb")
 nodes/Attack_Loop/position = Vector2(-700, 20)
-nodes/Attack_Use/node = SubResource("AnimationNodeOneShot_856kf")
-nodes/Attack_Use/position = Vector2(100, -40)
+nodes/Attack_Use/node = SubResource("AnimationNodeBlend2_gm7ct")
+nodes/Attack_Use/position = Vector2(-220, -160)
 nodes/Death/node = SubResource("AnimationNodeBlend2_6uwgv")
-nodes/Death/position = Vector2(840, 180)
+nodes/Death/position = Vector2(1240, 200)
 nodes/LeftOrRight/node = SubResource("AnimationNodeBlend2_8vlhw")
 nodes/LeftOrRight/position = Vector2(80, 540)
+nodes/OnDeath/node = SubResource("AnimationNodeOneShot_ch5gb")
+nodes/OnDeath/position = Vector2(760, 180)
 nodes/StillToIdle/node = SubResource("AnimationNodeBlend2_dsw0q")
 nodes/StillToIdle/position = Vector2(-1040, -520)
-nodes/TimeScale/node = SubResource("AnimationNodeTimeScale_4lprp")
-nodes/TimeScale/position = Vector2(-240, 300)
+nodes/TimeSeek/node = SubResource("AnimationNodeTimeSeek_m8k11")
+nodes/TimeSeek/position = Vector2(1060, 380)
 nodes/Turn/node = SubResource("AnimationNodeAdd2_7pr04")
 nodes/Turn/position = Vector2(460, 200)
 nodes/TurnLeft/node = SubResource("AnimationNodeAnimation_yx7t5")
@@ -83,5 +83,5 @@ nodes/TurnRight/node = SubResource("AnimationNodeAnimation_iri7w")
 nodes/TurnRight/position = Vector2(-140, 680)
 nodes/Walk/node = SubResource("AnimationNodeBlend2_8u42j")
 nodes/Walk/position = Vector2(-740, -480)
-nodes/output/position = Vector2(1000, 120)
-node_connections = [&"Attack", 0, &"Walk", &"Attack", 1, &"Attack_Loop", &"Attack_Loop", 0, &"Animation", &"Attack_Loop", 1, &"Animation 2", &"Attack_Use", 0, &"Attack", &"Attack_Use", 1, &"TimeScale", &"Death", 0, &"Turn", &"Death", 1, &"Animation 7", &"LeftOrRight", 0, &"TurnLeft", &"LeftOrRight", 1, &"TurnRight", &"StillToIdle", 0, &"Animation 5", &"StillToIdle", 1, &"Animation 3", &"TimeScale", 0, &"Animation 6", &"Turn", 0, &"Attack_Use", &"Turn", 1, &"LeftOrRight", &"Walk", 0, &"StillToIdle", &"Walk", 1, &"Animation 4", &"output", 0, &"Death"]
+nodes/output/position = Vector2(1400, 140)
+node_connections = [&"Attack_Loop", 0, &"Animation", &"Attack_Loop", 1, &"Animation 6", &"Attack_Use", 0, &"Walk", &"Attack_Use", 1, &"Attack_Loop", &"Death", 0, &"OnDeath", &"Death", 1, &"TimeSeek", &"LeftOrRight", 0, &"TurnLeft", &"LeftOrRight", 1, &"TurnRight", &"OnDeath", 0, &"Turn", &"OnDeath", 1, &"Animation 8", &"StillToIdle", 0, &"Animation 5", &"StillToIdle", 1, &"Animation 3", &"TimeSeek", 0, &"Animation 7", &"Turn", 0, &"Attack_Use", &"Turn", 1, &"LeftOrRight", &"Walk", 0, &"StillToIdle", &"Walk", 1, &"Animation 4", &"output", 0, &"Death"]

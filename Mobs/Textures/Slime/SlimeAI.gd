@@ -56,12 +56,12 @@ var idle_state : Idle_State
 @export var foodPoint : Vector3
 var staminaRecovered : float
 var currentDist
+var currentPlayerDist : float
 
-var emptyPoly
+
 #var mob_type
 #var stats : SlimeStats
 var wanderPoly
-var tilePoly
 var wanderCalled
 var player
 var playerTransformer : PlayerTransformer
@@ -70,6 +70,7 @@ var food_point: Vector2:
 		return Vector2(foodPoint.x, foodPoint.y)
 #var eventsManager : EventsManager
 var saved_pos
+var update_delta : float
 func _setup():
 	super()
 	saved_pos = mobMovement.global_position
@@ -85,21 +86,24 @@ func _setup():
 	idle_state = Idle_State.new("Idle",rootState,self,slimeAnims,5)
 	idle_state.setup_vars(staminaRecoveryDuration,
 	staminaRecoveryMinimum,staminaRecovery)
+	states.append(idle_state)
 	
 	wandering_state = WanderState.new("Wander",rootState,self,slimeAnims,5)
 	wandering_state.setup_vars(sightCast,wanderCast,staminaUsagePerUnit,wanderRange,prng)
+	states.append(wandering_state)
 
-	emptyPoly = preload("res://test_poly.tscn")
-	tilePoly = create_empty("Tile", Vector2.ZERO,Color.BLACK)
+	
 
 	stats = SlimeStats.new(stats_resource)
 	stats._set_max()
+	setup_health()
 	savedPoint = mobMovement.global_position
 
 func OnPlayerTransform(new_player):
 	player = null
 
 func _physics_process(delta):
+	update_delta = delta
 	super(delta)
 	_CheckPlayerDist()
 
@@ -108,11 +112,18 @@ func _OnPlayerFound(p_player):
 func _CheckPlayerDist():
 	if(player==null):
 		return
-	var currentDist = mobMovement.global_position.distance_to(player.global_position)
-	if(currentDist > maxPlayerDist):
+	currentPlayerDist = mobMovement.global_position.distance_to(player.global_position)
+	if(currentPlayerDist > maxPlayerDist):
 		player = null
+func _get_label_text()-> String:
+	var str = super()
+	if( player != null):
+		str = "%s\nPlayer Dist:%f" % [str,currentPlayerDist]
+	#text_label.append_text("\n%s" % get_parent().name)
+	return str
 func _OnHit(healthChange,user):
-	if(user is CollisionObject2D && user.collision_layer == 16):
+	print("Health %d done by %s" % [healthChange,user.name])
+	if(user is CollisionObject2D && user.get_collision_layer_value(5)):
 		_OnPlayerFound(user)
 	super(healthChange,user)
 #func _OnHit(healthChange,user):
@@ -139,16 +150,7 @@ func _OnHit(healthChange,user):
 func on_death():
 	slimeAnims.death()
 	super()
-	
-func create_empty(nm,pos, clr):
-	var empty = emptyPoly.instantiate()
-	empty.name = nm
-	var root = get_node("/root")
-	root.add_child.call_deferred(empty)
-	empty.position = pos
-	var child = empty.get_child(0)
-	child.modulate = clr
-	return empty
+
 
 func _use_root():
 	slimeAnims._still()

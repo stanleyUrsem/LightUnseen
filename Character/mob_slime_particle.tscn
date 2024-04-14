@@ -2,12 +2,16 @@
 
 [ext_resource type="PackedScene" uid="uid://ctpjb7ikc0cd8" path="res://Character/slime_particle.tscn" id="1_olba3"]
 [ext_resource type="Material" uid="uid://vkas5ib21cmi" path="res://Mobs/Textures/Slime/slime_mat.tres" id="2_uhs67"]
-[ext_resource type="Script" path="res://MovableSkill.gd" id="3_hw0hv"]
+[ext_resource type="Script" path="res://Npc/LifetimeSkill.gd" id="3_1ca0k"]
 
-[node name="Slime_Particle" instance=ExtResource("1_olba3")]
+[node name="Slime_Particle" node_paths=PackedStringArray("animPlayer") instance=ExtResource("1_olba3")]
 material = ExtResource("2_uhs67")
-collision_mask = 17
-script = ExtResource("3_hw0hv")
+collision_mask = 16
+script = ExtResource("3_1ca0k")
+life_time = 4.0
+animPlayer = NodePath("AnimationPlayer")
+on_expire_anim = "impact"
+on_play_anim = "fly"
 
 [node name="SlimeArea" parent="." index="0"]
 use_parent_material = true

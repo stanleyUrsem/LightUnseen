@@ -17,12 +17,12 @@ noise = SubResource("FastNoiseLite_0x5rk")
 
 [resource]
 background_mode = 3
+background_color = Color(1, 0, 1, 1)
 background_energy_multiplier = 1.42
 background_canvas_max_layer = 2
 reflected_light_source = 1
 tonemap_mode = 2
-tonemap_exposure = 0.4
-tonemap_white = 3.69
+tonemap_exposure = 0.25
 glow_enabled = true
 glow_levels/1 = 8.16
 glow_levels/2 = 5.08
@@ -42,4 +42,5 @@ glow_hdr_scale = 0.59
 glow_hdr_luminance_cap = 40.07
 glow_map_strength = 0.74
 glow_map = SubResource("NoiseTexture2D_nkjmm")
-adjustment_brightness = 0.96
+adjustment_enabled = true
+adjustment_brightness = 0.57

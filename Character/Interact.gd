@@ -9,42 +9,67 @@ class_name Interact
 @export var data : AbilityData
 @onready var eventsManager : EventsManager = $"/root/MAIN/EventsManager"
 @onready var saveManager : SaveManager = $"/root/MAIN/SaveManager"
-var timerTween : Tween
+#var timerTween : Tween
+@export var interaction_allowed : bool
 var interacting : bool
 var interaction_unlocked : bool
 var hotkeyManager : HotkeyManager
+var interaction_duration : float
+var current_time : float
+var current_col
+var current_res_amount 
+var current_anim_name
 func _ready():
-	hotkeyManager = get_node("/root/MAIN/HUD/Node2D/H/HotkeyContainer")
+	hotkeyManager = get_node("/root/MAIN/HUD/Node2D/H/V/HotkeyContainer")
 	
 	interaction_unlocked = saveManager.loaded_data["interaction_unlocked"]
 	if(!interaction_unlocked):
 		eventsManager.OnToolsPickUp.connect(unlock_tools)
 	else:
-		hotkeyManager.create_hotkey(data)
+		if(interaction_allowed):
+			hotkeyManager.create_hotkey(data)
 func unlock_tools():
 	saveManager.add_data("interaction_unlocked",true)
 	interaction_unlocked = true
+	if(!interaction_allowed):
+		return
 	hotkeyManager.create_hotkey(data)
-func update_input():
-	if(!interaction_unlocked):
+func update_input(delta):
+	if(!interaction_unlocked || !interaction_allowed):
 		return
 	
 	if(Input.is_action_just_pressed("Interact") && !interacting):
 		check_collision()
+		
+	if(interacting):
+		current_time -= delta
+		if(current_time <= 0.0):
+			current_time = 0.0
+			movement.stopMovement = false
+			current_col.drop_item(on_drop.bind(current_col,current_res_amount,current_anim_name))
+			interacting = false
 func interact(col,anim_name):
+	if(interacting):
+		return
 	interacting = true
-	if(timerTween!= null):
-		timerTween.kill()
+	#if(timerTween!= null):
+		#timerTween.kill()
 		
 	movement.stopMovement = true
 	var resourceAmount = col.get_meta("resource_amount")
+	print("resource amount %d" % resourceAmount)
+	current_res_amount = resourceAmount
 	AnimatorHelper._playanimTreeOneShotFire(animTree,anim_name)
-	timerTween = get_tree().create_tween()
-	timerTween.tween_interval(resourceAmount * secondsPerResource)
-	timerTween.tween_callback(func():
-		movement.stopMovement = false
-		col.drop_item(on_drop.bind(col,resourceAmount,anim_name))
-		)
+	current_anim_name = anim_name
+	interaction_duration = resourceAmount * secondsPerResource
+	current_time = interaction_duration
+	current_col = col
+	#timerTween = get_tree().create_tween()
+	#timerTween.tween_interval(resourceAmount * secondsPerResource)
+	#timerTween.tween_callback(func():
+		#movement.stopMovement = false
+		#col.drop_item(on_drop.bind(col,resourceAmount,anim_name))
+		#)
 		
 func on_drop(col,resourceAmount,anim_name):
 	col.OnPickUp.emit(col,func():

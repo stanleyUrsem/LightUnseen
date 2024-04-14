@@ -20,7 +20,7 @@ func _on_setup():
 	dist = beginPos.distance_to(endPos)
 	t_speed = data.speed/dist
 	direction = Vector2.ZERO
-	anim.play("new_animation")
+	anim.play("fly")
 	t = 0.0
 
 func get_pos(alpha)-> Vector2:
@@ -55,7 +55,9 @@ func remove():
 	##pool._setup(prng,data.damage)
 	##pool.global_position = pos
 	#user.get_parent().add_child(pool)
-	queue_free()
+	#queue_free()
+	anim.play("impact")
+	
 
 func _OnHit(collision,is_cast=false):
 	super(collision,is_cast)

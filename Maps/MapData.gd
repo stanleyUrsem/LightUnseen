@@ -12,8 +12,20 @@ class_name MapData
 
 @export var tileManagers : Array[TileManager]
 @export var npcManagers : Array[NPCSpawner]
+var npcs_created : bool
+
 func clean_up_map():
 	for npcManager in npcManagers:
 		npcManager.clean_up()
 	for tileManager in tileManagers:
 		tileManager.clean_up()
+	#queue_free()
+func create_npcs():
+	for npcManager in npcManagers:
+		npcManager.create_npcs()
+	npcs_created = true
+func recreate_map():
+	for npcManager in npcManagers:
+		npcManager.reset_npcs()
+	for tileManager in tileManagers:
+		tileManager.cleaning_up = false

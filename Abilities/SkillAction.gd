@@ -4,6 +4,7 @@ class_name SkillAction
 
 @export var fadeTimer : Timer
 @export var detectCollisions : bool
+@export var piercing : bool
 @export var shapeCast : ShapeCast2D
 @export var body : PhysicsBody2D
 var damage
@@ -19,6 +20,10 @@ var hit_pos
 var is_mob
 var hitNumberManager
 var speed : float
+var cols_hit : Array
+
+var time_alive : float
+
 func _setup_vars(p_speed, p_damage):
 	speed = p_speed
 	damage = p_damage
@@ -48,23 +53,35 @@ func _detect_collision():
 
 
 func _Move():
-	var collision = body.move_and_collide(speed * direction)
+	var collision = body.move_and_collide(speed * direction,speed > 0.0)
 	
 	if(collision != null && collision.get_collider().get_parent() != user):
 		_OnHit(collision)
 
 func _physics_process(delta):
 	delta_time = delta
-	collision_result = _detect_collision()
+	time_alive += delta
+	
+	if(time_alive > 10.0):
+		_fade()
+		return
+	
 	if(isSetup && body != null):
 		_Move()
+	check_collision()
+func check_collision():
+	if(shapeCast == null):
+		return
+	collision_result = _detect_collision()
 	if(collision_result > 0):
 		for i in shapeCast.get_collision_count():
 			var valid_col = shapeCast.get_collider(i)
-			if(valid_col == null):
+			if(valid_col == null || cols_hit.has(valid_col)):
 				continue
+			cols_hit.append(valid_col)
 			_OnHit(valid_col,true)
-
+			if(piercing):
+				isHit = false
 func _fadeout(time : float = 0):
 	if(time > 0):
 		fadeTimer.start(time)
@@ -88,7 +105,7 @@ func _ApplyDamage(collision,is_cast=false):
 	var hit = get_hit(collision,is_cast)
 	if(hit is Hittable):
 		hit.OnHit.emit(damage, user)
-		hit_pos	= collision.get_position()
+		hit_pos	= collision.global_position if is_cast else collision.get_position() 
 		_ShowHit()
 		return hit
 	return null

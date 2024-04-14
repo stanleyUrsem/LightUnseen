@@ -16,10 +16,12 @@ extends AbilityAction
 var created_bubbles : Array
 var entered_bodies : Dictionary
 var current_size:Vector2	
-
-
+var scale_tween : Tween
+var remove_tween : Tween
+var removing : bool
 func _on_setup():
 	super()
+	removing = false
 	scale = Vector2.ZERO
 	current_size.x = prng.range_f_v(scaleRange)
 	current_size.y = prng.range_f_v(scaleRange)
@@ -31,6 +33,9 @@ func _on_setup():
 func _fade():
 	return
 func scale_pool():
+	if(scale_tween!=null):
+		scale_tween.kill()
+	
 	var scale_tween = get_tree().create_tween()
 	scale_tween.tween_method(set_pool,0.0,1.0,0.5)
 	scale_tween.tween_callback(func():
@@ -46,7 +51,10 @@ func set_pool(x : float):
 func free_pool():
 	queue_free()
 func remove_pool():
-	var remove_tween = get_tree().create_tween()
+	removing = true
+	if(remove_tween!=null):
+		remove_tween.kill()
+	remove_tween = get_tree().create_tween()
 	remove_tween.tween_method(set_pool,1.0,0.0,0.5)
 	remove_tween.tween_callback(free_pool)
 	
@@ -60,7 +68,8 @@ func apply_damage_on_enter(body):
 	if(hit is Hittable):
 		entered_bodies[body] = hit
 		hit.OnHit.emit(damage,user)
-		
+		hit_pos = entered_bodies[body].global_position
+		_ShowHit()
 func _physics_process(delta):
 	super(delta)
 	if(damage_time > 0):
@@ -68,11 +77,13 @@ func _physics_process(delta):
 
 
 func _process(delta):
-	if(damage_time <= 0):
+	if(damage_time <= 0 && !removing):
 		for key in entered_bodies.keys():
 			var value = entered_bodies[key]
 			if(value != null):
 				value.OnHit.emit(damage,user)
+				hit_pos = value.global_position
+				_ShowHit()
 		damage_time = data.speed	
 
 func on_exit(body):

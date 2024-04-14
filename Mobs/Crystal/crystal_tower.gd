@@ -14,23 +14,35 @@ func _physics_process(delta):
 		current_time -= delta
 		if(current_time <= 0):
 			current_time = prng.range_f(duration_range.x,duration_range.y)
-			if(landed):
-				shoot()
-			else:
-				land()
+			land()
+			#if(landed):
+				#shoot()
+			#else:
 	super(delta)
 
 func land():
-	AnimatorHelper._playanimTreeBlend2D(animTree,"Throw",1.0)
-	landed = true
+	isSetup = false
+	#speed = 0
+	AnimatorHelper._playanimTreeBlend2D(animTree,"Impact",1.0)
+	#landed = true
 func shoot():
+	#isSetup = false
 	AnimatorHelper._playanimTreeOneShotFire(animTree,"Shoot")
 func create_particle():
-	var dir = prng.random_unit_circle_random_degrees(false,Vector2(-90.0,90.0))
+	var dir = Vector2.UP * prng.range_f(-1.0,1.0)
+	if(user == null):
+		return
+	if(user.player != null):
+		var player_dir = user.player.global_position - spawn_loc.global_position
+		dir += player_dir.normalized()
+		
+	
 	var particle = particle_temp.instantiate()
+	#user.get_parent().add_sibling(particle)
+	get_tree().root.get_child(0).add_child(particle)
 	particle._setup_vars(speed,damage)
-	particle._setup(spawn_loc ,user , dir,prng)
-	user.add_child(particle)
+	particle._setup(spawn_loc.global_position ,user , dir,prng)
+	#particle.global_position = spawn_loc.global_position
 
 func _OnHit(collision, is_cast = false):
 	return

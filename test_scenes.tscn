@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=3 uid="uid://bniftawo00020"]
+[gd_scene load_steps=11 format=3 uid="uid://bniftawo00020"]
 
 [ext_resource type="Environment" uid="uid://dmbd6a6ueyg62" path="res://main.tres" id="1_r2iwx"]
 [ext_resource type="PackedScene" uid="uid://cx684ats2tmww" path="res://Maps/Central.tscn" id="2_sws4f"]
@@ -11,9 +11,6 @@
 [ext_resource type="PackedScene" uid="uid://dhx561hkg1vii" path="res://Maps/d_2.tscn" id="8_552al"]
 [ext_resource type="PackedScene" uid="uid://ctedmjlnfcrl2" path="res://Maps/d_3.tscn" id="9_mo2xu"]
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_8l4w8"]
-size = Vector2(331.412, 328.193)
-
 [node name="TestScenes" type="Node2D"]
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
@@ -21,24 +18,26 @@ environment = ExtResource("1_r2iwx")
 
 [node name="Central" parent="." instance=ExtResource("2_sws4f")]
 
+[node name="Scene_5_Guide" parent="Central" index="27"]
+points = PackedVector2Array(-149, 15, -149, 57, -190, 56, -229, 88, -610, 90, -770, 89, -960, 77, -1034, 79, -1605, 75, -2095, 76, -2317, 33, -2469.86, 41.0099, -2644.51, 54.1619, -2968.87, 42.8613, -3085.05, -44.6196, -3241.07, -99.9409, -3282, -170, -3270, -291, -3307, -380, -3280, -443, -3269, -542, -3268, -937)
+
 [node name="A_1" parent="." instance=ExtResource("3_o0fd7")]
 
 [node name="A_2" parent="." instance=ExtResource("4_ge4ob")]
 
-[node name="A_3" parent="." instance=ExtResource("5_amfxx")]
+[node name="A_3" parent="." node_paths=PackedStringArray("tileManagers") instance=ExtResource("5_amfxx")]
+tileManagers = [null]
 
 [node name="A_4" parent="." instance=ExtResource("6_yduup")]
 
-[node name="b_1" parent="." instance=ExtResource("6_175pd")]
+[node name="b_1" parent="." node_paths=PackedStringArray("area_doors") instance=ExtResource("6_175pd")]
+area_doors = [null]
 
 [node name="D_1" parent="." instance=ExtResource("7_5twpo")]
-
-[node name="Col" parent="D_1/BGM_CE_A1" index="0"]
-position = Vector2(-166.705, -131.81)
-shape = SubResource("RectangleShape2D_8l4w8")
 
 [node name="D_2" parent="." instance=ExtResource("8_552al")]
 
 [node name="D_3" parent="." instance=ExtResource("9_mo2xu")]
 
+[editable path="Central"]
 [editable path="D_1"]

@@ -20,9 +20,9 @@ var loaded : bool
 enum consumable {HP,MANA,NONE}
 
 func _ready():
-	hotkeyManager = get_node("/root/MAIN/HUD/Node2D/H/HotkeyContainer")	
+	hotkeyManager = get_node("/root/MAIN/HUD/Node2D/H/V/HotkeyContainer")	
 	playerTransformer = get_node("/root/MAIN/PlayerTransformer")
-	playerTransformer.on_form_changed.connect(set_carion_consumes)
+	playerTransformer.on_form_changed.connect(set_consumes)
 	loaded = playerTransformer.loaded
 	if(!loaded):
 		hp_amount = saveManager.loaded_data["hp_amount"]
@@ -34,7 +34,7 @@ func _ready():
 		setup_consumables()
 	
 	
-func set_carion_consumes():
+func set_consumes(x):
 	playerTransformer.hp_amount = hp_amount
 	playerTransformer.mana_amount = mana_amount
 	
@@ -65,9 +65,9 @@ func add_consumable(drop):
 			
 			mana_hotkey.set_amount(mana_amount)
 func mana_low():
-	stats_holder.stats.mana < stats_holder.stats.mana_max
+	return stats_holder.stats.mana < stats_holder.stats.mana_max
 func hp_low():
-	stats_holder.stats.health < stats_holder.stats.health_max
+	return stats_holder.stats.health < stats_holder.stats.health_max
 
 func _physics_process(delta):
 	consume_items()
@@ -78,16 +78,21 @@ func consume_items():
 		hp_low() && hp_amount > 0):
 		hp_cooldown = hp_data.mana
 		hp_amount -= 1
+		hp_hotkey.set_amount(hp_amount)
+		
 		stats_holder.add_health(hp_data.damage)
 		saveManager.add_data("hp_amount", hp_amount)
 	if(Input.is_action_pressed("Consume_2") && mana_cooldown <= 0.0 &&
 		mana_low() && mana_amount > 0):
 		mana_cooldown = mana_data.mana	
 		mana_amount -= 1
+		mana_hotkey.set_amount(mana_amount)
 		stats_holder.add_mana(mana_data.damage)
 		saveManager.add_data("mana_amount", mana_amount)
-		
-		
+	if(hp_hotkey!= null):
+		hp_hotkey.visible = hp_amount > 0
+	if(mana_hotkey!=null):
+		mana_hotkey.visible = mana_amount > 0
 
 func update_cooldown(delta):
 	if(hp_cooldown > 0.0):

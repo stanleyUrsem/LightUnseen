@@ -6,4 +6,6 @@
 shader = ExtResource("1_n3vir")
 shader_parameter/offset_multiplier = 4.0
 shader_parameter/mouse_dir = Vector2(0, 0)
-shader_parameter/exposure = -0.345
+shader_parameter/tolerance = 0.23
+shader_parameter/hsv_shift = Vector3(0.61, -0.24, -0.22)
+shader_parameter/from_clr = Color(0, 1, 0, 1)

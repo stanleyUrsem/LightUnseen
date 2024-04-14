@@ -1,4 +1,4 @@
-[gd_scene load_steps=18 format=3 uid="uid://c31mrj82fikt1"]
+[gd_scene load_steps=19 format=3 uid="uid://c31mrj82fikt1"]
 
 [ext_resource type="Texture2D" uid="uid://7t2bdlotsfxq" path="res://Abilities/dust.png" id="1_1yaxi"]
 
@@ -123,10 +123,25 @@ animations = [{
 "speed": 10.0
 }]
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_5c237"]
+size = Vector2(16, 16)
+
 [node name="AnimatedSprite2D" type="AnimatedSprite2D"]
 texture_filter = 1
 use_parent_material = true
 sprite_frames = SubResource("SpriteFrames_bs7pi")
-animation = &"dust"
+animation = &"swing"
+frame = 9
+frame_progress = 1.0
 centered = false
 offset = Vector2(0, -16)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+visible = false
+position = Vector2(8, -8)
+shape = SubResource("RectangleShape2D_5c237")
+
+[node name="Polygon2D" type="Polygon2D" parent="CollisionShape2D"]
+visible = false
+color = Color(1, 0, 0, 0.631373)
+polygon = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
